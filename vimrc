@@ -1,15 +1,21 @@
+"   # Arquivo de configuração do vim de Geraldo Ribeiro
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+"   ## Plugins
+"{{{
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
+"}}}
 
 " http://coderoncode.com/tools/2017/04/16/vim-the-perfect-ide.html
 
-" Utility
+"   ### Utilitários
+"{{{
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
@@ -25,8 +31,10 @@ Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'gilsondev/searchtasks.vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'tpope/vim-dispatch'
+"}}}
 
-" Generic Programming Support 
+"   ### Plugins genéricos para programação
+"{{{
 Plugin 'jakedouglas/exuberant-ctags'
 Plugin 'honza/vim-snippets'
 Plugin 'Townk/vim-autoclose'
@@ -36,30 +44,38 @@ Plugin 'janko-m/vim-test'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'neomake/neomake'
+"}}}
 
-" Markdown / Writting
+"   ### Markdown / Escrita
+"{{{
 Plugin 'reedes/vim-pencil'
 Plugin 'tpope/vim-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'LanguageTool'
+"}}}
 
-" Git Support
+"   ### Git Support
+"{{{
 Plugin 'kablamo/vim-git-log'
 Plugin 'gregsexton/gitv'
 Plugin 'tpope/vim-fugitive'
 "Plugin 'jaxbot/github-issues.vim'   " lerda muito
-"
+"}}}
+
 " " PHP Support
 " Plugin 'phpvim/phpcd.vim'
 " Plugin 'tobyS/pdv'
 "
-" Erlang Support
+"   ### Erlang Support
+"{{{
 Plugin 'vim-erlang/vim-erlang-tags'
 Plugin 'vim-erlang/vim-erlang-runtime'
 Plugin 'vim-erlang/vim-erlang-omnicomplete'
 Plugin 'vim-erlang/vim-erlang-compiler'
+"}}}
 
-" Elixir Support 
+"   ### Elixir Support 
+"{{{
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'avdgaag/vim-phoenix'
 Plugin 'mmorearty/elixir-ctags'
@@ -69,11 +85,13 @@ Plugin 'frost/vim-eh-docs'
 Plugin 'slashmili/alchemist.vim'
 Plugin 'tpope/vim-endwise'
 Plugin 'jadercorrea/elixir_generator.vim'
+"}}}
 
 " " Elm Support
 " Plugin 'lambdatoast/elm.vim'
-"
-" Theme / Interface
+
+"   ### Theme / Interface
+"{{{
 Plugin 'AnsiEsc.vim'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
@@ -94,6 +112,10 @@ Plugin 'effkay/argonaut.vim'
 Plugin 'ajh17/Spacegray.vim'
 Plugin 'atelierbram/Base2Tone-vim'
 Plugin 'colepeters/spacemacs-theme.vim'
+"}}}
+
+
+"   ## Configuração
 
 " OSX stupid backspace fix
 set backspace=indent,eol,start
@@ -434,3 +456,4 @@ set wildignore+=*/git/opa/rel/*
 
 set ttyfast
 
+" vim: foldmethod=marker
