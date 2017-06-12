@@ -1,8 +1,9 @@
-# Arquivo de configuração do vim de Geraldo Ribeiro
+# Arquivo de configuração do vim
+Geraldo Ribeiro
 ## Plugins
 
 ```vim
-" set the runtime path to include Vundle and initialize
+" configura o path de inclusão do Vundle e inicia
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -110,3 +111,26 @@ Plugin 'colepeters/spacemacs-theme.vim'
 ```
 
 ## Configuração
+## Configuração do neomake
+
+```vim
+let g:neomake_open_list = 2
+let g:neomake_verbose=3
+let g:neomake_logfile='/tmp/neomake_error.log'
+let g:neomake_highlight_columns=1
+```
+
+### Coffeescript
+
+```vim
+npm install -g coffeelint
+"   npm install -g coffeelint
+let g:neomake_coffeescript_enabled_makers = ['coffeelint']
+```
+
+### Elixir
+
+```vim
+let g:neomake_elixir_enabled_makers = ['mix', 'credo', 'dogma']
+```
+

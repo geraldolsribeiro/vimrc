@@ -1,11 +1,12 @@
-"   # Arquivo de configuração do vim de Geraldo Ribeiro
+"   # Arquivo de configuração do vim
+"   Geraldo Ribeiro
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
 "   ## Plugins
 "{{{
-" set the runtime path to include Vundle and initialize
+" configura o path de inclusão do Vundle e inicia
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -115,15 +116,16 @@ Plugin 'colepeters/spacemacs-theme.vim'
 "}}}
 
 
-"   ## Configuração
+"   ## Configuração geral
 
+"{{{
 " OSX stupid backspace fix
 set backspace=indent,eol,start
 
 let g:elite_mode=1
+"}}}
 
-
-" Separar os cara abaixo
+" FIXME: Separar os cara abaixo
 "
 "Bundle 'aming/vim-mason'
 Plugin 'airblade/vim-gitgutter'
@@ -143,6 +145,8 @@ Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-surround'
 Plugin 'othree/html5.vim'
 
+" Ver documentação em: https://github.com/mattn/emmet-vim
+Plugin 'mattn/emmet-vim'
 
 " Conflita com newmake
 "Plugin 'w0rp/ale'
@@ -208,13 +212,27 @@ colorscheme molokai
 
 "colorscheme vimtom
 
-" Neomake settings
-"autocmd! BufWritePost * Neomake
-let g:neomake_elixir_enabled_makers = ['mix', 'credo', 'dogma']
+"   ## Configuração do neomake
+"{{{
 let g:neomake_open_list = 2
 let g:neomake_verbose=3
 let g:neomake_logfile='/tmp/neomake_error.log'
 let g:neomake_highlight_columns=1
+"}}}
+
+"autocmd! BufWritePost * Neomake
+"   ### Coffeescript
+"{{{
+"   npm install -g coffeelint
+let g:neomake_coffeescript_enabled_makers = ['coffeelint']
+"}}}
+
+"   ### Elixir
+"{{{
+let g:neomake_elixir_enabled_makers = ['mix', 'credo', 'dogma']
+"}}}
+
+
 
 
 
@@ -270,7 +288,7 @@ augroup END
 
 " Neocomplete Settings
 let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 0
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#sources#syntax#min_keyword_length = 3
 
@@ -455,5 +473,9 @@ au BufRead /tmp/psql.edit.* set syntax=sql
 set wildignore+=*/git/opa/rel/*
 
 set ttyfast
+
+set tags=tags
+
+set autoread
 
 " vim: foldmethod=marker
