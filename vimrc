@@ -233,6 +233,10 @@ let g:neomake_elixir_enabled_makers = ['mix', 'credo', 'dogma']
 "}}}
 
 
+"   ### SCSS
+"{{{
+let g:neomake_scss_enabled_markers = ['scss-lint']
+"}}}
 
 
 
