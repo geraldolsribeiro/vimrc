@@ -17,6 +17,7 @@ Plugin 'VundleVim/Vundle.vim'
 
 "   ### Utilitários
 "{{{
+Plugin 'geraldolsribeiro/vim-conceal'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
@@ -55,6 +56,9 @@ Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'LanguageTool'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
+
+" Desabilitado por padrão
+let g:pandoc#biblio#use_bibtool=1
 "}}}
 
 "   ### Git Support
