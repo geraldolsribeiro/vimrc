@@ -53,6 +53,8 @@ Plugin 'reedes/vim-pencil'
 Plugin 'tpope/vim-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'LanguageTool'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
 "}}}
 
 "   ### Git Support
