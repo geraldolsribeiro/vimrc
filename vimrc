@@ -56,6 +56,8 @@ Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'LanguageTool'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'junegunn/vim-emoji'
+"Plugin 'kyuhi/vim-emoji-complete' " dá pau com o git
 
 " Desabilitado por padrão
 let g:pandoc#biblio#use_bibtool=1
@@ -466,9 +468,33 @@ let g:ctrlp_max_files = 0
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:50,results:50'
 
 
-set mousemodel=extend
+" Emoji
+"if emoji#available()
+"  let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+"  let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+"  let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+"  let g:gitgutter_sign_modified_removed = emoji#for('collision')
+"endif
 
-nnoremap <F3> :CtrlPTag<cr>
+
+"let g:gitgutter_sign_added = '+ '
+"let g:gitgutter_sign_modified = '~ '
+"let g:gitgutter_sign_removed = '- '
+"let g:gitgutter_sign_removed_first_line = '^^'
+"let g:gitgutter_sign_modified_removed = 'ww'
+
+" Ignorar espaços em branco
+"let g:gitgutter_diff_args = '-w'
+
+" Usar Ctrl+X Ctrl+U
+set completefunc=emoji#complete
+
+set mousemodel=extend
+set mouse+=a
+
+nnoremap <F3> :CtrlPTag<CR>
+nmap <C-UP> :m-2<CR>
+nmap <C-DOWN> :m+1<CR>
 
 set colorcolumn=120
 " set cursorline
@@ -479,6 +505,9 @@ set colorcolumn=120
 " export PAGER='vim -R -u ~/.vimrcpg -'
 " https://unencumberedbyfacts.com/2016/01/04/psql-vim-happy-face/
 au BufRead /tmp/psql.edit.* set syntax=sql
+
+let spell_language_list="brasileiro,american"
+let spell_auto_type="tex,doc,mail"
 
 set wildignore+=*/git/opa/rel/*
 
