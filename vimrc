@@ -452,7 +452,8 @@ augroup HiglightMyFix
   autocmd WinEnter,VimEnter * :silent! call matchadd('MyFix', 'FIXME:', -1)
 augroup END
 
-set path=.,~/git/,**/
+set path=.,~/git/
+",**/
 
 "map <Leader>m :CtrlPModified<CR>
 "map <Leader>M :CtrlPBranch<CR>
@@ -510,11 +511,15 @@ let spell_language_list="brasileiro,american"
 let spell_auto_type="tex,doc,mail"
 
 set wildignore+=*/git/opa/rel/*
+set wildignore+=*/git/*/node_modules
+set wildignore+=**/tmp/**
 
 set ttyfast
 
 set tags=tags
 
 set autoread
+
+set number
 
 " vim: foldmethod=marker
