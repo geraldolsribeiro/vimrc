@@ -241,6 +241,12 @@ let g:neomake_elixir_enabled_makers = ['mix', 'credo', 'dogma']
 "}}}
 
 
+"   ### ruby 
+"{{{
+
+"}}}
+
+
 "   ### SCSS
 "{{{
 let g:neomake_scss_enabled_markers = ['scss-lint']
@@ -250,7 +256,17 @@ let g:neomake_scss_enabled_markers = ['scss-lint']
 
 " Vim-Airline Configuration
 ":h airline
-let g:airline#extensions#tabline#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#switch_buffers_and_tabs = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+
 "let g:airline#extensions#tabline#enabled = 1
 "let g:airline_powerline_fonts = 0
 let g:airline_powerline_fonts = 1 
@@ -487,6 +503,7 @@ let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:50,results:50'
 " Ignorar espaços em branco
 "let g:gitgutter_diff_args = '-w'
 
+
 " Usar Ctrl+X Ctrl+U
 set completefunc=emoji#complete
 
@@ -508,7 +525,10 @@ set colorcolumn=120
 au BufRead /tmp/psql.edit.* set syntax=sql
 
 let spell_language_list="brasileiro,american"
-let spell_auto_type="tex,doc,mail"
+let spell_auto_type="md,tex,doc,mail"
+
+"let g:pandoc#spell#default_langs=["brasileiro","american"]
+let g:pandoc#spell#default_langs=[]
 
 set wildignore+=*/git/opa/rel/*
 set wildignore+=*/git/*/node_modules
