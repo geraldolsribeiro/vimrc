@@ -1,5 +1,16 @@
 "   # Arquivo de configuração do vim
 "   Geraldo Ribeiro
+"   
+"   ## Instalação
+"
+"   ```
+"   git clone ssh://git@intmain.io:8322/geraldoim/dot_vim.git ~/.vim
+"   ln -s ~/.vim/vimrc .vimrc
+"   mkdir -p ~/.vim/bundle
+"   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+"   vim +BundleInstall +qall
+"   ```
+"
 
 set nocompatible              " be iMproved, required
 filetype off                  " required

@@ -1,5 +1,14 @@
 # Arquivo de configuração do vim
 Geraldo Ribeiro
+
+## Instalação
+```
+git clone ssh://git@intmain.io:8322/geraldoim/dot_vim.git ~/.vim
+ln -s ~/.vim/vimrc .vimrc
+mkdir -p ~/.vim/bundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+vim +BundleInstall +qall
+```
 ## Plugins
 
 ```vim
@@ -13,6 +22,7 @@ Plugin 'VundleVim/Vundle.vim'
 ### Utilitários
 
 ```vim
+Plugin 'geraldolsribeiro/vim-conceal'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
@@ -51,6 +61,13 @@ Plugin 'reedes/vim-pencil'
 Plugin 'tpope/vim-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
 Plugin 'LanguageTool'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+Plugin 'junegunn/vim-emoji'
+"Plugin 'kyuhi/vim-emoji-complete' " dá pau com o git
+
+" Desabilitado por padrão
+let g:pandoc#biblio#use_bibtool=1
 ```
 
 ### Git Support
@@ -110,7 +127,15 @@ Plugin 'atelierbram/Base2Tone-vim'
 Plugin 'colepeters/spacemacs-theme.vim'
 ```
 
-## Configuração
+## Configuração geral
+
+```vim
+" OSX stupid backspace fix
+set backspace=indent,eol,start
+
+let g:elite_mode=1
+```
+
 ## Configuração do neomake
 
 ```vim
@@ -132,5 +157,17 @@ let g:neomake_coffeescript_enabled_makers = ['coffeelint']
 
 ```vim
 let g:neomake_elixir_enabled_makers = ['mix', 'credo', 'dogma']
+```
+
+### ruby 
+
+```vim
+
+```
+
+### SCSS
+
+```vim
+let g:neomake_scss_enabled_markers = ['scss-lint']
 ```
 
