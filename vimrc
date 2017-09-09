@@ -1,5 +1,4 @@
-"   # Arquivo de configuração do vim
-"   Geraldo Ribeiro
+"   # Arquivo de configuração do vim do Geraldo Ribeiro
 "   
 "   ## Instalação
 "
@@ -14,6 +13,7 @@
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
+syntax on
 
 "   ## Plugins
 "{{{
@@ -28,7 +28,9 @@ Plugin 'VundleVim/Vundle.vim'
 
 "   ### Utilitários
 "{{{
+Plugin 'powerline/powerline-fonts'
 Plugin 'geraldolsribeiro/vim-conceal'
+"Plugin 'Yggdroot/indentLine'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
@@ -70,6 +72,9 @@ Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'junegunn/vim-emoji'
 "Plugin 'kyuhi/vim-emoji-complete' " dá pau com o git
 
+" Encontra erros de escrita
+Plugin 'reedes/vim-wordy'
+Plugin 'reedes/vim-lexical'
 " Desabilitado por padrão
 let g:pandoc#biblio#use_bibtool=1
 "}}}
@@ -279,11 +284,10 @@ nmap <leader>4 <Plug>AirlineSelectTab4
 nmap <leader>5 <Plug>AirlineSelectTab5
 
 "let g:airline#extensions#tabline#enabled = 1
-"let g:airline_powerline_fonts = 0
-let g:airline_powerline_fonts = 1 
+let g:airline_powerline_fonts = 1
 let g:airline_theme='hybrid'
 let g:hybrid_custom_term_colors = 1
-let g:hybrid_reduced_contrast = 1 
+let g:hybrid_reduced_contrast = 1
 "let g:airline_left_sep='>'
 
 let g:neomake_cpp_enable_markers=['clang']
@@ -400,10 +404,21 @@ let g:fzf_history_dir = '~/.local/share/fzf-history'
 nmap <F12> :exec '!'.getline('.')<CR>
 nmap <S-F12> :exec '!ssh vm01 "'.getline('.').'"'<CR>
 
+" <F2> to save
+nmap <F2> :w<cr>
+imap <F2> <c-o>:w<cr>
+
+" <F6> para trocar de buffer
 nmap <F6> :bn<CR>
+
+" <F7> para ir para o próximo erro
 nmap <F7> :cnext<CR>
 nmap <S-F7> :cprev<CR>
+
+" <F9> para compilar
 nmap <F9> :make<CR>
+
+" <F8> para fechar o buffer atual
 nmap <F8> :bp\|bd #<CR>
 
 set modeline
@@ -413,10 +428,7 @@ set modelines=5
 " filetype plugin on
 
 set hlsearch
-
-set expandtab
-set tabstop=2
-set shiftwidth=2
+set tabstop=2 shiftwidth=2 expandtab
 set smarttab
 set softtabstop=0
 set nowrap
@@ -525,7 +537,7 @@ nnoremap <F3> :CtrlPTag<CR>
 nmap <C-UP> :m-2<CR>
 nmap <C-DOWN> :m+1<CR>
 
-set colorcolumn=120
+set colorcolumn=28,120
 " set cursorline
 
 " Integração com psql -> \e
@@ -552,5 +564,30 @@ set tags=tags
 set autoread
 
 set number
+
+"   ## Melhorar a visibilidade da indentação
+"   Incluir `Plugin 'Yggdroot/indentLine'` no vundle.
+"{{{
+let g:indentLine_char = '▏'
+let g:indentLine_setColors = 1
+let g:indentLine_color_term = 239
+let g:indentLine_setConceal = 0
+"}}}
+
+augroup lexical
+  autocmd!
+  autocmd FileType markdown,mkd call lexical#init()
+  autocmd FileType textile call lexical#init()
+  autocmd FileType text call lexical#init({ 'spell': 0 })
+augroup END
+
+" ver https://github.com/reedes/vim-lexical
+let g:lexical#spell = 1
+" http://ftp.vim.org/vim/runtime/spell
+let g:lexical#spelllang = ['en_us','pt_br',]
+let g:lexical#dictionary = ['/usr/share/dict/words',]
+let g:lexical#thesaurus = ['~/.vim/thesaurus/mthesaur.txt',]
+let g:lexical#spellfile = ['~/.vim/spell/en.utf-8.add',]
+
 
 " vim: foldmethod=marker
