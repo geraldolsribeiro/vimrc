@@ -29,7 +29,7 @@ Plugin 'VundleVim/Vundle.vim'
 "   ### Utilitários
 "{{{
 Plugin 'powerline/powerline-fonts'
-Plugin 'geraldolsribeiro/vim-conceal'
+"Plugin 'geraldolsribeiro/vim-conceal'
 "Plugin 'Yggdroot/indentLine'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
@@ -168,6 +168,9 @@ Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-surround'
 Plugin 'othree/html5.vim'
+
+" Formatação de código
+Plugin 'rhysd/vim-clang-format'
 
 " Ver documentação em: https://github.com/mattn/emmet-vim
 Plugin 'mattn/emmet-vim'
@@ -588,6 +591,35 @@ let g:lexical#spelllang = ['en_us','pt_br',]
 let g:lexical#dictionary = ['/usr/share/dict/words',]
 let g:lexical#thesaurus = ['~/.vim/thesaurus/mthesaur.txt',]
 let g:lexical#spellfile = ['~/.vim/spell/en.utf-8.add',]
+
+" clang-format
+
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -2,
+            \ "AlignConsecutiveAssignments" : "true",
+            \ "AlignConsecutiveDeclarations" : "true",
+            \ "AlignTrailingComments" : "true",
+            \ "AllowShortIfStatementsOnASingleLine" : "false",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "BreakBeforeBinaryOperators" : "true",
+            \ "ColumnLimit" : 120,
+            \ "BreakBeforeBraces" : "Allman",
+            \ "MaxEmptyLinesToKeep" : 2,
+            \ "SpaceBeforeParens" : "Never",
+            \ "SpacesInParentheses": "true",
+            \ "Standard" : "C++11",
+            \ "TabWidth" : 4,
+            \ "UseTab" : "Never"
+            \ }
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" if you install vim-operator-user
+autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
+
 
 
 " vim: foldmethod=marker
