@@ -609,14 +609,16 @@ let g:clang_format#style_options = {
             \ "AlwaysBreakTemplateDeclarations" : "true",
             \ "BinPackArguments" : "false",
             \ "BinPackParameters" : "false",
+            \ "BraceWrapping" : { "AfterNamespace" : "false" },
             \ "BreakBeforeBinaryOperators" : "true",
             \ "BreakBeforeBraces" : "Allman",
             \ "ColumnLimit" : 120,
+            \ "CompactNamespaces" : "true",
             \ "MaxEmptyLinesToKeep" : 2,
             \ "SpaceBeforeParens" : "Never",
             \ "SpacesInParentheses": "true",
             \ "Standard" : "C++11",
-            \ "TabWidth" : 4,
+            \ "TabWidth" : 2,
             \ "UseTab" : "Never"
             \ }
 
