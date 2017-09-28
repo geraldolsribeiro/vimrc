@@ -596,6 +596,7 @@ let g:lexical#spellfile = ['~/.vim/spell/en.utf-8.add',]
 
 let g:clang_format#style_options = {
             \ "AccessModifierOffset" : -2,
+            \ "AlignAfterOpenBracket" : "AlwaysBreak",
             \ "AlignConsecutiveAssignments" : "true",
             \ "AlignConsecutiveDeclarations" : "true",
             \ "AlignEscapedNewlines" : "Left",
