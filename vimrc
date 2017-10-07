@@ -87,6 +87,12 @@ Plugin 'tpope/vim-fugitive'
 "Plugin 'jaxbot/github-issues.vim'   " lerda muito
 "}}}
 
+"   ### C++
+"{{{
+" This file contains additional syntax highlighting that I use for C++11/14/17
+Plugin 'octol/vim-cpp-enhanced-highlight'
+"}}}
+
 " " PHP Support
 " Plugin 'phpvim/phpcd.vim'
 " Plugin 'tobyS/pdv'
@@ -631,6 +637,16 @@ autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 
 " vim: foldmethod=marker
