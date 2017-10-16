@@ -145,6 +145,10 @@ Plugin 'atelierbram/Base2Tone-vim'
 Plugin 'colepeters/spacemacs-theme.vim'
 "}}}
 
+"   ### TOML
+"{{{
+Plugin 'cespare/vim-toml'
+"}}}
 
 "   ## Configuração geral
 
@@ -500,9 +504,6 @@ augroup HiglightMyFix
   autocmd WinEnter,VimEnter * :silent! call matchadd('MyFix', 'FIXME:', -1)
 augroup END
 
-set path=.,~/git/
-",**/
-
 "map <Leader>m :CtrlPModified<CR>
 "map <Leader>M :CtrlPBranch<CR>
 "
@@ -647,7 +648,18 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+let g:syntastic_cpp_include_dirs = ['/opt/intmain/dev/macos/usr/include/','../include/']
+
+set path+=/opt/intmain/dev/*/usr/include/
+"set path+=.,~/git/Intmain/
+
+",**/
+
+" https://coderwall.com/p/pupilw/pretty-format-xml-in-vim
+" Formata com =
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
 " vim: foldmethod=marker
