@@ -36,7 +36,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
 Plugin 'BufOnly.vim'
 Plugin 'wesQ3/vim-windowswap'
-Plugin 'SirVer/ultisnips'
+"Plugin 'SirVer/ultisnips'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
 Plugin 'godlygeek/tabular'
@@ -599,36 +599,11 @@ let g:lexical#dictionary = ['/usr/share/dict/words',]
 let g:lexical#thesaurus = ['~/.vim/thesaurus/mthesaur.txt',]
 let g:lexical#spellfile = ['~/.vim/spell/en.utf-8.add',]
 
-" clang-format
-
-let g:clang_format#style_options = {
-            \ "AccessModifierOffset" : -2,
-            \ "AlignAfterOpenBracket" : "AlwaysBreak",
-            \ "AlignConsecutiveAssignments" : "true",
-            \ "AlignConsecutiveDeclarations" : "true",
-            \ "AlignEscapedNewlines" : "Left",
-            \ "AlignOperands" : "true",
-            \ "AlignTrailingComments" : "true",
-            \ "AllowAllParametersOfDeclarationOnNextLine" : "false",
-            \ "AllowShortCaseLabelsOnASingleLine" : "false",
-            \ "AllowShortFunctionsOnASingleLine" : "false",
-            \ "AllowShortIfStatementsOnASingleLine" : "false",
-            \ "AlwaysBreakBeforeMultilineStrings" : "true",
-            \ "AlwaysBreakTemplateDeclarations" : "true",
-            \ "BinPackArguments" : "false",
-            \ "BinPackParameters" : "false",
-            \ "BraceWrapping" : { "AfterNamespace" : "false" },
-            \ "BreakBeforeBinaryOperators" : "true",
-            \ "BreakBeforeBraces" : "Allman",
-            \ "ColumnLimit" : 120,
-            \ "CompactNamespaces" : "true",
-            \ "MaxEmptyLinesToKeep" : 2,
-            \ "SpaceBeforeParens" : "Never",
-            \ "SpacesInParentheses": "true",
-            \ "Standard" : "C++11",
-            \ "TabWidth" : 2,
-            \ "UseTab" : "Never"
-            \ }
+"   ## Configuração do clang-format
+"   A configuração foi extraída para um repositório próprio.
+"{{{
+" git clone ssh://git@intmain.io:8322/geraldoim/dot_clang_format.git ~/.clang
+" ln -sf ~/.clang/clang-format ~/.clang-format
 
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
@@ -637,7 +612,7 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
-
+" }}}
 
 " syntastic
 set statusline+=%#warningmsg#
