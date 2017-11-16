@@ -237,32 +237,5 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
-" }}}
+```
 
-" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-let g:syntastic_cpp_include_dirs = ['/opt/intmain/dev/macos/usr/include/','../include/']
-
-set path+=/opt/intmain/dev/*/usr/include/
-"set path+=.,~/git/Intmain/
-
-",**/
-
-" https://coderwall.com/p/pupilw/pretty-format-xml-in-vim
-" Formata com =
-au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
-
-" Analisar este site
-" http://5.vim-bootstrap.appspot.com/
-
-" vim: foldmethod=marker
