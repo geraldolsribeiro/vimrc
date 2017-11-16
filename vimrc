@@ -1,5 +1,7 @@
 "   # Arquivo de configuração do vim do Geraldo Ribeiro
 "   
+"   [TOC]
+"   
 "   ## Instalação
 "
 "   ```
@@ -636,5 +638,8 @@ set path+=/opt/intmain/dev/*/usr/include/
 " https://coderwall.com/p/pupilw/pretty-format-xml-in-vim
 " Formata com =
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+
+" Analisar este site
+" http://5.vim-bootstrap.appspot.com/
 
 " vim: foldmethod=marker

@@ -1,5 +1,29 @@
-# Arquivo de configuração do vim
-Geraldo Ribeiro
+[//]: <> (Documentação gerada com intmain_docmd)
+# Arquivo de configuração do vim do Geraldo Ribeiro
+
+## Sumário
+
+* [Arquivo de configuração do vim do Geraldo Ribeiro](#arquivo-de-configuração-do-vim-do-geraldo-ribeiro)
+  * [Instalação](#instalação)
+  * [Plugins](#plugins)
+      * [Utilitários](#utilitários)
+      * [Plugins genéricos para programação](#plugins-genéricos-para-programação)
+      * [Markdown / Escrita](#markdown-/-escrita)
+      * [Git Support](#git-support)
+      * [C++](#c++)
+      * [Erlang Support](#erlang-support)
+      * [Elixir Support ](#elixir-support-)
+      * [Theme / Interface](#theme-/-interface)
+      * [TOML](#toml)
+  * [Configuração geral](#configuração-geral)
+  * [Configuração do neomake](#configuração-do-neomake)
+      * [Coffeescript](#coffeescript)
+      * [Elixir](#elixir)
+      * [ruby ](#ruby-)
+      * [SCSS](#scss)
+  * [Melhorar a visibilidade da indentação](#melhorar-a-visibilidade-da-indentação)
+  * [Configuração do clang-format](#configuração-do-clang-format)
+
 
 ## Instalação
 ```
@@ -22,13 +46,15 @@ Plugin 'VundleVim/Vundle.vim'
 ### Utilitários
 
 ```vim
-Plugin 'geraldolsribeiro/vim-conceal'
+Plugin 'powerline/powerline-fonts'
+"Plugin 'geraldolsribeiro/vim-conceal'
+"Plugin 'Yggdroot/indentLine'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
 Plugin 'BufOnly.vim'
 Plugin 'wesQ3/vim-windowswap'
-Plugin 'SirVer/ultisnips'
+"Plugin 'SirVer/ultisnips'
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
 Plugin 'godlygeek/tabular'
@@ -66,6 +92,9 @@ Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'junegunn/vim-emoji'
 "Plugin 'kyuhi/vim-emoji-complete' " dá pau com o git
 
+" Encontra erros de escrita
+Plugin 'reedes/vim-wordy'
+Plugin 'reedes/vim-lexical'
 " Desabilitado por padrão
 let g:pandoc#biblio#use_bibtool=1
 ```
@@ -77,6 +106,13 @@ Plugin 'kablamo/vim-git-log'
 Plugin 'gregsexton/gitv'
 Plugin 'tpope/vim-fugitive'
 "Plugin 'jaxbot/github-issues.vim'   " lerda muito
+```
+
+### C++
+
+```vim
+" This file contains additional syntax highlighting that I use for C++11/14/17
+Plugin 'octol/vim-cpp-enhanced-highlight'
 ```
 
 ### Erlang Support
@@ -127,6 +163,12 @@ Plugin 'atelierbram/Base2Tone-vim'
 Plugin 'colepeters/spacemacs-theme.vim'
 ```
 
+### TOML
+
+```vim
+Plugin 'cespare/vim-toml'
+```
+
 ## Configuração geral
 
 ```vim
@@ -171,3 +213,56 @@ let g:neomake_elixir_enabled_makers = ['mix', 'credo', 'dogma']
 let g:neomake_scss_enabled_markers = ['scss-lint']
 ```
 
+## Melhorar a visibilidade da indentação
+Incluir `Plugin 'Yggdroot/indentLine'` no vundle.
+
+```vim
+let g:indentLine_char = '▏'
+let g:indentLine_setColors = 1
+let g:indentLine_color_term = 239
+let g:indentLine_setConceal = 0
+```
+
+## Configuração do clang-format
+A configuração foi extraída para um repositório próprio.
+
+```vim
+" git clone ssh://git@intmain.io:8322/geraldoim/dot_clang_format.git ~/.clang
+" ln -sf ~/.clang/clang-format ~/.clang-format
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" if you install vim-operator-user
+autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
+" }}}
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+let g:syntastic_cpp_include_dirs = ['/opt/intmain/dev/macos/usr/include/','../include/']
+
+set path+=/opt/intmain/dev/*/usr/include/
+"set path+=.,~/git/Intmain/
+
+",**/
+
+" https://coderwall.com/p/pupilw/pretty-format-xml-in-vim
+" Formata com =
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+
+" Analisar este site
+" http://5.vim-bootstrap.appspot.com/
+
+" vim: foldmethod=marker
