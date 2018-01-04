@@ -28,6 +28,20 @@ Plugin 'VundleVim/Vundle.vim'
 
 " http://coderoncode.com/tools/2017/04/16/vim-the-perfect-ide.html
 
+"   ### FZF
+"{{{
+" git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+" ~/.fzf/install
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
+"}}}
+
+"   ### Cucumber
+"{{{
+Plugin 'tpope/vim-cucumber.git'
+"}}}
+
+
 "   ### Utilitários
 "{{{
 Plugin 'powerline/powerline-fonts'
@@ -39,8 +53,7 @@ Plugin 'ervandew/supertab'
 Plugin 'BufOnly.vim'
 Plugin 'wesQ3/vim-windowswap'
 "Plugin 'SirVer/ultisnips'
-Plugin 'junegunn/fzf.vim'
-Plugin 'junegunn/fzf'
+
 Plugin 'godlygeek/tabular'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'benmills/vimux'
@@ -150,6 +163,32 @@ Plugin 'colepeters/spacemacs-theme.vim'
 "   ### TOML
 "{{{
 Plugin 'cespare/vim-toml'
+"}}}
+
+"   ### Typescript
+"{{{
+Plugin 'Quramy/tsuquyomi'
+Plugin 'leafgarland/typescript-vim.git'
+let g:typescript_compiler_binary = 'tsc'
+let g:typescript_compiler_options = ''
+let g:tsuquyomi_disable_quickfix = 1
+let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
+
+autocmd BufNewFile,BufRead *.ts set syntax=typescript
+"}}}
+
+"   ### Dark powered neo-completion
+"{{{
+
+if has('nvim')
+  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plugin 'Shougo/deoplete.nvim'
+  Plugin 'roxma/nvim-yarp'
+  Plugin 'roxma/vim-hug-neovim-rpc'
+endif 
+
+let g:deoplete#enable_at_startup = 1
 "}}}
 
 "   ## Configuração geral
@@ -440,7 +479,7 @@ set modeline
 set modelines=5
 
 " Para não ignorar ~/.vim/after/ftplugin/xxx.vim
-" filetype plugin on
+filetype plugin on
 
 set hlsearch
 set tabstop=2 shiftwidth=2 expandtab
