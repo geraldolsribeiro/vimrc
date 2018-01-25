@@ -1,0 +1,59 @@
+snippet cursor "Percorre tabela"
+${2/.*/\u$0/}Record $2Rec;
+
+${1:mDb}->createCursor();
+while( $1->nextRecord( ${2:type}Rec ) ) {
+  $0
+}
+$1->destroyCursor();
+endsnippet
+
+snippet newhpp "Novo arquivo HPP"
+// ----------------------------------------------------------------------
+// Copyright (C) 2017-2018 Geraldo Ribeiro <geraldo@intmain.io>
+// ----------------------------------------------------------------------
+#pragma once
+#ifndef __${1:FILENAME}_HPP__
+#define __$1_HPP__
+$0
+#endif
+endsnippet
+
+snippet view01html "Personalização de tabela"
+class View01Html$1Record : public Html${1:Type}Record {
+public:
+  View01Html$1Record( shared_ptr<GrCGI> grcgi, shared_ptr<Database> db ) : Html$1Record( grcgi, db ){};
+  virtual ~View01Html$1Record(){};
+  virtual void set${2:ParentId}Filter( const string &id );
+  virtual string nameVarTD( const $1Record &rec ) const;
+
+protected:
+  virtual bool select( const $1Record &rec ) const;
+  string m$2Filter;
+};
+endsnippet
+
+snippet requiredValue "Campo requerido"
+string $1;
+
+requiredValue( "${1:variable}", $1 );
+endsnippet
+
+snippet optionalValue "Campo opcional"
+string $1;
+
+optionalValue( "${1:variable}", $1 );
+endsnippet
+
+snippet getRecord
+${1/.*/\u$0/}Record $1Rec;
+
+m${1/.*/\u$0/}Db->getRecord( $1Id, ${1:type}Rec );
+endsnippet
+
+snippet htmlList
+Html${1:Type}Record hrec( self(), m$1Db );
+hrec.htmlList("$0");
+endsnippet
+
+# vim: ft=snippets
