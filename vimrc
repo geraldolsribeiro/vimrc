@@ -52,7 +52,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
 Plugin 'BufOnly.vim'
 Plugin 'wesQ3/vim-windowswap'
-"Plugin 'SirVer/ultisnips'
+Plugin 'SirVer/ultisnips'
 
 Plugin 'godlygeek/tabular'
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -668,6 +668,17 @@ let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_cpp_include_dirs = ['/opt/intmain/dev/macos/usr/include/','../include/']
+
+" ultisnip
+let g:UltiSnipsUsePythonVersion = 3
+"let g:UltiSnipsExpandTrigger="<>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+"nmap <leader><tab> call UltiSnips#ExpandSnippet()
+
+" If you want :UltiSnipsEdit to split your window.
+" let g:UltiSnipsEditSplit="vertical"
 
 set path+=/opt/intmain/dev/*/usr/include/
 "set path+=.,~/git/Intmain/
