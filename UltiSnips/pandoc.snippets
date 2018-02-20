@@ -1,0 +1,34 @@
+snippet salt
+![GUI ${2:legenda}](images/gui_${1:nome_do_arquivo}.png)
+
+<!---
+@startuml images/gui_$1.png
+salt
+{
+Anexar documentos|*
+Arquivo:|"                      "
+   Nome:|"                      "
+   Data:|"                      "
+~~|*
+{[Cancelar]|[Anexar]}|*
+}
+@enduml
+-->
+endsnippet
+
+snippet usecase
+![UC ${1/_/ /g}](images/uc_${1:nome_do_arquivo}.png)
+
+<!---
+@startuml images/uc_$1.png
+'left to right direction
+!include UC/A_$2.iuml
+!include UC/UC_$3.iuml
+
+A_$2 ..> UC_$3
+@enduml
+-->
+
+endsnippet
+
+# vim: ft=snippets

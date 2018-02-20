@@ -53,7 +53,47 @@ endsnippet
 
 snippet htmlList
 Html${1:Type}Record hrec( self(), m$1Db );
-hrec.htmlList("$0");
+
+beginCommonHtml();
+mOut << hrec.htmlList("$0");
+endCommonHtml();
 endsnippet
+
+snippet htmlView
+Html${1:Type}Record hrec( self(), m$1Db );
+
+beginCommonHtml();
+mOut << GR_NL0 << GR_TAGS_( "h1", "Visualizar");
+mOut << hrec.htmlView("$0");
+endCommonHtml();
+endsnippet
+
+snippet htmlEdit
+Html${1:Type}Record hrec( self(), m$1Db );
+
+beginCommonHtml();
+mOut << GR_NL0 << GR_TAGS_( "h1", "Edição");
+mOut << hrec.htmlEdit("$0");
+endCommonHtml();
+endsnippet
+
+snippet htmlUpdate
+Html${1:Type}Record hrec( self(), m$1Db );
+
+beginCommonHtml();
+mOut << GR_NL0 << GR_TAGS_( "h1", "Atualizar");
+mOut << hrec.htmlUpdate( mSequencer );
+endCommonHtml();
+endsnippet
+
+snippet htmlDelete
+Html${1:Type}Record hrec( self(), m$1Db );
+
+beginCommonHtml();
+mOut << GR_NL0 << GR_TAGS_( "h1", "Remover");
+mOut << hrec.htmlDelete();
+endCommonHtml();
+endsnippet
+
 
 # vim: ft=snippets
