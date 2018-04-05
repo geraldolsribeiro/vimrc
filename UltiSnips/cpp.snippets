@@ -12,7 +12,7 @@ snippet newhpp "Novo arquivo HPP"
 // ----------------------------------------------------------------------
 // Copyright (C) 2017-2018 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
-#pragma once
+
 #ifndef __${1:FILENAME}_HPP__
 #define __$1_HPP__
 $0
@@ -95,5 +95,37 @@ mOut << hrec.htmlDelete();
 endCommonHtml();
 endsnippet
 
+snippet htmlcrud
+virtual void actEdit${1:Table}RecordFrm01();
+virtual void actList$1RecordFrm01();
+virtual void actUpdate$1RecordFrm01();
+virtual void actDelete$1RecordFrm01();
+virtual void actViewTest$1Frm01();
+endsnippet
+
+snippet header
+// ----------------------------------------------------------------------
+// Copyright (C) 2018 Geraldo Ribeiro <geraldo@intmain.io>
+// ----------------------------------------------------------------------
+
+endsnippet
+
+snippet sep
+// ----------------------------------------------------------------------
+//
+// ----------------------------------------------------------------------
+endsnippet
+
+snippet cf
+// clang-format off
+// clang-format on
+endsnippet
+
+snippet ifndef
+#ifndef __${1:FILE}_HPP__
+#define __$1_HPP__
+
+#endif
+endsnippet
 
 # vim: ft=snippets
