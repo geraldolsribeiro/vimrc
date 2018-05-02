@@ -180,15 +180,15 @@ autocmd BufNewFile,BufRead *.ts set syntax=typescript
 "   ### Dark powered neo-completion
 "{{{
 
-if has('nvim')
-  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plugin 'Shougo/deoplete.nvim'
-  Plugin 'roxma/nvim-yarp'
-  Plugin 'roxma/vim-hug-neovim-rpc'
-endif 
+"if has('nvim')
+"  Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+"else
+"  Plugin 'Shougo/deoplete.nvim'
+"  Plugin 'roxma/nvim-yarp'
+"  Plugin 'roxma/vim-hug-neovim-rpc'
+"endif 
 
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 "}}}
 
 "   ## Configuração geral
@@ -661,14 +661,14 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 2 "1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_include_dirs = ['/opt/intmain/dev/macos/usr/include/','../include/']
+let g:syntastic_cpp_include_dirs = ['/opt/intmain/dev/linux/usr/include/','../include/','/usr/include/c++/6','/usr/include/x86_64-linux-gnu/c++/6/']
 "let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-let g:syntastic_cpp_compiler_options = ' -include ../include/precompile.hpp -std=c++11 -stdlib=libc++ '
+let g:syntastic_cpp_compiler_options = ' -include ../src/precompile.hpp -std=c++11 -stdlib=libc++ '
 
 " ultisnip
 let g:UltiSnipsUsePythonVersion = 3
