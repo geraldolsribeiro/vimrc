@@ -63,7 +63,7 @@ snippet htmlView
 Html${1:Type}Record hrec( self(), m$1Db );
 
 beginCommonHtml();
-mOut << GR_NL0 << GR_TAGS_( "h1", "Visualizar");
+mOut << GR_NL0.append( GR_TAGS_( "h1", "Visualizar" ) );
 mOut << hrec.htmlView("$0");
 endCommonHtml();
 endsnippet
@@ -72,7 +72,7 @@ snippet htmlEdit
 Html${1:Type}Record hrec( self(), m$1Db );
 
 beginCommonHtml();
-mOut << GR_NL0 << GR_TAGS_( "h1", "Edição");
+mOut << GR_NL0.append( GR_TAGS_( "h1", "Edição" ) );
 mOut << hrec.htmlEdit("$0");
 endCommonHtml();
 endsnippet
@@ -81,7 +81,7 @@ snippet htmlUpdate
 Html${1:Type}Record hrec( self(), m$1Db );
 
 beginCommonHtml();
-mOut << GR_NL0 << GR_TAGS_( "h1", "Atualizar");
+mOut << GR_NL0.append( GR_TAGS_( "h1", "Atualizar" ) );
 mOut << hrec.htmlUpdate( mSequencer );
 endCommonHtml();
 endsnippet
@@ -90,7 +90,7 @@ snippet htmlDelete
 Html${1:Type}Record hrec( self(), m$1Db );
 
 beginCommonHtml();
-mOut << GR_NL0 << GR_TAGS_( "h1", "Remover");
+mOut << GR_NL0.append( GR_TAGS_( "h1", "Remover" ) );
 mOut << hrec.htmlDelete();
 endCommonHtml();
 endsnippet
@@ -126,6 +126,22 @@ snippet ifndef
 #define __$1_HPP__
 
 #endif
+endsnippet
+
+snippet test
+SCENARIO( "${1:Título do teste}" )
+{
+  WHEN( "${2:Quando acontece algo}" )
+  {
+    auto output = std::make_shared<CoutRedirect>( "${3:nome_do_test}.txt" );
+    auto button = std::make_shared<GrHtmlButton>();
+
+    THEN( "${4:Percebo os efeitos}" )
+    {
+      REQUIRE_THAT( strH, Contains( "branco" ) );
+    }
+  }
+}
 endsnippet
 
 # vim: ft=snippets
