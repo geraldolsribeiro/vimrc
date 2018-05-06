@@ -144,4 +144,20 @@ SCENARIO( "${1:Título do teste}" )
 }
 endsnippet
 
+snippet pqxxtxn
+  try {
+    if( hasTransaction() ) {
+    }
+    else {
+      pqxx::work txn( *mConnection );
+      //txn.exec_prepared( "insertRecord", record.key(), val );
+      txn.commit();
+    }
+  }
+  catch( pqxx::pqxx_exception &e ) {
+    logException( e );
+  }
+endsnippet
+
+
 # vim: ft=snippets
