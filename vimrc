@@ -612,6 +612,13 @@ set ttyfast
 
 set tags=tags
 
+" Diga do livro ProGit p. 30
+" I have never had an issue with corrupting files that made me wish I had Vim
+" backup and store data in a swap file.
+set nobackup
+set nowritebackup
+set noswapfile
+
 set autoread
 
 set number
@@ -662,13 +669,17 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 2 "1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0 "1 
 let g:syntastic_check_on_wq = 0
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_include_dirs = ['/opt/intmain/dev/linux/usr/include/','../include/','/usr/include/c++/6','/usr/include/x86_64-linux-gnu/c++/6/']
 "let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_cpp_compiler_options = ' -include ../src/precompile.hpp -std=c++11 -stdlib=libc++ '
+
+" Veja os passos completos em:
+" https://remarkablemark.org/blog/2016/09/28/vim-syntastic-eslint/
+let g:syntastic_javascript_checkers=['eslint']
 
 " ultisnip
 let g:UltiSnipsUsePythonVersion = 3
@@ -692,5 +703,8 @@ au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
 " Analisar este site
 " http://5.vim-bootstrap.appspot.com/
+
+" Mostra 5 linhas abaixo e acima do cursor
+set scrolloff=5
 
 " vim: foldmethod=marker

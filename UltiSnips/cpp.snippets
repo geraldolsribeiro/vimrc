@@ -100,12 +100,22 @@ virtual void actEdit${1:Table}RecordFrm01();
 virtual void actList$1RecordFrm01();
 virtual void actUpdate$1RecordFrm01();
 virtual void actDelete$1RecordFrm01();
-virtual void actViewTest$1Frm01();
+virtual void actView$1RecordFrm01();
+virtual void actAdd$1RecordFrm01();
 endsnippet
 
 snippet header
 // ----------------------------------------------------------------------
 // Copyright (C) 2018 Geraldo Ribeiro <geraldo@intmain.io>
+// ----------------------------------------------------------------------
+
+endsnippet
+
+snippet gpsheader
+// ----------------------------------------------------------------------
+// Copyright (C) 2017-2018 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2018 Pedro Bruno <pedroguilhermebruno@yahoo.com.br>
+// Copyright (C) 2017-2018 Sergio Ribeiro <segori@gmail.com>
 // ----------------------------------------------------------------------
 
 endsnippet
@@ -159,5 +169,16 @@ snippet pqxxtxn
   }
 endsnippet
 
+snippet GrHtmlForm
+    auto form = make_shared<GrHtmlForm>( "addClientRecordFrm01", cgiPath(), "Continuar" );
+    form->addExtraButton( "cancel", "Cancelar", cgiPath( "listClientRecordFrm01" ) );
+    form->addHiddenField( "action", "addClientRecordFrm01" );
+
+    form->beginFieldSet( "CPF do cliente" );
+    form->addTextField( true, "cpf", "CPF", cpf, "Entre com o CPF do novo cliente." );
+    form->addTextField( true, "fullname", "Nome completo", fullname, "Entre com o nome completo do novo cliente." );
+    form->endFieldSet();
+    mOut << form->str();
+endsnippet
 
 # vim: ft=snippets
