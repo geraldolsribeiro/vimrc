@@ -31,4 +31,38 @@ A_$2 ..> UC_$3
 
 endsnippet
 
+snippet bash
+\`\`\`${1:bash}
+$2
+\`\`\`
+endsnippet
+
+
+snippet h1 "Seção"
+# ${1:Nome da seção}
+
+$0
+endsnippet
+
+snippet h2
+## ${1:Nome da subseção}
+
+$0
+endsnippet
+
+snippet h3
+### ${1:Nome da subsubseção}
+
+$0
+endsnippet
+
+snippet "#(\d+) (.*)" "Formata PR" br
+* [PR `!p snip.rv = match.group(1)`](https://intmain.io:8300/dferias/dferias/pulls/`!p snip.rv = match.group(1)`) `!p snip.rv = match.group(2)`
+endsnippet
+
+snippet "(\w+).par" "Parenthesis (postfix)" r
+(`!p snip.rv = match.group(1)`$1)$0
+endsnippet
+
+
 # vim: ft=snippets

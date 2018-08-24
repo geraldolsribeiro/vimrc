@@ -1,0 +1,51 @@
+snippet SKIP_WIN "Pula a compilação e os teste no GrInstall.sh"
+SKIP_WIN32=YES
+SKIP_WIN64=YES
+SKIP_TEST_WIN32=YES
+SKIP_TEST_WIN64=YES
+endsnippet
+
+snippet GrInstall.sh
+#!/bin/bash
+### ----------------------------------------------------------------------
+### Copyright (C) 2006-2018 Geraldo Ribeiro <geraldo@intmain.io>
+### ----------------------------------------------------------------------
+
+PackageName=${1:GrStringSet}
+
+function installFiles {
+  copyToInclude $1.hpp
+  copyToLib     lib$1.a
+}
+
+function installMacOSFiles {
+  installFiles
+}
+
+function installLinuxFiles {
+  installFiles
+}
+
+function installWin32Files {
+  installFiles
+}
+
+function installWin64Files {
+  installFiles
+}
+
+SKIP_WIN32=YES
+SKIP_WIN64=YES
+SKIP_TEST_WIN32=YES
+SKIP_TEST_WIN64=YES
+
+source /opt/intmain/dev/${OS}/usr/share/Gr/scripts/Common/intmain.bash
+
+if [ -z "$@" ]; then
+  eval compileTestAndInstall
+else
+  eval $@
+fi
+endsnippet
+
+# vim: ft=snippets

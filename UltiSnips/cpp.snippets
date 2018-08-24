@@ -1,11 +1,11 @@
 snippet cursor "Percorre tabela"
 ${2/.*/\u$0/}Record $2Rec;
 
-${1:mDb}->createCursor();
-while( $1->nextRecord( ${2:type}Rec ) ) {
+Databases.${1:}->createCursor();
+while( Databases.$1->nextRecord( ${2:type}Rec ) ) {
   $0
 }
-$1->destroyCursor();
+Databases.$1->destroyCursor();
 endsnippet
 
 snippet newhpp "Novo arquivo HPP"
@@ -52,46 +52,46 @@ m${1/.*/\u$0/}Db->getRecord( $1Id, ${1:type}Rec );
 endsnippet
 
 snippet htmlList
-Html${1:Type}Record hrec( self(), m$1Db );
+Html${1:Type}Record hrec( Databases.$1, params( data ) );
 
 beginCommonHtml();
-mOut << hrec.htmlList("$0");
+content += GR_NL0.append( hrec.htmlList("$0") );
 endCommonHtml();
 endsnippet
 
 snippet htmlView
-Html${1:Type}Record hrec( self(), m$1Db );
+Html${1:Type}Record hrec( Databases.$1, params( data ) );
 
 beginCommonHtml();
-mOut << GR_NL0.append( GR_TAGS_( "h1", "Visualizar" ) );
-mOut << hrec.htmlView("$0");
+content += GR_NL0.append( GR_TAGS_( "h1", "Visualizar" ) );
+content += GR_NL0.append( hrec.htmlView("$0") );
 endCommonHtml();
 endsnippet
 
 snippet htmlEdit
-Html${1:Type}Record hrec( self(), m$1Db );
+Html${1:Type}Record hrec( Databases.$1, params( data ) );
 
 beginCommonHtml();
-mOut << GR_NL0.append( GR_TAGS_( "h1", "Edição" ) );
-mOut << hrec.htmlEdit("$0");
+content += GR_NL0.append( GR_TAGS_( "h1", "Edição" ) );
+content += GR_NL0.appedn( hrec.htmlEdit("$0") );
 endCommonHtml();
 endsnippet
 
 snippet htmlUpdate
-Html${1:Type}Record hrec( self(), m$1Db );
+Html${1:Type}Record hrec( Databases.$1, params( data ) );
 
 beginCommonHtml();
-mOut << GR_NL0.append( GR_TAGS_( "h1", "Atualizar" ) );
-mOut << hrec.htmlUpdate( mSequencer );
+content += GR_NL0.append( GR_TAGS_( "h1", "Atualizar" ) );
+content += GR_NL0.append( hrec.htmlUpdate( mSequencer ) );
 endCommonHtml();
 endsnippet
 
 snippet htmlDelete
-Html${1:Type}Record hrec( self(), m$1Db );
+Html${1:Type}Record hrec( Databases.$1, params( data ) );
 
 beginCommonHtml();
-mOut << GR_NL0.append( GR_TAGS_( "h1", "Remover" ) );
-mOut << hrec.htmlDelete();
+content += GR_NL0.append( GR_TAGS_( "h1", "Remover" ) );
+content += GR_NL0.append( hrec.htmlDelete() );
 endCommonHtml();
 endsnippet
 
@@ -128,6 +128,16 @@ endsnippet
 
 snippet cf
 // clang-format off
+// clang-format on
+endsnippet
+
+snippet ns
+// clang-format off
+namespace br { namespace com { namespace intmain { namespace GrComponents { namespace GrWebServer {
+// clang-format on
+
+// clang-format off
+} } } } }
 // clang-format on
 endsnippet
 
@@ -170,15 +180,83 @@ snippet pqxxtxn
 endsnippet
 
 snippet GrHtmlForm
-    auto form = make_shared<GrHtmlForm>( "addClientRecordFrm01", cgiPath(), "Continuar" );
-    form->addExtraButton( "cancel", "Cancelar", cgiPath( "listClientRecordFrm01" ) );
-    form->addHiddenField( "action", "addClientRecordFrm01" );
+auto form = make_shared<GrHtmlForm>( "${1:action}Frm01", GrWebServerURL( action( data, "${1}Frm01" ) ), "Continuar" );
+form->addExtraButton( "cancel", "Cancelar", cgiPath( "listClientRecordFrm01" ) );
 
-    form->beginFieldSet( "CPF do cliente" );
-    form->addTextField( true, "cpf", "CPF", cpf, "Entre com o CPF do novo cliente." );
-    form->addTextField( true, "fullname", "Nome completo", fullname, "Entre com o nome completo do novo cliente." );
-    form->endFieldSet();
-    mOut << form->str();
+form->beginFieldSet( "CPF do cliente" );
+form->addTextField( true, "cpf", "CPF", cpf, "Entre com o CPF do novo cliente." );
+form->addTextField( true, "fullname", "Nome completo", fullname, "Entre com o nome completo do novo cliente." );
+form->endFieldSet();
+
+content += GR_NL0.append( form->str() );
+endsnippet
+
+
+snippet operator<<
+
+friend ostream &operator<<( ostream &os, const ${1/.*/\u$0/} &${1:point} )
+{
+  os << "x: " << $1.x << " y: " << $1.y << endl;
+  return os;
+}
+
+endsnippet
+
+snippet getset
+void set${2/.*/\u$0/}( const ${1:string}& ${2:userId} )
+{
+  m${2/.*/\u$0/} = $2;
+}
+
+$1 $2() const
+{
+  return m${2/.*/\u$0/};
+}
+endsnippet
+
+snippet na "Nova action" b
+${1:TestActionNameComplex}
+
+`!p
+guard = '__' + re.sub('(?!^)([A-Z]+)', r'_\1',t[1]).upper() + '_HPP__'
+nsOpen = '// clang-format off\nnamespace br { namespace com { namespace intmain { namespace GrComponents { namespace GrWebServer {\n// clang-format on'
+nsClose = '// clang-format off\n} } } } }\n// clang-format on'
+
+snip.rv = '#ifndef ' + guard
+snip += '#define ' + guard
+snip += ''
+snip += nsOpen
+snip += ''
+snip += 'class ' + t[1] + ' : public PagePriv {'
+snip += '  virtual void drawPage( GrWebServerPageData &data ) const;'
+snip += '};'
+snip += ''
+snip += nsClose
+snip += ''
+snip += '#endif'
+snip += ''
+snip += '#include "' + t[1] + '.hpp"'
+snip += ''
+snip += nsOpen
+snip += ''
+snip += 'void ' + t[1] + '::drawPage( GrWebServerPageData &data ) const'
+snip += '{'
+snip += '  string content;'
+snip += '  content += beginCommonHtml( data );'
+snip += '  content += GR_NL0.append( GR_TAGS_( "h1", "Exportação de documentos" ) );'
+snip += '  content += endCommonHtml( data );'
+snip += '  setContent( data, content );'
+snip += '}'
+snip += ''
+snip += nsClose
+`
+endsnippet
+
+snippet error
+string nextUrl = GrWebServerURL( "/listOrderRecordFrm01" );
+error( data, "failure", "Pedido não encontrado: " + orderId, nextUrl );
+finish( data );
+return;
 endsnippet
 
 # vim: ft=snippets

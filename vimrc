@@ -41,6 +41,10 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'tpope/vim-cucumber.git'
 "}}}
 
+"   ### Servidores web
+"{{{
+Plugin 'chr4/nginx.vim'
+"}}}
 
 "   ### Utilitários
 "{{{
@@ -102,6 +106,15 @@ Plugin 'tpope/vim-fugitive'
 "Plugin 'jaxbot/github-issues.vim'   " lerda muito
 "}}}
 
+"   ### Dart
+"{{{
+Plugin 'dart-lang/dart-vim-plugin'
+" Enable HTML syntax highlighting inside Dart strings with let dart_html_in_string=v:true (default false).
+" Disable highlighting of core library classes with let dart_corelib_highlight=v:false (default true).
+" Enable Dart style guide syntax (like 2-space indentation) with let dart_style_guide = 2
+" Enable DartFmt execution on buffer save with let dart_format_on_save = 1
+"}}}
+
 "   ### C++
 "{{{
 " This file contains additional syntax highlighting that I use for C++11/14/17
@@ -136,8 +149,12 @@ Plugin 'jadercorrea/elixir_generator.vim'
 " " Elm Support
 " Plugin 'lambdatoast/elm.vim'
 
-"   ### Theme / Interface
+"   ### Theme / Interface / Color Scheme
 "{{{
+Plugin 'flazz/vim-colorschemes'
+Plugin 'agude/vim-eldar'
+"Plugin 'altercation/vim-colors-solarized'
+"Plugin 'larsbs/vimtom' "Vim Vimtom Colorscheme - saporra só funciona no gui
 Plugin 'AnsiEsc.vim'
 Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
@@ -192,7 +209,6 @@ autocmd BufNewFile,BufRead *.ts set syntax=typescript
 "}}}
 
 "   ## Configuração geral
-
 "{{{
 " OSX stupid backspace fix
 set backspace=indent,eol,start
@@ -200,16 +216,14 @@ set backspace=indent,eol,start
 let g:elite_mode=1
 "}}}
 
+
 " FIXME: Separar os cara abaixo
 "
 "Bundle 'aming/vim-mason'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'aklt/plantuml-syntax'
-"Plugin 'altercation/vim-colors-solarized'
 Plugin 'elzr/vim-json'
-Plugin 'flazz/vim-colorschemes'
 Plugin 'kchmck/vim-coffee-script'
-"Plugin 'larsbs/vimtom' "Vim Vimtom Colorscheme - saporra só funciona no gui
 Plugin 'pangloss/vim-javascript'
 Plugin 'posva/vim-vue'
 "Plugin 'scrooloose/vim-slumlord'
@@ -278,17 +292,11 @@ map <C-m> :TagbarToggle<CR>
 
 "let &runtimepath.=',~/.vim/bundle/ale'
 
-set background=dark
-"colorscheme abbott
-"colorscheme wombat
-colorscheme molokai
-
 "
 "let g:solarized_termcolors=16
 "let g:solarized_termtrans = 1
 "colorscheme solarized
 
-"colorscheme vimtom
 
 "   ## Configuração do neomake
 "{{{
@@ -303,6 +311,7 @@ let g:neomake_highlight_columns=1
 "{{{
 "   npm install -g coffeelint
 let g:neomake_coffeescript_enabled_makers = ['coffeelint']
+let g:syntastic_coffee_coffeelint_args = "--csv --file ~/coffeelint.json"
 "}}}
 
 "   ### Elixir
@@ -341,7 +350,7 @@ nmap <leader>5 <Plug>AirlineSelectTab5
 let g:airline_powerline_fonts = 1
 let g:airline_theme='hybrid'
 let g:hybrid_custom_term_colors = 1
-let g:hybrid_reduced_contrast = 1
+let g:hybrid_reduced_contrast = 0
 "let g:airline_left_sep='>'
 
 let g:neomake_cpp_enable_markers=['clang']
@@ -543,6 +552,8 @@ augroup HiglightMyFix
   autocmd!
   autocmd WinEnter,VimEnter * :silent! call matchadd('MyFix', 'TODO:', -1)
   autocmd WinEnter,VimEnter * :silent! call matchadd('MyFix', 'FIXME:', -1)
+  autocmd WinEnter,VimEnter * :silent! call matchadd('MyFix', 'GLSR:', -1)
+  autocmd WinEnter,VimEnter * :silent! call matchadd('MyFix', 'NOTE:', -1)
 augroup END
 
 "map <Leader>m :CtrlPModified<CR>
@@ -588,7 +599,8 @@ nnoremap <F3> :CtrlPTag<CR>
 nmap <C-UP> :m-2<CR>
 nmap <C-DOWN> :m+1<CR>
 
-set colorcolumn=28,120
+"set colorcolumn=28,120
+set colorcolumn=120
 " set cursorline
 
 " Integração com psql -> \e
@@ -604,6 +616,14 @@ let spell_auto_type="md,tex,doc,mail"
 "let g:pandoc#spell#default_langs=["brasileiro","american"]
 let g:pandoc#spell#default_langs=[]
 
+" atalhos do spell
+" ]s ............. vai para a próxima palavra
+" zg ............. adiciona palavra
+" zw ............. retira palavra
+" z= ............. sugestões
+" zug ............ contrario de zg
+" zuw ............ contrario de zw
+
 set wildignore+=*/git/opa/rel/*
 set wildignore+=*/git/*/node_modules
 set wildignore+=**/tmp/**
@@ -617,9 +637,11 @@ set tags=tags
 " backup and store data in a swap file.
 set nobackup
 set nowritebackup
-set noswapfile
+"set noswapfile
 
+" Recarrega se o arquivo foi alterado em disco
 set autoread
+au CursorHold * checktime " verifica um vez após 4s de inatividade no modo normal
 
 set number
 
@@ -690,7 +712,7 @@ let g:UltiSnipsUsePythonVersion = 3
 "nmap <leader><tab> call UltiSnips#ExpandSnippet()
 
 " If you want :UltiSnipsEdit to split your window.
-" let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsEditSplit="vertical"
 
 set path+=/opt/intmain/dev/*/usr/include/
 "set path+=.,~/git/Intmain/
@@ -706,5 +728,18 @@ au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
 " Mostra 5 linhas abaixo e acima do cursor
 set scrolloff=5
+
+
+"   ### Color scheme
+
+"{{{
+set background=dark
+"colorscheme eldar
+"colorscheme abbott
+"colorscheme wombat
+"colorscheme vimtom
+colorscheme molokai
+"}}}
+
 
 " vim: foldmethod=marker
