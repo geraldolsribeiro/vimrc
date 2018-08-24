@@ -26,6 +26,9 @@
 
 
 ## Instalação
+
+Para ter suporte a python estou usando o vim-nox.
+
 ```
 git clone ssh://git@intmain.io:8322/geraldoim/dot_vim.git ~/.vim
 ln -s ~/.vim/vimrc .vimrc
