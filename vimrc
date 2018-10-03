@@ -4,7 +4,7 @@
 "   
 "   ## Instalação
 "
-"   ```
+"   ```bash
 "   git clone ssh://git@intmain.io:8322/geraldoim/dot_vim.git ~/.vim
 "   ln -s ~/.vim/vimrc .vimrc
 "   mkdir -p ~/.vim/bundle
@@ -216,6 +216,22 @@ set backspace=indent,eol,start
 let g:elite_mode=1
 "}}}
 
+Plugin 'chrisbra/Colorizer'  " Exibe cores #fff
+Plugin 'luochen1990/rainbow'
+let g:rainbow_active = 1
+
+" Plugin 'terryma/vim-multiple-cursors'
+" let g:multi_cursor_use_default_mapping=0
+"
+" " Default mapping
+" let g:multi_cursor_start_word_key      = '<C-n>'
+" let g:multi_cursor_select_all_word_key = '<A-n>'
+" let g:multi_cursor_start_key           = 'g<C-n>'
+" let g:multi_cursor_select_all_key      = 'g<A-n>'
+" let g:multi_cursor_next_key            = '<C-n>'
+" let g:multi_cursor_prev_key            = '<C-p>'
+" let g:multi_cursor_skip_key            = '<C-x>'
+" let g:multi_cursor_quit_key            = '<Esc>'
 
 " FIXME: Separar os cara abaixo
 "
@@ -345,6 +361,9 @@ nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
 nmap <leader>4 <Plug>AirlineSelectTab4
 nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
 
 "let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -546,16 +565,6 @@ set list listchars=tab:»·,trail:·
 "autocmd FilterWritePre * call TrimWhiteSpace()
 "autocmd BufWritePre * call TrimWhiteSpace()
 
-
-highlight MyFix ctermbg=darkred ctermfg=white guibg=red guifg=white
-augroup HiglightMyFix
-  autocmd!
-  autocmd WinEnter,VimEnter * :silent! call matchadd('MyFix', 'TODO:', -1)
-  autocmd WinEnter,VimEnter * :silent! call matchadd('MyFix', 'FIXME:', -1)
-  autocmd WinEnter,VimEnter * :silent! call matchadd('MyFix', 'GLSR:', -1)
-  autocmd WinEnter,VimEnter * :silent! call matchadd('MyFix', 'NOTE:', -1)
-augroup END
-
 "map <Leader>m :CtrlPModified<CR>
 "map <Leader>M :CtrlPBranch<CR>
 "
@@ -601,7 +610,13 @@ nmap <C-DOWN> :m+1<CR>
 
 "set colorcolumn=28,120
 set colorcolumn=120
+
+" Melhora a performance
 " set cursorline
+set cursorline!
+set lazyredraw
+set synmaxcol=128
+syntax sync minlines=256
 
 " Integração com psql -> \e
 " veja o arquivo ~/.vim/syntax/dbout.vim
@@ -723,6 +738,10 @@ set path+=/opt/intmain/dev/*/usr/include/
 " Formata com =
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
+" Não funcionou o comando abaixo, pesquisar como passar o arquivo como
+" parâmetro
+" au FileType json setlocal equalprg=python\ -m\ json.tool\ -\ 2>/dev/null
+
 " Analisar este site
 " http://5.vim-bootstrap.appspot.com/
 
@@ -740,6 +759,17 @@ set background=dark
 "colorscheme vimtom
 colorscheme molokai
 "}}}
+
+
+highlight MyFix ctermbg=darkred ctermfg=white guibg=red guifg=white
+augroup HiglightMyFix
+  autocmd!
+  autocmd WinEnter,VimEnter * :silent! call matchadd('MyFix', 'TODO:', -1)
+  autocmd WinEnter,VimEnter * :silent! call matchadd('MyFix', 'FIXME:', -1)
+  autocmd WinEnter,VimEnter * :silent! call matchadd('MyFix', 'GLSR:', -1)
+  autocmd WinEnter,VimEnter * :silent! call matchadd('MyFix', 'NOTE:', -1)
+  autocmd WinEnter,VimEnter * :silent! call matchadd('MyFix', 'SHIT:', -1)
+augroup END
 
 
 " vim: foldmethod=marker

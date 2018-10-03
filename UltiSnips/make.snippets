@@ -9,3 +9,24 @@ snippet JUMPTRACE
 CXXFLAGS+= -DGR_USE_JUMP_TRACE=1
 CXXFLAGS+= -DGR_USE_TRACE_MSG=1
 endsnippet
+
+snippet PKG
+### ----------------------------------------------------------------------
+### Copyright (C) 2006-2018 Geraldo Ribeiro <geraldo@intmain.io>
+### ----------------------------------------------------------------------
+
+GR_DEBIAN_PACKAGE_BASENAME=intmain-cxxtest-dev
+GR_DEBIAN_PACKAGE_CUSTOMER_APP_ID=
+GR_DEBIAN_PACKAGE_DESCRIPTION=CxxTest Testing Framework for C++
+
+include /opt/intmain/dev/$(OS)/usr/share/Gr/scripts/Common/Makefile.include
+
+all:
+
+deps:
+
+clean:
+
+endsnippet
+
+# vim: ft=snippets

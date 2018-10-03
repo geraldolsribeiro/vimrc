@@ -36,13 +36,13 @@ endsnippet
 snippet requiredValue "Campo requerido"
 string $1;
 
-requiredValue( "${1:variable}", $1 );
+requiredValue( data, "${1:variable}", $1 );
 endsnippet
 
 snippet optionalValue "Campo opcional"
 string $1;
 
-optionalValue( "${1:variable}", $1 );
+optionalValue( data, "${1:variable}", $1 );
 endsnippet
 
 snippet getRecord
@@ -52,47 +52,53 @@ m${1/.*/\u$0/}Db->getRecord( $1Id, ${1:type}Rec );
 endsnippet
 
 snippet htmlList
+string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
-
-beginCommonHtml();
+content += GR_NL0.append( GR_H1_( "Listar" ) );
+content += beginCommonHtml( data );
 content += GR_NL0.append( hrec.htmlList("$0") );
-endCommonHtml();
+content += endCommonHtml( data );
+setContent( data, content );
 endsnippet
 
 snippet htmlView
+string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
-
-beginCommonHtml();
-content += GR_NL0.append( GR_TAGS_( "h1", "Visualizar" ) );
+content += beginCommonHtml( data );
+content += GR_NL0.append( GR_H1_( "Visualizar" ) );
 content += GR_NL0.append( hrec.htmlView("$0") );
-endCommonHtml();
+content += endCommonHtml( data );
+setContent( data, content );
 endsnippet
 
 snippet htmlEdit
+string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
-
-beginCommonHtml();
-content += GR_NL0.append( GR_TAGS_( "h1", "Edição" ) );
+content += beginCommonHtml( data );
+content += GR_NL0.append( GR_H1_( "Edição" ) );
 content += GR_NL0.appedn( hrec.htmlEdit("$0") );
-endCommonHtml();
+content += endCommonHtml( data );
+setContent( data, content );
 endsnippet
 
 snippet htmlUpdate
+string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
-
-beginCommonHtml();
-content += GR_NL0.append( GR_TAGS_( "h1", "Atualizar" ) );
+content += beginCommonHtml( data );
+content += GR_NL0.append( GR_H1_( "Atualizar" ) );
 content += GR_NL0.append( hrec.htmlUpdate( mSequencer ) );
-endCommonHtml();
+content += endCommonHtml( data );
+setContent( data, content );
 endsnippet
 
 snippet htmlDelete
+string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
-
-beginCommonHtml();
-content += GR_NL0.append( GR_TAGS_( "h1", "Remover" ) );
+content += beginCommonHtml( data );
+content += GR_NL0.append( GR_H1_( "Remover" ) );
 content += GR_NL0.append( hrec.htmlDelete() );
-endCommonHtml();
+content += endCommonHtml( data );
+setContent( data, content );
 endsnippet
 
 snippet htmlcrud
@@ -243,7 +249,7 @@ snip += 'void ' + t[1] + '::drawPage( GrWebServerPageData &data ) const'
 snip += '{'
 snip += '  string content;'
 snip += '  content += beginCommonHtml( data );'
-snip += '  content += GR_NL0.append( GR_TAGS_( "h1", "Exportação de documentos" ) );'
+snip += '  content += GR_NL0.append( GR_H1_( "Exportação de documentos" ) );'
 snip += '  content += endCommonHtml( data );'
 snip += '  setContent( data, content );'
 snip += '}'

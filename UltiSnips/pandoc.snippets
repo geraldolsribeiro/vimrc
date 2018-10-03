@@ -64,5 +64,29 @@ snippet "(\w+).par" "Parenthesis (postfix)" r
 (`!p snip.rv = match.group(1)`$1)$0
 endsnippet
 
+snippet _index
++++
+title = "${1:Título}"
+weight = 30
++++
+
+## Conteúdo
+
+{{% children  %}}
+
+----
+
+endsnippet
+
+snippet imd "imacros documentação"
++++
+title = "imacros - ${1:Título}"
++++
+
+\`\`\`imacros
+${2:exemplo}
+\`\`\`
+
+endsnippet
 
 # vim: ft=snippets
