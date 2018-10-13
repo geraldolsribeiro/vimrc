@@ -54,8 +54,8 @@ endsnippet
 snippet htmlList
 string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
-content += GR_NL0.append( GR_H1_( "Listar" ) );
 content += beginCommonHtml( data );
+content += GR_NL0.append( GR_H1_( "Listar" ) );
 content += GR_NL0.append( hrec.htmlList("$0") );
 content += endCommonHtml( data );
 setContent( data, content );
@@ -76,7 +76,7 @@ string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
 content += beginCommonHtml( data );
 content += GR_NL0.append( GR_H1_( "Edição" ) );
-content += GR_NL0.appedn( hrec.htmlEdit("$0") );
+content += GR_NL0.append( hrec.htmlEdit("$0") );
 content += endCommonHtml( data );
 setContent( data, content );
 endsnippet
@@ -86,7 +86,7 @@ string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
 content += beginCommonHtml( data );
 content += GR_NL0.append( GR_H1_( "Atualizar" ) );
-content += GR_NL0.append( hrec.htmlUpdate( mSequencer ) );
+content += GR_NL0.append( hrec.htmlUpdate( Database.Seq ) );
 content += endCommonHtml( data );
 setContent( data, content );
 endsnippet
@@ -263,6 +263,45 @@ string nextUrl = GrWebServerURL( "/listOrderRecordFrm01" );
 error( data, "failure", "Pedido não encontrado: " + orderId, nextUrl );
 finish( data );
 return;
+endsnippet
+
+
+snippet privrepo
+// ----------------------------------------------------------------------
+// Copyright (C) 2017-2018 Geraldo Ribeiro <geraldo@intmain.io>
+// ----------------------------------------------------------------------
+
+// Nome: ${1:Post}
+
+#ifndef __PRIV_REPO_$1_RECORD_HPP__
+#define __PRIV_REPO_$1_RECORD_HPP__
+
+#include "Add$1RecordFrm01.hpp"
+#include "Delete$1RecordFrm01.hpp"
+#include "Edit$1RecordFrm01.hpp"
+#include "List$1RecordFrm01.hpp"
+#include "Update$1RecordFrm01.hpp"
+
+class PrivRepo$1Record : public DynamicRepository {
+public:
+  PrivRepo$1Record() : DynamicRepository()
+  {
+    add( "/list$1RecordFrm01", &list$1RecordFrm01 );
+    add( "/edit$1RecordFrm01", &edit$1RecordFrm01 );
+    add( "/delete$1RecordFrm01", &delete$1RecordFrm01 );
+    add( "/update$1RecordFrm01", &update$1RecordFrm01 );
+    add( "/add$1RecordFrm01", &add$1RecordFrm01 );
+  }
+
+private:
+  List$1RecordFrm01   list$1RecordFrm01;
+  Edit$1RecordFrm01   edit$1RecordFrm01;
+  Delete$1RecordFrm01 delete$1RecordFrm01;
+  Update$1RecordFrm01 update$1RecordFrm01;
+  Add$1RecordFrm01    add$1RecordFrm01;
+};
+
+#endif
 endsnippet
 
 # vim: ft=snippets
