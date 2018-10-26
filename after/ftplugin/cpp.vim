@@ -28,5 +28,5 @@ function! UpdateHeaderCopyright()
   call setpos('.', last_cursor_position)
 endfunction
 
-call UpdateHeaderCopyright()
+" call UpdateHeaderCopyright()
 

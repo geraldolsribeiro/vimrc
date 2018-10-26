@@ -11,6 +11,7 @@
       * [Servidores web](#servidores-web)
       * [Utilitários](#utilitários)
       * [Plugins genéricos para programação](#plugins-genéricos-para-programação)
+      * [Comentários](#comentários)
       * [Markdown / Escrita](#markdown-/-escrita)
       * [Git Support](#git-support)
       * [Dart](#dart)
@@ -99,12 +100,34 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'jakedouglas/exuberant-ctags'
 Plugin 'honza/vim-snippets'
 Plugin 'Townk/vim-autoclose'
-Plugin 'tomtom/tcomment_vim'
 Plugin 'tobyS/vmustache'
 Plugin 'janko-m/vim-test'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'neomake/neomake'
+```
+
+### Comentários
+
+```vim
+Plugin 'tomtom/tcomment_vim'
+Para definir o comentário para um novo tipo use:
+"   Para definir o comentário para um novo tipo use:
+
+"   
+```
+"   ```
+autocmd FileType xyz set commentstring=#\ %s
+"   autocmd FileType xyz set commentstring=#\ %s
+```
+"   ```
+"
+* `g<` descomenta a seleção
+"   * `g<` descomenta a seleção
+* `g>` comenta a seleção
+"   * `g>` comenta a seleção
+* `leader_p` comenta parágrafo
+"   * `leader_p` comenta parágrafo
 ```
 
 ### Markdown / Escrita
