@@ -1,12 +1,18 @@
-"   # Arquivo de configuração do vim do Geraldo Ribeiro
+"   # vimrc: Arquivo de configuração do vim
+"   Geraldo Ribeiro
 "   
 "   [TOC]
 "   
 "   ## Instalação
 "
 "   ```bash
+"   # Clona o repositório
 "   git clone ssh://git@intmain.io:8322/geraldoim/dot_vim.git ~/.vim
+"   
+"   # Aponta o arquivo de configuração para a configuração personalizada
 "   ln -s ~/.vim/vimrc .vimrc
+"   
+"   # Baixa todos os plugins relacionados na configuração
 "   mkdir -p ~/.vim/bundle
 "   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 "   vim +BundleInstall +qall
@@ -18,8 +24,8 @@ filetype off                  " required
 syntax on
 
 "   ## Plugins
+"   Configura o path de inclusão do `Vundle` e o inicia.
 "{{{
-" configura o path de inclusão do Vundle e inicia
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -572,7 +578,9 @@ function!TrimWhiteSpace()
   %s/\s*$//
 endfunction
 
-set list listchars=tab:»·,trail:·
+"set list listchars=tab:»·,trail:·
+set list listchars=tab:▸\ ,trail:·,nbsp:_
+"set list listchars=tab:▸\ ,trail:·,eol:↴,nbsp:_
 "autocmd FileWritePre * call TrimWhiteSpace()
 "autocmd FileAppendPre * call TrimWhiteSpace()
 "autocmd FilterWritePre * call TrimWhiteSpace()
@@ -626,10 +634,14 @@ set colorcolumn=120
 
 " Melhora a performance
 " set cursorline
-set cursorline!
+set cursorline
+set cursorcolumn
 set lazyredraw
 set synmaxcol=128
 syntax sync minlines=256
+
+
+nnoremap H :set cursorline! cursorcolumn!<CR>
 
 " Integração com psql -> \e
 " veja o arquivo ~/.vim/syntax/dbout.vim
@@ -675,6 +687,7 @@ set number
 
 "   ## Melhorar a visibilidade da indentação
 "   Incluir `Plugin 'Yggdroot/indentLine'` no vundle.
+"   Desabilitado no momento!
 "{{{
 let g:indentLine_char = '▏'
 let g:indentLine_setColors = 1
@@ -731,6 +744,8 @@ let g:syntastic_cpp_compiler_options = ' -include ../src/precompile.hpp -std=c++
 " https://remarkablemark.org/blog/2016/09/28/vim-syntastic-eslint/
 let g:syntastic_javascript_checkers=['eslint']
 
+let g:syntastic_sh_checkers=['shellcheck']
+
 " ultisnip
 let g:UltiSnipsUsePythonVersion = 3
 "let g:UltiSnipsExpandTrigger="<>"
@@ -763,7 +778,7 @@ set scrolloff=5
 
 
 "   ### Color scheme
-
+"   
 "{{{
 set background=dark
 "colorscheme eldar
@@ -772,7 +787,12 @@ set background=dark
 "colorscheme vimtom
 colorscheme molokai
 "}}}
+"
 
+" Most likely you are interested in these three highlighting groups: Cursor, CursorColumn and CursorLine. The names are self explanatory.
+"highlight Cursor ctermfg=White ctermbg=Yellow cterm=bold guifg=white guibg=yellow gui=bold
+"highlight CursorColumn ctermfg=White ctermbg=Yellow cterm=bold guifg=white guibg=yellow gui=bold
+"highlight CursorLine ctermbg=LightBlue
 
 highlight MyFix ctermbg=darkred ctermfg=white guibg=red guifg=white
 augroup HiglightMyFix
@@ -783,6 +803,9 @@ augroup HiglightMyFix
   autocmd WinEnter,VimEnter * :silent! call matchadd('MyFix', 'NOTE:', -1)
   autocmd WinEnter,VimEnter * :silent! call matchadd('MyFix', 'SHIT:', -1)
 augroup END
+
+" Para fundo transparente
+" hi Normal ctermbg=none
 
 " .vim/after/ftplugin/cpp.vim
 
