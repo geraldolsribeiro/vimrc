@@ -12,10 +12,13 @@ SKIP_TEST_WIN32=YES
 SKIP_TEST_WIN64=YES
 endsnippet
 
-snippet set "Flags para prevenir erros"
-set -o errexit   # abort on nonzero exitstatus
-set -o nounset   # abort on unbound variable
-set -o pipefail  # don't hide errors within pipes
+snippet set_o "Flags para prevenir erros"
+# A better class of script...
+set -o errexit  # Exit on most errors
+set -o errtrace # Make sure any error trap is inherited
+set -o nounset  # Disallow expansion of unset variables
+set -o pipefail # Use last non-zero exit code in a pipeline
+#set -o xtrace  # Trace the execution of the script (debug)
 endsnippet
 
 snippet debug_section
@@ -30,9 +33,12 @@ snippet GrInstall.sh
 ### Copyright (C) 2006-2018 Geraldo Ribeiro <geraldo@intmain.io>
 ### ----------------------------------------------------------------------
 
-set -o errexit   # abort on nonzero exitstatus
-set -o nounset   # abort on unbound variable
-set -o pipefail  # don't hide errors within pipes
+# A better class of script...
+set -o errexit  # Exit on most errors
+set -o errtrace # Make sure any error trap is inherited
+set -o nounset  # Disallow expansion of unset variables
+set -o pipefail # Use last non-zero exit code in a pipeline
+#set -o xtrace  # Trace the execution of the script (debug)
 
 PackageName=${1:GrStringSet}
 

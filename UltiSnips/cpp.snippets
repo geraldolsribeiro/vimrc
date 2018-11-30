@@ -31,6 +31,18 @@ protected:
   virtual bool select( const $1Record &rec ) const;
   string m$2Filter;
 };
+
+#include <View01Html$1Record.hpp>
+
+void View01Html$1Record::set$2Filter( const string &id )
+{
+  m$2Filter = id;
+}
+
+bool View01Html$1Record::select( const $1Record &rec ) const
+{
+  return true;
+}
 endsnippet
 
 snippet requiredValue "Campo requerido"
@@ -86,7 +98,7 @@ string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
 content += beginCommonHtml( data );
 content += GR_NL0.append( GR_H1_( "Atualizar" ) );
-content += GR_NL0.append( hrec.htmlUpdate( Database.Seq ) );
+content += GR_NL0.append( hrec.htmlUpdate( Databases.Seq ) );
 content += endCommonHtml( data );
 setContent( data, content );
 endsnippet
@@ -108,6 +120,21 @@ virtual void actUpdate$1RecordFrm01();
 virtual void actDelete$1RecordFrm01();
 virtual void actView$1RecordFrm01();
 virtual void actAdd$1RecordFrm01();
+endsnippet
+
+snippet htmlAdd
+  ${1/.*/\u$0/}Record $1Rec;
+  string ${2:variavel};
+
+  requiredValue( data, "$2", $2 );
+  auto $1Id = $1Rec.newKey();
+
+  $1Rec.setKey( $1Id );
+  $1Rec.set${2/.*/\u$0/}( $2 );
+  Databases.${1/.*/\u$0/}->insertRecord( $1Rec );
+  redirectTo( data, 
+	  GrWebServerURL( "/edit${1/.*/\u$0/}RecordFrm01" )
+		  .param( "id", $1Id ) );
 endsnippet
 
 snippet ---
@@ -193,7 +220,7 @@ endsnippet
 
 snippet GrHtmlForm
 auto form = make_shared<GrHtmlForm>( "${1:action}Frm01", GrWebServerURL( action( data, "${1}Frm01" ) ), "Continuar" );
-form->addExtraButton( "cancel", "Cancelar", cgiPath( "listClientRecordFrm01" ) );
+form->addExtraButton( "cancel", "Cancelar", "list${1}Frm01" ) );
 
 form->beginFieldSet( "CPF do cliente" );
 form->addTextField( true, "cpf", "CPF", cpf, "Entre com o CPF do novo cliente." );

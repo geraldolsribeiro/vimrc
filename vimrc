@@ -322,9 +322,6 @@ filetype plugin indent on    " required
 " Finish Vundle install
 "
 
-map <C-n> :NERDTreeToggle<CR>
-map <C-m> :TagbarToggle<CR>
-
 "let &runtimepath.=',~/.vim/bundle/ale'
 
 "
@@ -374,15 +371,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#switch_buffers_and_tabs = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
-
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
 
 "let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -499,28 +487,6 @@ let g:fzf_colors =
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-
-" -------------------------------------------------------------------
-" Executar a linha atual
-nmap <F12> :exec '!'.getline('.')<CR>
-nmap <S-F12> :exec '!ssh vm01 "'.getline('.').'"'<CR>
-
-" <F2> to save
-nmap <F2> :w<cr>
-imap <F2> <c-o>:w<cr>
-
-" <F6> para trocar de buffer
-nmap <F6> :bn<CR>
-
-" <F7> para ir para o próximo erro
-nmap <F7> :cnext<CR>
-nmap <S-F7> :cprev<CR>
-
-" <F9> para compilar
-nmap <F9> :make<CR>
-
-" <F8> para fechar o buffer atual
-nmap <F8> :bp\|bd #<CR>
 
 set modeline
 set modelines=5
@@ -793,6 +759,10 @@ colorscheme molokai
 "highlight Cursor ctermfg=White ctermbg=Yellow cterm=bold guifg=white guibg=yellow gui=bold
 "highlight CursorColumn ctermfg=White ctermbg=Yellow cterm=bold guifg=white guibg=yellow gui=bold
 "highlight CursorLine ctermbg=LightBlue
+"
+highlight CursorColumn ctermbg=Black
+highlight Cursor       ctermbg=Black cterm=bold
+highlight CursorLine   ctermbg=Black cterm=bold
 
 highlight MyFix ctermbg=darkred ctermfg=white guibg=red guifg=white
 augroup HiglightMyFix
@@ -808,6 +778,75 @@ augroup END
 " hi Normal ctermbg=none
 
 " .vim/after/ftplugin/cpp.vim
+
+"   ### Atalhos de teclado
+"   
+"{{{
+map <C-n> :NERDTreeToggle<CR>
+map <C-m> :TagbarToggle<CR>
+
+" Alterna entre as tabs
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+
+" -------------------------------------------------------------------
+" Executar a linha atual
+nmap <F12> :exec '!'.getline('.')<CR>
+nmap <S-F12> :exec '!ssh vm01 "'.getline('.').'"'<CR>
+
+" Salva o buffer atual
+nmap <F2> :w<cr>
+imap <F2> <c-o>:w<cr>
+
+" Vai para o próximo buffer
+nmap <F6> :bn<CR>
+nmap <S-F6> :bp<CR>
+
+" Vai para o próximo erro
+nmap <F7> :cnext<CR>
+nmap <S-F7> :cprev<CR>
+
+" Compila
+nmap <F9> :make<CR>
+
+" Fecha o buffer atual
+nmap <F8> :bp\|bd #<CR>
+
+" Seleção de bloco no terminal do xfce que já usa o ctrl+shift+V para colar
+:nnoremap <f4>  <c-v>
+
+" Ctrl+P configurado acima
+"}}}
+
+" para mapear o mouse
+" http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial_(Part_1)
+" <LeftMouse>     - Left mouse button press
+" <RightMouse>    - Right mouse button press
+" <MiddleMouse>   - Middle mouse button press
+" <LeftRelease>   - Left mouse button release
+" <RightRelease>  - Right mouse button release
+" <MiddleRelease> - Middle mouse button release
+" <LeftDrag>      - Mouse drag while Left mouse button is pressed
+" <RightDrag>     - Mouse drag while Right mouse button is pressed
+" <MiddleDrag>    - Mouse drag while Middle mouse button is pressed
+" <2-LeftMouse>   - Left mouse button double-click
+" <2-RightMouse>  - Right mouse button double-click
+" <3-LeftMouse>   - Left mouse button triple-click
+" <3-RightMouse>  - Right mouse button triple-click
+" <4-LeftMouse>   - Left mouse button quadruple-click
+" <4-RightMouse>  - Right mouse button quadruple-click
+" <X1Mouse>       - X1 button press
+" <X2Mouse>       - X2 button press
+" <X1Release>     - X1 button release
+" <X2Release>     - X2 button release
+" <X1Drag>        - Mouse drag while X1 button is pressed
+" <X2Drag>        - Mouse drag while X2 button is pressed
 
 " vim: foldmethod=marker
 
