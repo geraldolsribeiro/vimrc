@@ -22,7 +22,7 @@ endsnippet
 snippet view01html "Personalização de tabela"
 class View01Html$1Record : public Html${1:Type}Record {
 public:
-  View01Html$1Record( shared_ptr<GrCGI> grcgi, shared_ptr<Database> db ) : Html$1Record( grcgi, db ){};
+  View01Html$1Record( DatabasePtr db, map<string, string> &params ) : Html$1Record( db, params ){};
   virtual ~View01Html$1Record(){};
   virtual void set${2:ParentId}Filter( const string &id );
   virtual string nameVarTD( const $1Record &rec ) const;
