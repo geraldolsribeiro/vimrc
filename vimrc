@@ -603,7 +603,7 @@ set colorcolumn=120
 set cursorline
 set cursorcolumn
 set lazyredraw
-set synmaxcol=128
+set synmaxcol=200 " limite para highligh
 syntax sync minlines=256
 
 
