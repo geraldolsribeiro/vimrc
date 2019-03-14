@@ -1,3 +1,5 @@
+# Separadores
+
 snippet ---
 // ----------------------------------------------------------------------
 // $0
@@ -17,6 +19,23 @@ snippet header
 
 endsnippet
 
+snippet cf
+// clang-format off
+// clang-format on
+endsnippet
+
+snippet ns
+// clang-format off
+namespace br { namespace com { namespace intmain { namespace GrComponents { namespace GrWebServer {
+// clang-format on
+
+// clang-format off
+} } } } }
+// clang-format on
+endsnippet
+
+# Cabeçalhos
+
 snippet taokerheader
 // ----------------------------------------------------------------------
 // Copyright (C) 2016-2019 Anderson Sabara <anderson-sabara@taoker.com.br>
@@ -34,14 +53,10 @@ snippet gpsheader
 
 endsnippet
 
-snippet cf
-// clang-format off
-// clang-format on
-endsnippet
 
 snippet newhpp "Novo arquivo HPP"
 // ----------------------------------------------------------------------
-// Copyright (C) 2017-2018 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2019 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 
 #ifndef __${1:FILENAME}_HPP__
@@ -64,7 +79,7 @@ protected:
 };
 
 // ----------------------------------------------------------------------
-// Copyright (C) 2017-2018 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2019 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 #include <View01Html$1Record.hpp>
 
@@ -100,7 +115,15 @@ endsnippet
 snippet getRecord
 ${1/.*/\u$0/}Record $1Rec;
 
-m${1/.*/\u$0/}Db->getRecord( $1Id, ${1:type}Rec );
+Databases.${1/.*/\u$0/}->getRecord( $1Id, ${1:type}Rec );
+endsnippet
+
+snippet updateRecord
+Databases.${1/.*/\u$0/}->updateRecord( ${1:type}Rec );
+endsnippet
+
+snippet insertRecord
+Databases.${1/.*/\u$0/}->insertRecord( ${1:type}Rec );
 endsnippet
 
 # --- Databases ---
@@ -189,15 +212,6 @@ snippet htmlAdd
 		  .param( "id", $1Id ) );
 endsnippet
 
-snippet ns
-// clang-format off
-namespace br { namespace com { namespace intmain { namespace GrComponents { namespace GrWebServer {
-// clang-format on
-
-// clang-format off
-} } } } }
-// clang-format on
-endsnippet
 
 snippet ifndef
 #ifndef __${1:FILE}_HPP__
@@ -320,7 +334,7 @@ endsnippet
 
 snippet privrepo
 // ----------------------------------------------------------------------
-// Copyright (C) 2017-2018 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2019 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 
 // Nome: ${1:Post}
