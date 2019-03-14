@@ -34,19 +34,9 @@ snippet gpsheader
 
 endsnippet
 
-
 snippet cf
 // clang-format off
 // clang-format on
-endsnippet
-snippet cursor "Percorre tabela"
-${2/.*/\u$0/}Record $2Rec;
-
-Databases.${1:}->createCursor();
-while( Databases.$1->nextRecord( ${2:type}Rec ) ) {
-  $0
-}
-Databases.$1->destroyCursor();
 endsnippet
 
 snippet newhpp "Novo arquivo HPP"
@@ -111,6 +101,18 @@ snippet getRecord
 ${1/.*/\u$0/}Record $1Rec;
 
 m${1/.*/\u$0/}Db->getRecord( $1Id, ${1:type}Rec );
+endsnippet
+
+# --- Databases ---
+
+snippet cursor "Percorre tabela"
+${2/.*/\u$0/}Record $2Rec;
+
+Databases.${1:}->createCursor();
+while( Databases.$1->nextRecord( ${2:type}Rec ) ) {
+  $0
+}
+Databases.$1->destroyCursor();
 endsnippet
 
 snippet htmlList
