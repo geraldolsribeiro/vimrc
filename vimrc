@@ -71,6 +71,7 @@ Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'gilsondev/searchtasks.vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'tpope/vim-dispatch'
+Plugin 'dhruvasagar/vim-table-mode.git'
 "}}}
 
 "   ### Plugins genéricos para programação
