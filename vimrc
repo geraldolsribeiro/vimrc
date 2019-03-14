@@ -365,6 +365,12 @@ let g:neomake_scss_enabled_markers = ['scss-lint']
 "}}}
 
 
+"   ### vim-table-mode
+"{{{
+" tabelas em formato markdown
+let g:table_mode_corner='|'
+"}}}
+
 
 " Vim-Airline Configuration
 ":h airline
