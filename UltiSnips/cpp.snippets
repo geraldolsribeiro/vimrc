@@ -1,3 +1,44 @@
+snippet ---
+// ----------------------------------------------------------------------
+// $0
+// ----------------------------------------------------------------------
+endsnippet
+
+snippet sep
+// ----------------------------------------------------------------------
+//
+// ----------------------------------------------------------------------
+endsnippet
+
+snippet header
+// ----------------------------------------------------------------------
+// Copyright (C) 2018 Geraldo Ribeiro <geraldo@intmain.io>
+// ----------------------------------------------------------------------
+
+endsnippet
+
+snippet taokerheader
+// ----------------------------------------------------------------------
+// Copyright (C) 2016-2019 Anderson Sabara <anderson-sabara@taoker.com.br>
+// Copyright (C) 2016-2019 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>
+// ----------------------------------------------------------------------
+
+endsnippet
+
+snippet gpsheader
+// ----------------------------------------------------------------------
+// Copyright (C) 2017-2018 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2018 Pedro Bruno <pedroguilhermebruno@yahoo.com.br>
+// Copyright (C) 2017-2018 Sergio Ribeiro <segori@gmail.com>
+// ----------------------------------------------------------------------
+
+endsnippet
+
+
+snippet cf
+// clang-format off
+// clang-format on
+endsnippet
 snippet cursor "Percorre tabela"
 ${2/.*/\u$0/}Record $2Rec;
 
@@ -144,39 +185,6 @@ snippet htmlAdd
   redirectTo( data, 
 	  GrWebServerURL( "/edit${1/.*/\u$0/}RecordFrm01" )
 		  .param( "id", $1Id ) );
-endsnippet
-
-snippet ---
-// ----------------------------------------------------------------------
-// $0
-// ----------------------------------------------------------------------
-endsnippet
-
-snippet header
-// ----------------------------------------------------------------------
-// Copyright (C) 2018 Geraldo Ribeiro <geraldo@intmain.io>
-// ----------------------------------------------------------------------
-
-endsnippet
-
-snippet gpsheader
-// ----------------------------------------------------------------------
-// Copyright (C) 2017-2018 Geraldo Ribeiro <geraldo@intmain.io>
-// Copyright (C) 2017-2018 Pedro Bruno <pedroguilhermebruno@yahoo.com.br>
-// Copyright (C) 2017-2018 Sergio Ribeiro <segori@gmail.com>
-// ----------------------------------------------------------------------
-
-endsnippet
-
-snippet sep
-// ----------------------------------------------------------------------
-//
-// ----------------------------------------------------------------------
-endsnippet
-
-snippet cf
-// clang-format off
-// clang-format on
 endsnippet
 
 snippet ns
