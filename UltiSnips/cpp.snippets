@@ -1,5 +1,12 @@
 # Separadores
 
+snippet ifndef
+#ifndef __${1:FILE}_HPP__
+#define __$1_HPP__
+
+#endif
+endsnippet
+
 snippet ---
 // ----------------------------------------------------------------------
 // $0
@@ -112,6 +119,8 @@ string $1;
 optionalValue( data, "${1:variable}", $1 );
 endsnippet
 
+# --- Databases ---
+
 snippet getRecord
 ${1/.*/\u$0/}Record $1Rec;
 
@@ -126,7 +135,9 @@ snippet insertRecord
 Databases.${1/.*/\u$0/}->insertRecord( ${1:type}Rec );
 endsnippet
 
-# --- Databases ---
+snippet deleteRecord
+Databases.${1/.*/\u$0/}->deleteRecord( ${1:type}Rec );
+endsnippet
 
 snippet cursor "Percorre tabela"
 ${2/.*/\u$0/}Record $2Rec;
@@ -213,12 +224,6 @@ snippet htmlAdd
 endsnippet
 
 
-snippet ifndef
-#ifndef __${1:FILE}_HPP__
-#define __$1_HPP__
-
-#endif
-endsnippet
 
 snippet test
 SCENARIO( "${1:Título do teste}" )
