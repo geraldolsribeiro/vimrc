@@ -43,10 +43,10 @@ endsnippet
 
 # Cabeçalhos
 
-snippet taokerheader
+snippet theader
 // ----------------------------------------------------------------------
-// Copyright (C) 2016-2019 Anderson Sabara <anderson-sabara@taoker.com.br>
-// Copyright (C) 2016-2019 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>
+// Copyright (C) 2018-2019 Anderson Sabara <anderson-sabara@taoker.com.br>
+// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>
 // ----------------------------------------------------------------------
 
 endsnippet
@@ -140,21 +140,21 @@ Databases.${1/.*/\u$0/}->deleteRecord( ${1:type}Rec );
 endsnippet
 
 snippet cursor "Percorre tabela"
-${2/.*/\u$0/}Record $2Rec;
+${1/.*/\u$0/}Record $1Rec;
 
-Databases.${1:}->createCursor();
-while( Databases.$1->nextRecord( ${2:type}Rec ) ) {
+Databases.${1/.*/\u$0/}->createCursor();
+while( Databases.${1/.*/\u$0/}->nextRecord( ${1:type}Rec ) ) {
   $0
 }
-Databases.$1->destroyCursor();
+Databases.${1/.*/\u$0/}->destroyCursor();
 endsnippet
 
 snippet htmlList
 string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
 content += beginCommonHtml( data );
-content += GR_NL0.append( GR_H1_( "Listar" ) );
-content += GR_NL0.append( hrec.htmlList("$0") );
+content += GR_NL0( GR_H1_( "Listar" ) );
+content += GR_NL0( hrec.htmlList("$0") );
 content += endCommonHtml( data );
 setContent( data, content );
 endsnippet
@@ -163,8 +163,8 @@ snippet htmlView
 string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
 content += beginCommonHtml( data );
-content += GR_NL0.append( GR_H1_( "Visualizar" ) );
-content += GR_NL0.append( hrec.htmlView("$0") );
+content += GR_NL0( GR_H1_( "Visualizar" ) );
+content += GR_NL0( hrec.htmlView("$0") );
 content += endCommonHtml( data );
 setContent( data, content );
 endsnippet
@@ -173,8 +173,8 @@ snippet htmlEdit
 string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
 content += beginCommonHtml( data );
-content += GR_NL0.append( GR_H1_( "Edição" ) );
-content += GR_NL0.append( hrec.htmlEdit("$0") );
+content += GR_NL0( GR_H1_( "Edição" ) );
+content += GR_NL0( hrec.htmlEdit("$0") );
 content += endCommonHtml( data );
 setContent( data, content );
 endsnippet
@@ -183,8 +183,8 @@ snippet htmlUpdate
 string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
 content += beginCommonHtml( data );
-content += GR_NL0.append( GR_H1_( "Atualizar" ) );
-content += GR_NL0.append( hrec.htmlUpdate( Databases.Seq ) );
+content += GR_NL0( GR_H1_( "Atualizar" ) );
+content += GR_NL0( hrec.htmlUpdate( Databases.Seq ) );
 content += endCommonHtml( data );
 setContent( data, content );
 endsnippet
@@ -193,8 +193,8 @@ snippet htmlDelete
 string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
 content += beginCommonHtml( data );
-content += GR_NL0.append( GR_H1_( "Remover" ) );
-content += GR_NL0.append( hrec.htmlDelete() );
+content += GR_NL0( GR_H1_( "Remover" ) );
+content += GR_NL0( hrec.htmlDelete() );
 content += endCommonHtml( data );
 setContent( data, content );
 endsnippet
@@ -213,14 +213,14 @@ snippet htmlAdd
   string ${2:variavel};
 
   requiredValue( data, "$2", $2 );
-  auto $1Id = $1Rec.newKey();
+  auto id = $1Rec.newKey();
 
-  $1Rec.setKey( $1Id );
+  $1Rec.setKey( id );
   $1Rec.set${2/.*/\u$0/}( $2 );
   Databases.${1/.*/\u$0/}->insertRecord( $1Rec );
   redirectTo( data, 
 	  GrWebServerURL( "/edit${1/.*/\u$0/}RecordFrm01" )
-		  .param( "id", $1Id ) );
+		  .param( "id", id ) );
 endsnippet
 
 
@@ -265,7 +265,7 @@ form->addTextField( true, "cpf", "CPF", cpf, "Entre com o CPF do novo cliente." 
 form->addTextField( true, "fullname", "Nome completo", fullname, "Entre com o nome completo do novo cliente." );
 form->endFieldSet();
 
-content += GR_NL0.append( form->str() );
+content += GR_NL0( form->str() );
 endsnippet
 
 
@@ -320,7 +320,7 @@ snip += 'void ' + t[1] + '::drawPage( GrWebServerPageData &data ) const'
 snip += '{'
 snip += '  string content;'
 snip += '  content += beginCommonHtml( data );'
-snip += '  content += GR_NL0.append( GR_H1_( "Exportação de documentos" ) );'
+snip += '  content += GR_NL0( GR_H1_( "Exportação de documentos" ) );'
 snip += '  content += endCommonHtml( data );'
 snip += '  setContent( data, content );'
 snip += '}'

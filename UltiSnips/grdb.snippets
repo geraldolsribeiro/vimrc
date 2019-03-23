@@ -1,0 +1,98 @@
+# GRDB
+snippet fields
+VERSION       3
+TABLEVERSION  0
+NAMESPACE     EMPTY
+CLASS         MyRecord
+KEY           theKey      # Chave.
+STRING        stringVar   # String.
+STRING        XXXXXYYYYY  # String.
+DOUBLE        doubleVar   # Double.
+MONEY_BRL     moneyBRLVar # Double.
+FLOAT         floatVar    # Float.
+STRING        ref1        # Reference.
+COLOR         color1      # Cor 1.
+INTEGER       integerVar  # Integer.
+BINARY        binaryVar   # Binary data.
+ZBINARY       zbinaryVar  # Compressed binary data.
+BOOL          boolVar     # Bool.
+STRING        ref2        # Reference.
+STRING        ref3        # Reference.
+ISODATE       date        # Date in format ISO 8601.
+END
+endsnippet
+
+snippet copy
+COPYRIGHT (C) 2000-2019 Geraldo Ribeiro <geraldo@intmain.io>
+endsnippet
+
+snippet tcopy
+COPYRIGHT (C) 2019 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>
+COPYRIGHT (C) 2019 Anderson Sabara <anderson-sabara@taoker.com.br>
+endsnippet
+
+snippet conf
+INCLUDEDIR    ../test/
+
++XML
++CSV
++HTML
++CRUD
++EDIT_IN_PLACE
+
+REF ref1 Abc::Def::Ghi::Jkl::Mno ScrapRecord key
+REF ref2 Abc::Def::Ghi::Jkl::Mno ScrapRecord body
+REF ref3 EMPTY MyRecord key
+#KEYFORMAT "%06d"
+KEYFORMAT UUID
+
+CONSTRAINT Rmzero integerVar > 0       # Deve ser maior que 0.
+CONSTRAINT Rmcem  integerVar < 100     # Deve ser menor que 100.
+CONSTRAINT Rdifc  integerVar != 50     # Deve ser diferente de 50.
+CONSTRAINT CpfValido  integerVar ______ # O cpf deve ser válido.
+
+TABLELABEL Tabela
+
+OPINFOFIELD   stringVar
+DEFAULT stringVar "xxx"
+DEFAULT integerVar 1
+DEFAULT doubleVar 1.234
+DEFAULT boolVar true
+
+STYLE doubleVar "less-specific-style"
+
+FLOATFMT floatVar "%f08.2"
+
+GROUP @G1 stringVar|doubleVar Nome do fieldset
+GROUP @G2 floatVar|integerVar Outro nome do fieldset
+
+MONEY_RANGE moneyBRL 1.00 50.00 1.50
+endsnippet
+
+snippet FORM
+FORM_COL_WIDTH LinhaRef ref2 s4 m3
+endsnippet
+
+snippet doc
+DOCUMENTATION
+# Title 1
+
+The documentation goes here.
+
+The documentation goes here.
+
+The documentation goes here.
+
+## Title 2
+
+The documentation goes here.
+
+The documentation goes here.
+
+The documentation goes here.
+
+The documentation goes here.
+ENDDOC
+endsnippet
+
+# vim: ft=snippets
