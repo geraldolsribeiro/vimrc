@@ -237,6 +237,8 @@ let g:elite_mode=1
 "}}}
 
 Plugin 'chrisbra/Colorizer'  " Exibe cores #fff
+let g:colorizer_auto_filetype='css,html,scss'
+
 Plugin 'luochen1990/rainbow'
 let g:rainbow_active = 1
 
