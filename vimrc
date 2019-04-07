@@ -810,8 +810,8 @@ nmap <F12> :exec '!'.getline('.')<CR>
 nmap <S-F12> :exec '!ssh vm01 "'.getline('.').'"'<CR>
 
 " Salva o buffer atual
-nmap <F2> :w<cr>
-imap <F2> <c-o>:w<cr>
+nmap <F2> :Gwrite<cr>
+imap <F2> <c-o>:Gwrite<cr>
 
 " Vai para o próximo buffer
 nmap <F6> :bn<CR>
