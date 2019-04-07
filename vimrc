@@ -427,6 +427,14 @@ augroup markdown
   au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
 augroup END
 
+augroup javascript
+  au!
+  " JavaScript, ECMAScript
+  au BufNewFile,BufRead *.js,*.javascript,*.es,*.jsx   setf javascript
+  " JS++
+  au BufNewFile,BufRead *.jpp,*.jspp                   setf jspp
+augroup END
+
 " Neocomplete Settings
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 0

@@ -21,7 +21,7 @@ endsnippet
 
 snippet header
 // ----------------------------------------------------------------------
-// Copyright (C) 2018 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2019 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 
 endsnippet
@@ -70,6 +70,17 @@ snippet newhpp "Novo arquivo HPP"
 #define __$1_HPP__
 $0
 #endif
+endsnippet
+
+snippet vartdhpp
+  virtual string ${1:field}VarTD( const ${2:Type}Record &rec ) const;
+endsnippet
+
+snippet vartdcpp
+string View01Html$2Record::${1:field}VarTD( const ${2:Type}Record &rec ) const
+{
+  return GR_TD( "number center-align minimum $1", to_string( rec.$1() ) );
+}
 endsnippet
 
 snippet view01html "Personalização de tabela"
@@ -299,22 +310,29 @@ guard = '__' + re.sub('(?!^)([A-Z]+)', r'_\1',t[1]).upper() + '_HPP__'
 nsOpen = '// clang-format off\nnamespace br { namespace com { namespace intmain { namespace GrComponents { namespace GrWebServer {\n// clang-format on'
 nsClose = '// clang-format off\n} } } } }\n// clang-format on'
 
-snip.rv = '#ifndef ' + guard
+
+snip.rv = '// ----------------------------------------------------------------------'
+snip += '// Copyright (C) 2019 Geraldo Ribeiro <geraldo@intmain.io>'
+snip += '// ----------------------------------------------------------------------'
+snip += '#ifndef ' + guard
 snip += '#define ' + guard
 snip += ''
-snip += nsOpen
+# snip += nsOpen
 snip += ''
 snip += 'class ' + t[1] + ' : public PagePriv {'
 snip += '  virtual void drawPage( GrWebServerPageData &data ) const;'
 snip += '};'
 snip += ''
-snip += nsClose
+# snip += nsClose
 snip += ''
 snip += '#endif'
 snip += ''
+snip += '// ----------------------------------------------------------------------'
+snip += '// Copyright (C) 2019 Geraldo Ribeiro <geraldo@intmain.io>'
+snip += '// ----------------------------------------------------------------------'
 snip += '#include "' + t[1] + '.hpp"'
 snip += ''
-snip += nsOpen
+# snip += nsOpen
 snip += ''
 snip += 'void ' + t[1] + '::drawPage( GrWebServerPageData &data ) const'
 snip += '{'
@@ -325,7 +343,53 @@ snip += '  content += endCommonHtml( data );'
 snip += '  setContent( data, content );'
 snip += '}'
 snip += ''
-snip += nsClose
+# snip += nsClose
+`
+endsnippet
+
+snippet tna "Nova action" b
+${1:TestActionNameComplex}
+
+`!p
+guard = '__' + re.sub('(?!^)([A-Z]+)', r'_\1',t[1]).upper() + '_HPP__'
+nsOpen = '// clang-format off\nnamespace br { namespace com { namespace intmain { namespace GrComponents { namespace GrWebServer {\n// clang-format on'
+nsClose = '// clang-format off\n} } } } }\n// clang-format on'
+
+snip.rv = '// ----------------------------------------------------------------------'
+snip += '// Copyright (C) 2018-2019 Anderson Sabara <anderson-sabara@taoker.com.br>'
+snip += '// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
+snip += '// ----------------------------------------------------------------------'
+snip += '#ifndef ' + guard
+snip += '#define ' + guard
+snip += ''
+# snip += nsOpen
+snip += ''
+snip += 'class ' + t[1] + ' : public PagePriv {'
+snip += '  virtual void drawPage( GrWebServerPageData &data ) const;'
+snip += '};'
+snip += ''
+# snip += nsClose
+snip += ''
+snip += '#endif'
+snip += ''
+snip += '// ----------------------------------------------------------------------'
+snip += '// Copyright (C) 2018-2019 Anderson Sabara <anderson-sabara@taoker.com.br>'
+snip += '// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
+snip += '// ----------------------------------------------------------------------'
+snip += '#include "' + t[1] + '.hpp"'
+snip += ''
+# snip += nsOpen
+snip += ''
+snip += 'void ' + t[1] + '::drawPage( GrWebServerPageData &data ) const'
+snip += '{'
+snip += '  string content;'
+snip += '  content += beginCommonHtml( data );'
+snip += '  content += GR_NL0( GR_H1_( "Exportação de documentos" ) );'
+snip += '  content += endCommonHtml( data );'
+snip += '  setContent( data, content );'
+snip += '}'
+snip += ''
+# snip += nsClose
 `
 endsnippet
 
@@ -373,6 +437,45 @@ private:
 };
 
 #endif
+endsnippet
+
+snippet card-image
+content += GR_NL1( GR_DIV( "col s12 m6 l4" ) );
+content += GR_NL2( GR_DIV( "card" ) );
+content += GR_NL3( GR_DIVS( "card-image", GR_IMG( "cls", "src", "alt" ) ) );
+
+content += GR_NL3( GR_DIV( "card-content" ) );
+content += GR_NL4( GR_SPAN( "card-title", "Título do card" ) );
+content += GR_NL3( GRxDIV );
+
+content += GR_NL3( GR_DIV( "card-action" ) );
+content += GR_NL3( GRxDIV );
+content += GR_NL4( GR_A( "cls", "text", "href" ) )
+content += GR_NL2( GRxDIV );
+content += GR_NL1( GRxDIV );
+endsnippet
+
+snippet GR_A
+GR_A( cls, text, href )
+endsnippet
+
+snippet GR_IMG
+GR_IMG( cls, src, alt )
+endsnippet
+
+snippet lorem
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet tellus vitae risus tempus, ut facilisis risus varius. Vestibulum iaculis ornare cursus. Donec mi velit, sollicitudin vitae convallis quis, aliquet vel mi. Vestibulum id ornare quam. Proin eget rhoncus diam, vitae tempus sapien. Phasellus in egestas libero, quis maximus sem. Morbi congue ultrices ipsum nec eleifend. Nulla in lorem viverra, feugiat libero in, sodales tellus. Integer tempus volutpat rhoncus."
+endsnippet
+
+snippet colbutton
+GrHtmlButton buttons;
+buttons.setFullWidthStyle();
+
+auto addXXXUrl = GrWebServerURL( "/addXXXRecordFrm01" );
+content += GR_DIVIDER;
+content += GR_NL0( GR_DIV( "row" ) );
+content += GR_NL1( GR_DIVS( "col s12 m3", buttons.add( addXXXUrl, "Adicionar cartão" ) ) );
+content += GR_NL0( GRxDIV );
 endsnippet
 
 # vim: ft=snippets
