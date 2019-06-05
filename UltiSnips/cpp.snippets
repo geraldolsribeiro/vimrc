@@ -21,7 +21,7 @@ endsnippet
 
 snippet header
 // ----------------------------------------------------------------------
-// Copyright (C) 2019 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 
 endsnippet
@@ -230,8 +230,8 @@ snippet htmlAdd
   $1Rec.set${2/.*/\u$0/}( $2 );
   Databases.${1/.*/\u$0/}->insertRecord( $1Rec );
   redirectTo( data, 
-	  GrWebServerURL( "/edit${1/.*/\u$0/}RecordFrm01" )
-		  .param( "id", id ) );
+    GrWebServerURL( "/edit${1/.*/\u$0/}RecordFrm01" )
+      .param( "id", id ) );
 endsnippet
 
 
@@ -239,17 +239,45 @@ endsnippet
 snippet test
 SCENARIO( "${1:Título do teste}" )
 {
-  WHEN( "${2:Quando acontece algo}" )
+  GIVEN ( "${2:Descrição do cenário}" )
   {
-    auto output = std::make_shared<CoutRedirect>( "${3:nome_do_test}.txt" );
-    auto button = std::make_shared<GrHtmlButton>();
-
-    THEN( "${4:Percebo os efeitos}" )
+    WHEN( "${3:Quando acontece algo}" )
     {
-      REQUIRE_THAT( strH, Contains( "branco" ) );
+      auto output = std::make_shared<CoutRedirect>( "${4:nome_do_test}.txt" );
+      auto button = std::make_shared<GrHtmlButton>();
+
+      THEN( "${5:Percebo os efeitos}" )
+      {
+        REQUIRE_THAT( strH, Contains( "branco" ) );
+      }
     }
   }
 }
+endsnippet
+
+snippet testString
+REQUIRE_THAT( str, EndsWith( "as a service" ) );
+REQUIRE_THAT( str, StartsWith( "as a service" ) );
+REQUIRE_THAT( str, Contains( "as a service" ) );
+REQUIRE_THAT( str, Equals( "as a service" ) );
+REQUIRE_THAT( str, Matches( "as a service.*" ) );
+REQUIRE_THAT( str, EndsWith( "as a service", Catch::CaseSensitive::No ) );
+REQUIRE_THAT( str,
+    EndsWith( "as a service" ) or
+    ( StartsWith( "Big data" ) and
+    ! Contains( "web scale" ) )
+);
+endsnippet
+
+snippet testVector
+REQUIRE_THAT( vec, Contains( subvec ) );
+REQUIRE_THAT( vec, VectorContains( elem ) );
+REQUIRE_THAT( vec, Equals( otherVec ) );
+endsnippet
+
+snippet testFloat
+REQUIRE_THAT( number, WithinULP( 1.f, 1 ) ); // compara float
+REQUIRE_THAT( number, WithinULP( 1., 1 ) );  // compara double
 endsnippet
 
 snippet pqxxtxn
@@ -312,7 +340,7 @@ nsClose = '// clang-format off\n} } } } }\n// clang-format on'
 
 
 snip.rv = '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2019 Geraldo Ribeiro <geraldo@intmain.io>'
+snip += '// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo@intmain.io>'
 snip += '// ----------------------------------------------------------------------'
 snip += '#ifndef ' + guard
 snip += '#define ' + guard
@@ -328,7 +356,7 @@ snip += ''
 snip += '#endif'
 snip += ''
 snip += '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2019 Geraldo Ribeiro <geraldo@intmain.io>'
+snip += '// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo@intmain.io>'
 snip += '// ----------------------------------------------------------------------'
 snip += '#include "' + t[1] + '.hpp"'
 snip += ''
@@ -475,6 +503,54 @@ auto addXXXUrl = GrWebServerURL( "/addXXXRecordFrm01" );
 content += GR_DIVIDER;
 content += GR_NL0( GR_DIV( "row" ) );
 content += GR_NL1( GR_DIVS( "col s12 m3", buttons.add( addXXXUrl, "Adicionar cartão" ) ) );
+content += GR_NL0( GRxDIV );
+endsnippet
+
+snippet GR_ROW
+  content += GR_NL0( GR_DIV( "row" ) );
+  content += GR_NL1( GR_DIV( "col s12 m6" ) );
+  content += GR_NL1( "Conteúdo" );
+  content += GR_NL1( GRxDIV );
+  content += GR_NL0( GRxDIV );
+endsnippet
+
+
+snippet formadd
+  form->addReadOnlyTextField( true, name, label, optvalue, opthelp, optaccesskey, optstyle );
+  form->addEmailField( true, name, label, optvalue, opthelp, optaccesskey, optstyle );
+  form->addURLField( true, name, label, optvalue, opthelp, optaccesskey, optstyle );
+  form->addPhoneField( true, name, label, optvalue, opthelp, optaccesskey, optstyle );
+  form->addTextField( true, name, label, optvalue, opthelp, optaccesskey, optstyle );
+  form->addIntField( true, name, label, optvalue, opthelp, optaccesskey, optstyle );
+  form->addDoubleField( true, name, label, optvalue, opthelp, optaccesskey, optstyle );
+  form->addMoneyBRLField( true, name, label, optvalue, opthelp, optaccesskey, optstyle );
+  form->addPasswordField( true, name, label, optvalue, opthelp, optaccesskey, optstyle );
+  form->addCheckBoxField( true, name, label, state, value, opthelp, optaccesskey, optstyle );
+  form->addComboBoxField( true, name, label, optvalue, thelist, opthelp, optaccesskey, optstyle );
+  form->addMultipleComboBoxField( true, name, label,  optvalue, thelist, opthelp, optaccesskey, optstyle );
+  form->addMultipleFileField( true, name, label, optvalue, opthelp, optaccesskey, optstyle );
+  form->addRadioField( true, name, label, optvalue, thelist, opthelp, optaccesskey, optstyle );
+  form->addBitSetField( true, name, label, value, thelist, opthelp, optaccesskey, optstyle );
+  form->addHiddenField( name, value );
+  form->addTextAreaField( true, name, label, value, opthelp, optaccesskey, optstyle );
+  form->addFile( true, name, label, opthelp, optmultiple );
+  form->addMultipleFileField( true, name, label, opthelp );
+  form->addColorPickerField( true, name, label, value, opthelp, optaccesskey, optstyle );
+  form->addDateField( true, name, label, value, opthelp, optaccesskey, optstyle );
+  form->addTimeField( true, name, label, value, opthelp, optaccesskey, optstyle );
+  form->addCPFField( true, name, label, value, opthelp, optaccesskey, optstyle );
+  form->addButton( name, label, onclick );
+  form->addSubmitButton( name, label );
+  form->addHtml( html );
+endsnippet
+
+snippet button_next
+GrHtmlButton buttons;
+
+buttons.setStyle( "col s12 m3" );
+
+content += GR_NL0( GR_DIV( "row" ) );
+content += GR_NL1( buttons.next( "/config" ) );
 content += GR_NL0( GRxDIV );
 endsnippet
 
