@@ -5,18 +5,28 @@
 "   ## Instalação
 "   
 "   ```bash
-"   # Clona o repositório
+"    # Clona o repositório da intmain
 "   git clone ssh://git@intmain.io:8322/geraldoim/dot_vim.git ~/.vim
+"    # ou do github
+"   git clone https://github.com/geraldolsribeiro/vimrc.git ~/.vim
 "   
-"   # Aponta o arquivo de configuração para a configuração personalizada
+"    # Aponta o arquivo de configuração para a configuração personalizada
 "   ln -s ~/.vim/vimrc .vimrc
 "   
-"   # Baixa todos os plugins relacionados na configuração
+"    # Baixa todos os plugins relacionados na configuração
 "   mkdir -p ~/.vim/bundle
 "   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 "   vim +BundleInstall +qall
 "   ```
-"
+"   
+"   ## Atualização
+"   
+"   Para atualizar os plugins utilize o comando abaixo
+"   
+"   ```bash
+"   vim +VundleUpdate +qall
+"   ```
+"   
 set nocompatible              " be iMproved, required
 filetype off                  " required
 syntax on
