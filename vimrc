@@ -663,7 +663,10 @@ set nowritebackup
 
 " Recarrega se o arquivo foi alterado em disco
 set autoread
-au CursorHold * checktime " verifica um vez após 4s de inatividade no modo normal
+"au CursorHold * checktime " verifica um vez após 4s de inatividade no modo normal
+au CursorHold,CursorHoldI * checktime " ativa quando o cursor para de mover
+au FocusGained,BufEnter * :checktime " ativa quando entra no buffer
+
 
 set number
 

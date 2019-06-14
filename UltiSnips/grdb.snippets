@@ -59,8 +59,6 @@ DEFAULT integerVar 1
 DEFAULT doubleVar 1.234
 DEFAULT boolVar true
 
-STYLE doubleVar "less-specific-style"
-
 FLOATFMT floatVar "%f08.2"
 
 GROUP @G1 stringVar|doubleVar Nome do fieldset
@@ -71,6 +69,10 @@ endsnippet
 
 snippet FORM
 FORM_COL_WIDTH LinhaRef ref2 s4 m3
+endsnippet
+
+snippet STYLE
+STYLE doubleVar less-specific-style
 endsnippet
 
 snippet doc
