@@ -39,6 +39,7 @@
 
 
 ## Instalação
+
 ```bash
 # Clona o repositório
 git clone ssh://git@intmain.io:8322/geraldoim/dot_vim.git ~/.vim
@@ -51,8 +52,11 @@ mkdir -p ~/.vim/bundle
 git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +BundleInstall +qall
 ```
+
 ## Plugins
+
 Configura o path de inclusão do `Vundle` e o inicia.
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -66,7 +70,9 @@ Plugin 'VundleVim/Vundle.vim'
 
 </p>
 </details>
+
 ### FZF
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -80,7 +86,9 @@ Plugin 'junegunn/fzf.vim'
 
 </p>
 </details>
+
 ### Cucumber
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -91,7 +99,9 @@ Plugin 'tpope/vim-cucumber.git'
 
 </p>
 </details>
+
 ### Servidores web
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -102,7 +112,9 @@ Plugin 'chr4/nginx.vim'
 
 </p>
 </details>
+
 ### Utilitários
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -130,7 +142,9 @@ Plugin 'dhruvasagar/vim-table-mode.git'
 
 </p>
 </details>
+
 ### Plugins genéricos para programação
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -148,7 +162,9 @@ Plugin 'neomake/neomake'
 
 </p>
 </details>
+
 ### Comentários
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -176,7 +192,9 @@ autocmd FileType xyz set commentstring=#\ %s
 
 </p>
 </details>
+
 ### Markdown / Escrita
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -200,7 +218,9 @@ let g:pandoc#biblio#use_bibtool=1
 
 </p>
 </details>
+
 ### Git Support
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -214,7 +234,9 @@ Plugin 'tpope/vim-fugitive'
 
 </p>
 </details>
+
 ### Dart
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -229,7 +251,9 @@ Plugin 'dart-lang/dart-vim-plugin'
 
 </p>
 </details>
+
 ### C++
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -242,6 +266,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 </p>
 </details>
 ### Erlang Support
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -255,7 +280,9 @@ Plugin 'vim-erlang/vim-erlang-compiler'
 
 </p>
 </details>
+
 ### Elixir Support 
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -274,7 +301,9 @@ Plugin 'jadercorrea/elixir_generator.vim'
 
 </p>
 </details>
+
 ### Theme / Interface / Color Scheme
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -308,7 +337,9 @@ Plugin 'colepeters/spacemacs-theme.vim'
 
 </p>
 </details>
+
 ### TOML
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -319,7 +350,9 @@ Plugin 'cespare/vim-toml'
 
 </p>
 </details>
+
 ### Typescript
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -337,7 +370,9 @@ autocmd BufNewFile,BufRead *.ts set syntax=typescript
 
 </p>
 </details>
+
 ### Dark powered neo-completion
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -357,7 +392,9 @@ autocmd BufNewFile,BufRead *.ts set syntax=typescript
 
 </p>
 </details>
+
 ## Configuração geral
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -371,7 +408,9 @@ let g:elite_mode=1
 
 </p>
 </details>
+
 ## Configuração do neomake
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -385,7 +424,9 @@ let g:neomake_highlight_columns=1
 
 </p>
 </details>
+
 ### Coffeescript
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -399,7 +440,9 @@ let g:syntastic_coffee_coffeelint_args = "--csv --file ~/coffeelint.json"
 
 </p>
 </details>
+
 ### Elixir
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -410,7 +453,9 @@ let g:neomake_elixir_enabled_makers = ['mix', 'credo', 'dogma']
 
 </p>
 </details>
+
 ### ruby 
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -421,7 +466,9 @@ let g:neomake_elixir_enabled_makers = ['mix', 'credo', 'dogma']
 
 </p>
 </details>
+
 ### SCSS
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -432,7 +479,9 @@ let g:neomake_scss_enabled_markers = ['scss-lint']
 
 </p>
 </details>
+
 ### vim-table-mode
+
 <details>
 <summary>Detalhes</summary>
 <p>
@@ -481,6 +530,7 @@ nmap <Leader>C :ClangFormatAutoToggle<CR>
 
 </p>
 </details>
+
 ### Color scheme
 
 <details>
@@ -498,6 +548,7 @@ colorscheme molokai
 
 </p>
 </details>
+
 ### Atalhos de teclado
 
 <details>

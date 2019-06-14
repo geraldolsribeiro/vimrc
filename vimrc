@@ -3,7 +3,7 @@
 "   [TOC]
 "   
 "   ## Instalação
-"
+"   
 "   ```bash
 "   # Clona o repositório
 "   git clone ssh://git@intmain.io:8322/geraldoim/dot_vim.git ~/.vim
@@ -17,13 +17,14 @@
 "   vim +BundleInstall +qall
 "   ```
 "
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 syntax on
-
+"   
 "   ## Plugins
+"   
 "   Configura o path de inclusão do `Vundle` e o inicia.
+"   
 "{{{
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -33,25 +34,30 @@ Plugin 'VundleVim/Vundle.vim'
 
 " http://coderoncode.com/tools/2017/04/16/vim-the-perfect-ide.html
 
+"   
 "   ### FZF
+"   
 "{{{
 " git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 " ~/.fzf/install
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
 "}}}
-
+"   
 "   ### Cucumber
+"   
 "{{{
 Plugin 'tpope/vim-cucumber.git'
 "}}}
-
+"   
 "   ### Servidores web
+"   
 "{{{
 Plugin 'chr4/nginx.vim'
 "}}}
-
+"   
 "   ### Utilitários
+"   
 "{{{
 Plugin 'powerline/powerline-fonts'
 "Plugin 'geraldolsribeiro/vim-conceal'
@@ -72,8 +78,9 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'dhruvasagar/vim-table-mode.git'
 "}}}
-
+"   
 "   ### Plugins genéricos para programação
+"   
 "{{{
 "Plugin 'jakedouglas/exuberant-ctags'
 Plugin 'honza/vim-snippets'
@@ -84,8 +91,9 @@ Plugin 'maksimr/vim-jsbeautify'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'neomake/neomake'
 "}}}
-
+"   
 "   ### Comentários
+"   
 "{{{
 Plugin 'tomtom/tcomment_vim'
 "   Para definir o comentário para um novo tipo use:
@@ -98,8 +106,9 @@ Plugin 'tomtom/tcomment_vim'
 "   * `g>` comenta a seleção
 "   * `leader_p` comenta parágrafo
 "}}}
-
+"   
 "   ### Markdown / Escrita
+"   
 "{{{
 Plugin 'reedes/vim-pencil'
 Plugin 'tpope/vim-markdown'
@@ -116,16 +125,18 @@ Plugin 'reedes/vim-lexical'
 " Desabilitado por padrão
 let g:pandoc#biblio#use_bibtool=1
 "}}}
-
+"   
 "   ### Git Support
+"   
 "{{{
 Plugin 'kablamo/vim-git-log'
 Plugin 'gregsexton/gitv'
 Plugin 'tpope/vim-fugitive'
 "Plugin 'jaxbot/github-issues.vim'   " lerda muito
 "}}}
-
+"   
 "   ### Dart
+"   
 "{{{
 Plugin 'dart-lang/dart-vim-plugin'
 " Enable HTML syntax highlighting inside Dart strings with let dart_html_in_string=v:true (default false).
@@ -133,8 +144,9 @@ Plugin 'dart-lang/dart-vim-plugin'
 " Enable Dart style guide syntax (like 2-space indentation) with let dart_style_guide = 2
 " Enable DartFmt execution on buffer save with let dart_format_on_save = 1
 "}}}
-
+"   
 "   ### C++
+"   
 "{{{
 " This file contains additional syntax highlighting that I use for C++11/14/17
 Plugin 'octol/vim-cpp-enhanced-highlight'
@@ -143,16 +155,18 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 " " PHP Support
 " Plugin 'phpvim/phpcd.vim'
 " Plugin 'tobyS/pdv'
-"
+""   
 "   ### Erlang Support
+"   
 "{{{
 Plugin 'vim-erlang/vim-erlang-tags'
 Plugin 'vim-erlang/vim-erlang-runtime'
 Plugin 'vim-erlang/vim-erlang-omnicomplete'
 Plugin 'vim-erlang/vim-erlang-compiler'
 "}}}
-
+"   
 "   ### Elixir Support 
+"   
 "{{{
 Plugin 'elixir-lang/vim-elixir'
 Plugin 'avdgaag/vim-phoenix'
@@ -167,8 +181,9 @@ Plugin 'jadercorrea/elixir_generator.vim'
 
 " " Elm Support
 " Plugin 'lambdatoast/elm.vim'
-
+"   
 "   ### Theme / Interface / Color Scheme
+"   
 "{{{
 Plugin 'flazz/vim-colorschemes'
 Plugin 'agude/vim-eldar'
@@ -195,13 +210,15 @@ Plugin 'ajh17/Spacegray.vim'
 Plugin 'atelierbram/Base2Tone-vim'
 Plugin 'colepeters/spacemacs-theme.vim'
 "}}}
-
+"   
 "   ### TOML
+"   
 "{{{
 Plugin 'cespare/vim-toml'
 "}}}
-
+"   
 "   ### Typescript
+"   
 "{{{
 Plugin 'Quramy/tsuquyomi'
 Plugin 'leafgarland/typescript-vim.git'
@@ -212,8 +229,9 @@ let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' ch
 
 autocmd BufNewFile,BufRead *.ts set syntax=typescript
 "}}}
-
+"   
 "   ### Dark powered neo-completion
+"   
 "{{{
 
 "if has('nvim')
@@ -226,8 +244,9 @@ autocmd BufNewFile,BufRead *.ts set syntax=typescript
 
 "let g:deoplete#enable_at_startup = 1
 "}}}
-
+"   
 "   ## Configuração geral
+"   
 "{{{
 " OSX stupid backspace fix
 set backspace=indent,eol,start
@@ -331,8 +350,9 @@ filetype plugin indent on    " required
 "let g:solarized_termtrans = 1
 "colorscheme solarized
 
-
+"   
 "   ## Configuração do neomake
+"   
 "{{{
 let g:neomake_open_list = 2
 let g:neomake_verbose=3
@@ -341,32 +361,35 @@ let g:neomake_highlight_columns=1
 "}}}
 
 "autocmd! BufWritePost * Neomake
+"   
 "   ### Coffeescript
+"   
 "{{{
 "   npm install -g coffeelint
 let g:neomake_coffeescript_enabled_makers = ['coffeelint']
 let g:syntastic_coffee_coffeelint_args = "--csv --file ~/coffeelint.json"
 "}}}
-
+"   
 "   ### Elixir
+"   
 "{{{
 let g:neomake_elixir_enabled_makers = ['mix', 'credo', 'dogma']
 "}}}
-
-
+"   
 "   ### ruby 
+"   
 "{{{
 
 "}}}
-
-
+"   
 "   ### SCSS
+"   
 "{{{
 let g:neomake_scss_enabled_markers = ['scss-lint']
 "}}}
-
-
+"   
 "   ### vim-table-mode
+"   
 "{{{
 " tabelas em formato markdown
 let g:table_mode_corner='|'
@@ -760,8 +783,7 @@ au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
 " Mostra 5 linhas abaixo e acima do cursor
 set scrolloff=5
-
-
+"   
 "   ### Color scheme
 "   
 "{{{
@@ -797,7 +819,7 @@ augroup END
 " hi Normal ctermbg=none
 
 " .vim/after/ftplugin/cpp.vim
-
+"   
 "   ### Atalhos de teclado
 "   
 "{{{
