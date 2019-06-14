@@ -265,6 +265,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 
 </p>
 </details>
+
 ### Erlang Support
 
 <details>
@@ -493,7 +494,9 @@ let g:table_mode_corner='|'
 
 </p>
 </details>
+
 ## Melhorar a visibilidade da indentação
+
 Incluir `Plugin 'Yggdroot/indentLine'` no vundle.
 Desabilitado no momento!
 <details>
@@ -509,8 +512,11 @@ let g:indentLine_setConceal = 0
 
 </p>
 </details>
+
 ## Configuração do clang-format
+
 A configuração foi extraída para um repositório próprio.
+
 <details>
 <summary>Detalhes</summary>
 <p>

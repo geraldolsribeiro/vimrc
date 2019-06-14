@@ -155,7 +155,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 " " PHP Support
 " Plugin 'phpvim/phpcd.vim'
 " Plugin 'tobyS/pdv'
-""   
+"   
 "   ### Erlang Support
 "   
 "{{{
@@ -693,7 +693,9 @@ au FocusGained,BufEnter * :checktime " ativa quando entra no buffer
 
 set number
 
+"   
 "   ## Melhorar a visibilidade da indentação
+"   
 "   Incluir `Plugin 'Yggdroot/indentLine'` no vundle.
 "   Desabilitado no momento!
 "{{{
@@ -718,8 +720,11 @@ let g:lexical#dictionary = ['/usr/share/dict/words',]
 let g:lexical#thesaurus = ['~/.vim/thesaurus/mthesaur.txt',]
 let g:lexical#spellfile = ['~/.vim/spell/en.utf-8.add',]
 
+"   
 "   ## Configuração do clang-format
+"   
 "   A configuração foi extraída para um repositório próprio.
+"   
 "{{{
 " git clone ssh://git@intmain.io:8322/geraldoim/dot_clang_format.git ~/.clang
 " ln -sf ~/.clang/clang-format ~/.clang-format
