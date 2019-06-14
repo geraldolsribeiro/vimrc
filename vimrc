@@ -1,5 +1,4 @@
-"   # vimrc: Arquivo de configuração do vim
-"   Geraldo Ribeiro
+"   # vimrc: Arquivo de configuração do vim do Geraldo Ribeiro
 "   
 "   [TOC]
 "   
@@ -76,7 +75,7 @@ Plugin 'dhruvasagar/vim-table-mode.git'
 
 "   ### Plugins genéricos para programação
 "{{{
-Plugin 'jakedouglas/exuberant-ctags'
+"Plugin 'jakedouglas/exuberant-ctags'
 Plugin 'honza/vim-snippets'
 Plugin 'Townk/vim-autoclose'
 Plugin 'tobyS/vmustache'
