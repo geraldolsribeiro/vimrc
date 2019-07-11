@@ -904,5 +904,21 @@ nmap <F8> :bp\|bd #<CR>
 " <X1Drag>        - Mouse drag while X1 button is pressed
 " <X2Drag>        - Mouse drag while X2 button is pressed
 
-" vim: foldmethod=marker
 
+
+function! GrCppAutoDoc()
+  let text = getline(1,'$')
+  ":g/GR_H[12356]/z#.5|echo "======"
+  ":g/GR_H[12356]/|echo "======"
+  "echo "FIM"
+  ":redir @a          " redireciona a saída para o registrador a
+  ":g/GR_H[123456]/
+  ":redir END         " finaliza o redirecionamento
+  ":new               " Cria uma nova janela
+  ":put! a            " Cola o conteúdo do registrador a na nova janela
+  return 0
+endfunction
+
+"nnoremap <C-F12> :tabnew\|0r!grep -n  #<Left><Left>
+
+" vim: foldmethod=marker
