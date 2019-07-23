@@ -6,6 +6,7 @@
 * [vimrc: Arquivo de configuração do vim do Geraldo Ribeiro](#vimrc:-arquivo-de-configuração-do-vim-do-geraldo-ribeiro)
   * [Instalação](#instalação)
   * [Atualização](#atualização)
+  * [Outras dependências](#outras-dependências)
   * [Plugins](#plugins)
       * [FZF](#fzf)
       * [Cucumber](#cucumber)
@@ -59,6 +60,12 @@ Para atualizar os plugins utilize o comando abaixo
 
 ```bash
 vim +VundleUpdate +qall
+```
+
+## Outras dependências
+
+```bash
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ```
 
 
