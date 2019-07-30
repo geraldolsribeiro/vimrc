@@ -35,7 +35,7 @@
 "   ```
 "   
 set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype off                  " Necessário estar off antes do Vundle
 syntax on
 "   
 "   ## Plugins
@@ -72,14 +72,12 @@ Plugin 'tpope/vim-cucumber.git'
 "{{{
 Plugin 'chr4/nginx.vim'
 "}}}
-"   
 "   ### Utilitários
 "   
 "{{{
 Plugin 'powerline/powerline-fonts'
 "Plugin 'geraldolsribeiro/vim-conceal'
 "Plugin 'Yggdroot/indentLine'
-Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
 Plugin 'BufOnly.vim'
@@ -207,7 +205,6 @@ Plugin 'agude/vim-eldar'
 "Plugin 'altercation/vim-colors-solarized'
 "Plugin 'larsbs/vimtom' "Vim Vimtom Colorscheme - saporra só funciona no gui
 Plugin 'AnsiEsc.vim'
-Plugin 'ryanoasis/vim-devicons'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'sjl/badwolf'
@@ -226,6 +223,95 @@ Plugin 'effkay/argonaut.vim'
 Plugin 'ajh17/Spacegray.vim'
 Plugin 'atelierbram/Base2Tone-vim'
 Plugin 'colepeters/spacemacs-theme.vim'
+
+"}}}
+"   
+"   ### Devicons
+"   
+"{{{
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'ryanoasis/vim-webdevicons'
+let g:DevIconsEnableFolderExtensionPatternMatching = 0
+let g:DevIconsEnableFoldersOpenClose = 0
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:webdevicons_enable = 1 " habilita o plugin
+let g:webdevicons_enable_airline_statusline = 1
+let g:webdevicons_enable_airline_tabline = 1
+let g:webdevicons_enable_ctrlp = 1
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_enable_vimfiler = 1
+let g:WebDevIconsUnicodeDecorateFileNodes = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:WebDevIconsUnicodeDecorateFolderNodesExactMatches = 1
+
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['js'] = 'ƛ'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sh'] = '🐚'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cpp'] = '🗡️'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['hpp'] = '🗡️'
+
+let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol   = '📝' " quando não tem símbolo definido
+let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = '📁' " pasta fechada
+let g:DevIconsDefaultFolderOpenSymbol                    = '📂' " pasta aberta
+
+let g:WebDevIconsOS = 'Darwin'
+
+" https://github.com/ryanoasis/vim-devicons/blob/master/doc/webdevicons.txt
+
+
+" After a re-source fixes the bug with the [] around devicons
+if exists('g:loaded_webdevicons')
+  call webdevicons#refresh()
+endif
+"}}}
+"   
+"   ### Nerdtree
+"   
+"{{{
+Plugin 'scrooloose/nerdtree'
+"let g:NERDTreeDirArrows=0 " Não mostrar símbolos na lateral dos nomes
+" Improves performance of the SyntaxHighlighting and removes the lag
+let g:NERDTreeSyntaxDisableDefaultExtensions = 1
+let g:NERDTreeSyntaxEnabledExtensions = ['c', 'h', 'cpp', 'hpp', 'py', 'md', 'txt', 'java', 'sh', 'vim', 'json']
+let g:NERDTreeIgnore = ['\.o$', '\.pyc$', '\~$', '\.gif', '\.jpg', '\.png']
+
+" Removes the little arrows that indicate whether a folder is open or not
+" These are not needed anymore because of the folder icons from devicons
+" let NERDTreeDirArrowExpandable = "\u00a0"
+" let NERDTreeDirArrowCollapsible = "\u00a0"
+" let NERDTreeNodeDelimiter = "\x07"
+
+"removes the Help message at the top of the NERDTree
+let NERDTreeMinimalUI=1
+
+" Needed to remove the '/' from behind the directory names in NerdTree
+" augroup nerdtreehidecwd
+"	autocmd!
+"	autocmd FileType nerdtree setlocal conceallevel=3 | syntax match NERDTreeDirSlash #/$# containedin=NERDTreeDir conceal contained
+"augroup end
+
+let g:NERDTreeChDirMode = 2 " Vai para o diretório
+let g:NERDTreeMouseMode = 3 " Abre com um clique
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeAutoDeleteBuffer = 1
+let g:NERDTreeHijackNetrw = 1
+" let NERDTreeDirArrowExpandable=">"
+" let NERDTreeDirArrowCollapsible="v"
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+let NERDTreeNodeDelimiter="😀"
+"
+"
+" " Nerd_Commenter 注释增强 <Leader>c<Space>
+" let g:NERDSpaceDelims = 1
+" let g:NERDCompactSexyComs = 1
+" let g:NERDDefaultAlign = 'left'
+" let g:NERDAltDelims_java = 1
+" let g:NERDCommentEmptyLines = 0
+" let g:NERDTrimTrailingWhitespace = 1
+
 "}}}
 "   
 "   ### TOML
@@ -747,10 +833,10 @@ let g:lexical#spellfile = ['~/.vim/spell/en.utf-8.add',]
 " ln -sf ~/.clang/clang-format ~/.clang-format
 
 " map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp,objc,java nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc,java vnoremap <buffer><Leader>cf :ClangFormat<CR>
 " if you install vim-operator-user
-autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+autocmd FileType c,cpp,objc,java map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 "}}}
@@ -789,6 +875,11 @@ let g:UltiSnipsEditSplit="vertical"
 
 set path+=/opt/intmain/dev/*/usr/include/
 "set path+=.,~/git/Intmain/
+
+
+set encoding=UTF-8
+set helplang=pt
+
 
 ",**/
 
