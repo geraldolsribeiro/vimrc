@@ -6,10 +6,10 @@ snippet header
 endsnippet
 snippet SKIP_WIN "Pula a compilação e os teste no GrInstall.sh"
 
-SKIP_WIN32=YES
-SKIP_WIN64=YES
-SKIP_TEST_WIN32=YES
-SKIP_TEST_WIN64=YES
+export SKIP_WIN32=YES
+export SKIP_WIN64=YES
+export SKIP_TEST_WIN32=YES
+export SKIP_TEST_WIN64=YES
 endsnippet
 
 snippet set_o "Flags para prevenir erros"
@@ -63,10 +63,10 @@ function installWin64Files {
   installFiles
 }
 
-SKIP_WIN32=YES
-SKIP_WIN64=YES
-SKIP_TEST_WIN32=YES
-SKIP_TEST_WIN64=YES
+export SKIP_WIN32=YES
+export SKIP_WIN64=YES
+export SKIP_TEST_WIN32=YES
+export SKIP_TEST_WIN64=YES
 
 source /opt/intmain/dev/${OS}/usr/share/Gr/scripts/Common/intmain.bash
 
@@ -99,6 +99,10 @@ copyToImg
 copyToScripts
 copyToDB
 copyToDat
+endsnippet
+
+snippet sc
+# shellcheck disable=SC1090
 endsnippet
 
 # vim: ft=snippets
