@@ -247,6 +247,8 @@ let g:WebDevIconsUnicodeDecorateFolderNodesExactMatches = 1
 
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['js'] = 'ƛ'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['java'] = '☕'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['coffee'] = '☕'
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sh'] = '🐚'
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cpp'] = '🗡️'
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['hpp'] = '🗡️'
