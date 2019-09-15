@@ -398,6 +398,28 @@ Plugin 'othree/html5.vim'
 " Formatação de código
 Plugin 'rhysd/vim-clang-format'
 
+
+Plugin 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'branch': 'release/1.x',
+  \ 'for': [
+    \ 'javascript',
+    \ 'typescript',
+    \ 'css',
+    \ 'less',
+    \ 'scss',
+    \ 'json',
+    \ 'graphql',
+    \ 'markdown',
+    \ 'vue',
+    \ 'lua',
+    \ 'php',
+    \ 'python',
+    \ 'ruby',
+    \ 'html',
+    \ 'swift' ] }
+
+
 " Ver documentação em: https://github.com/mattn/emmet-vim
 Plugin 'mattn/emmet-vim'
 
@@ -734,6 +756,8 @@ set completefunc=emoji#complete
 
 set mousemodel=extend
 set mouse+=a
+" selecione com o mouse e use "+y para compiar
+" :vmap <C-C> "+y
 
 nnoremap <F3> :CtrlPTag<CR>
 nmap <C-UP> :m-2<CR>
@@ -835,10 +859,10 @@ let g:lexical#spellfile = ['~/.vim/spell/en.utf-8.add',]
 " ln -sf ~/.clang/clang-format ~/.clang-format
 
 " map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc,java nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc,java vnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp,cxx,objc,java nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,cxx,objc,java vnoremap <buffer><Leader>cf :ClangFormat<CR>
 " if you install vim-operator-user
-autocmd FileType c,cpp,objc,java map <buffer><Leader>x <Plug>(operator-clang-format)
+autocmd FileType c,cpp,cxx,objc,java map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 "}}}
@@ -882,6 +906,8 @@ set path+=/opt/intmain/dev/*/usr/include/
 set encoding=UTF-8
 set helplang=pt
 
+" fundo transparente vai ser sobrescrito pelo scheme atual
+" hi Normal guibg=NONE ctermbg=NONE
 
 ",**/
 
