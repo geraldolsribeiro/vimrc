@@ -503,6 +503,12 @@ let g:syntastic_coffee_coffeelint_args = "--csv --file ~/coffeelint.json"
 let g:neomake_elixir_enabled_makers = ['mix', 'credo', 'dogma']
 "}}}
 "   
+"   ### Java
+"   
+"{{{
+
+"}}}
+"   
 "   ### ruby 
 "   
 "{{{
