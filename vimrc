@@ -335,6 +335,13 @@ let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' ch
 autocmd BufNewFile,BufRead *.ts set syntax=typescript
 "}}}
 "   
+"   ### Typescript
+"   
+"{{{
+Plugin 'shinglyu/vim-codespell'
+:autocmd BufWritePre *.java :Codespell
+"}}}
+"   
 "   ### Dark powered neo-completion
 "   
 "{{{
@@ -667,6 +674,7 @@ set modelines=5
 filetype plugin on
 
 set hlsearch
+" Comentei para tratar plugin do java
 set tabstop=2 shiftwidth=2 expandtab
 set smarttab
 set softtabstop=0
@@ -768,6 +776,8 @@ set mouse+=a
 nnoremap <F3> :CtrlPTag<CR>
 nmap <C-UP> :m-2<CR>
 nmap <C-DOWN> :m+1<CR>
+
+nmap <F5> :s/(\(.*\)\.size()\s*>\s*0/( ! \1.isEmpty() /<CR>:wq<CR>
 
 "set colorcolumn=28,120
 set colorcolumn=120
