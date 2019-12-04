@@ -491,6 +491,18 @@ snippet GR_IMG
 GR_IMG( cls, src, alt )
 endsnippet
 
+snippet GR_ATTR
+GR_DATA( prop, val )
+endsnippet
+
+snippet GR_DATA
+GR_DATA( name, val )
+endsnippet
+
+snippet GR_CLASS
+GR_CLASS( cls )
+endsnippet
+
 snippet lorem
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet tellus vitae risus tempus, ut facilisis risus varius. Vestibulum iaculis ornare cursus. Donec mi velit, sollicitudin vitae convallis quis, aliquet vel mi. Vestibulum id ornare quam. Proin eget rhoncus diam, vitae tempus sapien. Phasellus in egestas libero, quis maximus sem. Morbi congue ultrices ipsum nec eleifend. Nulla in lorem viverra, feugiat libero in, sodales tellus. Integer tempus volutpat rhoncus."
 endsnippet
@@ -552,6 +564,10 @@ buttons.setStyle( "col s12 m3" );
 content += GR_NL0( GR_DIV( "row" ) );
 content += GR_NL1( buttons.next( "/config" ) );
 content += GR_NL0( GRxDIV );
+endsnippet
+
+snippet msg
+content += GR_NL0( GrWebServerMessage::${1:success}( "${2:mensagem}" ) );
 endsnippet
 
 # vim: ft=snippets
