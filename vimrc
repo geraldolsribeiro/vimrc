@@ -803,6 +803,9 @@ au BufRead /tmp/psql.edit.* set syntax=sql
 let spell_language_list="brasileiro,american"
 let spell_auto_type="md,tex,doc,mail"
 
+" Habilita verificação
+" setlocal spell spelllang=pt_br
+
 "let g:pandoc#spell#default_langs=["brasileiro","american"]
 let g:pandoc#spell#default_langs=[]
 
