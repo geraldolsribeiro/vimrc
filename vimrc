@@ -357,6 +357,11 @@ Plugin 'shinglyu/vim-codespell'
 "let g:deoplete#enable_at_startup = 1
 "}}}
 "   
+"   ## Metatrader
+"   
+"{{{
+Plugin 'rupurt/vim-mql5'
+"}}}
 "   ## Configuração geral
 "   
 "{{{
