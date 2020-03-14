@@ -59,6 +59,9 @@ DEFAULT integerVar 1
 DEFAULT doubleVar 1.234
 DEFAULT boolVar true
 
+OPTIONAL fields
+OPTIONS field A|A|B|B
+
 FLOATFMT floatVar "%f08.2"
 
 GROUP @G1 stringVar|doubleVar Nome do fieldset
@@ -67,11 +70,11 @@ GROUP @G2 floatVar|integerVar Outro nome do fieldset
 MONEY_RANGE moneyBRL 1.00 50.00 1.50
 endsnippet
 
-snippet FORM
+snippet form
 FORM_COL_WIDTH LinhaRef ref2 s4 m3
 endsnippet
 
-snippet STYLE
+snippet style
 STYLE doubleVar less-specific-style
 endsnippet
 
