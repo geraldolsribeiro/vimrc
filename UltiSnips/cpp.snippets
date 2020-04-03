@@ -21,7 +21,7 @@ endsnippet
 
 snippet header
 // ----------------------------------------------------------------------
-// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2018-2020 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 
 endsnippet
@@ -45,8 +45,8 @@ endsnippet
 
 snippet theader
 // ----------------------------------------------------------------------
-// Copyright (C) 2018-2019 Anderson Sabara <anderson-sabara@taoker.com.br>
-// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>
+// Copyright (C) 2018-2020 Anderson Sabara <anderson-sabara@taoker.com.br>
+// Copyright (C) 2018-2020 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>
 // ----------------------------------------------------------------------
 
 endsnippet
@@ -63,7 +63,7 @@ endsnippet
 
 snippet newhpp "Novo arquivo HPP"
 // ----------------------------------------------------------------------
-// Copyright (C) 2017-2019 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 
 #ifndef __${1:FILENAME}_HPP__
@@ -97,7 +97,7 @@ protected:
 };
 
 // ----------------------------------------------------------------------
-// Copyright (C) 2017-2019 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 #include <View01Html$1Record.hpp>
 
@@ -255,6 +255,13 @@ SCENARIO( "${1:Título do teste}" )
 }
 endsnippet
 
+snippet testcase
+TEST_CASE( "${1:Nome do teste}", "[tag1],[tag2]" )
+{
+
+}
+endsnippet
+
 snippet testString
 REQUIRE_THAT( str, EndsWith( "as a service" ) );
 REQUIRE_THAT( str, StartsWith( "as a service" ) );
@@ -340,7 +347,7 @@ nsClose = '// clang-format off\n} } } } }\n// clang-format on'
 
 
 snip.rv = '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo@intmain.io>'
+snip += '// Copyright (C) 2018-2020 Geraldo Ribeiro <geraldo@intmain.io>'
 snip += '// ----------------------------------------------------------------------'
 snip += '#ifndef ' + guard
 snip += '#define ' + guard
@@ -356,7 +363,7 @@ snip += ''
 snip += '#endif'
 snip += ''
 snip += '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo@intmain.io>'
+snip += '// Copyright (C) 2018-2020 Geraldo Ribeiro <geraldo@intmain.io>'
 snip += '// ----------------------------------------------------------------------'
 snip += '#include "' + t[1] + '.hpp"'
 snip += ''
@@ -384,8 +391,8 @@ nsOpen = '// clang-format off\nnamespace br { namespace com { namespace intmain 
 nsClose = '// clang-format off\n} } } } }\n// clang-format on'
 
 snip.rv = '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2018-2019 Anderson Sabara <anderson-sabara@taoker.com.br>'
-snip += '// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
+snip += '// Copyright (C) 2018-2020 Anderson Sabara <anderson-sabara@taoker.com.br>'
+snip += '// Copyright (C) 2018-2020 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
 snip += '// ----------------------------------------------------------------------'
 snip += '#ifndef ' + guard
 snip += '#define ' + guard
@@ -401,8 +408,8 @@ snip += ''
 snip += '#endif'
 snip += ''
 snip += '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2018-2019 Anderson Sabara <anderson-sabara@taoker.com.br>'
-snip += '// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
+snip += '// Copyright (C) 2018-2020 Anderson Sabara <anderson-sabara@taoker.com.br>'
+snip += '// Copyright (C) 2018-2020 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
 snip += '// ----------------------------------------------------------------------'
 snip += '#include "' + t[1] + '.hpp"'
 snip += ''
@@ -431,7 +438,7 @@ endsnippet
 
 snippet privrepo
 // ----------------------------------------------------------------------
-// Copyright (C) 2017-2019 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 
 // Nome: ${1:Post}
@@ -468,19 +475,19 @@ private:
 endsnippet
 
 snippet card-image
-content += GR_NL1( GR_DIV( "col s12 m6 l4" ) );
-content += GR_NL2( GR_DIV( "card" ) );
-content += GR_NL3( GR_DIVS( "card-image", GR_IMG( "cls", "src", "alt" ) ) );
+${1:content} += GR_NL1( GR_DIV( "col s12 m6 l4" ) );
+$1 += GR_NL2( GR_DIV( "card" ) );
+$1 += GR_NL3( GR_DIVS( "card-image", GR_IMG( "cls", "src", "alt" ) ) );
 
-content += GR_NL3( GR_DIV( "card-content" ) );
-content += GR_NL4( GR_SPAN( "card-title", "Título do card" ) );
-content += GR_NL3( GRxDIV );
+$1 += GR_NL3( GR_DIV( "card-content" ) );
+$1 += GR_NL4( GR_SPAN( "card-title", "Título do card" ) );
+$1 += GR_NL3( GRxDIV );
 
-content += GR_NL3( GR_DIV( "card-action" ) );
-content += GR_NL3( GRxDIV );
-content += GR_NL4( GR_A( "cls", "text", "href" ) )
-content += GR_NL2( GRxDIV );
-content += GR_NL1( GRxDIV );
+$1 += GR_NL3( GR_DIV( "card-action" ) );
+$1 += GR_NL4( GR_A( "cls", "text", "href" ) );
+$1 += GR_NL3( GRxDIV );
+$1 += GR_NL2( GRxDIV );
+$1 += GR_NL1( GRxDIV );
 endsnippet
 
 snippet GR_A
@@ -564,6 +571,8 @@ buttons.setStyle( "col s12 m3" );
 content += GR_NL0( GR_DIV( "row" ) );
 content += GR_NL1( buttons.next( "/config" ) );
 content += GR_NL0( GRxDIV );
+
+content += GR_NL0( GR_DIVS( "row", buttons.next( "/config" ) ) );
 endsnippet
 
 snippet msg
@@ -592,5 +601,14 @@ snippet ctexh
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 endsnippet
+
+snippet mu
+[[maybe_unused]] 
+endsnippet
+
+snippet debug
+spdlog::debug( "${0:Mensagem de debug}{}" );
+endsnippet
+
 
 # vim: ft=snippets
