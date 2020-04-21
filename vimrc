@@ -92,6 +92,8 @@ Plugin 'gilsondev/searchtasks.vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'dhruvasagar/vim-table-mode.git'
+" Lança o ranger a partir do vim
+Plugin 'francoiscabrol/ranger.vim'
 "}}}
 "   
 "   ### Plugins genéricos para programação
