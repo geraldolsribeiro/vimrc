@@ -1,0 +1,31 @@
+snippet post
++++
+title = "${1:Escolhendo versões dos pacotes no Debian/Ubuntu}"
+date = ${2:`date +%Y-%m-%d`}
+draft = true
+tags = ["$3"]
+Description = """
+${4:Como misturar de forma saudável diferentes distribuições do Debian.
+Instale exatamente a versão do aplicativo que você quer sem bagunçar o sistema todo.}
+"""
+Thumbnail = "img/headers/${3:debian}.jpg"
++++
+
+## Referências
+
+* []()
+
+endsnippet
+
+
+snippet bash
+\`\`\`${1:bash}
+$2
+\`\`\`
+endsnippet
+
+snippet img
+{{< img src="/img/${1:image.png}" alt="Legenda da imagem" >}}
+endsnippet
+
+# vim: ft=snippets

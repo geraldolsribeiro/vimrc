@@ -21,7 +21,7 @@ endsnippet
 
 snippet header
 // ----------------------------------------------------------------------
-// Copyright (C) 2018-2020 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 
 endsnippet
@@ -45,17 +45,17 @@ endsnippet
 
 snippet theader
 // ----------------------------------------------------------------------
-// Copyright (C) 2018-2020 Anderson Sabara <anderson-sabara@taoker.com.br>
-// Copyright (C) 2018-2020 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>
+// Copyright (C) 2017-2020 Anderson Sabara <anderson-sabara@taoker.com.br>
+// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>
 // ----------------------------------------------------------------------
 
 endsnippet
 
 snippet gpsheader
 // ----------------------------------------------------------------------
-// Copyright (C) 2017-2018 Geraldo Ribeiro <geraldo@intmain.io>
-// Copyright (C) 2017-2018 Pedro Bruno <pedroguilhermebruno@yahoo.com.br>
-// Copyright (C) 2017-2018 Sergio Ribeiro <segori@gmail.com>
+// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2020 Pedro Bruno <pedroguilhermebruno@yahoo.com.br>
+// Copyright (C) 2017-2020 Sergio Ribeiro <segori@gmail.com>
 // ----------------------------------------------------------------------
 
 endsnippet
@@ -347,7 +347,7 @@ nsClose = '// clang-format off\n} } } } }\n// clang-format on'
 
 
 snip.rv = '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2018-2020 Geraldo Ribeiro <geraldo@intmain.io>'
+snip += '// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>'
 snip += '// ----------------------------------------------------------------------'
 snip += '#ifndef ' + guard
 snip += '#define ' + guard
@@ -363,7 +363,7 @@ snip += ''
 snip += '#endif'
 snip += ''
 snip += '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2018-2020 Geraldo Ribeiro <geraldo@intmain.io>'
+snip += '// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>'
 snip += '// ----------------------------------------------------------------------'
 snip += '#include "' + t[1] + '.hpp"'
 snip += ''
@@ -391,8 +391,8 @@ nsOpen = '// clang-format off\nnamespace br { namespace com { namespace intmain 
 nsClose = '// clang-format off\n} } } } }\n// clang-format on'
 
 snip.rv = '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2018-2020 Anderson Sabara <anderson-sabara@taoker.com.br>'
-snip += '// Copyright (C) 2018-2020 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
+snip += '// Copyright (C) 2017-2020 Anderson Sabara <anderson-sabara@taoker.com.br>'
+snip += '// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
 snip += '// ----------------------------------------------------------------------'
 snip += '#ifndef ' + guard
 snip += '#define ' + guard
@@ -408,8 +408,8 @@ snip += ''
 snip += '#endif'
 snip += ''
 snip += '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2018-2020 Anderson Sabara <anderson-sabara@taoker.com.br>'
-snip += '// Copyright (C) 2018-2020 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
+snip += '// Copyright (C) 2017-2020 Anderson Sabara <anderson-sabara@taoker.com.br>'
+snip += '// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
 snip += '// ----------------------------------------------------------------------'
 snip += '#include "' + t[1] + '.hpp"'
 snip += ''
@@ -474,13 +474,15 @@ private:
 #endif
 endsnippet
 
-snippet card-image
-${1:content} += GR_NL1( GR_DIV( "col s12 m6 l4" ) );
+snippet GR_CARD_IMG
+${1:content} += GR_NL0( GR_DIV( "row" ) );
+$1 += GR_NL1( GR_DIV( "col s12 m6 l4" ) );
 $1 += GR_NL2( GR_DIV( "card" ) );
 $1 += GR_NL3( GR_DIVS( "card-image", GR_IMG( "cls", "src", "alt" ) ) );
 
 $1 += GR_NL3( GR_DIV( "card-content" ) );
 $1 += GR_NL4( GR_SPAN( "card-title", "Título do card" ) );
+$1 += GR_NL3( GR_P_( "Conteúdo do cartão" ) );
 $1 += GR_NL3( GRxDIV );
 
 $1 += GR_NL3( GR_DIV( "card-action" ) );
@@ -488,6 +490,25 @@ $1 += GR_NL4( GR_A( "cls", "text", "href" ) );
 $1 += GR_NL3( GRxDIV );
 $1 += GR_NL2( GRxDIV );
 $1 += GR_NL1( GRxDIV );
+$1 += GR_NL0( GRxDIV );
+endsnippet
+
+snippet GR_CARD
+${1:content} += GR_NL0( GR_DIV( "row" ) );
+$1 += GR_NL1( GR_DIV( "col s12 m6 l4" ) );
+$1 += GR_NL2( GR_DIV( "card blue-grey darken-1" ) );
+$1 += GR_NL3( GR_DIV( "card-content white-text" ) );
+$1 += GR_NL4( GR_SPAN( "card-title", "Título do card" ) );
+$1 += GR_NL3( GR_P_( "Conteúdo do cartão" ) );
+$1 += GR_NL3( GRxDIV );
+
+$1 += GR_NL3( GR_DIV( "card-action" ) );
+$1 += GR_NL4( GR_A( "cls", "text", "href" ) );
+$1 += GR_NL4( GR_A( "cls", "text", "href" ) );
+$1 += GR_NL3( GRxDIV );
+$1 += GR_NL2( GRxDIV );
+$1 += GR_NL1( GRxDIV );
+$1 += GR_NL0( GRxDIV );
 endsnippet
 
 snippet GR_A
@@ -607,8 +628,23 @@ snippet mu
 endsnippet
 
 snippet debug
-spdlog::debug( "${0:Mensagem de debug}{}" );
+spdlog::debug( "${0:Mensagem de debug}" );
 endsnippet
 
+snippet iostream
+#include <iostream>
+
+using namespace std;
+endsnippet
+
+snippet rats
+// RATS: ignore
+endsnippet
+
+snippet CustomPage
+GR_WEB_SERVER_PAGE_CUSTOM_PAGE_PUB;
+GR_WEB_SERVER_PAGE_CUSTOM_PAGE_PROT;
+GR_WEB_SERVER_PAGE_CUSTOM_PAGE_PRIV;
+endsnippet
 
 # vim: ft=snippets

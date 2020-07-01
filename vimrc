@@ -156,10 +156,44 @@ Plugin 'tpope/vim-fugitive'
 "   
 "{{{
 Plugin 'dart-lang/dart-vim-plugin'
+Plugin 'natebosch/vim-lsc'
+Plugin 'natebosch/vim-lsc-dart'
 " Enable HTML syntax highlighting inside Dart strings with let dart_html_in_string=v:true (default false).
 " Disable highlighting of core library classes with let dart_corelib_highlight=v:false (default true).
 " Enable Dart style guide syntax (like 2-space indentation) with let dart_style_guide = 2
 " Enable DartFmt execution on buffer save with let dart_format_on_save = 1
+
+let g:lsc_auto_map = v:true
+" The default keymaps of vim-lsc are:
+" 'GoToDefinition': <C-]>,
+" 'GoToDefinitionSplit': [<C-W>], <C-W><C-]>],
+" 'FindReferences': gr,
+" 'NextReference': <C-n>,
+" 'PreviousReference': <C-p>,
+" 'FindImplementations': gI,
+" 'FindCodeActions': ga,
+" 'Rename': gR,
+" 'DocumentSymbol': go,
+" 'WorkspaceSymbol': gS,
+" 'SignatureHelp': gm,
+
+Plugin 'thosakwe/vim-flutter'
+" https://github.com/thosakwe/vim-flutter
+"
+" :FlutterRun <args> - calls flutter run <args>
+" :FlutterHotReload - triggers a hot reload on the current Flutter process
+" :FlutterHotRestart - triggers a hot restart on the current Flutter process
+" :FlutterQuit - quits the current Flutter process
+" :FlutterDevices - opens a new buffer, and writes the output of flutter devices to it
+" :FlutterSplit - opens Flutter output in a horizontal split
+" :FlutterEmulators - Executes a flutter emulators process.
+" :FlutterEmulatorsLaunch - Executes a flutter emulators --launch process, with any provided arguments.
+" :FlutterVisualDebug - Toggles visual debugging in the running Flutter process.
+" The following are self-explanatory:
+"
+" :FlutterVSplit
+" :FlutterTab
+
 "}}}
 "   
 "   ### C++
