@@ -36,4 +36,14 @@ clean:
 
 endsnippet
 
+snippet push-doc
+push-doc:
+	cd doc && git commit -am ":memo:Atualização automática" && git push || echo "Nada para subir"
+endsnippet
+
+snippet pull-doc
+pull-doc:
+	git submodule update --init --recursive --remote --merge
+endsnippet
+
 # vim: ft=snippets

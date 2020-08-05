@@ -84,7 +84,6 @@ Plugin 'BufOnly.vim'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'SirVer/ultisnips'
 
-Plugin 'godlygeek/tabular'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'benmills/vimux'
 Plugin 'jeetsukumaran/vim-buffergator'
@@ -135,6 +134,9 @@ Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'junegunn/vim-emoji'
 "Plugin 'kyuhi/vim-emoji-complete' " dá pau com o git
+
+Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
 
 " Encontra erros de escrita
 Plugin 'reedes/vim-wordy'
@@ -595,7 +597,9 @@ let g:neomake_cpp_enable_markers=['clang']
 let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined","-g"]
 
 if has("gui_running")
-  if has("gui_gtk2")
+  if has("gui_gtk3" )
+    set guifont=Fira\ Code\ 16
+  elseif has("gui_gtk2")
     "set guifont=Inconsolata\ 14
     set guifont=Noto\ Mono\ 14
   elseif has("gui_macvim")
@@ -934,13 +938,16 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 2 "1
-let g:syntastic_check_on_open = 0 "1 
+let g:syntastic_check_on_open = 1 "1 
 let g:syntastic_check_on_wq = 0
+
+
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_include_dirs = ['/opt/intmain/dev/linux/usr/include/','../include/','/usr/include/c++/6','/usr/include/x86_64-linux-gnu/c++/6/']
 "let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_cpp_compiler_options = ' -include ../src/precompile.hpp -std=c++11 -stdlib=libc++ '
+let g:syntastic_cpp_checkers=['cppcheck', 'flawfinder', 'clang_tidy']
 
 " Veja os passos completos em:
 " https://remarkablemark.org/blog/2016/09/28/vim-syntastic-eslint/
