@@ -600,6 +600,10 @@ snippet msg
 content += GR_NL0( GrWebServerMessage::${1:success}( "${2:mensagem}" ) );
 endsnippet
 
+snippet msgl
+content += GR_NL0( GrWebServerMessage::${1:success}WithButton( "${2:url}", "${3:link}", "${4:mensagem}", "${5:title}" ) );
+endsnippet
+
 snippet ctexh
 /*
  * `!p snip.rv = snip.fn`
@@ -631,12 +635,6 @@ snippet debug
 spdlog::debug( "${0:Mensagem de debug}" );
 endsnippet
 
-snippet iostream
-#include <iostream>
-
-using namespace std;
-endsnippet
-
 snippet rats
 // RATS: ignore
 endsnippet
@@ -645,6 +643,18 @@ snippet CustomPage
 GR_WEB_SERVER_PAGE_CUSTOM_PAGE_PUB;
 GR_WEB_SERVER_PAGE_CUSTOM_PAGE_PROT;
 GR_WEB_SERVER_PAGE_CUSTOM_PAGE_PRIV;
+endsnippet
+
+snippet iostream
+#include <iostream>
+
+using namespace std;
+endsnippet
+
+snippet json
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
 endsnippet
 
 # vim: ft=snippets

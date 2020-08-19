@@ -84,7 +84,6 @@ Plugin 'BufOnly.vim'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'SirVer/ultisnips'
 
-Plugin 'godlygeek/tabular'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'benmills/vimux'
 Plugin 'jeetsukumaran/vim-buffergator'
@@ -135,6 +134,9 @@ Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'junegunn/vim-emoji'
 "Plugin 'kyuhi/vim-emoji-complete' " dá pau com o git
+
+Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
 
 " Encontra erros de escrita
 Plugin 'reedes/vim-wordy'
@@ -446,6 +448,8 @@ Plugin 'othree/html5.vim'
 " Formatação de código
 Plugin 'rhysd/vim-clang-format'
 
+" Plugin 'justmao945/vim-clang'
+
 
 Plugin 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -592,10 +596,12 @@ let g:hybrid_reduced_contrast = 0
 "let g:airline_left_sep='>'
 
 let g:neomake_cpp_enable_markers=['clang']
-let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined","-g"]
+let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined", "-g"]
 
 if has("gui_running")
-  if has("gui_gtk2")
+  if has("gui_gtk3" )
+    set guifont=Fira\ Code\ 16
+  elseif has("gui_gtk2")
     "set guifont=Inconsolata\ 14
     set guifont=Noto\ Mono\ 14
   elseif has("gui_macvim")
@@ -934,13 +940,24 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 2 "1
-let g:syntastic_check_on_open = 0 "1 
+let g:syntastic_check_on_open = 1 "1 
 let g:syntastic_check_on_wq = 0
+let g:syntastic_debug = 0
+
+
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_include_dirs = ['/opt/intmain/dev/linux/usr/include/','../include/','/usr/include/c++/6','/usr/include/x86_64-linux-gnu/c++/6/']
 "let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_cpp_compiler_options = ' -include ../src/precompile.hpp -std=c++11 -stdlib=libc++ '
+let g:syntastic_cpp_checkers=['cppcheck', 'flawfinder', 'clang_tidy']
+
+let g:syntastic_cpp_clang_tidy_post_args = " -I../include"
+
+
+" https://vimawesome.com/plugin/vim-clang
+" let g:clang_c_options = '-std=gnu14'
+" let g:clang_cpp_options = '-std=c++14 -stdlib=libc++'
 
 " Veja os passos completos em:
 " https://remarkablemark.org/blog/2016/09/28/vim-syntastic-eslint/
@@ -989,6 +1006,7 @@ set scrolloff=5
 "   
 "{{{
 set background=dark
+"set background=light
 "colorscheme eldar
 "colorscheme abbott
 "colorscheme wombat
@@ -1002,9 +1020,11 @@ colorscheme molokai
 "highlight CursorColumn ctermfg=White ctermbg=Yellow cterm=bold guifg=white guibg=yellow gui=bold
 "highlight CursorLine ctermbg=LightBlue
 "
-highlight CursorColumn ctermbg=Black
-highlight Cursor       ctermbg=Black cterm=bold
-highlight CursorLine   ctermbg=Black cterm=bold
+"highlight CursorColumn ctermbg=Gray
+"highlight Cursor       ctermbg=Gray cterm=bold
+"highlight CursorLine   ctermbg=Gray cterm=bold
+"highlight Cursor  ctermbg=black ctermfg=white  guifg=white guibg=black
+"highlight iCursor ctermbg=blue ctermfg=white guifg=white guibg=steelblue
 
 highlight MyFix ctermbg=darkred ctermfg=white guibg=red guifg=white
 augroup HiglightMyFix

@@ -36,4 +36,18 @@ clean:
 
 endsnippet
 
+snippet push_doc
+push_doc:
+	cd doc && git add *.md && git commit -am ":memo:Atualização automática" && git push || echo "Nada para subir"
+endsnippet
+
+snippet pull_doc
+pull_doc:
+	git submodule update --init --recursive --remote --merge
+endsnippet
+
+snippet include
+include /opt/intmain/dev/${OS}/usr/share/Gr/scripts/Common/Makefile.include
+endsnippet
+
 # vim: ft=snippets
