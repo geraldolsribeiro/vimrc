@@ -600,7 +600,7 @@ let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=un
 
 if has("gui_running")
   if has("gui_gtk3" )
-    set guifont=Fira\ Code\ 16
+    set guifont=Fira\ Code\ 14
   elseif has("gui_gtk2")
     "set guifont=Inconsolata\ 14
     set guifont=Noto\ Mono\ 14
