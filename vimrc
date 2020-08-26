@@ -948,12 +948,9 @@ let g:syntastic_debug = 0
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_include_dirs = ['/opt/intmain/dev/linux/usr/include/','../include/','/usr/include/c++/6','/usr/include/x86_64-linux-gnu/c++/6/']
-"let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_cpp_compiler_options = ' -include ../src/precompile.hpp -std=c++11 -stdlib=libc++ '
 let g:syntastic_cpp_checkers=['cppcheck', 'flawfinder', 'clang_tidy']
-
 let g:syntastic_cpp_clang_tidy_post_args = " -I../include"
-
 
 " https://vimawesome.com/plugin/vim-clang
 " let g:clang_c_options = '-std=gnu14'
