@@ -52,7 +52,7 @@ endsnippet
 
 # Cabeçalhos
 
-snippet theader
+snippet header_taoker
 // ----------------------------------------------------------------------
 // Copyright (C) 2017-2020 Anderson Sabara <anderson-sabara@taoker.com.br>
 // Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>
@@ -243,7 +243,19 @@ snippet htmlAdd
       .param( "id", id ) );
 endsnippet
 
+snippet htmlAddButton
+  auto sessionObj = basicUserInformation( data );
+  if( !sessionObj ) {
+    redirectTo( data, "/loginFrm01" );
+    return;
+  }
 
+  GrHtmlButton buttons;
+  auto         accountId = sessionObj->accountId();
+
+  content += GR_NL0(
+      buttons.add( GrWebServerURL( "/addWalletRecordFrm01" ).param( "accountId", accountId ), "Nova carteira" ) );
+endsnippet
 
 snippet test
 SCENARIO( "${1:Título do teste}" )
@@ -378,6 +390,9 @@ snip += '#include "' + t[1] + '.hpp"'
 snip += ''
 # snip += nsOpen
 snip += ''
+snip += '// ----------------------------------------------------------------------'
+snip += '//'
+snip += '// ----------------------------------------------------------------------'
 snip += 'void ' + t[1] + '::drawPage( GrWebServerPageData &data ) const'
 snip += '{'
 snip += '  string content;'
@@ -424,6 +439,9 @@ snip += '#include "' + t[1] + '.hpp"'
 snip += ''
 # snip += nsOpen
 snip += ''
+snip += '// ----------------------------------------------------------------------'
+snip += '//'
+snip += '// ----------------------------------------------------------------------'
 snip += 'void ' + t[1] + '::drawPage( GrWebServerPageData &data ) const'
 snip += '{'
 snip += '  string content;'
@@ -460,24 +478,27 @@ snippet privrepo
 #include "Edit$1RecordFrm01.hpp"
 #include "List$1RecordFrm01.hpp"
 #include "Update$1RecordFrm01.hpp"
+#include "View$1RecordFrm01.hpp"
 
 class PrivRepo$1Record : public DynamicRepository {
 public:
   PrivRepo$1Record() : DynamicRepository()
   {
-    add( "/list$1RecordFrm01", &list$1RecordFrm01 );
-    add( "/edit$1RecordFrm01", &edit$1RecordFrm01 );
-    add( "/delete$1RecordFrm01", &delete$1RecordFrm01 );
-    add( "/update$1RecordFrm01", &update$1RecordFrm01 );
     add( "/add$1RecordFrm01", &add$1RecordFrm01 );
+    add( "/delete$1RecordFrm01", &delete$1RecordFrm01 );
+    add( "/edit$1RecordFrm01", &edit$1RecordFrm01 );
+    add( "/list$1RecordFrm01", &list$1RecordFrm01 );
+    add( "/update$1RecordFrm01", &update$1RecordFrm01 );
+    add( "/view$1RecordFrm01", &view$1RecordFrm01 );
   }
 
 private:
-  List$1RecordFrm01   list$1RecordFrm01;
-  Edit$1RecordFrm01   edit$1RecordFrm01;
-  Delete$1RecordFrm01 delete$1RecordFrm01;
-  Update$1RecordFrm01 update$1RecordFrm01;
   Add$1RecordFrm01    add$1RecordFrm01;
+  Delete$1RecordFrm01 delete$1RecordFrm01;
+  Edit$1RecordFrm01   edit$1RecordFrm01;
+  List$1RecordFrm01   list$1RecordFrm01;
+  Update$1RecordFrm01 update$1RecordFrm01;
+  View$1RecordFrm01   view$1RecordFrm01;
 };
 
 #endif
