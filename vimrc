@@ -1,4 +1,4 @@
-"   # vimrc: Arquivo de configuração do vim do Geraldo Ribeiro
+"   # vimrc: Arquivo de configuração do vim de Geraldo Ribeiro
 "   
 "   [TOC]
 "   
@@ -34,10 +34,29 @@
 "   ~/.fzf/install
 "   ```
 "   
+"   ## Variáveis do vim e seus prefixos
+"   
+"   As variáveis a seguir são somente para facilitar a leitura do restante da
+"   configuração. Em [devhints](https://devhints.io/vimscript) existem um bom
+"   resumo das variáveis e opções.
+"   
+"{{{
+"   let var = "hello"
+"   let w:foo = 'bar'              " w: window
+"   let b:state = 'on'             " b: buffer
+"   let t:state = 'off'            " t: tab
+"   let g:ack_options = '-s -H'    " g: global
+"   let s:ack_program = 'ack'      " s: local (to script)
+"   let l:foo = 'bar'              " l: local (to function)
+"   echo v:var                     " v: vim special
+"}}}
+"   
+
 set nocompatible              " be iMproved, required
 filetype off                  " Necessário estar off antes do Vundle
 syntax on
 set autoindent
+set clipboard=unnamedplus     " y e p copiando e colando para a área de transferência do sistema
 "   
 "   ## Plugins
 "   
