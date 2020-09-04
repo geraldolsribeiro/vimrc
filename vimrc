@@ -448,16 +448,18 @@ let g:rainbow_active = 1
 " let g:multi_cursor_skip_key            = '<C-x>'
 " let g:multi_cursor_quit_key            = '<Esc>'
 
+" Plantuml
+Plugin 'aklt/plantuml-syntax'
+Plugin 'scrooloose/vim-slumlord'
+
 " FIXME: Separar os cara abaixo
 "
 "Bundle 'aming/vim-mason'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'aklt/plantuml-syntax'
 Plugin 'elzr/vim-json'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'pangloss/vim-javascript'
 Plugin 'posva/vim-vue'
-"Plugin 'scrooloose/vim-slumlord'
 Plugin 'rhysd/vim-gfm-syntax'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
