@@ -1,9 +1,9 @@
 [//]: <> (Documentação gerada com intmain_docmd)
-# vimrc: Arquivo de configuração do vim de Geraldo Ribeiro
+# vimrc de Geraldo Ribeiro
 
 ## Sumário
 
-* [vimrc: Arquivo de configuração do vim de Geraldo Ribeiro](#vimrc:-arquivo-de-configuração-do-vim-de-geraldo-ribeiro)
+* [vimrc de Geraldo Ribeiro](#vimrc-de-geraldo-ribeiro)
   * [Instalação](#instalação)
   * [Atualização](#atualização)
   * [Outras dependências](#outras-dependências)

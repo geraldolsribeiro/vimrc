@@ -1,9 +1,10 @@
-"   # vimrc: Arquivo de configuração do vim de Geraldo Ribeiro
+"   # vimrc de Geraldo Ribeiro
 "   
 "   [TOC]
 "   
 "   ## Instalação
 "   
+" NOTA: os comentários dentro do bloco estão deslocados para não entrar como cabeçalhos
 "   ```bash
 "    # Clona o repositório da intmain
 "   git clone ssh://git@intmain.io:8322/geraldoim/dot_vim.git ~/.vim
