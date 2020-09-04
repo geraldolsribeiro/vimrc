@@ -1,9 +1,10 @@
-"   # vimrc: Arquivo de configuração do vim de Geraldo Ribeiro
+"   # vimrc de Geraldo Ribeiro
 "   
 "   [TOC]
 "   
 "   ## Instalação
 "   
+" NOTA: os comentários dentro do bloco estão deslocados para não entrar como cabeçalhos
 "   ```bash
 "    # Clona o repositório da intmain
 "   git clone ssh://git@intmain.io:8322/geraldoim/dot_vim.git ~/.vim
@@ -40,7 +41,7 @@
 "   configuração. Em [devhints](https://devhints.io/vimscript) existem um bom
 "   resumo das variáveis e opções.
 "   
-"{{{
+"   ```vim
 "   let var = "hello"
 "   let w:foo = 'bar'              " w: window
 "   let b:state = 'on'             " b: buffer
@@ -49,7 +50,7 @@
 "   let s:ack_program = 'ack'      " s: local (to script)
 "   let l:foo = 'bar'              " l: local (to function)
 "   echo v:var                     " v: vim special
-"}}}
+"   ```
 "   
 
 set nocompatible              " be iMproved, required
@@ -132,16 +133,15 @@ Plugin 'neomake/neomake'
 "   
 "{{{
 Plugin 'tomtom/tcomment_vim'
+"}}}
+"   
 "   Para definir o comentário para um novo tipo use:
 "   
-"   ```
-"   autocmd FileType xyz set commentstring=#\ %s
-"   ```
+"   `autocmd FileType xyz set commentstring=#\ %s`
 "
 "   * `g<` descomenta a seleção
 "   * `g>` comenta a seleção
 "   * `leader_p` comenta parágrafo
-"}}}
 "   
 "   ### Markdown / Escrita
 "   
@@ -153,7 +153,7 @@ Plugin 'LanguageTool'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'junegunn/vim-emoji'
-"Plugin 'kyuhi/vim-emoji-complete' " dá pau com o git
+"Plugin 'kyuhi/vim-emoji-complete' " FIXME: nao funciona bem com o git
 
 Plugin 'godlygeek/tabular'
 "Plugin 'plasticboy/vim-markdown'
@@ -334,8 +334,10 @@ Plugin 'scrooloose/nerdtree'
 " Improves performance of the SyntaxHighlighting and removes the lag
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1
 let g:NERDTreeSyntaxEnabledExtensions = ['c', 'h', 'cpp', 'hpp', 'py', 'md', 'txt', 'java', 'sh', 'vim', 'json']
+"}}}
+"FIXME: O dolar está quebrando a documentação
 let g:NERDTreeIgnore = ['\.o$', '\.pyc$', '\~$', '\.gif', '\.jpg', '\.png']
-
+"{{{
 " Removes the little arrows that indicate whether a folder is open or not
 " These are not needed anymore because of the folder icons from devicons
 " let NERDTreeDirArrowExpandable = "\u00a0"
