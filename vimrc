@@ -41,7 +41,7 @@
 "   configuração. Em [devhints](https://devhints.io/vimscript) existem um bom
 "   resumo das variáveis e opções.
 "   
-"{{{
+"   ```vim
 "   let var = "hello"
 "   let w:foo = 'bar'              " w: window
 "   let b:state = 'on'             " b: buffer
@@ -50,7 +50,7 @@
 "   let s:ack_program = 'ack'      " s: local (to script)
 "   let l:foo = 'bar'              " l: local (to function)
 "   echo v:var                     " v: vim special
-"}}}
+"   ```
 "   
 
 set nocompatible              " be iMproved, required

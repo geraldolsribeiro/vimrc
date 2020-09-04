@@ -81,26 +81,16 @@ As variáveis a seguir são somente para facilitar a leitura do restante da
 configuração. Em [devhints](https://devhints.io/vimscript) existem um bom
 resumo das variáveis e opções.
 
-
 ```vim
 let var = "hello"
-"   let var = "hello"
 let w:foo = 'bar'              " w: window
-"   let w:foo = 'bar'              " w: window
 let b:state = 'on'             " b: buffer
-"   let b:state = 'on'             " b: buffer
 let t:state = 'off'            " t: tab
-"   let t:state = 'off'            " t: tab
 let g:ack_options = '-s -H'    " g: global
-"   let g:ack_options = '-s -H'    " g: global
 let s:ack_program = 'ack'      " s: local (to script)
-"   let s:ack_program = 'ack'      " s: local (to script)
 let l:foo = 'bar'              " l: local (to function)
-"   let l:foo = 'bar'              " l: local (to function)
 echo v:var                     " v: vim special
-"   echo v:var                     " v: vim special
 ```
-
 
 
 ## Plugins
