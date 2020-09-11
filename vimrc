@@ -818,7 +818,7 @@ let g:ctrlp_use_caching = 1
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 let g:ctrlp_max_files = 0
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:50,results:50'
-
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " Emoji
 "if emoji#available()
