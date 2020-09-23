@@ -1,9 +1,10 @@
-"   # vimrc: Arquivo de configuração do vim do Geraldo Ribeiro
+"   # vimrc de Geraldo Ribeiro
 "   
 "   [TOC]
 "   
 "   ## Instalação
 "   
+" NOTA: os comentários dentro do bloco estão deslocados para não entrar como cabeçalhos
 "   ```bash
 "    # Clona o repositório da intmain
 "   git clone ssh://git@intmain.io:8322/geraldoim/dot_vim.git ~/.vim
@@ -34,9 +35,29 @@
 "   ~/.fzf/install
 "   ```
 "   
+"   ## Variáveis do vim e seus prefixos
+"   
+"   As variáveis a seguir são somente para facilitar a leitura do restante da
+"   configuração. Em [devhints](https://devhints.io/vimscript) existem um bom
+"   resumo das variáveis e opções.
+"   
+"   ```vim
+"   let var = "hello"
+"   let w:foo = 'bar'              " w: window
+"   let b:state = 'on'             " b: buffer
+"   let t:state = 'off'            " t: tab
+"   let g:ack_options = '-s -H'    " g: global
+"   let s:ack_program = 'ack'      " s: local (to script)
+"   let l:foo = 'bar'              " l: local (to function)
+"   echo v:var                     " v: vim special
+"   ```
+"   
+
 set nocompatible              " be iMproved, required
 filetype off                  " Necessário estar off antes do Vundle
 syntax on
+set autoindent
+set clipboard=unnamedplus     " y e p copiando e colando para a área de transferência do sistema
 "   
 "   ## Plugins
 "   
@@ -84,7 +105,6 @@ Plugin 'BufOnly.vim'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'SirVer/ultisnips'
 
-Plugin 'godlygeek/tabular'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'benmills/vimux'
 Plugin 'jeetsukumaran/vim-buffergator'
@@ -92,6 +112,8 @@ Plugin 'gilsondev/searchtasks.vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'dhruvasagar/vim-table-mode.git'
+" Lança o ranger a partir do vim
+Plugin 'francoiscabrol/ranger.vim'
 "}}}
 "   
 "   ### Plugins genéricos para programação
@@ -111,16 +133,15 @@ Plugin 'neomake/neomake'
 "   
 "{{{
 Plugin 'tomtom/tcomment_vim'
+"}}}
+"   
 "   Para definir o comentário para um novo tipo use:
 "   
-"   ```
-"   autocmd FileType xyz set commentstring=#\ %s
-"   ```
+"   `autocmd FileType xyz set commentstring=#\ %s`
 "
 "   * `g<` descomenta a seleção
 "   * `g>` comenta a seleção
 "   * `leader_p` comenta parágrafo
-"}}}
 "   
 "   ### Markdown / Escrita
 "   
@@ -132,7 +153,10 @@ Plugin 'LanguageTool'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'junegunn/vim-emoji'
-"Plugin 'kyuhi/vim-emoji-complete' " dá pau com o git
+"Plugin 'kyuhi/vim-emoji-complete' " FIXME: nao funciona bem com o git
+
+Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
 
 " Encontra erros de escrita
 Plugin 'reedes/vim-wordy'
@@ -154,10 +178,44 @@ Plugin 'tpope/vim-fugitive'
 "   
 "{{{
 Plugin 'dart-lang/dart-vim-plugin'
+Plugin 'natebosch/vim-lsc'
+Plugin 'natebosch/vim-lsc-dart'
 " Enable HTML syntax highlighting inside Dart strings with let dart_html_in_string=v:true (default false).
 " Disable highlighting of core library classes with let dart_corelib_highlight=v:false (default true).
 " Enable Dart style guide syntax (like 2-space indentation) with let dart_style_guide = 2
 " Enable DartFmt execution on buffer save with let dart_format_on_save = 1
+
+let g:lsc_auto_map = v:true
+" The default keymaps of vim-lsc are:
+" 'GoToDefinition': <C-]>,
+" 'GoToDefinitionSplit': [<C-W>], <C-W><C-]>],
+" 'FindReferences': gr,
+" 'NextReference': <C-n>,
+" 'PreviousReference': <C-p>,
+" 'FindImplementations': gI,
+" 'FindCodeActions': ga,
+" 'Rename': gR,
+" 'DocumentSymbol': go,
+" 'WorkspaceSymbol': gS,
+" 'SignatureHelp': gm,
+
+Plugin 'thosakwe/vim-flutter'
+" https://github.com/thosakwe/vim-flutter
+"
+" :FlutterRun <args> - calls flutter run <args>
+" :FlutterHotReload - triggers a hot reload on the current Flutter process
+" :FlutterHotRestart - triggers a hot restart on the current Flutter process
+" :FlutterQuit - quits the current Flutter process
+" :FlutterDevices - opens a new buffer, and writes the output of flutter devices to it
+" :FlutterSplit - opens Flutter output in a horizontal split
+" :FlutterEmulators - Executes a flutter emulators process.
+" :FlutterEmulatorsLaunch - Executes a flutter emulators --launch process, with any provided arguments.
+" :FlutterVisualDebug - Toggles visual debugging in the running Flutter process.
+" The following are self-explanatory:
+"
+" :FlutterVSplit
+" :FlutterTab
+
 "}}}
 "   
 "   ### C++
@@ -276,8 +334,10 @@ Plugin 'scrooloose/nerdtree'
 " Improves performance of the SyntaxHighlighting and removes the lag
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1
 let g:NERDTreeSyntaxEnabledExtensions = ['c', 'h', 'cpp', 'hpp', 'py', 'md', 'txt', 'java', 'sh', 'vim', 'json']
+"}}}
+"FIXME: O dolar está quebrando a documentação
 let g:NERDTreeIgnore = ['\.o$', '\.pyc$', '\~$', '\.gif', '\.jpg', '\.png']
-
+"{{{
 " Removes the little arrows that indicate whether a folder is open or not
 " These are not needed anymore because of the folder icons from devicons
 " let NERDTreeDirArrowExpandable = "\u00a0"
@@ -390,16 +450,18 @@ let g:rainbow_active = 1
 " let g:multi_cursor_skip_key            = '<C-x>'
 " let g:multi_cursor_quit_key            = '<Esc>'
 
+" Plantuml
+Plugin 'aklt/plantuml-syntax'
+Plugin 'scrooloose/vim-slumlord'
+
 " FIXME: Separar os cara abaixo
 "
 "Bundle 'aming/vim-mason'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'aklt/plantuml-syntax'
 Plugin 'elzr/vim-json'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'pangloss/vim-javascript'
 Plugin 'posva/vim-vue'
-"Plugin 'scrooloose/vim-slumlord'
 Plugin 'rhysd/vim-gfm-syntax'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
@@ -409,6 +471,8 @@ Plugin 'othree/html5.vim'
 
 " Formatação de código
 Plugin 'rhysd/vim-clang-format'
+
+" Plugin 'justmao945/vim-clang'
 
 
 Plugin 'prettier/vim-prettier', {
@@ -556,10 +620,12 @@ let g:hybrid_reduced_contrast = 0
 "let g:airline_left_sep='>'
 
 let g:neomake_cpp_enable_markers=['clang']
-let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined","-g"]
+let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined", "-g"]
 
 if has("gui_running")
-  if has("gui_gtk2")
+  if has("gui_gtk3" )
+    set guifont=Fira\ Code\ 14
+  elseif has("gui_gtk2")
     "set guifont=Inconsolata\ 14
     set guifont=Noto\ Mono\ 14
   elseif has("gui_macvim")
@@ -615,6 +681,9 @@ autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" gg vai para o topo, = indenta até ... G (fim)
+autocmd BufWritePre *.scss :normal gg=G
 
 " Elixir Tagbar Configuration
 let g:tagbar_type_elixir = {
@@ -749,7 +818,7 @@ let g:ctrlp_use_caching = 1
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 let g:ctrlp_max_files = 0
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:50,results:50'
-
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " Emoji
 "if emoji#available()
@@ -898,13 +967,21 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 2 "1
-let g:syntastic_check_on_open = 0 "1 
+let g:syntastic_check_on_open = 1 "1 
 let g:syntastic_check_on_wq = 0
+let g:syntastic_debug = 0
+
+
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler = 'clang++'
 let g:syntastic_cpp_include_dirs = ['/opt/intmain/dev/linux/usr/include/','../include/','/usr/include/c++/6','/usr/include/x86_64-linux-gnu/c++/6/']
-"let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 let g:syntastic_cpp_compiler_options = ' -include ../src/precompile.hpp -std=c++11 -stdlib=libc++ '
+let g:syntastic_cpp_checkers=['cppcheck', 'flawfinder', 'clang_tidy']
+let g:syntastic_cpp_clang_tidy_post_args = " -I../include"
+
+" https://vimawesome.com/plugin/vim-clang
+" let g:clang_c_options = '-std=gnu14'
+" let g:clang_cpp_options = '-std=c++14 -stdlib=libc++'
 
 " Veja os passos completos em:
 " https://remarkablemark.org/blog/2016/09/28/vim-syntastic-eslint/
@@ -953,6 +1030,7 @@ set scrolloff=5
 "   
 "{{{
 set background=dark
+"set background=light
 "colorscheme eldar
 "colorscheme abbott
 "colorscheme wombat
@@ -966,9 +1044,11 @@ colorscheme molokai
 "highlight CursorColumn ctermfg=White ctermbg=Yellow cterm=bold guifg=white guibg=yellow gui=bold
 "highlight CursorLine ctermbg=LightBlue
 "
-highlight CursorColumn ctermbg=Black
-highlight Cursor       ctermbg=Black cterm=bold
-highlight CursorLine   ctermbg=Black cterm=bold
+"highlight CursorColumn ctermbg=Gray
+"highlight Cursor       ctermbg=Gray cterm=bold
+"highlight CursorLine   ctermbg=Gray cterm=bold
+"highlight Cursor  ctermbg=black ctermfg=white  guifg=white guibg=black
+"highlight iCursor ctermbg=blue ctermfg=white guifg=white guibg=steelblue
 
 highlight MyFix ctermbg=darkred ctermfg=white guibg=red guifg=white
 augroup HiglightMyFix
