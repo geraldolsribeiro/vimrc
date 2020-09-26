@@ -757,6 +757,8 @@ set hidden "Premite mudar de buffer sem salvar, mantendo-o na memória
 
 set smartcase
 
+set completeopt=longest,menuone
+
 " Command T settings
 "let g:CommandTInputDebounce = 200
 "let g:CommandTFileScanner = "watchman"
@@ -848,16 +850,21 @@ set mouse+=a
 " :vmap <C-C> "+y
 
 nnoremap <F3> :CtrlPTag<CR>
+
+" Move linha para cima
 nmap <C-UP> :m-2<CR>
+" Move linha para baixo
 nmap <C-DOWN> :m+1<CR>
 
 nmap <F5> :s/(\(.*\)\.size()\s*>\s*0/( ! \1.isEmpty() /<CR>:wq<CR>
 
+" muda a indentação de um bloco visual
+vnoremap < <gv
+vnoremap > >gv
+
 "set colorcolumn=28,120
 set colorcolumn=120
 
-" Melhora a performance
-" set cursorline
 set cursorline
 set cursorcolumn
 set lazyredraw
@@ -904,14 +911,13 @@ set tags=tags
 " backup and store data in a swap file.
 set nobackup
 set nowritebackup
-"set noswapfile
+set noswapfile
 
 " Recarrega se o arquivo foi alterado em disco
 set autoread
 "au CursorHold * checktime " verifica um vez após 4s de inatividade no modo normal
 au CursorHold,CursorHoldI * checktime " ativa quando o cursor para de mover
 au FocusGained,BufEnter * :checktime " ativa quando entra no buffer
-
 
 set number
 
@@ -1025,6 +1031,10 @@ au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
 " Mostra 5 linhas abaixo e acima do cursor
 set scrolloff=5
+set sidescroll=1
+" Mostra 15 caracteres a direita e esquerda do cursor
+set sidescrolloff=15
+
 "   
 "   ### Color scheme
 "   
