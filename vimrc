@@ -55,10 +55,10 @@
 
 set nocompatible              " be iMproved, required
 filetype off                  " Necessário estar off antes do Vundle
-syntax on
-set showcmd
-set showmatch
-set autoindent
+syntax on                     " Ativa o highlight de sixntaxe
+set showcmd                   " Exibe comando na última linha
+set showmatch                 " Mostra os pares de parênteses
+set autoindent                " Indenta com o ENTER
 set clipboard=unnamedplus     " y e p copiando e colando para a área de transferência do sistema
 "   
 "   ## Plugins
