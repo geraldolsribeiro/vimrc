@@ -56,6 +56,8 @@
 set nocompatible              " be iMproved, required
 filetype off                  " Necessário estar off antes do Vundle
 syntax on
+set showcmd
+set showmatch
 set autoindent
 set clipboard=unnamedplus     " y e p copiando e colando para a área de transferência do sistema
 "   
@@ -783,8 +785,11 @@ let g:slumlord_plantuml_jar_path = "~/bin/plantuml.jar"
 
 " Use ack instead of grep
 set grepprg=ack
-set ignorecase
 
+" Ignora maiúscula/minúscula na pesquisa
+set ignorecase
+" Realiza a pesquisa enquando é digitada
+set incsearch
 
 "set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 
