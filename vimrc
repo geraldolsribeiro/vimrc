@@ -116,6 +116,9 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'dhruvasagar/vim-table-mode.git'
 " Lança o ranger a partir do vim
 Plugin 'francoiscabrol/ranger.vim'
+
+" Fork do plugin do Marcos Oliveira
+Plugin 'geraldolsribeiro/vim-auto-markdown'
 "}}}
 "   
 "   ### Plugins genéricos para programação
