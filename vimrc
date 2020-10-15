@@ -329,7 +329,7 @@ endif
 "   ### Nerdtree
 "   
 "{{{
-Plugin 'scrooloose/nerdtree'
+Plugin 'preservim/nerdtree'
 "let g:NERDTreeDirArrows=0 " Não mostrar símbolos na lateral dos nomes
 " Improves performance of the SyntaxHighlighting and removes the lag
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1
@@ -361,10 +361,19 @@ let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeHijackNetrw = 1
 " let NERDTreeDirArrowExpandable=">"
 " let NERDTreeDirArrowCollapsible="v"
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 
 let NERDTreeNodeDelimiter="😀"
-"
+
+" Abre automaticamente a tree se não for passado nenhum arquivo
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Abre automaticamente a tree se for passado um diretório como argumento
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+" Fecha o vim se a única janela aberta for a do nerdtree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 "
 " " Nerd_Commenter 注释增强 <Leader>c<Space>
 " let g:NERDSpaceDelims = 1
@@ -625,6 +634,7 @@ let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=un
 if has("gui_running")
   if has("gui_gtk3" )
     set guifont=Fira\ Code\ 14
+    set guifont=Droid_Sans_Mono_Nerd_Font_Complete.otf\ 14
   elseif has("gui_gtk2")
     "set guifont=Inconsolata\ 14
     set guifont=Noto\ Mono\ 14
@@ -639,6 +649,8 @@ else
   hi Search cterm=NONE ctermfg=grey ctermbg=blue
   hi IncSearch cterm=NONE ctermbg=white ctermfg=red
 endif
+
+
 
 " -------------------------------------------------------------------
 " Configuração semelhante ao nerdtree
@@ -984,6 +996,8 @@ let g:syntastic_cpp_include_dirs = ['/opt/intmain/dev/linux/usr/include/','../in
 let g:syntastic_cpp_compiler_options = ' -include ../src/precompile.hpp -std=c++11 -stdlib=libc++ '
 let g:syntastic_cpp_checkers=['cppcheck', 'flawfinder', 'clang_tidy']
 let g:syntastic_cpp_clang_tidy_post_args = " -I../include"
+
+let g:syntastic_filetype_map = { 'mkd': 'markdown' }
 
 " https://vimawesome.com/plugin/vim-clang
 " let g:clang_c_options = '-std=gnu14'
