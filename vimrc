@@ -60,6 +60,9 @@ set showcmd                   " Exibe comando na última linha
 set showmatch                 " Mostra os pares de parênteses
 set autoindent                " Indenta com o ENTER
 set clipboard=unnamedplus     " y e p copiando e colando para a área de transferência do sistema
+
+let mapleader="\<space>"
+
 "   
 "   ## Plugins
 "   
@@ -439,8 +442,7 @@ let g:colorizer_auto_filetype='css,html,scss'
 Plugin 'luochen1990/rainbow'
 let g:rainbow_active = 1
 
-" Plugin 'terryma/vim-multiple-cursors'
-" let g:multi_cursor_use_default_mapping=0
+Plugin 'mg979/vim-visual-multi'
 "
 " " Default mapping
 " let g:multi_cursor_start_word_key      = '<C-n>'
@@ -1051,6 +1053,7 @@ set background=dark
 "colorscheme wombat
 "colorscheme vimtom
 colorscheme molokai
+colorscheme gruvbox
 "}}}
 "
 
