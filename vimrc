@@ -62,6 +62,7 @@ set autoindent                " Indenta com o ENTER
 set clipboard=unnamedplus     " y e p copiando e colando para a área de transferência do sistema
 
 let mapleader="\<space>"
+let maplocalleader="\<space>"
 
 "   
 "   ## Plugins
@@ -776,7 +777,17 @@ set hidden "Premite mudar de buffer sem salvar, mantendo-o na memória
 
 set smartcase
 
+set complete+=kspell
 set completeopt=longest,menuone
+set formatoptions=tcqrn1
+set matchpairs+=<:> " Use % to jump between pairs
+set maxmempattern=5000 " default 1000
+set wildmenu
+set wildmode=full
+set wrap
+
+" Remove algumas mensagens da barra status ao rolar na seleção do complete
+set shortmess+=c
 
 " Command T settings
 "let g:CommandTInputDebounce = 200
@@ -937,6 +948,7 @@ set noswapfile
 
 " Recarrega se o arquivo foi alterado em disco
 set autoread
+
 "au CursorHold * checktime " verifica um vez após 4s de inatividade no modo normal
 au CursorHold,CursorHoldI * checktime " ativa quando o cursor para de mover
 au FocusGained,BufEnter * :checktime " ativa quando entra no buffer
