@@ -55,9 +55,14 @@
 
 set nocompatible              " be iMproved, required
 filetype off                  " Necessário estar off antes do Vundle
-syntax on
-set autoindent
+syntax on                     " Ativa o highlight de sixntaxe
+set showcmd                   " Exibe comando na última linha
+set showmatch                 " Mostra os pares de parênteses
+set autoindent                " Indenta com o ENTER
 set clipboard=unnamedplus     " y e p copiando e colando para a área de transferência do sistema
+
+let mapleader="\<space>"
+
 "   
 "   ## Plugins
 "   
@@ -114,6 +119,9 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'dhruvasagar/vim-table-mode.git'
 " Lança o ranger a partir do vim
 Plugin 'francoiscabrol/ranger.vim'
+
+" Fork do plugin do Marcos Oliveira
+Plugin 'geraldolsribeiro/vim-auto-markdown'
 "}}}
 "   
 "   ### Plugins genéricos para programação
@@ -329,7 +337,7 @@ endif
 "   ### Nerdtree
 "   
 "{{{
-Plugin 'scrooloose/nerdtree'
+Plugin 'preservim/nerdtree'
 "let g:NERDTreeDirArrows=0 " Não mostrar símbolos na lateral dos nomes
 " Improves performance of the SyntaxHighlighting and removes the lag
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1
@@ -361,10 +369,19 @@ let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeHijackNetrw = 1
 " let NERDTreeDirArrowExpandable=">"
 " let NERDTreeDirArrowCollapsible="v"
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 
 let NERDTreeNodeDelimiter="😀"
-"
+
+" Abre automaticamente a tree se não for passado nenhum arquivo
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Abre automaticamente a tree se for passado um diretório como argumento
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+" Fecha o vim se a única janela aberta for a do nerdtree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 "
 " " Nerd_Commenter 注释增强 <Leader>c<Space>
 " let g:NERDSpaceDelims = 1
@@ -437,8 +454,7 @@ let g:colorizer_auto_filetype='css,html,scss'
 Plugin 'luochen1990/rainbow'
 let g:rainbow_active = 1
 
-" Plugin 'terryma/vim-multiple-cursors'
-" let g:multi_cursor_use_default_mapping=0
+Plugin 'mg979/vim-visual-multi'
 "
 " " Default mapping
 " let g:multi_cursor_start_word_key      = '<C-n>'
@@ -450,16 +466,18 @@ let g:rainbow_active = 1
 " let g:multi_cursor_skip_key            = '<C-x>'
 " let g:multi_cursor_quit_key            = '<Esc>'
 
+" Plantuml
+Plugin 'aklt/plantuml-syntax'
+Plugin 'scrooloose/vim-slumlord'
+
 " FIXME: Separar os cara abaixo
 "
 "Bundle 'aming/vim-mason'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'aklt/plantuml-syntax'
 Plugin 'elzr/vim-json'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'pangloss/vim-javascript'
 Plugin 'posva/vim-vue'
-"Plugin 'scrooloose/vim-slumlord'
 Plugin 'rhysd/vim-gfm-syntax'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
@@ -623,6 +641,7 @@ let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=un
 if has("gui_running")
   if has("gui_gtk3" )
     set guifont=Fira\ Code\ 14
+    "set guifont=Droid_Sans_Mono_Nerd_Font_Complete.otf\ 14
   elseif has("gui_gtk2")
     "set guifont=Inconsolata\ 14
     set guifont=Noto\ Mono\ 14
@@ -637,6 +656,8 @@ else
   hi Search cterm=NONE ctermfg=grey ctermbg=blue
   hi IncSearch cterm=NONE ctermbg=white ctermfg=red
 endif
+
+
 
 " -------------------------------------------------------------------
 " Configuração semelhante ao nerdtree
@@ -755,6 +776,8 @@ set hidden "Premite mudar de buffer sem salvar, mantendo-o na memória
 
 set smartcase
 
+set completeopt=longest,menuone
+
 " Command T settings
 "let g:CommandTInputDebounce = 200
 "let g:CommandTFileScanner = "watchman"
@@ -779,8 +802,11 @@ let g:slumlord_plantuml_jar_path = "~/bin/plantuml.jar"
 
 " Use ack instead of grep
 set grepprg=ack
-set ignorecase
 
+" Ignora maiúscula/minúscula na pesquisa
+set ignorecase
+" Realiza a pesquisa enquando é digitada
+set incsearch
 
 "set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 
@@ -816,7 +842,7 @@ let g:ctrlp_use_caching = 1
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 let g:ctrlp_max_files = 0
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:50,results:50'
-
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
 
 " Emoji
 "if emoji#available()
@@ -846,16 +872,21 @@ set mouse+=a
 " :vmap <C-C> "+y
 
 nnoremap <F3> :CtrlPTag<CR>
+
+" Move linha para cima
 nmap <C-UP> :m-2<CR>
+" Move linha para baixo
 nmap <C-DOWN> :m+1<CR>
 
 nmap <F5> :s/(\(.*\)\.size()\s*>\s*0/( ! \1.isEmpty() /<CR>:wq<CR>
 
+" muda a indentação de um bloco visual
+vnoremap < <gv
+vnoremap > >gv
+
 "set colorcolumn=28,120
 set colorcolumn=120
 
-" Melhora a performance
-" set cursorline
 set cursorline
 set cursorcolumn
 set lazyredraw
@@ -902,14 +933,13 @@ set tags=tags
 " backup and store data in a swap file.
 set nobackup
 set nowritebackup
-"set noswapfile
+set noswapfile
 
 " Recarrega se o arquivo foi alterado em disco
 set autoread
 "au CursorHold * checktime " verifica um vez após 4s de inatividade no modo normal
 au CursorHold,CursorHoldI * checktime " ativa quando o cursor para de mover
 au FocusGained,BufEnter * :checktime " ativa quando entra no buffer
-
 
 set number
 
@@ -977,6 +1007,8 @@ let g:syntastic_cpp_compiler_options = ' -include ../src/precompile.hpp -std=c++
 let g:syntastic_cpp_checkers=['cppcheck', 'flawfinder', 'clang_tidy']
 let g:syntastic_cpp_clang_tidy_post_args = " -I../include"
 
+let g:syntastic_filetype_map = { 'mkd': 'markdown' }
+
 " https://vimawesome.com/plugin/vim-clang
 " let g:clang_c_options = '-std=gnu14'
 " let g:clang_cpp_options = '-std=c++14 -stdlib=libc++'
@@ -1023,6 +1055,10 @@ au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
 " Mostra 5 linhas abaixo e acima do cursor
 set scrolloff=5
+set sidescroll=1
+" Mostra 15 caracteres a direita e esquerda do cursor
+set sidescrolloff=15
+
 "   
 "   ### Color scheme
 "   
@@ -1034,6 +1070,7 @@ set background=dark
 "colorscheme wombat
 "colorscheme vimtom
 colorscheme molokai
+colorscheme gruvbox
 "}}}
 "
 
