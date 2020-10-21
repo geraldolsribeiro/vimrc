@@ -681,7 +681,7 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " gg vai para o topo, = indenta até ... G (fim)
-autocmd BufWritePre *.scss :normal gg=G
+" autocmd BufWritePre *.scss :normal gg=G
 
 " Elixir Tagbar Configuration
 let g:tagbar_type_elixir = {
