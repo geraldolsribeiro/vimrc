@@ -116,6 +116,7 @@ Plugin 'benmills/vimux'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'gilsondev/searchtasks.vim'
 Plugin 'Shougo/neocomplete.vim'
+Plugin 'xavierd/clang_complete'
 Plugin 'tpope/vim-dispatch'
 Plugin 'dhruvasagar/vim-table-mode.git'
 " Lança o ranger a partir do vim
@@ -377,11 +378,11 @@ let NERDTreeNodeDelimiter="😀"
 
 " Abre automaticamente a tree se não for passado nenhum arquivo
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Abre automaticamente a tree se for passado um diretório como argumento
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 " Fecha o vim se a única janela aberta for a do nerdtree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "
 " " Nerd_Commenter 注释增强 <Leader>c<Space>
@@ -639,6 +640,10 @@ let g:hybrid_reduced_contrast = 0
 let g:neomake_cpp_enable_markers=['clang']
 let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined", "-g"]
 
+
+" path to directory where library can be found
+let g:clang_library_path='/usr/lib/llvm-6.0/lib/libclang.so.1'
+
 if has("gui_running")
   if has("gui_gtk3" )
     set guifont=Fira\ Code\ 14
@@ -703,7 +708,7 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " gg vai para o topo, = indenta até ... G (fim)
-autocmd BufWritePre *.scss :normal gg=G
+" autocmd BufWritePre *.scss :normal gg=G
 
 " Elixir Tagbar Configuration
 let g:tagbar_type_elixir = {
