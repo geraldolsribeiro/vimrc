@@ -154,6 +154,9 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'dhruvasagar/vim-table-mode.git'
 " Lança o ranger a partir do vim
 Plugin 'francoiscabrol/ranger.vim'
+
+" Fork do plugin do Marcos Oliveira
+Plugin 'geraldolsribeiro/vim-auto-markdown'
 ```
 
 
@@ -383,7 +386,7 @@ endif
 
 
 ```vim
-Plugin 'scrooloose/nerdtree'
+Plugin 'preservim/nerdtree'
 "let g:NERDTreeDirArrows=0 " Não mostrar símbolos na lateral dos nomes
 " Improves performance of the SyntaxHighlighting and removes the lag
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1
@@ -415,10 +418,19 @@ let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeHijackNetrw = 1
 " let NERDTreeDirArrowExpandable=">"
 " let NERDTreeDirArrowCollapsible="v"
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 
 let NERDTreeNodeDelimiter="😀"
-"
+
+" Abre automaticamente a tree se não for passado nenhum arquivo
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Abre automaticamente a tree se for passado um diretório como argumento
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+" Fecha o vim se a única janela aberta for a do nerdtree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 "
 " " Nerd_Commenter 注释增强 <Leader>c<Space>
 " let g:NERDSpaceDelims = 1
@@ -604,6 +616,7 @@ set background=dark
 "colorscheme wombat
 "colorscheme vimtom
 colorscheme molokai
+colorscheme gruvbox
 ```
 
 
