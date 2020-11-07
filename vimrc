@@ -847,7 +847,14 @@ let g:ctrlp_use_caching = 1
 let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
 let g:ctrlp_max_files = 0
 let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:50,results:50'
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(exe|so|dll)$',
+    \ 'link': 'SOME_BAD_SYMBOLIC_LINKS',
+    \ }
+" let g:ctrlp_working_path_mode = 'ra'
+" Busca por nome de arquivo em vez do path completo
+let g:ctrlp_by_filename = 1
 
 " Emoji
 "if emoji#available()

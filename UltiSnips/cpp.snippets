@@ -35,6 +35,10 @@ snippet header_kashim
 
 endsnippet
 
+snippet ff
+// Flawfinder: ignore
+endsnippet
+
 snippet cf
 // clang-format off
 // clang-format on
@@ -358,6 +362,12 @@ $1 $2() const
 }
 endsnippet
 
+snippet na2
+#include "${1/.*/\u$0/}.hpp"
+add( "/${1:addXptoRecordFrm01}", &$1 );
+${1/.*/\u$0/} $1;
+endsnippet
+
 snippet na "Nova action" b
 ${1:TestActionNameComplex}
 
@@ -462,6 +472,15 @@ finish( data );
 return;
 endsnippet
 
+snippet js
+addJavaScript( "https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js" );
+addDeferJavascript( data, "viewCartRecordFrm01.js" );
+addDeferJavascript( data, "https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js" );
+endsnippet
+
+snippet css
+addStylesheet( data, "https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" );
+endsnippet
 
 snippet privrepo
 // ----------------------------------------------------------------------
@@ -685,6 +704,22 @@ snippet json
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
+endsnippet
+
+snippet banner_dry
+// +-----------------------------------------------------------------------------------------------------+
+// | DRY - ARQUIVO COMUM A VÁRIAS APLICAÇÕES                                                             |
+// +-----------------------------------------------------------------------------------------------------+
+// |  _      _    _                       __  __ _         _                      _            _         |
+// | | |    | |  | |               _     / / / /(_)       | |                    (_)          (_)        |
+// | | |__  | |_ | |_  _ __   ___ (_)   / / / /  _  _ __  | |_  _ __ ___    __ _  _  _ __      _   ___   |
+// | | '_ \ | __|| __|| '_ \ / __|     / / / /  | || '_ \ | __|| '_ \` _ \  / _\` || || '_ \    | | / _ \  |
+// | | | | || |_ | |_ | |_) |\__ \ _  / / / /   | || | | || |_ | | | | | || (_| || || | | | _ | || (_) | |
+// | |_| |_| \__| \__|| .__/ |___/(_)/_/ /_/    |_||_| |_| \__||_| |_| |_| \__,_||_||_| |_|(_)|_| \___/  |
+// |                  | |                                                                                |
+// |                  |_|                                                                                |
+// |                                                                                                     |
+// +-----------------------------------------------------------------------------------------------------+
 endsnippet
 
 snippet intmain_banner
