@@ -115,8 +115,8 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'benmills/vimux'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'gilsondev/searchtasks.vim'
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'xavierd/clang_complete'
+"Plugin 'Shougo/neocomplete.vim'
+"Plugin 'xavierd/clang_complete'
 Plugin 'tpope/vim-dispatch'
 Plugin 'dhruvasagar/vim-table-mode.git'
 " Lança o ranger a partir do vim
@@ -244,7 +244,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 "{{{
 Plugin 'vim-erlang/vim-erlang-tags'
 Plugin 'vim-erlang/vim-erlang-runtime'
-Plugin 'vim-erlang/vim-erlang-omnicomplete'
+"Plugin 'vim-erlang/vim-erlang-omnicomplete'
 Plugin 'vim-erlang/vim-erlang-compiler'
 "}}}
 "   
@@ -441,6 +441,15 @@ Plugin 'shinglyu/vim-codespell'
 "{{{
 Plugin 'rupurt/vim-mql5'
 "}}}
+"   
+"   ## Auto completar
+"   
+"{{{
+Plugin 'neoclide/coc.nvim'
+" coc.nvim works best on vim >= 8.1.1719 and neovim >= 0.4.0, consider upgrade your vim.
+let g:coc_disable_startup_warning = 1
+"}}}
+"   
 "   ## Configuração geral
 "   
 "{{{
@@ -694,18 +703,18 @@ augroup javascript
 augroup END
 
 " Neocomplete Settings
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 0
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+" let g:acp_enableAtStartup = 0
+" let g:neocomplete#enable_at_startup = 0
+" let g:neocomplete#enable_smart_case = 1
+" let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+" autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
 " gg vai para o topo, = indenta até ... G (fim)
 " autocmd BufWritePre *.scss :normal gg=G
