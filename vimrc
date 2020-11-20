@@ -60,6 +60,7 @@ set showcmd                   " Exibe comando na última linha
 set showmatch                 " Mostra os pares de parênteses
 set autoindent                " Indenta com o ENTER
 set clipboard=unnamedplus     " y e p copiando e colando para a área de transferência do sistema
+set virtualedit=all           " permite mover o cursor para fora do texto e acrescenta espaços em caso de inserção
 
 let mapleader="\<space>"
 let maplocalleader="\<space>"
