@@ -1,15 +1,46 @@
+snippet banner
+# +-----------------------------------------------------------------------------------------------------+
+# |  _      _    _                       __  __ _         _                      _            _         |
+# | | |    | |  | |               _     / / / /(_)       | |                    (_)          (_)        |
+# | | |__  | |_ | |_  _ __   ___ (_)   / / / /  _  _ __  | |_  _ __ ___    __ _  _  _ __      _   ___   |
+# | | '_ \ | __|| __|| '_ \ / __|     / / / /  | || '_ \ | __|| '_ \` _ \  / _\` || || '_ \    | | / _ \  |
+# | | | | || |_ | |_ | |_) |\__ \ _  / / / /   | || | | || |_ | | | | | || (_| || || | | | _ | || (_) | |
+# | |_| |_| \__| \__|| .__/ |___/(_)/_/ /_/    |_||_| |_| \__||_| |_| |_| \__,_||_||_| |_|(_)|_| \___/  |
+# |                  | |                                                                                |
+# |                  |_|                                                                                |
+# |                                                                                                     |
+# +-----------------------------------------------------------------------------------------------------+
+endsnippet
+
+snippet ---
+# ----------------------------------------------------------------------
+# $0
+# ----------------------------------------------------------------------
+endsnippet
+
 snippet header
 # ----------------------------------------------------------------------
-# Copyright (C) 2019 Geraldo Ribeiro <geraldo@intmain.io>
+# Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
 # ----------------------------------------------------------------------
 
 endsnippet
+
+snippet header_kashim
+# ----------------------------------------------------------------------
+# Copyright (C) 2020-2020 Geraldo Ribeiro <geraldo@intmain.io>
+# Copyright (C) 2020-2020 Ulisses Massafera <u.massafera@gmail.com>
+# Copyright (C) 2020-2020 Eduardo Stetner <edu.stetner@gmail.com>
+# ----------------------------------------------------------------------
+
+endsnippet
+
+
 snippet SKIP_WIN "Pula a compilação e os teste no GrInstall.sh"
 
-SKIP_WIN32=YES
-SKIP_WIN64=YES
-SKIP_TEST_WIN32=YES
-SKIP_TEST_WIN64=YES
+export SKIP_WIN32=YES
+export SKIP_WIN64=YES
+export SKIP_TEST_WIN32=YES
+export SKIP_TEST_WIN64=YES
 endsnippet
 
 snippet set_o "Flags para prevenir erros"
@@ -30,7 +61,7 @@ endsnippet
 snippet GrInstall.sh
 #!/bin/bash
 ### ----------------------------------------------------------------------
-### Copyright (C) 2006-2019 Geraldo Ribeiro <geraldo@intmain.io>
+### Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
 ### ----------------------------------------------------------------------
 
 # A better class of script...
@@ -63,10 +94,10 @@ function installWin64Files {
   installFiles
 }
 
-SKIP_WIN32=YES
-SKIP_WIN64=YES
-SKIP_TEST_WIN32=YES
-SKIP_TEST_WIN64=YES
+export SKIP_WIN32=YES
+export SKIP_WIN64=YES
+export SKIP_TEST_WIN32=YES
+export SKIP_TEST_WIN64=YES
 
 source /opt/intmain/dev/${OS}/usr/share/Gr/scripts/Common/intmain.bash
 
@@ -99,6 +130,14 @@ copyToImg
 copyToScripts
 copyToDB
 copyToDat
+endsnippet
+
+snippet sc
+# shellcheck disable=SC1090
+endsnippet
+
+snippet SC1090
+# shellcheck disable=SC1090
 endsnippet
 
 # vim: ft=snippets

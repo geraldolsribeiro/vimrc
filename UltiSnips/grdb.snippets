@@ -1,10 +1,23 @@
-# GRDB
+snippet banner
+# +-----------------------------------------------------------------------------------------------------+
+# |  _      _    _                       __  __ _         _                      _            _         |
+# | | |    | |  | |               _     / / / /(_)       | |                    (_)          (_)        |
+# | | |__  | |_ | |_  _ __   ___ (_)   / / / /  _  _ __  | |_  _ __ ___    __ _  _  _ __      _   ___   |
+# | | '_ \ | __|| __|| '_ \ / __|     / / / /  | || '_ \ | __|| '_ \` _ \  / _\` || || '_ \    | | / _ \  |
+# | | | | || |_ | |_ | |_) |\__ \ _  / / / /   | || | | || |_ | | | | | || (_| || || | | | _ | || (_) | |
+# | |_| |_| \__| \__|| .__/ |___/(_)/_/ /_/    |_||_| |_| \__||_| |_| |_| \__,_||_||_| |_|(_)|_| \___/  |
+# |                  | |                                                                                |
+# |                  |_|                                                                                |
+# |                                                                                                     |
+# +-----------------------------------------------------------------------------------------------------+
+endsnippet
+
 snippet fields
 VERSION       3
 TABLEVERSION  0
 NAMESPACE     EMPTY
 CLASS         MyRecord
-KEY           theKey      # Chave.
+KEY           theKey      # Idenficador do item.
 STRING        stringVar   # String.
 STRING        XXXXXYYYYY  # String.
 DOUBLE        doubleVar   # Double.
@@ -23,12 +36,18 @@ END
 endsnippet
 
 snippet copy
-COPYRIGHT (C) 2000-2019 Geraldo Ribeiro <geraldo@intmain.io>
+COPYRIGHT 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
 endsnippet
 
-snippet tcopy
-COPYRIGHT (C) 2019 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>
-COPYRIGHT (C) 2019 Anderson Sabara <anderson-sabara@taoker.com.br>
+snippet copy_taoker
+COPYRIGHT 2019 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>
+COPYRIGHT 2019 Anderson Sabara <anderson-sabara@taoker.com.br>
+endsnippet
+
+snippet copy_kashim
+COPYRIGHT 2020-2020 Geraldo Ribeiro <geraldo@intmain.io>
+COPYRIGHT 2020-2020 Ulisses Massafera <u.massafera@gmail.com>
+COPYRIGHT 2020-2020 Eduardo Stetner <edu.stetner@gmail.com>
 endsnippet
 
 snippet conf
@@ -59,19 +78,26 @@ DEFAULT integerVar 1
 DEFAULT doubleVar 1.234
 DEFAULT boolVar true
 
+OPTIONAL fields
+OPTIONS field A|A|B|B
+
 FLOATFMT floatVar "%f08.2"
 
 GROUP @G1 stringVar|doubleVar Nome do fieldset
 GROUP @G2 floatVar|integerVar Outro nome do fieldset
 
 MONEY_RANGE moneyBRL 1.00 50.00 1.50
+
+ORDER to_string( rec.integerVar() )
+ORDER_ASC to_string( rec.integerVar() )
+ORDER_DESC to_string( rec.integerVar() )
 endsnippet
 
-snippet FORM
+snippet form
 FORM_COL_WIDTH LinhaRef ref2 s4 m3
 endsnippet
 
-snippet STYLE
+snippet style
 STYLE doubleVar less-specific-style
 endsnippet
 

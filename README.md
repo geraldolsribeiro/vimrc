@@ -1,12 +1,13 @@
 [//]: <> (Documentação gerada com intmain_docmd)
-# vimrc: Arquivo de configuração do vim do Geraldo Ribeiro
+# vimrc de Geraldo Ribeiro
 
 ## Sumário
 
-* [vimrc: Arquivo de configuração do vim do Geraldo Ribeiro](#vimrc:-arquivo-de-configuração-do-vim-do-geraldo-ribeiro)
+* [vimrc de Geraldo Ribeiro](#vimrc-de-geraldo-ribeiro)
   * [Instalação](#instalação)
   * [Atualização](#atualização)
   * [Outras dependências](#outras-dependências)
+  * [Variáveis do vim e seus prefixos](#variáveis-do-vim-e-seus-prefixos)
   * [Plugins](#plugins)
       * [FZF](#fzf)
       * [Cucumber](#cucumber)
@@ -25,11 +26,14 @@
       * [Nerdtree](#nerdtree)
       * [TOML](#toml)
       * [Typescript](#typescript)
+      * [Typescript](#typescript)
       * [Dark powered neo-completion](#dark-powered-neo-completion)
+  * [Metatrader](#metatrader)
   * [Configuração geral](#configuração-geral)
   * [Configuração do neomake](#configuração-do-neomake)
       * [Coffeescript](#coffeescript)
       * [Elixir](#elixir)
+      * [Java](#java)
       * [ruby ](#ruby-)
       * [SCSS](#scss)
       * [vim-table-mode](#vim-table-mode)
@@ -71,14 +75,28 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
 
+## Variáveis do vim e seus prefixos
+
+As variáveis a seguir são somente para facilitar a leitura do restante da
+configuração. Em [devhints](https://devhints.io/vimscript) existem um bom
+resumo das variáveis e opções.
+
+```vim
+let var = "hello"
+let w:foo = 'bar'              " w: window
+let b:state = 'on'             " b: buffer
+let t:state = 'off'            " t: tab
+let g:ack_options = '-s -H'    " g: global
+let s:ack_program = 'ack'      " s: local (to script)
+let l:foo = 'bar'              " l: local (to function)
+echo v:var                     " v: vim special
+```
+
 
 ## Plugins
 
 Configura o path de inclusão do `Vundle` e o inicia.
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -87,14 +105,9 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 ```
 
-</p>
-</details>
 
 ### FZF
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 " git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -103,39 +116,24 @@ Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
 ```
 
-</p>
-</details>
 
 ### Cucumber
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 Plugin 'tpope/vim-cucumber.git'
 ```
 
-</p>
-</details>
 
 ### Servidores web
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 Plugin 'chr4/nginx.vim'
 ```
 
-</p>
-</details>
 ### Utilitários
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 Plugin 'powerline/powerline-fonts'
@@ -147,7 +145,6 @@ Plugin 'BufOnly.vim'
 Plugin 'wesQ3/vim-windowswap'
 Plugin 'SirVer/ultisnips'
 
-Plugin 'godlygeek/tabular'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'benmills/vimux'
 Plugin 'jeetsukumaran/vim-buffergator'
@@ -155,16 +152,16 @@ Plugin 'gilsondev/searchtasks.vim'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'dhruvasagar/vim-table-mode.git'
+" Lança o ranger a partir do vim
+Plugin 'francoiscabrol/ranger.vim'
+
+" Fork do plugin do Marcos Oliveira
+Plugin 'geraldolsribeiro/vim-auto-markdown'
 ```
 
-</p>
-</details>
 
 ### Plugins genéricos para programação
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 "Plugin 'jakedouglas/exuberant-ctags'
@@ -177,44 +174,24 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'neomake/neomake'
 ```
 
-</p>
-</details>
 
 ### Comentários
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 Plugin 'tomtom/tcomment_vim'
+```
+
+
 Para definir o comentário para um novo tipo use:
-"   Para definir o comentário para um novo tipo use:
 
-"   
-```
-"   ```
-autocmd FileType xyz set commentstring=#\ %s
-"   autocmd FileType xyz set commentstring=#\ %s
-```
-"   ```
-"
+`autocmd FileType xyz set commentstring=#\ %s`
 * `g<` descomenta a seleção
-"   * `g<` descomenta a seleção
 * `g>` comenta a seleção
-"   * `g>` comenta a seleção
 * `leader_p` comenta parágrafo
-"   * `leader_p` comenta parágrafo
-```
-
-</p>
-</details>
 
 ### Markdown / Escrita
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 Plugin 'reedes/vim-pencil'
@@ -224,7 +201,10 @@ Plugin 'LanguageTool'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'junegunn/vim-emoji'
-"Plugin 'kyuhi/vim-emoji-complete' " dá pau com o git
+"Plugin 'kyuhi/vim-emoji-complete' " FIXME: nao funciona bem com o git
+
+Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
 
 " Encontra erros de escrita
 Plugin 'reedes/vim-wordy'
@@ -233,14 +213,9 @@ Plugin 'reedes/vim-lexical'
 let g:pandoc#biblio#use_bibtool=1
 ```
 
-</p>
-</details>
 
 ### Git Support
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 Plugin 'kablamo/vim-git-log'
@@ -249,45 +224,64 @@ Plugin 'tpope/vim-fugitive'
 "Plugin 'jaxbot/github-issues.vim'   " lerda muito
 ```
 
-</p>
-</details>
 
 ### Dart
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 Plugin 'dart-lang/dart-vim-plugin'
+Plugin 'natebosch/vim-lsc'
+Plugin 'natebosch/vim-lsc-dart'
 " Enable HTML syntax highlighting inside Dart strings with let dart_html_in_string=v:true (default false).
 " Disable highlighting of core library classes with let dart_corelib_highlight=v:false (default true).
 " Enable Dart style guide syntax (like 2-space indentation) with let dart_style_guide = 2
 " Enable DartFmt execution on buffer save with let dart_format_on_save = 1
+
+let g:lsc_auto_map = v:true
+" The default keymaps of vim-lsc are:
+" 'GoToDefinition': <C-]>,
+" 'GoToDefinitionSplit': [<C-W>], <C-W><C-]>],
+" 'FindReferences': gr,
+" 'NextReference': <C-n>,
+" 'PreviousReference': <C-p>,
+" 'FindImplementations': gI,
+" 'FindCodeActions': ga,
+" 'Rename': gR,
+" 'DocumentSymbol': go,
+" 'WorkspaceSymbol': gS,
+" 'SignatureHelp': gm,
+
+Plugin 'thosakwe/vim-flutter'
+" https://github.com/thosakwe/vim-flutter
+"
+" :FlutterRun <args> - calls flutter run <args>
+" :FlutterHotReload - triggers a hot reload on the current Flutter process
+" :FlutterHotRestart - triggers a hot restart on the current Flutter process
+" :FlutterQuit - quits the current Flutter process
+" :FlutterDevices - opens a new buffer, and writes the output of flutter devices to it
+" :FlutterSplit - opens Flutter output in a horizontal split
+" :FlutterEmulators - Executes a flutter emulators process.
+" :FlutterEmulatorsLaunch - Executes a flutter emulators --launch process, with any provided arguments.
+" :FlutterVisualDebug - Toggles visual debugging in the running Flutter process.
+" The following are self-explanatory:
+"
+" :FlutterVSplit
+" :FlutterTab
+
 ```
 
-</p>
-</details>
 
 ### C++
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 " This file contains additional syntax highlighting that I use for C++11/14/17
 Plugin 'octol/vim-cpp-enhanced-highlight'
 ```
 
-</p>
-</details>
 
 ### Erlang Support
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 Plugin 'vim-erlang/vim-erlang-tags'
@@ -296,14 +290,9 @@ Plugin 'vim-erlang/vim-erlang-omnicomplete'
 Plugin 'vim-erlang/vim-erlang-compiler'
 ```
 
-</p>
-</details>
 
 ### Elixir Support 
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 Plugin 'elixir-lang/vim-elixir'
@@ -317,14 +306,9 @@ Plugin 'tpope/vim-endwise'
 Plugin 'jadercorrea/elixir_generator.vim'
 ```
 
-</p>
-</details>
 
 ### Theme / Interface / Color Scheme
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 Plugin 'flazz/vim-colorschemes'
@@ -353,14 +337,9 @@ Plugin 'colepeters/spacemacs-theme.vim'
 
 ```
 
-</p>
-</details>
 
 ### Devicons
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 Plugin 'ryanoasis/vim-devicons'
@@ -381,6 +360,8 @@ let g:WebDevIconsUnicodeDecorateFolderNodesExactMatches = 1
 
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['js'] = 'ƛ'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['java'] = '☕'
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['coffee'] = '☕'
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sh'] = '🐚'
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cpp'] = '🗡️'
 let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['hpp'] = '🗡️'
@@ -400,23 +381,20 @@ if exists('g:loaded_webdevicons')
 endif
 ```
 
-</p>
-</details>
 
 ### Nerdtree
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
-Plugin 'scrooloose/nerdtree'
+Plugin 'preservim/nerdtree'
 "let g:NERDTreeDirArrows=0 " Não mostrar símbolos na lateral dos nomes
 " Improves performance of the SyntaxHighlighting and removes the lag
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1
 let g:NERDTreeSyntaxEnabledExtensions = ['c', 'h', 'cpp', 'hpp', 'py', 'md', 'txt', 'java', 'sh', 'vim', 'json']
-let g:NERDTreeIgnore = ['\.o$', '\.pyc$', '\~$', '\.gif', '\.jpg', '\.png']
+```
 
+
+```vim
 " Removes the little arrows that indicate whether a folder is open or not
 " These are not needed anymore because of the folder icons from devicons
 " let NERDTreeDirArrowExpandable = "\u00a0"
@@ -440,10 +418,19 @@ let g:NERDTreeAutoDeleteBuffer = 1
 let g:NERDTreeHijackNetrw = 1
 " let NERDTreeDirArrowExpandable=">"
 " let NERDTreeDirArrowCollapsible="v"
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 
 let NERDTreeNodeDelimiter="😀"
-"
+
+" Abre automaticamente a tree se não for passado nenhum arquivo
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Abre automaticamente a tree se for passado um diretório como argumento
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+" Fecha o vim se a única janela aberta for a do nerdtree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 "
 " " Nerd_Commenter 注释增强 <Leader>c<Space>
 " let g:NERDSpaceDelims = 1
@@ -455,27 +442,17 @@ let NERDTreeNodeDelimiter="😀"
 
 ```
 
-</p>
-</details>
 
 ### TOML
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 Plugin 'cespare/vim-toml'
 ```
 
-</p>
-</details>
 
 ### Typescript
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 Plugin 'Quramy/tsuquyomi'
@@ -488,14 +465,18 @@ let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' ch
 autocmd BufNewFile,BufRead *.ts set syntax=typescript
 ```
 
-</p>
-</details>
+
+### Typescript
+
+
+```vim
+Plugin 'shinglyu/vim-codespell'
+:autocmd BufWritePre *.java :Codespell
+```
+
 
 ### Dark powered neo-completion
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 
@@ -510,14 +491,16 @@ autocmd BufNewFile,BufRead *.ts set syntax=typescript
 "let g:deoplete#enable_at_startup = 1
 ```
 
-</p>
-</details>
+
+## Metatrader
+
+
+```vim
+Plugin 'rupurt/vim-mql5'
+```
 
 ## Configuração geral
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 " OSX stupid backspace fix
@@ -526,14 +509,9 @@ set backspace=indent,eol,start
 let g:elite_mode=1
 ```
 
-</p>
-</details>
 
 ## Configuração do neomake
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 let g:neomake_open_list = 2
@@ -542,14 +520,9 @@ let g:neomake_logfile='/tmp/neomake_error.log'
 let g:neomake_highlight_columns=1
 ```
 
-</p>
-</details>
 
 ### Coffeescript
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 npm install -g coffeelint
@@ -558,69 +531,52 @@ let g:neomake_coffeescript_enabled_makers = ['coffeelint']
 let g:syntastic_coffee_coffeelint_args = "--csv --file ~/coffeelint.json"
 ```
 
-</p>
-</details>
 
 ### Elixir
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 let g:neomake_elixir_enabled_makers = ['mix', 'credo', 'dogma']
 ```
 
-</p>
-</details>
 
-### ruby 
+### Java
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 
 ```
 
-</p>
-</details>
+
+### ruby 
+
+
+```vim
+
+```
+
 
 ### SCSS
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 let g:neomake_scss_enabled_markers = ['scss-lint']
 ```
 
-</p>
-</details>
 
 ### vim-table-mode
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 " tabelas em formato markdown
 let g:table_mode_corner='|'
 ```
 
-</p>
-</details>
 
 ## Melhorar a visibilidade da indentação
 
 Incluir `Plugin 'Yggdroot/indentLine'` no vundle.
 Desabilitado no momento!
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 let g:indentLine_char = '▏'
@@ -629,56 +585,43 @@ let g:indentLine_color_term = 239
 let g:indentLine_setConceal = 0
 ```
 
-</p>
-</details>
 
 ## Configuração do clang-format
 
 A configuração foi extraída para um repositório próprio.
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 " git clone ssh://git@intmain.io:8322/geraldoim/dot_clang_format.git ~/.clang
 " ln -sf ~/.clang/clang-format ~/.clang-format
 
 " map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc,java nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc,java vnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType c,cpp,cxx,objc,java nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,cxx,objc,java vnoremap <buffer><Leader>cf :ClangFormat<CR>
 " if you install vim-operator-user
-autocmd FileType c,cpp,objc,java map <buffer><Leader>x <Plug>(operator-clang-format)
+autocmd FileType c,cpp,cxx,objc,java map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 ```
 
-</p>
-</details>
 
 ### Color scheme
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 set background=dark
+"set background=light
 "colorscheme eldar
 "colorscheme abbott
 "colorscheme wombat
 "colorscheme vimtom
 colorscheme molokai
+colorscheme gruvbox
 ```
 
-</p>
-</details>
 
 ### Atalhos de teclado
 
-<details>
-<summary>Detalhes</summary>
-<p>
 
 ```vim
 map <C-n> :NERDTreeToggle<CR>
@@ -723,5 +666,3 @@ nmap <F8> :bp\|bd #<CR>
 " Ctrl+P configurado acima
 ```
 
-</p>
-</details>

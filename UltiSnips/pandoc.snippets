@@ -108,16 +108,46 @@ endsnippet
 
 snippet post
 +++
-title = "Escolhendo versões dos pacotes no Debian/Ubuntu"
-date = 2019-07-02
+title = "${1:Escolhendo versões dos pacotes no Debian/Ubuntu}"
+date = ${2:`date +%Y-%m-%d`}
 draft = true
-tags = ["sysadmin", "linux", "debian", "ubuntu", "hugo", "apt"]
+tags = ["$3"]
 Description = """
-Como misturar de forma saudável diferentes distribuições do Debian.
-Instale exatamente a versão do aplicativo que você quer sem bagunçar o sistema todo.
+${4:Como misturar de forma saudável diferentes distribuições do Debian.
+Instale exatamente a versão do aplicativo que você quer sem bagunçar o sistema todo.}
 """
-Thumbnail = "img/headers/debian-ubuntu.jpg"
+Thumbnail = "img/headers/${3:debian}.jpg"
 +++
+
+## Referências
+
+* []()
+
+endsnippet
+
+snippet note
+{{% note %}}
+$0
+{{% /note %}}
+endsnippet
+
+
+snippet beamerblock
+\begin{block}{Default}
+Block content.
+\end{block}
+
+\begin{alertblock}{Alert}
+Block content.
+\end{alertblock}
+
+\begin{exampleblock}{Exemplo}
+xxx
+\end{exampleblock}
+endsnippet
+
+snippet hugolink "link para outro post"
+[$1]({{< ref "${1:nanomsg}" "$1" >}})
 endsnippet
 
 # vim: ft=snippets

@@ -21,9 +21,22 @@ endsnippet
 
 snippet header
 // ----------------------------------------------------------------------
-// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 
+endsnippet
+
+snippet header_kashim
+// ----------------------------------------------------------------------
+// Copyright (C) 2020-2020 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2020-2020 Ulisses Massafera <u.massafera@gmail.com>
+// Copyright (C) 2020-2020 Eduardo Stetner <edu.stetner@gmail.com>
+// ----------------------------------------------------------------------
+
+endsnippet
+
+snippet ff
+// Flawfinder: ignore
 endsnippet
 
 snippet cf
@@ -43,19 +56,19 @@ endsnippet
 
 # Cabeçalhos
 
-snippet theader
+snippet header_taoker
 // ----------------------------------------------------------------------
-// Copyright (C) 2018-2019 Anderson Sabara <anderson-sabara@taoker.com.br>
-// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>
+// Copyright (C) 2017-2020 Anderson Sabara <anderson-sabara@taoker.com.br>
+// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>
 // ----------------------------------------------------------------------
 
 endsnippet
 
 snippet gpsheader
 // ----------------------------------------------------------------------
-// Copyright (C) 2017-2018 Geraldo Ribeiro <geraldo@intmain.io>
-// Copyright (C) 2017-2018 Pedro Bruno <pedroguilhermebruno@yahoo.com.br>
-// Copyright (C) 2017-2018 Sergio Ribeiro <segori@gmail.com>
+// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2020 Pedro Bruno <pedroguilhermebruno@yahoo.com.br>
+// Copyright (C) 2017-2020 Sergio Ribeiro <segori@gmail.com>
 // ----------------------------------------------------------------------
 
 endsnippet
@@ -63,7 +76,7 @@ endsnippet
 
 snippet newhpp "Novo arquivo HPP"
 // ----------------------------------------------------------------------
-// Copyright (C) 2017-2019 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 
 #ifndef __${1:FILENAME}_HPP__
@@ -97,7 +110,7 @@ protected:
 };
 
 // ----------------------------------------------------------------------
-// Copyright (C) 2017-2019 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 #include <View01Html$1Record.hpp>
 
@@ -234,7 +247,19 @@ snippet htmlAdd
       .param( "id", id ) );
 endsnippet
 
+snippet htmlAddButton
+  auto sessionObj = basicUserInformation( data );
+  if( !sessionObj ) {
+    redirectTo( data, "/loginFrm01" );
+    return;
+  }
 
+  GrHtmlButton buttons;
+  auto         accountId = sessionObj->accountId();
+
+  content += GR_NL0(
+      buttons.add( GrWebServerURL( "/addWalletRecordFrm01" ).param( "accountId", accountId ), "Nova carteira" ) );
+endsnippet
 
 snippet test
 SCENARIO( "${1:Título do teste}" )
@@ -252,6 +277,13 @@ SCENARIO( "${1:Título do teste}" )
       }
     }
   }
+}
+endsnippet
+
+snippet testcase
+TEST_CASE( "${1:Nome do teste}", "[tag1],[tag2]" )
+{
+
 }
 endsnippet
 
@@ -330,6 +362,12 @@ $1 $2() const
 }
 endsnippet
 
+snippet na2
+#include "${1/.*/\u$0/}.hpp"
+add( "/${1:addXptoRecordFrm01}", &$1 );
+${1/.*/\u$0/} $1;
+endsnippet
+
 snippet na "Nova action" b
 ${1:TestActionNameComplex}
 
@@ -340,7 +378,7 @@ nsClose = '// clang-format off\n} } } } }\n// clang-format on'
 
 
 snip.rv = '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo@intmain.io>'
+snip += '// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>'
 snip += '// ----------------------------------------------------------------------'
 snip += '#ifndef ' + guard
 snip += '#define ' + guard
@@ -356,17 +394,20 @@ snip += ''
 snip += '#endif'
 snip += ''
 snip += '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo@intmain.io>'
+snip += '// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>'
 snip += '// ----------------------------------------------------------------------'
 snip += '#include "' + t[1] + '.hpp"'
 snip += ''
 # snip += nsOpen
 snip += ''
+snip += '// ----------------------------------------------------------------------'
+snip += '//'
+snip += '// ----------------------------------------------------------------------'
 snip += 'void ' + t[1] + '::drawPage( GrWebServerPageData &data ) const'
 snip += '{'
 snip += '  string content;'
 snip += '  content += beginCommonHtml( data );'
-snip += '  content += GR_NL0( GR_H1_( "Exportação de documentos" ) );'
+snip += '  content += GR_NL0( GR_H1_( "' + t[1] + '" ) );'
 snip += '  content += endCommonHtml( data );'
 snip += '  setContent( data, content );'
 snip += '}'
@@ -384,8 +425,8 @@ nsOpen = '// clang-format off\nnamespace br { namespace com { namespace intmain 
 nsClose = '// clang-format off\n} } } } }\n// clang-format on'
 
 snip.rv = '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2018-2019 Anderson Sabara <anderson-sabara@taoker.com.br>'
-snip += '// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
+snip += '// Copyright (C) 2017-2020 Anderson Sabara <anderson-sabara@taoker.com.br>'
+snip += '// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
 snip += '// ----------------------------------------------------------------------'
 snip += '#ifndef ' + guard
 snip += '#define ' + guard
@@ -401,13 +442,16 @@ snip += ''
 snip += '#endif'
 snip += ''
 snip += '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2018-2019 Anderson Sabara <anderson-sabara@taoker.com.br>'
-snip += '// Copyright (C) 2018-2019 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
+snip += '// Copyright (C) 2017-2020 Anderson Sabara <anderson-sabara@taoker.com.br>'
+snip += '// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
 snip += '// ----------------------------------------------------------------------'
 snip += '#include "' + t[1] + '.hpp"'
 snip += ''
 # snip += nsOpen
 snip += ''
+snip += '// ----------------------------------------------------------------------'
+snip += '//'
+snip += '// ----------------------------------------------------------------------'
 snip += 'void ' + t[1] + '::drawPage( GrWebServerPageData &data ) const'
 snip += '{'
 snip += '  string content;'
@@ -428,10 +472,19 @@ finish( data );
 return;
 endsnippet
 
+snippet js
+addJavaScript( "https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.min.js" );
+addDeferJavascript( data, "viewCartRecordFrm01.js" );
+addDeferJavascript( data, "https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js" );
+endsnippet
+
+snippet css
+addStylesheet( data, "https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css" );
+endsnippet
 
 snippet privrepo
 // ----------------------------------------------------------------------
-// Copyright (C) 2017-2019 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 
 // Nome: ${1:Post}
@@ -444,43 +497,67 @@ snippet privrepo
 #include "Edit$1RecordFrm01.hpp"
 #include "List$1RecordFrm01.hpp"
 #include "Update$1RecordFrm01.hpp"
+#include "View$1RecordFrm01.hpp"
 
 class PrivRepo$1Record : public DynamicRepository {
 public:
   PrivRepo$1Record() : DynamicRepository()
   {
-    add( "/list$1RecordFrm01", &list$1RecordFrm01 );
-    add( "/edit$1RecordFrm01", &edit$1RecordFrm01 );
-    add( "/delete$1RecordFrm01", &delete$1RecordFrm01 );
-    add( "/update$1RecordFrm01", &update$1RecordFrm01 );
     add( "/add$1RecordFrm01", &add$1RecordFrm01 );
+    add( "/delete$1RecordFrm01", &delete$1RecordFrm01 );
+    add( "/edit$1RecordFrm01", &edit$1RecordFrm01 );
+    add( "/list$1RecordFrm01", &list$1RecordFrm01 );
+    add( "/update$1RecordFrm01", &update$1RecordFrm01 );
+    add( "/view$1RecordFrm01", &view$1RecordFrm01 );
   }
 
 private:
-  List$1RecordFrm01   list$1RecordFrm01;
-  Edit$1RecordFrm01   edit$1RecordFrm01;
-  Delete$1RecordFrm01 delete$1RecordFrm01;
-  Update$1RecordFrm01 update$1RecordFrm01;
   Add$1RecordFrm01    add$1RecordFrm01;
+  Delete$1RecordFrm01 delete$1RecordFrm01;
+  Edit$1RecordFrm01   edit$1RecordFrm01;
+  List$1RecordFrm01   list$1RecordFrm01;
+  Update$1RecordFrm01 update$1RecordFrm01;
+  View$1RecordFrm01   view$1RecordFrm01;
 };
 
 #endif
 endsnippet
 
-snippet card-image
-content += GR_NL1( GR_DIV( "col s12 m6 l4" ) );
-content += GR_NL2( GR_DIV( "card" ) );
-content += GR_NL3( GR_DIVS( "card-image", GR_IMG( "cls", "src", "alt" ) ) );
+snippet GR_CARD_IMG
+${1:content} += GR_NL0( GR_DIV( "row" ) );
+$1 += GR_NL1( GR_DIV( "col s12 m6 l4" ) );
+$1 += GR_NL2( GR_DIV( "card" ) );
+$1 += GR_NL3( GR_DIVS( "card-image", GR_IMG( "cls", "src", "alt" ) ) );
 
-content += GR_NL3( GR_DIV( "card-content" ) );
-content += GR_NL4( GR_SPAN( "card-title", "Título do card" ) );
-content += GR_NL3( GRxDIV );
+$1 += GR_NL3( GR_DIV( "card-content" ) );
+$1 += GR_NL4( GR_SPAN( "card-title", "Título do card" ) );
+$1 += GR_NL3( GR_P_( "Conteúdo do cartão" ) );
+$1 += GR_NL3( GRxDIV );
 
-content += GR_NL3( GR_DIV( "card-action" ) );
-content += GR_NL3( GRxDIV );
-content += GR_NL4( GR_A( "cls", "text", "href" ) )
-content += GR_NL2( GRxDIV );
-content += GR_NL1( GRxDIV );
+$1 += GR_NL3( GR_DIV( "card-action" ) );
+$1 += GR_NL4( GR_A( "cls", "text", "href" ) );
+$1 += GR_NL3( GRxDIV );
+$1 += GR_NL2( GRxDIV );
+$1 += GR_NL1( GRxDIV );
+$1 += GR_NL0( GRxDIV );
+endsnippet
+
+snippet GR_CARD
+${1:content} += GR_NL0( GR_DIV( "row" ) );
+$1 += GR_NL1( GR_DIV( "col s12 m6 l4" ) );
+$1 += GR_NL2( GR_DIV( "card blue-grey darken-1" ) );
+$1 += GR_NL3( GR_DIV( "card-content white-text" ) );
+$1 += GR_NL4( GR_SPAN( "card-title", "Título do card" ) );
+$1 += GR_NL3( GR_P_( "Conteúdo do cartão" ) );
+$1 += GR_NL3( GRxDIV );
+
+$1 += GR_NL3( GR_DIV( "card-action" ) );
+$1 += GR_NL4( GR_A( "cls", "text", "href" ) );
+$1 += GR_NL4( GR_A( "cls", "text", "href" ) );
+$1 += GR_NL3( GRxDIV );
+$1 += GR_NL2( GRxDIV );
+$1 += GR_NL1( GRxDIV );
+$1 += GR_NL0( GRxDIV );
 endsnippet
 
 snippet GR_A
@@ -489,6 +566,18 @@ endsnippet
 
 snippet GR_IMG
 GR_IMG( cls, src, alt )
+endsnippet
+
+snippet GR_ATTR
+GR_DATA( prop, val )
+endsnippet
+
+snippet GR_DATA
+GR_DATA( name, val )
+endsnippet
+
+snippet GR_CLASS
+GR_CLASS( cls )
 endsnippet
 
 snippet lorem
@@ -552,6 +641,129 @@ buttons.setStyle( "col s12 m3" );
 content += GR_NL0( GR_DIV( "row" ) );
 content += GR_NL1( buttons.next( "/config" ) );
 content += GR_NL0( GRxDIV );
+
+content += GR_NL0( GR_DIVS( "row", buttons.next( "/config" ) ) );
+endsnippet
+
+snippet msg
+content += GR_NL0( GrWebServerMessage::${1:success}( "${2:mensagem}" ) );
+endsnippet
+
+snippet msgl
+content += GR_NL0( GrWebServerMessage::${1:success}WithButton( "${2:url}", "${3:link}", "${4:mensagem}", "${5:title}" ) );
+endsnippet
+
+snippet ctexh
+/*
+ * `!p snip.rv = snip.fn`
+ *
+ * Created on: `git log --format=%aD $fn | tail -1 | sed "s/.*, \([0-9]\+\) \(...\) \(....\) .*/\1 de \2 de \3/"`
+ * Author: CTEx
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ *
+ * Este código fonte é de propriedade exclusiva do Centro Tecnológico do Exército, podendo conter informação confidencial e legalmente protegida.
+ * As informações contidas neste código-fonte estão protegidas por direitos autorais. Exceto quando especificamente permitido, nenhuma parte 
+ * deste código-fonte pode ser distribuída nem reproduzida por nenhum meio, de nenhuma forma, sem a prévia permissão por escrito do
+ * Centro Tecnológico do Exército.
+ * Este código-fonte foi desenvolvido pelo Centro Tecnológico do Exército - C.N.P.J. 08.635.952/0001-93 – detentor legítimo 
+ * de todos os direitos autorais e patrimoniais, sendo terminantemente proibida a cópia, reprodução parcial ou total, 
+ * execução pública, anúncio e exposição, venda e locação sem a devida e expressa autorização contratual 
+ * sob as penas da Lei Federal 9609/98 e 9610/98 e artigo 184 do Código Penal.
+ * CTEx - Centro Tecnológico do Exército Brasileiro 2015
+ * Todos os direitos reservados.
+ * 
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+endsnippet
+
+snippet mu
+[[maybe_unused]] 
+endsnippet
+
+snippet debug
+spdlog::debug( "${0:Mensagem de debug}" );
+endsnippet
+
+snippet rats
+// RATS: ignore
+endsnippet
+
+snippet CustomPage
+GR_WEB_SERVER_PAGE_CUSTOM_PAGE_PUB;
+GR_WEB_SERVER_PAGE_CUSTOM_PAGE_PROT;
+GR_WEB_SERVER_PAGE_CUSTOM_PAGE_PRIV;
+endsnippet
+
+snippet iostream
+#include <iostream>
+
+using namespace std;
+endsnippet
+
+snippet json
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
+endsnippet
+
+snippet banner_dry
+// +-----------------------------------------------------------------------------------------------------+
+// | DRY - ARQUIVO COMUM A VÁRIAS APLICAÇÕES                                                             |
+// +-----------------------------------------------------------------------------------------------------+
+// |  _      _    _                       __  __ _         _                      _            _         |
+// | | |    | |  | |               _     / / / /(_)       | |                    (_)          (_)        |
+// | | |__  | |_ | |_  _ __   ___ (_)   / / / /  _  _ __  | |_  _ __ ___    __ _  _  _ __      _   ___   |
+// | | '_ \ | __|| __|| '_ \ / __|     / / / /  | || '_ \ | __|| '_ \` _ \  / _\` || || '_ \    | | / _ \  |
+// | | | | || |_ | |_ | |_) |\__ \ _  / / / /   | || | | || |_ | | | | | || (_| || || | | | _ | || (_) | |
+// | |_| |_| \__| \__|| .__/ |___/(_)/_/ /_/    |_||_| |_| \__||_| |_| |_| \__,_||_||_| |_|(_)|_| \___/  |
+// |                  | |                                                                                |
+// |                  |_|                                                                                |
+// |                                                                                                     |
+// +-----------------------------------------------------------------------------------------------------+
+endsnippet
+
+snippet intmain_banner
+//   _      _    _                       __  __ _         _                      _            _
+//  | |    | |  | |               _     / / / /(_)       | |                    (_)          (_)
+//  | |__  | |_ | |_  _ __   ___ (_)   / / / /  _  _ __  | |_  _ __ ___    __ _  _  _ __      _   ___
+//  | '_ \ | __|| __|| '_ \ / __|     / / / /  | || '_ \ | __|| '_ \` _ \  / _\` || || '_ \    | | / _ \
+//  | | | || |_ | |_ | |_) |\__ \ _  / / / /   | || | | || |_ | | | | | || (_| || || | | | _ | || (_) |
+//  |_| |_| \__| \__|| .__/ |___/(_)/_/ /_/    |_||_| |_| \__||_| |_| |_| \__,_||_||_| |_|(_)|_| \___/
+//                   | |
+//                   |_|
+endsnippet
+
+snippet intmain_banner2
+//   _       _     _                           __  __  _           _                         _               _
+//  | |     | |   | |                  _      / / / / (_)         | |                       (_)             (_)
+//  | |__   | |_  | |_   _ __    ___  (_)    / / / /   _   _ __   | |_   _ __ ___     __ _   _   _ __        _    ___
+//  | '_ \  | __| | __| | '_ \  / __|       / / / /   | | | '_ \  | __| | '_ ` _ \   / _` | | | | '_ \      | |  / _ \
+//  | | | | | |_  | |_  | |_) | \__ \  _   / / / /    | | | | | | | |_  | | | | | | | (_| | | | | | | |  _  | | | (_) |
+//  |_| |_|  \__|  \__| | .__/  |___/ (_) /_/ /_/     |_| |_| |_|  \__| |_| |_| |_|  \__,_| |_| |_| |_| (_) |_|  \___/
+//                      | |
+//                      |_|
+endsnippet
+
+snippet intmain_banner3
+//  ┬ ┌┐┌ ┌┬┐ ┌┬┐ ┌─┐ ┬ ┌┐┌   ┬ ┌─┐
+//  │ │││  │  │││ ├─┤ │ │││   │ │ │
+//  ┴ ┘└┘  ┴  ┴ ┴ ┴ ┴ ┴ ┘└┘ o ┴ └─┘
+endsnippet
+
+snippet intmain_banner_bin
+//  01101001 01101110 01110100 01101101 01100001 01101001 01101110 00101110 01101001 01101111 
+endsnippet
+
+snippet intmain_banner_dec
+//  104 116 116 112 115 58 47 47 105 110 116 109 97 105 110 46 105 111 
+endsnippet
+
+snippet intmain_banner_hex
+//  68 74 74 70 73 3A 2F 2F 69 6E 74 6D 61 69 6E 2E 69 6F
+endsnippet
+
+snippet intemain_banner_morse
+//  .... - - .--. ... ---... -..-. -..-. .. -. - -- .- .. -. .-.-.- .. ---
 endsnippet
 
 # vim: ft=snippets
