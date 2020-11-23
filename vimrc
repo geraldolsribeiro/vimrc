@@ -678,11 +678,12 @@ endif
 " -------------------------------------------------------------------
 " Configuração semelhante ao nerdtree
 " copiado de https://shapeshed.com/vim-netrw/
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
+let g:netrw_banner       = 0
+let g:netrw_liststyle    = 3 " tree
 let g:netrw_browse_split = 4 " Mantem a arvore aberta
-let g:netrw_altv = 1
-let g:netrw_winsize = 20
+let g:netrw_altv         = 1
+let g:netrw_winsize      = 20 " percentua da janela usado para a listagem
+
 augroup ProjectDrawer
   autocmd!
   "autocmd VimEnter * :Vexplore
@@ -775,6 +776,8 @@ let g:fzf_colors =
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
+" histórico de comandos executados
+set history=1000
 
 set modeline
 set modelines=5
@@ -836,8 +839,11 @@ set incsearch
 
 "set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 
-" Always show statusline
+" sempre exibe a barra de status
 set laststatus=2
+
+" Exibe o nome do arquivo que está sendo editado na janela
+set title
 "
 " Use 256 colours (Use this setting only if your terminal supports 256 colours)
 set t_Co=256
@@ -1027,6 +1033,16 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+" set statusline=%t      " final do nome do arquivo
+" set statusline+=%{&ff} " formato do arquivo
+" set statusline+=%h     " help file flag
+" set statusline+=%m     " modified flag
+" set statusline+=%r     " read only flag
+" set statusline+=%y     " tipo do arquivo
+" set statusline+=%c     " coluna do cursor
+" set statusline+=%l/%L  " linha do cursor/total de linhas
+" set statusline+=\ %P   " percentual do arquivo
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 2 "1
 let g:syntastic_check_on_open = 1 "1 
@@ -1089,9 +1105,15 @@ au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 
 " Mostra 5 linhas abaixo e acima do cursor
 set scrolloff=5
+
+" Mínimo de colunas para rolar horizontalmente
 set sidescroll=1
+
 " Mostra 15 caracteres a direita e esquerda do cursor
 set sidescrolloff=15
+
+" Quebra em pontos convenientes em vez de no meio das palavras
+set linebreak
 
 "   
 "   ### Color scheme
