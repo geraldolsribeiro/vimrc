@@ -127,6 +127,11 @@ Plugin 'francoiscabrol/ranger.vim' " <leader> f
 Plugin 'geraldolsribeiro/vim-auto-markdown'
 "}}}
 "   
+"   ### Tradução
+"   
+"{{{
+Plugin 'voldikss/vim-translator'
+"}}}
 "   ### Plugins genéricos para programação
 "   
 "{{{
@@ -1115,6 +1120,13 @@ set sidescrolloff=15
 " Quebra em pontos convenientes em vez de no meio das palavras
 set linebreak
 
+"   
+"   ### Tradução
+"   
+"{{{
+let g:translator_target_lang='pt'
+let g:translator_source_lang='auto'
+"}}}
 "   
 "   ### Color scheme
 "   
