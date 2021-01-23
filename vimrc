@@ -121,7 +121,7 @@ Plugin 'gilsondev/searchtasks.vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'dhruvasagar/vim-table-mode.git'
 " Lança o ranger a partir do vim
-Plugin 'francoiscabrol/ranger.vim'
+Plugin 'francoiscabrol/ranger.vim' " <leader> f
 
 " Fork do plugin do Marcos Oliveira
 Plugin 'geraldolsribeiro/vim-auto-markdown'
