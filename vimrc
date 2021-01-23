@@ -1049,16 +1049,16 @@ set statusline+=%*
 " set statusline+=\ %P   " percentual do arquivo
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 2 "1
-let g:syntastic_check_on_open = 1 "1 
+let g:syntastic_auto_loc_list = 2 " sugerido pela documentação: 1
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_debug = 0
 
-
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler = 'clang++'
+" FIXME: Verificar se os path abaixo estão atualizados e contemplam o clang
 let g:syntastic_cpp_include_dirs = ['/opt/intmain/dev/linux/usr/include/','../include/','/usr/include/c++/6','/usr/include/x86_64-linux-gnu/c++/6/']
-let g:syntastic_cpp_compiler_options = ' -include ../src/precompile.hpp -std=c++11 -stdlib=libc++ '
+let g:syntastic_cpp_compiler_options = ' -include ../src/precompile.hpp -std=c++17 -stdlib=libc++ '
 let g:syntastic_cpp_checkers=['cppcheck', 'flawfinder', 'clang_tidy']
 let g:syntastic_cpp_clang_tidy_post_args = " -I../include"
 
