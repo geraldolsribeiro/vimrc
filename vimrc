@@ -1210,6 +1210,11 @@ nmap <F8> :bp\|bd #<CR>
 " Seleção de bloco no terminal do xfce que já usa o ctrl+shift+V para colar
 :nnoremap <f4>  <c-v>
 
+
+" https://stackoverflow.com/questions/22407035/using-vim-as-a-c11-ide/22407453#22407453
+"nmap <leader>0 :exec '!clang-modernize -style=Google -format -loop-convert -pass-by-value -replace-auto_ptr -use-nullptr -use-auto -add-override -override-macros '.expand('%:p:h')<CR>
+"nmap <leader>0 :exec '!echo xyz '.expand('%:p:h')<CR>
+
 " Ctrl+P configurado acima
 "}}}
 
