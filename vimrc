@@ -66,6 +66,16 @@ let mapleader="\<space>"
 let maplocalleader="\<space>"
 
 "   
+"   ## Configuração específica para projetos
+"   
+"   O Vim permite ter um .vimrc específico para o projeto fazendo com que
+"   a configuração global fique mais limpa e genérica. Basta criar
+"   o arquivo de configuração no raiz do projeto e habilitar o `exrc`.
+"   
+"{{{
+set exrc
+"}}}
+"   
 "   ## Plugins
 "   
 "   Configura o path de inclusão do `Vundle` e o inicia.
