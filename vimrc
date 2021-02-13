@@ -135,6 +135,7 @@ Plugin 'francoiscabrol/ranger.vim' " <leader> f
 
 " Fork do plugin do Marcos Oliveira
 Plugin 'geraldolsribeiro/vim-auto-markdown'
+Plugin 'vimwiki/vimwiki'
 "}}}
 "   
 "   ### Tradução
