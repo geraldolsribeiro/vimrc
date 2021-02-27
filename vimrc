@@ -592,11 +592,6 @@ filetype plugin indent on    " required
 
 "let &runtimepath.=',~/.vim/bundle/ale'
 
-"
-"let g:solarized_termcolors=16
-"let g:solarized_termtrans = 1
-"colorscheme solarized
-
 "   
 "   ## Configuração do neomake
 "   
@@ -1113,9 +1108,6 @@ set path+=/opt/intmain/dev/*/usr/include/
 set encoding=UTF-8
 set helplang=pt
 
-" fundo transparente vai ser sobrescrito pelo scheme atual
-" hi Normal guibg=NONE ctermbg=NONE
-
 ",**/
 
 " https://coderwall.com/p/pupilw/pretty-format-xml-in-vim
@@ -1158,8 +1150,16 @@ set background=dark
 "colorscheme abbott
 "colorscheme wombat
 "colorscheme vimtom
+"colorscheme solarized
 colorscheme molokai
 colorscheme gruvbox
+
+" Força fundo transparente sobre o esquema de cores atual
+hi Normal guibg=NONE ctermbg=NONE
+"
+"let g:solarized_termcolors=16
+"let g:solarized_termtrans = 1
+
 "}}}
 "
 
