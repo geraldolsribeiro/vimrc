@@ -62,7 +62,7 @@ set autoindent                " Indenta com o ENTER
 set clipboard=unnamedplus     " y e p copiando e colando para a área de transferência do sistema
 set virtualedit=all           " permite mover o cursor para fora do texto e acrescenta espaços em caso de inserção
 
-let mapleader="\<space>"
+let mapleader="\<space>"      " leader usando barra de espaço
 let maplocalleader="\<space>"
 
 "   
@@ -110,6 +110,7 @@ Plugin 'tpope/vim-cucumber.git'
 "{{{
 Plugin 'chr4/nginx.vim'
 "}}}
+"   
 "   ### Utilitários
 "   
 "{{{
@@ -143,6 +144,7 @@ Plugin 'vimwiki/vimwiki'
 "{{{
 Plugin 'voldikss/vim-translator'
 "}}}
+"   
 "   ### Plugins genéricos para programação
 "   
 "{{{
@@ -498,7 +500,7 @@ Plugin 'mg979/vim-visual-multi'
 Plugin 'aklt/plantuml-syntax'
 Plugin 'scrooloose/vim-slumlord'
 
-" FIXME: Separar os cara abaixo
+" FIXME: Separar os plugins abaixo
 "
 "Bundle 'aming/vim-mason'
 Plugin 'airblade/vim-gitgutter'
@@ -843,7 +845,10 @@ let g:localvimrc_persistent = 2
 set noerrorbells
 set visualbell
 
-let g:slumlord_plantuml_jar_path = "~/bin/plantuml.jar"
+let g:slumlord_plantuml_jar_path = "/usr/share/plantuml/plantuml.jar"
+let g:slumlord_plantuml_include_path = "~/.config/plantuml/include/"
+let g:slumlord_separate_win = 1
+let g:slumlord_asciiart_utf = 1
 
 " Use ack instead of grep
 set grepprg=ack
@@ -1280,4 +1285,8 @@ endfunction
 
 "nnoremap <C-F12> :tabnew\|0r!grep -n  #<Left><Left>
 
-" vim: foldmethod=marker
+"   ## Destaque para as seções deste arquivo
+highlight MyGroup ctermbg=green ctermfg=white
+match MyGroup /"   #.*/
+
+" vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br :
