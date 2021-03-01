@@ -1286,7 +1286,10 @@ endfunction
 "nnoremap <C-F12> :tabnew\|0r!grep -n  #<Left><Left>
 
 "   ## Destaque para as seções deste arquivo
+"
+"{{{
 highlight MyGroup ctermbg=green ctermfg=white
 match MyGroup /"   #.*/
+"}}}
 
 " vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br :

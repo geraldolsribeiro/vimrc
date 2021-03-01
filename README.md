@@ -1,4 +1,6 @@
 [//]: <> (Documentação gerada com intmain_docmd)
+Fonte: `vimrc`
+
 # vimrc de Geraldo Ribeiro
 
 ## Sumário
@@ -8,11 +10,13 @@
   * [Atualização](#atualização)
   * [Outras dependências](#outras-dependências)
   * [Variáveis do vim e seus prefixos](#variáveis-do-vim-e-seus-prefixos)
+  * [Configuração específica para projetos](#configuração-específica-para-projetos)
   * [Plugins](#plugins)
       * [FZF](#fzf)
       * [Cucumber](#cucumber)
       * [Servidores web](#servidores-web)
       * [Utilitários](#utilitários)
+      * [Tradução](#tradução)
       * [Plugins genéricos para programação](#plugins-genéricos-para-programação)
       * [Comentários](#comentários)
       * [Markdown / Escrita](#markdown-/-escrita)
@@ -29,6 +33,7 @@
       * [Typescript](#typescript)
       * [Dark powered neo-completion](#dark-powered-neo-completion)
   * [Metatrader](#metatrader)
+  * [Auto completar](#auto-completar)
   * [Configuração geral](#configuração-geral)
   * [Configuração do neomake](#configuração-do-neomake)
       * [Coffeescript](#coffeescript)
@@ -39,8 +44,10 @@
       * [vim-table-mode](#vim-table-mode)
   * [Melhorar a visibilidade da indentação](#melhorar-a-visibilidade-da-indentação)
   * [Configuração do clang-format](#configuração-do-clang-format)
+      * [Tradução](#tradução)
       * [Color scheme](#color-scheme)
       * [Atalhos de teclado](#atalhos-de-teclado)
+  * [Destaque para as seções deste arquivo](#destaque-para-as-seções-deste-arquivo)
 
 
 ## Instalação
@@ -93,6 +100,18 @@ echo v:var                     " v: vim special
 ```
 
 
+## Configuração específica para projetos
+
+O Vim permite ter um .vimrc específico para o projeto fazendo com que
+a configuração global fique mais limpa e genérica. Basta criar
+o arquivo de configuração no raiz do projeto e habilitar o `exrc`.
+
+
+```vim
+set exrc
+```
+
+
 ## Plugins
 
 Configura o path de inclusão do `Vundle` e o inicia.
@@ -132,6 +151,7 @@ Plugin 'tpope/vim-cucumber.git'
 Plugin 'chr4/nginx.vim'
 ```
 
+
 ### Utilitários
 
 
@@ -149,14 +169,24 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'benmills/vimux'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'gilsondev/searchtasks.vim'
-Plugin 'Shougo/neocomplete.vim'
+"Plugin 'Shougo/neocomplete.vim'
+"Plugin 'xavierd/clang_complete'
 Plugin 'tpope/vim-dispatch'
 Plugin 'dhruvasagar/vim-table-mode.git'
 " Lança o ranger a partir do vim
-Plugin 'francoiscabrol/ranger.vim'
+Plugin 'francoiscabrol/ranger.vim' " <leader> f
 
 " Fork do plugin do Marcos Oliveira
 Plugin 'geraldolsribeiro/vim-auto-markdown'
+Plugin 'vimwiki/vimwiki'
+```
+
+
+### Tradução
+
+
+```vim
+Plugin 'voldikss/vim-translator'
 ```
 
 
@@ -286,7 +316,7 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 ```vim
 Plugin 'vim-erlang/vim-erlang-tags'
 Plugin 'vim-erlang/vim-erlang-runtime'
-Plugin 'vim-erlang/vim-erlang-omnicomplete'
+"Plugin 'vim-erlang/vim-erlang-omnicomplete'
 Plugin 'vim-erlang/vim-erlang-compiler'
 ```
 
@@ -425,11 +455,11 @@ let NERDTreeNodeDelimiter="😀"
 
 " Abre automaticamente a tree se não for passado nenhum arquivo
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Abre automaticamente a tree se for passado um diretório como argumento
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 " Fecha o vim se a única janela aberta for a do nerdtree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 "
 " " Nerd_Commenter 注释增强 <Leader>c<Space>
@@ -498,6 +528,17 @@ Plugin 'shinglyu/vim-codespell'
 ```vim
 Plugin 'rupurt/vim-mql5'
 ```
+
+
+## Auto completar
+
+
+```vim
+Plugin 'neoclide/coc.nvim'
+" coc.nvim works best on vim >= 8.1.1719 and neovim >= 0.4.0, consider upgrade your vim.
+let g:coc_disable_startup_warning = 1
+```
+
 
 ## Configuração geral
 
@@ -605,6 +646,15 @@ nmap <Leader>C :ClangFormatAutoToggle<CR>
 ```
 
 
+### Tradução
+
+
+```vim
+let g:translator_target_lang='pt'
+let g:translator_source_lang='auto'
+```
+
+
 ### Color scheme
 
 
@@ -615,8 +665,16 @@ set background=dark
 "colorscheme abbott
 "colorscheme wombat
 "colorscheme vimtom
+"colorscheme solarized
 colorscheme molokai
 colorscheme gruvbox
+
+" Força fundo transparente sobre o esquema de cores atual
+hi Normal guibg=NONE ctermbg=NONE
+"
+"let g:solarized_termcolors=16
+"let g:solarized_termtrans = 1
+
 ```
 
 
@@ -663,6 +721,18 @@ nmap <F8> :bp\|bd #<CR>
 " Seleção de bloco no terminal do xfce que já usa o ctrl+shift+V para colar
 :nnoremap <f4>  <c-v>
 
+
+" https://stackoverflow.com/questions/22407035/using-vim-as-a-c11-ide/22407453#22407453
+"nmap <leader>0 :exec '!clang-modernize -style=Google -format -loop-convert -pass-by-value -replace-auto_ptr -use-nullptr -use-auto -add-override -override-macros '.expand('%:p:h')<CR>
+"nmap <leader>0 :exec '!echo xyz '.expand('%:p:h')<CR>
+
 " Ctrl+P configurado acima
+```
+
+## Destaque para as seções deste arquivo
+
+```vim
+highlight MyGroup ctermbg=green ctermfg=white
+match MyGroup /"   #.*/
 ```
 
