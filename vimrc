@@ -175,6 +175,7 @@ Plugin 'tomtom/tcomment_vim'
 "   ### Markdown / Escrita
 "   
 "{{{
+Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
 Plugin 'reedes/vim-pencil'
 Plugin 'tpope/vim-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
@@ -297,7 +298,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'sjl/badwolf'
 Plugin 'tomasr/molokai'
 Plugin 'morhetz/gruvbox'
-Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+"Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plugin 'dracula/vim', { 'name': 'dracula' }
 Plugin 'junegunn/limelight.vim'
 Plugin 'mkarmona/colorsbox'
 Plugin 'romainl/Apprentice'
@@ -659,6 +661,12 @@ let g:airline_theme='hybrid'
 let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 0
 "let g:airline_left_sep='>'
+
+" https://github.com/vim-airline/vim-airline/wiki/Screenshots
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+
+
 
 let g:neomake_cpp_enable_markers=['clang']
 let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined", "-g"]
@@ -1156,11 +1164,12 @@ set background=dark
 "colorscheme wombat
 "colorscheme vimtom
 "colorscheme solarized
+"colorscheme dracula
 colorscheme molokai
 colorscheme gruvbox
 
 " Força fundo transparente sobre o esquema de cores atual
-hi Normal guibg=NONE ctermbg=NONE
+" hi Normal guibg=NONE ctermbg=NONE
 "
 "let g:solarized_termcolors=16
 "let g:solarized_termtrans = 1
@@ -1291,5 +1300,20 @@ endfunction
 highlight MyGroup ctermbg=green ctermfg=white
 match MyGroup /"   #.*/
 "}}}
+
+command MeuComando echo "Olá mundo!"
+
+function MinhaFuncao()
+  echo "Minha função"
+endfunction
+
+command MinhaFuncao :call MinhaFuncao()
+"       comando           função
+"
+
+" Artigos para olhar com calma no futuro
+"
+" https://thevaluable.dev/vim-advanced/
+" https://thevaluable.dev/vim-search-find-replace/
 
 " vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br :
