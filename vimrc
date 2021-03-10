@@ -1310,6 +1310,46 @@ endfunction
 command MinhaFuncao :call MinhaFuncao()
 "       comando           função
 "
+" ----------------------------------------
+" https://www.reddit.com/r/vim/comments/cbgnol/live_reload_for_vimweb_development/
+"~/bin/refresh
+"#!/bin/sh
+"# switch to Firefox and refresh the active tab
+"xdotool search --name "Mozilla Firefox" windowactivate --sync
+"sleep 0.5
+"xdotool key ctrl+r
+"Then, in my vimrc:
+
+" write and refresh in browser
+map ww<cr> w<cr> :silent! !~/bin/refresh_chrome<cr>
+"cmap ww<cr> w<cr> :silent! !~/bin/refresh_firefox<cr>
+"
+" npm install -g browser-sync
+"
+" function! ReloadBrowser()
+"     silent exe "!osascript -e 'tell app \"Firefox\" to activate\<cr>
+"             \tell app \"System events\"\<cr> keystroke \"r\" using command down\<cr>
+"             \end tell'"
+"     silent exe "!osascript -e 'tell app \"Iterm2\" to activate'"
+" endfunction
+"
+" let s:auto_reload = v:false
+"
+" function! ToggleAutoReload()
+"     if s:auto_reload
+"         augroup AutoReload
+"             au!
+"             autocmd BufWritePost *.filetype call ReloadBrowser()
+"         augroup END
+"     else
+"         augroup AutoReload
+"             au!
+"         augroup END
+"     endif
+"     let s:auto_reload = !s:auto_reload
+" endfunction
+"
+" ----------------------------------------
 
 " Artigos para olhar com calma no futuro
 "
