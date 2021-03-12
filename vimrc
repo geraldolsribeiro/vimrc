@@ -1354,6 +1354,9 @@ map ww<cr> w<cr> :silent! !~/bin/refresh_chrome<cr>
 " Vim Scripting
 "
 " :help vim-script-intro
+" :help usr_41.txt
+" :help function-list
+"
 "
 " :nmap ;s :source /full/path/to/the/scriptfile.vim<CR>
 " :nmap \b :call MyBackupFunc(expand('%'), { 'all': 1 })<CR>
@@ -1363,6 +1366,8 @@ map ww<cr> w<cr> :silent! !~/bin/refresh_chrome<cr>
 " https://thevaluable.dev/vim-advanced/
 " https://thevaluable.dev/vim-search-find-replace/
 
+" Reler este artigo
+" https://developer.ibm.com/technologies/linux/articles/l-vim-script-1/
 " Exemplo
 function! ToggleSyntax()
   if exists("g:syntax_on")
