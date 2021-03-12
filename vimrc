@@ -1351,9 +1351,27 @@ map ww<cr> w<cr> :silent! !~/bin/refresh_chrome<cr>
 "
 " ----------------------------------------
 
+" Vim Scripting
+"
+" :help vim-script-intro
+"
+" :nmap ;s :source /full/path/to/the/scriptfile.vim<CR>
+" :nmap \b :call MyBackupFunc(expand('%'), { 'all': 1 })<CR>
+"
 " Artigos para olhar com calma no futuro
 "
 " https://thevaluable.dev/vim-advanced/
 " https://thevaluable.dev/vim-search-find-replace/
+
+" Exemplo
+function! ToggleSyntax()
+  if exists("g:syntax_on")
+    syntax off
+  else
+    syntax enable
+  endif
+endfunction
+
+nmap <silent>  ;s  :call ToggleSyntax()<CR>
 
 " vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br :
