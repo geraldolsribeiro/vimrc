@@ -178,7 +178,8 @@ Plugin 'francoiscabrol/ranger.vim' " <leader> f
 
 " Fork do plugin do Marcos Oliveira
 Plugin 'geraldolsribeiro/vim-auto-markdown'
-Plugin 'vimwiki/vimwiki'
+" vimwiki está interferindo no autocomplete
+" Plugin 'vimwiki/vimwiki'
 ```
 
 
@@ -224,6 +225,7 @@ Para definir o comentário para um novo tipo use:
 
 
 ```vim
+Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
 Plugin 'reedes/vim-pencil'
 Plugin 'tpope/vim-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
@@ -351,7 +353,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'sjl/badwolf'
 Plugin 'tomasr/molokai'
 Plugin 'morhetz/gruvbox'
-Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+"Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plugin 'dracula/vim', { 'name': 'dracula' }
 Plugin 'junegunn/limelight.vim'
 Plugin 'mkarmona/colorsbox'
 Plugin 'romainl/Apprentice'
@@ -666,11 +669,12 @@ set background=dark
 "colorscheme wombat
 "colorscheme vimtom
 "colorscheme solarized
+"colorscheme dracula
 colorscheme molokai
 colorscheme gruvbox
 
 " Força fundo transparente sobre o esquema de cores atual
-hi Normal guibg=NONE ctermbg=NONE
+" hi Normal guibg=NONE ctermbg=NONE
 "
 "let g:solarized_termcolors=16
 "let g:solarized_termtrans = 1
@@ -736,3 +740,19 @@ highlight MyGroup ctermbg=green ctermfg=white
 match MyGroup /"   #.*/
 ```
 
+    comando           função
+  silent exe "!osascript -e 'tell app \"Firefox\" to activate\<cr>
+          \tell app \"System events\"\<cr> keystroke \"r\" using command down\<cr>
+          \end tell'"
+  silent exe "!osascript -e 'tell app \"Iterm2\" to activate'"
+  if s:auto_reload
+      augroup AutoReload
+          au!
+          autocmd BufWritePost *.filetype call ReloadBrowser()
+      augroup END
+  else
+      augroup AutoReload
+          au!
+      augroup END
+  endif
+  let s:auto_reload = !s:auto_reload
