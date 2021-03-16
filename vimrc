@@ -1388,4 +1388,10 @@ endfunction
 
 nmap <silent>  ;s  :call ToggleSyntax()<CR>
 
+" Executa o comando google passando a palavra sob o cursor quando for
+" pressionado K
+set keywordprg=google
+" comporamento default
+set keywordprg=man\ -s
+
 " vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br :
