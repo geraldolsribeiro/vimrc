@@ -188,8 +188,9 @@ endsnippet
 snippet htmlList
 string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
+content += setPageTitle( data, "Listar" );
 content += beginCommonHtml( data );
-content += GR_NL0( GR_H1_( "Listar" ) );
+content += GR_NL0( GR_H1_( pageTitle( data ) ) );
 content += GR_NL0( hrec.htmlList("$0") );
 content += endCommonHtml( data );
 setContent( data, content );
@@ -198,8 +199,9 @@ endsnippet
 snippet htmlView
 string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
+content += setPageTitle( data, "Visualizar" );
 content += beginCommonHtml( data );
-content += GR_NL0( GR_H1_( "Visualizar" ) );
+content += GR_NL0( GR_H1_( pageTitle( data ) ) );
 content += GR_NL0( hrec.htmlView("$0") );
 content += endCommonHtml( data );
 setContent( data, content );
@@ -208,8 +210,9 @@ endsnippet
 snippet htmlEdit
 string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
+content += setPageTitle( data, "Edição" );
 content += beginCommonHtml( data );
-content += GR_NL0( GR_H1_( "Edição" ) );
+content += GR_NL0( GR_H1_( pageTitle( data ) ) );
 content += GR_NL0( hrec.htmlEdit("$0") );
 content += endCommonHtml( data );
 setContent( data, content );
@@ -218,8 +221,9 @@ endsnippet
 snippet htmlUpdate
 string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
+content += setPageTitle( data, "Atualizar" );
 content += beginCommonHtml( data );
-content += GR_NL0( GR_H1_( "Atualizar" ) );
+content += GR_NL0( GR_H1_( pageTitle( data ) ) );
 content += GR_NL0( hrec.htmlUpdate( Databases.Seq ) );
 content += endCommonHtml( data );
 setContent( data, content );
@@ -228,8 +232,9 @@ endsnippet
 snippet htmlDelete
 string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
+content += setPageTitle( data, "Remover" );
 content += beginCommonHtml( data );
-content += GR_NL0( GR_H1_( "Remover" ) );
+content += GR_NL0( GR_H1_( pageTitle( data ) ) );
 content += GR_NL0( hrec.htmlDelete() );
 content += endCommonHtml( data );
 setContent( data, content );
@@ -418,8 +423,9 @@ snip += '// --------------------------------------------------------------------
 snip += 'void ' + t[1] + '::drawPage( GrWebServerPageData &data ) const'
 snip += '{'
 snip += '  string content;'
+snip += '  setPageTitle( data, "' + t[1] + '" );'
 snip += '  content += beginCommonHtml( data );'
-snip += '  content += GR_NL0( GR_H1_( "' + t[1] + '" ) );'
+snip += '  content += GR_NL0( GR_H1_( pageTitle( data ) ) );'
 snip += '  content += endCommonHtml( data );'
 snip += '  setContent( data, content );'
 snip += '}'
@@ -467,8 +473,9 @@ snip += '// --------------------------------------------------------------------
 snip += 'void ' + t[1] + '::drawPage( GrWebServerPageData &data ) const'
 snip += '{'
 snip += '  string content;'
+snip += '  setPageTitle( data, "Exportação de documentos" );'
 snip += '  content += beginCommonHtml( data );'
-snip += '  content += GR_NL0( GR_H1_( "Exportação de documentos" ) );'
+snip += '  content += GR_NL0( GR_H1_( pageTitle( data ) ) );'
 snip += '  content += endCommonHtml( data );'
 snip += '  setContent( data, content );'
 snip += '}'
@@ -658,11 +665,23 @@ content += GR_NL0( GR_DIVS( "row", buttons.next( "/config" ) ) );
 endsnippet
 
 snippet msg
-content += GR_NL0( GrWebServerMessage::${1:success}( "${2:mensagem}" ) );
+content += GR_NL0( GrHtmlMessage::${1:success}( "${2:mensagem}" ) );
+endsnippet
+
+snippet success
+content += GR_NL0( GrHtmlMessage::success( "${1:mensagem}" ) );
+endsnippet
+
+snippet warning
+content += GR_NL0( GrHtmlMessage::warning( "${1:mensagem}" ) );
+endsnippet
+
+snippet info
+content += GR_NL0( GrHtmlMessage::info( "${1:mensagem}" ) );
 endsnippet
 
 snippet msgl
-content += GR_NL0( GrWebServerMessage::${1:success}WithButton( "${2:url}", "${3:link}", "${4:mensagem}", "${5:title}" ) );
+content += GR_NL0( GrHtmlMessage::${1:success}WithButton( "${2:url}", "${3:link}", "${4:mensagem}", "${5:title}" ) );
 endsnippet
 
 snippet ctexh

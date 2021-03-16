@@ -1155,7 +1155,7 @@ colorscheme molokai
 colorscheme gruvbox
 
 " Força fundo transparente sobre o esquema de cores atual
-hi Normal guibg=NONE ctermbg=NONE
+" hi Normal guibg=NONE ctermbg=NONE
 "
 "let g:solarized_termcolors=16
 "let g:solarized_termtrans = 1
@@ -1279,5 +1279,7 @@ function! GrCppAutoDoc()
 endfunction
 
 "nnoremap <C-F12> :tabnew\|0r!grep -n  #<Left><Left>
+
+nmap <leader>h :e /opt/intmain/dev/linux/usr/share/Gr/scripts/Common/Makefile.include<CR>
 
 " vim: foldmethod=marker
