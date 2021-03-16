@@ -136,7 +136,8 @@ Plugin 'francoiscabrol/ranger.vim' " <leader> f
 
 " Fork do plugin do Marcos Oliveira
 Plugin 'geraldolsribeiro/vim-auto-markdown'
-Plugin 'vimwiki/vimwiki'
+" vimwiki está interferindo no autocomplete
+" Plugin 'vimwiki/vimwiki'
 "}}}
 "   
 "   ### Tradução
@@ -1355,7 +1356,11 @@ map ww<cr> w<cr> :silent! !~/bin/refresh_chrome<cr>
 "
 " :help vim-script-intro
 " :help usr_41.txt
+" :help function
 " :help function-list
+" :help keycodes
+" :help autocmd-events
+" :help autocmd-events-abc
 "
 "
 " :nmap ;s :source /full/path/to/the/scriptfile.vim<CR>
@@ -1368,6 +1373,8 @@ map ww<cr> w<cr> :silent! !~/bin/refresh_chrome<cr>
 
 " Reler este artigo
 " https://developer.ibm.com/technologies/linux/articles/l-vim-script-1/
+" https://developer.ibm.com/articles/l-vim-script-1/
+" https://developer.ibm.com/tutorials/l-vim-script-2/
 " Exemplo
 function! ToggleSyntax()
   if exists("g:syntax_on")
