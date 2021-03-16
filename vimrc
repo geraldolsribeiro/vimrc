@@ -62,7 +62,7 @@ set autoindent                " Indenta com o ENTER
 set clipboard=unnamedplus     " y e p copiando e colando para a área de transferência do sistema
 set virtualedit=all           " permite mover o cursor para fora do texto e acrescenta espaços em caso de inserção
 
-let mapleader="\<space>"
+let mapleader="\<space>"      " leader usando barra de espaço
 let maplocalleader="\<space>"
 
 "   
@@ -110,6 +110,7 @@ Plugin 'tpope/vim-cucumber.git'
 "{{{
 Plugin 'chr4/nginx.vim'
 "}}}
+"   
 "   ### Utilitários
 "   
 "{{{
@@ -135,7 +136,8 @@ Plugin 'francoiscabrol/ranger.vim' " <leader> f
 
 " Fork do plugin do Marcos Oliveira
 Plugin 'geraldolsribeiro/vim-auto-markdown'
-Plugin 'vimwiki/vimwiki'
+" vimwiki está interferindo no autocomplete
+" Plugin 'vimwiki/vimwiki'
 "}}}
 "   
 "   ### Tradução
@@ -143,6 +145,7 @@ Plugin 'vimwiki/vimwiki'
 "{{{
 Plugin 'voldikss/vim-translator'
 "}}}
+"   
 "   ### Plugins genéricos para programação
 "   
 "{{{
@@ -173,6 +176,7 @@ Plugin 'tomtom/tcomment_vim'
 "   ### Markdown / Escrita
 "   
 "{{{
+Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
 Plugin 'reedes/vim-pencil'
 Plugin 'tpope/vim-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
@@ -295,7 +299,8 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'sjl/badwolf'
 Plugin 'tomasr/molokai'
 Plugin 'morhetz/gruvbox'
-Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+"Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plugin 'dracula/vim', { 'name': 'dracula' }
 Plugin 'junegunn/limelight.vim'
 Plugin 'mkarmona/colorsbox'
 Plugin 'romainl/Apprentice'
@@ -498,7 +503,7 @@ Plugin 'mg979/vim-visual-multi'
 Plugin 'aklt/plantuml-syntax'
 Plugin 'scrooloose/vim-slumlord'
 
-" FIXME: Separar os cara abaixo
+" FIXME: Separar os plugins abaixo
 "
 "Bundle 'aming/vim-mason'
 Plugin 'airblade/vim-gitgutter'
@@ -657,6 +662,12 @@ let g:airline_theme='hybrid'
 let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 0
 "let g:airline_left_sep='>'
+
+" https://github.com/vim-airline/vim-airline/wiki/Screenshots
+let g:airline_theme='solarized'
+let g:airline_solarized_bg='dark'
+
+
 
 let g:neomake_cpp_enable_markers=['clang']
 let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined", "-g"]
@@ -838,7 +849,10 @@ let g:localvimrc_persistent = 2
 set noerrorbells
 set visualbell
 
-let g:slumlord_plantuml_jar_path = "~/bin/plantuml.jar"
+let g:slumlord_plantuml_jar_path = "/usr/share/plantuml/plantuml.jar"
+let g:slumlord_plantuml_include_path = "~/.config/plantuml/include/"
+let g:slumlord_separate_win = 1
+let g:slumlord_asciiart_utf = 1
 
 " Use ack instead of grep
 set grepprg=ack
@@ -1151,6 +1165,7 @@ set background=dark
 "colorscheme wombat
 "colorscheme vimtom
 "colorscheme solarized
+"colorscheme dracula
 colorscheme molokai
 colorscheme gruvbox
 
@@ -1282,4 +1297,95 @@ endfunction
 
 nmap <leader>h :e /opt/intmain/dev/linux/usr/share/Gr/scripts/Common/Makefile.include<CR>
 
-" vim: foldmethod=marker
+"   ## Destaque para as seções deste arquivo
+"
+"{{{
+highlight MyGroup ctermbg=green ctermfg=white
+match MyGroup /"   #.*/
+"}}}
+
+command MeuComando echo "Olá mundo!"
+
+function MinhaFuncao()
+  echo "Minha função"
+endfunction
+
+command MinhaFuncao :call MinhaFuncao()
+"       comando           função
+"
+" ----------------------------------------
+" https://www.reddit.com/r/vim/comments/cbgnol/live_reload_for_vimweb_development/
+"~/bin/refresh
+"#!/bin/sh
+"# switch to Firefox and refresh the active tab
+"xdotool search --name "Mozilla Firefox" windowactivate --sync
+"sleep 0.5
+"xdotool key ctrl+r
+"Then, in my vimrc:
+
+" write and refresh in browser
+map ww<cr> w<cr> :silent! !~/bin/refresh_chrome<cr>
+"cmap ww<cr> w<cr> :silent! !~/bin/refresh_firefox<cr>
+"
+" npm install -g browser-sync
+"
+" function! ReloadBrowser()
+"     silent exe "!osascript -e 'tell app \"Firefox\" to activate\<cr>
+"             \tell app \"System events\"\<cr> keystroke \"r\" using command down\<cr>
+"             \end tell'"
+"     silent exe "!osascript -e 'tell app \"Iterm2\" to activate'"
+" endfunction
+"
+" let s:auto_reload = v:false
+"
+" function! ToggleAutoReload()
+"     if s:auto_reload
+"         augroup AutoReload
+"             au!
+"             autocmd BufWritePost *.filetype call ReloadBrowser()
+"         augroup END
+"     else
+"         augroup AutoReload
+"             au!
+"         augroup END
+"     endif
+"     let s:auto_reload = !s:auto_reload
+" endfunction
+"
+" ----------------------------------------
+
+" Vim Scripting
+"
+" :help vim-script-intro
+" :help usr_41.txt
+" :help function
+" :help function-list
+" :help keycodes
+" :help autocmd-events
+" :help autocmd-events-abc
+"
+"
+" :nmap ;s :source /full/path/to/the/scriptfile.vim<CR>
+" :nmap \b :call MyBackupFunc(expand('%'), { 'all': 1 })<CR>
+"
+" Artigos para olhar com calma no futuro
+"
+" https://thevaluable.dev/vim-advanced/
+" https://thevaluable.dev/vim-search-find-replace/
+
+" Reler este artigo
+" https://developer.ibm.com/technologies/linux/articles/l-vim-script-1/
+" https://developer.ibm.com/articles/l-vim-script-1/
+" https://developer.ibm.com/tutorials/l-vim-script-2/
+" Exemplo
+function! ToggleSyntax()
+  if exists("g:syntax_on")
+    syntax off
+  else
+    syntax enable
+  endif
+endfunction
+
+nmap <silent>  ;s  :call ToggleSyntax()<CR>
+
+" vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br :
