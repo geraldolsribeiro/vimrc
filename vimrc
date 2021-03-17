@@ -1443,4 +1443,9 @@ nmap <silent>  ;s  :call ToggleSyntax()<CR>
 syntax match nonascii "[^\x00-\x7F]"
 highlight nonascii guibg=Red ctermbg=2
 
+" Executa o comando google passando a palavra sob o cursor quando for
+" pressionado K
+set keywordprg=google
+" comporamento default
+set keywordprg=man\ -s
 " vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br :
