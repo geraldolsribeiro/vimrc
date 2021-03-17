@@ -521,7 +521,6 @@ Plugin 'rhysd/vim-gfm-syntax'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-surround'
 Plugin 'othree/html5.vim'
 
 " Formatação de código
