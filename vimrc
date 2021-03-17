@@ -138,7 +138,9 @@ highlight BookmarkSign ctermbg=NONE ctermfg=160
 highlight BookmarkLine ctermbg=194 ctermfg=NONE
 " let g:bookmark_sign = '♥'
 let g:bookmark_highlight_lines = 1
-let g:bookmark_save_per_working_dir = 1
+let g:bookmark_auto_save = 1
+let g:bookmark_save_per_working_dir = 0
+let g:bookmark_auto_save_file = $HOME .'/.vim/bookmarks'
 "}}}
 "   
 "   ### Utilitários
@@ -978,7 +980,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 "set colorcolumn=28,120
-set colorcolumn=120
+set colorcolumn=80,120
 
 set cursorline
 set cursorcolumn
@@ -1115,10 +1117,11 @@ highlight link SyntasticStyleWarningSign SignColumn
 
 let g:syntastic_cpp_check_header = 1
 let g:syntastic_cpp_compiler = 'clang++'
+"let g:syntastic_cpp_compiler = 'gcc'
 " FIXME: Verificar se os path abaixo estão atualizados e contemplam o clang
 let g:syntastic_cpp_include_dirs = ['/opt/intmain/dev/linux/usr/include/','../include/','/usr/include/c++/6','/usr/include/x86_64-linux-gnu/c++/6/']
 let g:syntastic_cpp_compiler_options = ' -include ../src/precompile.hpp -std=c++17 -stdlib=libc++ '
-let g:syntastic_cpp_checkers=['cppcheck', 'flawfinder', 'clang_tidy']
+let g:syntastic_cpp_checkers=['gcc', 'cppcheck', 'flawfinder', 'clang_tidy']
 let g:syntastic_cpp_clang_tidy_post_args = " -I../include"
 
 let g:syntastic_filetype_map = { 'mkd': 'markdown' }
