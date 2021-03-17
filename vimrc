@@ -111,11 +111,17 @@ Plugin 'tpope/vim-cucumber.git'
 Plugin 'chr4/nginx.vim'
 "}}}
 "   
+"   ### Sorround
+"   
+"{{{
+Plugin 'tpope/vim-surround'           "FIXME: Tem um link para um tutorial no final do arquivo, converter para seção
+"}}}
+"   
 "   ### Utilitários
 "   
 "{{{
 Plugin 'powerline/powerline-fonts'
-"Plugin 'geraldolsribeiro/vim-conceal'
+Plugin 'geraldolsribeiro/vim-conceal' " Exibição de caracteres
 "Plugin 'Yggdroot/indentLine'
 Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
@@ -1377,6 +1383,7 @@ map ww<cr> w<cr> :silent! !~/bin/refresh_chrome<cr>
 " https://developer.ibm.com/technologies/linux/articles/l-vim-script-1/
 " https://developer.ibm.com/articles/l-vim-script-1/
 " https://developer.ibm.com/tutorials/l-vim-script-2/
+" https://medium.com/weekly-webtips/vim-neovim-silverlight-ctags-make-up-an-awesome-editor-49f3980b575d
 " Exemplo
 function! ToggleSyntax()
   if exists("g:syntax_on")
@@ -1387,5 +1394,53 @@ function! ToggleSyntax()
 endfunction
 
 nmap <silent>  ;s  :call ToggleSyntax()<CR>
+
+
+" ## Defining command line commands
+" 
+" Vim enables you to define your own commands. You execute these commands just
+" like other command-line mode command. To define a command use :command command
+" as follows:
+" 
+" :command CmdName execute_me
+" 
+" Now when you execute the command :CmdName, Vim executes :execute_me.
+" 
+" To list the user-defined commands, execute the following command:
+" 
+" :command
+" 
+" User-defined commands can take a series of arguments. The number of arguments
+" must be specified by the -nargs option. For instance, the example :CmdName
+" command takes no arguments, so you could have defined it as:
+" 
+" :command CmdName -nargs=0 CmdName execute_me
+" 
+" However, because zero arguments is the default, you do not need to add
+" -nargs=0. The other values of -nargs are as follows:
+" 
+" -nargs=0: No arguments
+" -nargs=1: One argument
+" -nargs=*: Any number of arguments
+" -nargs=?: Zero or one argument
+" -nargs=+: One or more arguments
+" 
+" To redefine the same command, use the ! argument:
+" 
+" :command -nargs=+ Say :echo <args>
+" 
+" :command! -nargs=+ Say :echo <q-args>
+" 
+" To delete all the user commands:
+" 
+" :comclear
+
+" FIXME: É possível criar comandos para automatizar o sorround
+" http://www.futurile.net/2016/03/19/vim-surround-plugin-tutorial/
+"
+
+" Destaca os caracteres não ASCII
+syntax match nonascii "[^\x00-\x7F]"
+highlight nonascii guibg=Red ctermbg=2
 
 " vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br :
