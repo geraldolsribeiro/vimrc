@@ -117,6 +117,30 @@ Plugin 'chr4/nginx.vim'
 Plugin 'tpope/vim-surround'           "FIXME: Tem um link para um tutorial no final do arquivo, converter para seção
 "}}}
 "   
+"   ### Bookmarks
+"   
+" Action	Shortcut	Command
+" mm Add/remove bookmark at current line	mm	:BookmarkToggle
+" mi Add/edit/remove annotation at current line	mi	:BookmarkAnnotate <TEXT>
+" mn Jump to next bookmark in buffer	mn	:BookmarkNext
+" mp Jump to previous bookmark in buffer	mp	:BookmarkPrev
+" ma Show all bookmarks (toggle)	ma	:BookmarkShowAll
+" mc Clear bookmarks in current buffer only	mc	:BookmarkClear
+" mx Clear bookmarks in all buffers	mx	:BookmarkClearAll
+" mkk Move up bookmark at current line	[count]mkk	:BookmarkMoveUp [<COUNT>]
+" mjj Move down bookmark at current line	[count]mjj	:BookmarkMoveDown [<COUNT>]
+" mg Move bookmark at current line to another line	[count]mg	:BookmarkMoveToLine <LINE>
+" Save all bookmarks to a file		:BookmarkSave <FILE_PATH>
+" Load bookmarks from a file		:BookmarkLoad <FILE_PATH>
+"{{{
+Plugin 'MattesGroeger/vim-bookmarks'
+highlight BookmarkSign ctermbg=NONE ctermfg=160
+highlight BookmarkLine ctermbg=194 ctermfg=NONE
+" let g:bookmark_sign = '♥'
+let g:bookmark_highlight_lines = 1
+let g:bookmark_save_per_working_dir = 1
+"}}}
+"   
 "   ### Utilitários
 "   
 "{{{
@@ -1436,6 +1460,11 @@ nmap <silent>  ;s  :call ToggleSyntax()<CR>
 
 " FIXME: É possível criar comandos para automatizar o sorround
 " http://www.futurile.net/2016/03/19/vim-surround-plugin-tutorial/
+"
+
+" FIXME: Criar uma seção sobre conceal
+"https://alok.github.io/2018/04/26/using-vim-s-conceal-to-make-languages-more-tolerable/#:~:text=Vim%20(and%20Emacs)%20have%20features,line%2C%20the%20conceal%20goes%20away.&text=It's%20really%20easy%20to%20abuse,but%20you%2C%20unlike%20code%20formatting.
+" https://github.com/pangloss/vim-javascript
 "
 
 " Destaca os caracteres não ASCII
