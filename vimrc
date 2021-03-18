@@ -119,20 +119,20 @@ Plugin 'tpope/vim-surround'           "FIXME: Tem um link para um tutorial no fi
 "   
 "   ### Bookmarks
 "   
-" Action	Shortcut	Command
-" mm Add/remove bookmark at current line	mm	:BookmarkToggle
-" mi Add/edit/remove annotation at current line	mi	:BookmarkAnnotate <TEXT>
-" mn Jump to next bookmark in buffer	mn	:BookmarkNext
-" mp Jump to previous bookmark in buffer	mp	:BookmarkPrev
-" ma Show all bookmarks (toggle)	ma	:BookmarkShowAll
-" mc Clear bookmarks in current buffer only	mc	:BookmarkClear
-" mx Clear bookmarks in all buffers	mx	:BookmarkClearAll
-" mkk Move up bookmark at current line	[count]mkk	:BookmarkMoveUp [<COUNT>]
-" mjj Move down bookmark at current line	[count]mjj	:BookmarkMoveDown [<COUNT>]
-" mg Move bookmark at current line to another line	[count]mg	:BookmarkMoveToLine <LINE>
-" Save all bookmarks to a file		:BookmarkSave <FILE_PATH>
-" Load bookmarks from a file		:BookmarkLoad <FILE_PATH>
 "{{{
+" mm Add/remove bookmark at current line           :BookmarkToggle
+" mi Add/edit/remove annotation at current line    :BookmarkAnnotate <TEXT>
+" mn Jump to next bookmark in buffer               :BookmarkNext
+" mp Jump to previous bookmark in buffer           :BookmarkPrev
+" ma Show all bookmarks (toggle)                   :BookmarkShowAll
+" mc Clear bookmarks in current buffer only        :BookmarkClear
+" mx Clear bookmarks in all buffers                :BookmarkClearAll
+" mkk Move up bookmark at current line             :BookmarkMoveUp [<COUNT>]
+" mjj Move down bookmark at current line           :BookmarkMoveDown [<COUNT>]
+" mg Move bookmark at current line to another line :BookmarkMoveToLine <LINE>
+" Save all bookmarks to a file                     :BookmarkSave <FILE_PATH>
+" Load bookmarks from a file                       :BookmarkLoad <FILE_PATH>
+
 Plugin 'MattesGroeger/vim-bookmarks'
 highlight BookmarkSign ctermbg=NONE ctermfg=160
 highlight BookmarkLine ctermbg=194 ctermfg=NONE
@@ -140,13 +140,16 @@ highlight BookmarkLine ctermbg=194 ctermfg=NONE
 let g:bookmark_highlight_lines = 1
 let g:bookmark_auto_save = 1
 let g:bookmark_save_per_working_dir = 0
-let g:bookmark_auto_save_file = $HOME .'/.vim/bookmarks'
+
+" TIP: Incluir esta linha no .vimrc do projeto com um sufixo para separar os
+" bookmarks por projeto
+let g:bookmark_auto_save_file = $HOME . '/.vim/bookmarks'
 
 " Aprender sobre signs
 " :help signs
 " https://vi.stackexchange.com/questions/3755/syntax-highlight-for-whole-line
 " https://github.com/mhinz/vim-signify
-Plugin 'chrisbra/DynamicSigns'
+" Plugin 'chrisbra/DynamicSigns'
 "}}}
 "   
 "   ### Utilitários
