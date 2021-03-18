@@ -141,6 +141,12 @@ let g:bookmark_highlight_lines = 1
 let g:bookmark_auto_save = 1
 let g:bookmark_save_per_working_dir = 0
 let g:bookmark_auto_save_file = $HOME .'/.vim/bookmarks'
+
+" Aprender sobre signs
+" :help signs
+" https://vi.stackexchange.com/questions/3755/syntax-highlight-for-whole-line
+" https://github.com/mhinz/vim-signify
+Plugin 'chrisbra/DynamicSigns'
 "}}}
 "   
 "   ### Utilitários
