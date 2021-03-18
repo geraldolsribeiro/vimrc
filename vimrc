@@ -512,7 +512,37 @@ set backspace=indent,eol,start
 
 let g:elite_mode=1
 "}}}
+"   
+"   ## Git
+"   
+"{{{
+Plugin 'airblade/vim-gitgutter'
+" Comandos:
+" [c          anterior
+" ]c          próximo
+" <leader>hp  preview
+" <leader>hs  stage
+" <leader>hu  undo
 
+" Emoji
+" if emoji#available()
+"  let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+"  let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+"  let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+"  let g:gitgutter_sign_modified_removed = emoji#for('collision')
+" endif
+
+"let g:gitgutter_sign_added = '+ '
+"let g:gitgutter_sign_modified = '~ '
+"let g:gitgutter_sign_removed = '- '
+"let g:gitgutter_sign_removed_first_line = '^^'
+"let g:gitgutter_sign_modified_removed = 'ww'
+
+" Ignorar espaços em branco
+"let g:gitgutter_diff_args = '-w'
+
+"}}}
+"   
 Plugin 'chrisbra/Colorizer'  " Exibe cores #fff
 let g:colorizer_auto_filetype='css,html,scss'
 
@@ -538,7 +568,6 @@ Plugin 'scrooloose/vim-slumlord'
 " FIXME: Separar os plugins abaixo
 "
 "Bundle 'aming/vim-mason'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'elzr/vim-json'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'pangloss/vim-javascript'
@@ -548,6 +577,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-abolish'
 Plugin 'othree/html5.vim'
+
 
 " Formatação de código
 Plugin 'rhysd/vim-clang-format'
@@ -939,23 +969,6 @@ let g:ctrlp_custom_ignore = {
 " Busca por nome de arquivo em vez do path completo
 let g:ctrlp_by_filename = 1
 
-" Emoji
-"if emoji#available()
-"  let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
-"  let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
-"  let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
-"  let g:gitgutter_sign_modified_removed = emoji#for('collision')
-"endif
-
-
-"let g:gitgutter_sign_added = '+ '
-"let g:gitgutter_sign_modified = '~ '
-"let g:gitgutter_sign_removed = '- '
-"let g:gitgutter_sign_removed_first_line = '^^'
-"let g:gitgutter_sign_modified_removed = 'ww'
-
-" Ignorar espaços em branco
-"let g:gitgutter_diff_args = '-w'
 
 
 " Usar Ctrl+X Ctrl+U
