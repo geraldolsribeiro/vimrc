@@ -539,7 +539,7 @@ Plugin 'airblade/vim-gitgutter'
 
 " Ignorar espaços em branco
 "let g:gitgutter_diff_args = '-w'
-
+"FIXME: resumir a documentação do gitgutter aqui
 "}}}
 "   
 Plugin 'chrisbra/Colorizer'  " Exibe cores #fff
@@ -1342,10 +1342,12 @@ endfunction
 nmap <leader>h :e /opt/intmain/dev/linux/usr/share/Gr/scripts/Common/Makefile.include<CR>
 
 "   ## Destaque para as seções deste arquivo
-"
+"   
+"   As sintaxes podem ser extendidas usado a pasta `after/syntax`, p.e.
+"   `after/syntax/make.vim`
 "{{{
-highlight MyGroup ctermbg=green ctermfg=white
-match MyGroup /"   #.*/
+highlight intmain_docmd ctermbg=green ctermfg=white
+match intmain_docmd /"\(   \|{{{\|}}}\).*/
 "}}}
 
 command MeuComando echo "Olá mundo!"
@@ -1355,7 +1357,7 @@ function MinhaFuncao()
 endfunction
 
 command MinhaFuncao :call MinhaFuncao()
-"       comando           função
+"-      comando           função
 "
 " ----------------------------------------
 " https://www.reddit.com/r/vim/comments/cbgnol/live_reload_for_vimweb_development/
