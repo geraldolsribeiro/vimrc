@@ -580,12 +580,16 @@ Plugin 'elzr/vim-json'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'pangloss/vim-javascript'
 Plugin 'posva/vim-vue'
-Plugin 'rhysd/vim-gfm-syntax'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-abolish'
 Plugin 'othree/html5.vim'
 
+
+Plugin 'rhysd/vim-gfm-syntax'
+let g:markdown_fenced_languages = ['vim', 'cpp', 'ruby', 'json']
+let g:gfm_syntax_enable_always = 1
+let g:gfm_syntax_enable_filetypes = ['markdown.gfm']
 
 " Formatação de código
 Plugin 'rhysd/vim-clang-format'
@@ -1009,8 +1013,48 @@ set lazyredraw
 set synmaxcol=200 " limite para highligh
 syntax sync minlines=256
 
-
+" Liga/desliga o cursor
 nnoremap H :set cursorline! cursorcolumn!<CR>
+
+
+" Em 'bundle/vim-gfm-syntax/autoload/gfm_syntax/emoji.vim' tem um for para
+" Em 'bundle/vim-conceal/after/syntax/cpp.vim' tem algumas substituições
+" [ '":x:"', '❌' ] 
+" [ '":white_check_mark:"', '✅' ],
+" configurar
+" ☒ u2612
+" ☐ u2610
+" ✖ u2716
+" ✗ u2717
+" ✘ u2718
+" ✕ u2715
+" U2326 ⌦
+" U2327 ⌧
+" U232B ⌫
+" U2302 ⌂
+" U2310 ⌐
+" U23CE ⏎
+" U2192 →
+" U2206 ∆
+" U221A √
+" U221E ∞
+" U2211 ∑
+" U222B ∫
+" U2202 ∂
+" U2260 ≠
+" U2264 ≤
+" U2265 ≥
+" U2209 ∩
+" U2610 ☐
+" U2611 ☑
+" U2612 ☒
+" U2713 ✓
+" U27A1 ➡
+" U2573 ╳
+" U27E8 ⟨
+" U27E9 ⟩
+command Checkmark2 :execute "normal i<C-v>u2713 " |" ✓
+command Checkmark  :execute "normal i<C-v>u2714 " |" ✔
 
 " Integração com psql -> \e
 " veja o arquivo ~/.vim/syntax/dbout.vim
