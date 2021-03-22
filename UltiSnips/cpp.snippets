@@ -188,7 +188,7 @@ endsnippet
 snippet htmlList
 string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
-content += setPageTitle( data, "Listar" );
+setPageTitle( data, "Listar" );
 content += beginCommonHtml( data );
 content += GR_NL0( GR_H1_( pageTitle( data ) ) );
 content += GR_NL0( hrec.htmlList("$0") );
@@ -199,7 +199,7 @@ endsnippet
 snippet htmlView
 string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
-content += setPageTitle( data, "Visualizar" );
+setPageTitle( data, "Visualizar" );
 content += beginCommonHtml( data );
 content += GR_NL0( GR_H1_( pageTitle( data ) ) );
 content += GR_NL0( hrec.htmlView("$0") );
@@ -210,7 +210,7 @@ endsnippet
 snippet htmlEdit
 string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
-content += setPageTitle( data, "Edição" );
+setPageTitle( data, "Edição" );
 content += beginCommonHtml( data );
 content += GR_NL0( GR_H1_( pageTitle( data ) ) );
 content += GR_NL0( hrec.htmlEdit("$0") );
@@ -221,7 +221,7 @@ endsnippet
 snippet htmlUpdate
 string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
-content += setPageTitle( data, "Atualizar" );
+setPageTitle( data, "Atualizar" );
 content += beginCommonHtml( data );
 content += GR_NL0( GR_H1_( pageTitle( data ) ) );
 content += GR_NL0( hrec.htmlUpdate( Databases.Seq ) );
@@ -232,7 +232,7 @@ endsnippet
 snippet htmlDelete
 string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
-content += setPageTitle( data, "Remover" );
+setPageTitle( data, "Remover" );
 content += beginCommonHtml( data );
 content += GR_NL0( GR_H1_( pageTitle( data ) ) );
 content += GR_NL0( hrec.htmlDelete() );
