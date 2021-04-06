@@ -346,9 +346,11 @@ endsnippet
 
 snippet GrHtmlForm
 auto form = make_shared<GrHtmlForm>( "${1:action}Frm01", GrWebServerURL( action( data, "${1}Frm01" ) ), "Continuar" );
-form->addExtraButton( "cancel", "Cancelar", "list${1}Frm01" ) );
+form->addExtraButton( "cancel", "Cancelar", "list${1}Frm01" );
 
 form->beginFieldSet( "CPF do cliente" );
+form->setRowName( "line0" );
+form->setColumnConf( "s12 l4" );
 form->addTextField( true, "cpf", "CPF", cpf, "Entre com o CPF do novo cliente." );
 form->addTextField( true, "fullname", "Nome completo", fullname, "Entre com o nome completo do novo cliente." );
 form->endFieldSet();
@@ -603,17 +605,6 @@ snippet lorem
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet tellus vitae risus tempus, ut facilisis risus varius. Vestibulum iaculis ornare cursus. Donec mi velit, sollicitudin vitae convallis quis, aliquet vel mi. Vestibulum id ornare quam. Proin eget rhoncus diam, vitae tempus sapien. Phasellus in egestas libero, quis maximus sem. Morbi congue ultrices ipsum nec eleifend. Nulla in lorem viverra, feugiat libero in, sodales tellus. Integer tempus volutpat rhoncus."
 endsnippet
 
-snippet colbutton
-GrHtmlButton buttons;
-buttons.setFullWidthStyle();
-
-auto addXXXUrl = GrWebServerURL( "/addXXXRecordFrm01" );
-content += GR_DIVIDER;
-content += GR_NL0( GR_DIV( "row" ) );
-content += GR_NL1( GR_DIVS( "col s12 m3", buttons.add( addXXXUrl, "Adicionar cartão" ) ) );
-content += GR_NL0( GRxDIV );
-endsnippet
-
 snippet GR_ROW
   content += GR_NL0( GR_DIV( "row" ) );
   content += GR_NL1( GR_DIV( "col s12 m6" ) );
@@ -652,6 +643,17 @@ snippet formadd
   form->addHtml( html );
 endsnippet
 
+snippet colbutton
+GrHtmlButton buttons;
+buttons.setFullWidthStyle();
+
+auto addXXXUrl = GrWebServerURL( "/addXXXRecordFrm01" );
+content += GR_DIVIDER;
+content += GR_NL0( GR_DIV( "row" ) );
+content += GR_NL1( GR_DIVS( "col s12 m3", buttons.add( addXXXUrl, "Adicionar cartão" ) ) );
+content += GR_NL0( GRxDIV );
+endsnippet
+
 snippet button_next
 GrHtmlButton buttons;
 
@@ -680,7 +682,7 @@ snippet info
 content += GR_NL0( GrHtmlMessage::info( "${1:mensagem}" ) );
 endsnippet
 
-snippet msgl
+snippet msgbtn
 content += GR_NL0( GrHtmlMessage::${1:success}WithButton( "${2:url}", "${3:link}", "${4:mensagem}", "${5:title}" ) );
 endsnippet
 
