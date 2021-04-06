@@ -169,7 +169,6 @@ Plugin 'benmills/vimux'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'gilsondev/searchtasks.vim'
 "Plugin 'Shougo/neocomplete.vim'
-"Plugin 'xavierd/clang_complete'
 Plugin 'tpope/vim-dispatch'
 Plugin 'dhruvasagar/vim-table-mode.git'
 " Lança o ranger a partir do vim
@@ -179,6 +178,14 @@ Plugin 'francoiscabrol/ranger.vim' " <leader> f
 Plugin 'geraldolsribeiro/vim-auto-markdown'
 " vimwiki está interferindo no autocomplete
 " Plugin 'vimwiki/vimwiki'
+"}}}
+"   
+"   ### Clang complete
+"   
+"{{{
+Plugin 'xavierd/clang_complete'
+" Onde a biblioteca está
+let g:clang_library_path='/usr/lib/llvm-8/lib/libclang.so.1'
 "}}}
 "   
 "   ### Tradução
@@ -290,6 +297,18 @@ Plugin 'thosakwe/vim-flutter'
 
 "}}}
 "   
+"   ### HTML
+"   
+"{{{
+Plugin 'othree/html5.vim'
+Plugin 'digitaltoad/vim-pug'
+Plugin 'dNitro/vim-pug-complete'
+
+" Esta linha deveria ser lida do vim-pug
+autocmd BufNewFile,BufReadPost *.pug set filetype=pug
+
+"}}}
+   
 "   ### C++
 "   
 "{{{
@@ -583,7 +602,6 @@ Plugin 'posva/vim-vue'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-abolish'
-Plugin 'othree/html5.vim'
 
 
 Plugin 'rhysd/vim-gfm-syntax'
@@ -745,9 +763,6 @@ let g:airline_solarized_bg='dark'
 let g:neomake_cpp_enable_markers=['clang']
 let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined", "-g"]
 
-
-" path to directory where library can be found
-let g:clang_library_path='/usr/lib/llvm-6.0/lib/libclang.so.1'
 
 if has("gui_running")
   if has("gui_gtk3" )
@@ -1494,6 +1509,8 @@ endfunction
 
 nmap <silent>  ;s  :call ToggleSyntax()<CR>
 
+" https://vim.fandom.com/wiki/C%2B%2B_code_completion
+map <F12> :!ctags -R --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
 
 " ## Defining command line commands
 " 
