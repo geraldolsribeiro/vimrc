@@ -14,8 +14,9 @@ syntax region jetBlockCmd start="<%" end="%>"
 
 let b:current_syntax = "jet"
 
-hi def link jetBlockCmd    Statement
+hi def link jetBlockCmd Comment
 
+" hi def link jetBlockCmd    Statement
 " hi def link celTodo        Todo
 " hi def link celComment     Comment
 " hi def link celHip         Type
