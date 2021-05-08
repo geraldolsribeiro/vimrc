@@ -823,6 +823,12 @@ augroup javascript
   au BufNewFile,BufRead *.jpp,*.jspp                   setf jspp
 augroup END
 
+augroup java
+  au!
+  "au BufRead,BufNewFile *.jet setf jet
+  au BufRead,BufNewFile *.jet setf cpp " acrescentei regions no after/syntax/cpp.vim
+augroup END
+
 " Neocomplete Settings
 " let g:acp_enableAtStartup = 0
 " let g:neocomplete#enable_at_startup = 0
