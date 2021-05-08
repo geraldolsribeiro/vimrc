@@ -529,6 +529,15 @@ Plugin 'rupurt/vim-mql5'
 Plugin 'neoclide/coc.nvim'
 " coc.nvim works best on vim >= 8.1.1719 and neovim >= 0.4.0, consider upgrade your vim.
 let g:coc_disable_startup_warning = 1
+
+" YouCompleteMe
+" Instalar as dependências antes
+" apt install gcc g++ cmake make build-essential vim-nox python3-dev
+" Plugin 'ycm-core/YouCompleteMe'
+" cd .vim/plugged/YouCompleteMe/
+" python3 install.py --clangd-completer # Somente C/C++
+" python3 install.py --all # precisa do Go e NPM:
+" sudo apt install golang npm
 "}}}
 "   
 "   ## Configuração geral
