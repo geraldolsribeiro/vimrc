@@ -1,5 +1,12 @@
 # Separadores
 
+snippet httpGet
+server.Get( R"(/number/(\d+))", [&]( const Request &req, Response & res ) {
+  auto numbers = req.matches[1];
+	res.set_content( numbers, "text/plain" );
+});
+endsnippet
+
 snippet ifndef
 #ifndef __${1:FILE}_HPP__
 #define __$1_HPP__

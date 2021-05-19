@@ -75,6 +75,11 @@ let maplocalleader="\<space>"
 "{{{
 set exrc
 "}}}
+
+function! IsOnSomeParticularMachine(hostname)
+  return match($HOSTNAME, a:hostname) >= 0
+endfunction
+
 "   
 "   ## Plugins
 "   
@@ -765,7 +770,9 @@ let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=un
 
 
 if has("gui_running")
-  if has("gui_gtk3" )
+  if IsOnSomeParticularMachine('cff39b5fb46d')
+    set guifont=Monospace\ Regular\ 14
+  elseif has("gui_gtk3" )
     set guifont=Fira\ Code\ 14
     "set guifont=Droid_Sans_Mono_Nerd_Font_Complete.otf\ 14
   elseif has("gui_gtk2")
