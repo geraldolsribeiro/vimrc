@@ -211,6 +211,24 @@ Plugin 'neomake/neomake'
 "   
 "{{{
 Plugin 'tomtom/tcomment_vim'
+
+" gcc comenta/descomenta a linha atual
+" gc{motion} comenta/descomenta a seleção
+"     <Leader>__       :: :TComment
+"     <Leader>_p       :: Comment the current inner paragraph
+"     <Leader>_<space> :: :TComment <QUERY COMMENT-BEGIN ?COMMENT-END>
+"     <Leader>_i       :: :TCommentInline
+"     <Leader>_r       :: :TCommentRight
+"     <Leader>_b       :: :TCommentBlock
+"     <Leader>_a       :: :TCommentAs <QUERY COMMENT TYPE>
+"     <Leader>_n       :: :TCommentAs &filetype <QUERY COUNT>
+"     <Leader>_s       :: :TCommentAs &filetype_<QUERY COMMENT SUBTYPE>
+"
+" ... and for select mode:
+"
+    " <Leader>__       :: :TComment
+    " <Leader>_i       :: :TCommentInline
+
 "}}}
 "   
 "   Para definir o comentário para um novo tipo use:
@@ -607,11 +625,43 @@ Plugin 'scrooloose/vim-slumlord'
 Plugin 'elzr/vim-json'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'pangloss/vim-javascript'
-Plugin 'posva/vim-vue'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-abolish'
 
+" Plugin 'leafoftree/vim-vue-plugin'
+" style: stylus
+" page-query: 'graphql'
+" let g:vim_vue_plugin_config = { 
+"       \'syntax': {
+"       \   'template': ['html', 'pug'],
+"       \   'script': ['javascript', 'typescript', 'coffee'],
+"       \   'style': ['scss', 'sass', 'less'],
+"       \   'i18n': ['json', 'yaml'],
+"       \   'route': 'json',
+"       \   'docs': 'markdown',
+"       \},
+"       \'full_syntax': ['scss', 'html'],
+"       \'initial_indent': ['script.javascript', 'style', 'yaml'],
+"       \'attribute': 1,
+"       \'keyword': 1,
+"       \'foldexpr': 1,
+"       \}
+
+Plugin 'posva/vim-vue'
+"let g:vue_pre_processors = ['pug', 'scss']
+let g:vue_pre_processors = 'detect_on_enter'
+
+" A linha abaixo já está em patch do vim, mas ainda não entrou para o Debian
+au BufNewFile,BufRead *.vue setf vue
+
+" Em caso se problema ao definir filetype para vue edit os arquivos:
+" /usr/share/vim/vim81/syntax/sass.vim
+"
+" - runtime! syntax/css.vim
+" + if !exists("b:current_loading_main_syntax")
+" +   runtime! syntax/css.vim
+" + endif
 
 Plugin 'rhysd/vim-gfm-syntax'
 let g:markdown_fenced_languages = ['vim', 'cpp', 'ruby', 'json']
@@ -1441,7 +1491,33 @@ endfunction
 
 command MinhaFuncao :call MinhaFuncao()
 "-      comando           função
-"
+
+" Display an error message.
+function! s:Warn(msg)
+  echohl ErrorMsg
+  echomsg a:msg
+  echohl NONE
+endfunction
+
+function MinhaFuncaoWarn()
+  call s:Warn('No matching buffer for '.'xxx')
+endfunction
+
+" ::call MinhaFuncaoWarn
+
+function! InsertCopyright()
+    let l:year = strftime("%Y")
+    return
+        \  "/**\n"
+        \. "Copyright My Great Company, " . l:year . ". All rights reserved.\n"
+        \. "/"
+endfunction
+
+iabbrev <expr> copy# InsertCopyright()
+
+
+
+
 " ----------------------------------------
 " https://www.reddit.com/r/vim/comments/cbgnol/live_reload_for_vimweb_development/
 "~/bin/refresh
@@ -1578,4 +1654,6 @@ highlight nonascii guibg=Red ctermbg=2
 set keywordprg=google
 " comporamento default
 set keywordprg=man\ -s
+
+
 " vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br :

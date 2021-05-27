@@ -387,9 +387,32 @@ add( "/${1:addXptoRecordFrm01}", &$1 );
 ${1/.*/\u$0/} $1;
 endsnippet
 
-snippet na "Nova action" b
-${1:TestActionNameComplex}
+snippet nah "Nova action - cabeçalho" b
+`!p
+guard = '__' + re.sub('(?!^)([A-Z]+)', r'_\1',snip.basename).upper() + '_HPP__'
+nsOpen = '// clang-format off\nnamespace br { namespace com { namespace intmain { namespace GrComponents { namespace GrWebServer {\n// clang-format on'
+nsClose = '// clang-format off\n} } } } }\n// clang-format on'
 
+snip.rv = '// ----------------------------------------------------------------------'
+snip += '// Copyright (C) 2017-2021 Geraldo Ribeiro <geraldo@intmain.io>'
+snip += '// ----------------------------------------------------------------------'
+snip += ''
+snip += '#ifndef ' + guard
+snip += '#define ' + guard
+snip += ''
+snip += 'class ' + snip.basename + ' : public PagePriv {'
+snip += '  virtual void drawPage( GrWebServerPageData &data ) const;'
+snip += '};'
+snip += ''
+snip += '#endif'
+snip += ''
+`
+endsnippet
+
+# https://github.com/SirVer/ultisnips/issues/1029
+# Default com nome do arquivo sem extensão
+snippet na "Nova action" b
+// ${1:`!p snip.rv = snip.basename`}
 `!p
 guard = '__' + re.sub('(?!^)([A-Z]+)', r'_\1',t[1]).upper() + '_HPP__'
 nsOpen = '// clang-format off\nnamespace br { namespace com { namespace intmain { namespace GrComponents { namespace GrWebServer {\n// clang-format on'
@@ -399,15 +422,16 @@ nsClose = '// clang-format off\n} } } } }\n// clang-format on'
 snip.rv = '// ----------------------------------------------------------------------'
 snip += '// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>'
 snip += '// ----------------------------------------------------------------------'
+snip += ''
 snip += '#ifndef ' + guard
 snip += '#define ' + guard
-snip += ''
+# snip += ''
 # snip += nsOpen
 snip += ''
 snip += 'class ' + t[1] + ' : public PagePriv {'
 snip += '  virtual void drawPage( GrWebServerPageData &data ) const;'
 snip += '};'
-snip += ''
+# snip += ''
 # snip += nsClose
 snip += ''
 snip += '#endif'
