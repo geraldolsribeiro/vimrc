@@ -75,6 +75,11 @@ let maplocalleader="\<space>"
 "{{{
 set exrc
 "}}}
+
+function! IsOnSomeParticularMachine(hostname)
+  return match($HOSTNAME, a:hostname) >= 0
+endfunction
+
 "   
 "   ## Plugins
 "   
@@ -174,8 +179,6 @@ Plugin 'dhruvasagar/vim-table-mode.git'
 " Lança o ranger a partir do vim
 Plugin 'francoiscabrol/ranger.vim' " <leader> f
 
-" Fork do plugin do Marcos Oliveira
-Plugin 'geraldolsribeiro/vim-auto-markdown'
 " vimwiki está interferindo no autocomplete
 " Plugin 'vimwiki/vimwiki'
 "}}}
@@ -242,7 +245,26 @@ Plugin 'tomtom/tcomment_vim'
 "   ### Markdown / Escrita
 "   
 "{{{
+" Fork do plugin do Marcos Oliveira
+Plugin 'geraldolsribeiro/vim-auto-markdown'
+
+" npm -g install instant-markdown-d@next
 Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
+"let g:instant_markdown_slow = 1
+"let g:instant_markdown_autostart = 0
+"let g:instant_markdown_open_to_the_world = 1
+"let g:instant_markdown_allow_unsafe_content = 1
+"let g:instant_markdown_allow_external_content = 0
+"let g:instant_markdown_mathjax = 1
+"let g:instant_markdown_mermaid = 1
+"let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+"let g:instant_markdown_autoscroll = 0
+"let g:instant_markdown_port = 8888
+"let g:instant_markdown_python = 1
+let g:instant_markdown_browser = "firefox --new-window"
+" Abrir o preview ao carregar um arquivo markdown
+let g:instant_markdown_autostart = 1
+
 Plugin 'reedes/vim-pencil'
 Plugin 'tpope/vim-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
@@ -824,7 +846,9 @@ let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=un
 
 
 if has("gui_running")
-  if has("gui_gtk3" )
+  if IsOnSomeParticularMachine('cff39b5fb46d')
+    set guifont=Monospace\ Regular\ 14
+  elseif has("gui_gtk3" )
     set guifont=Fira\ Code\ 14
     "set guifont=Droid_Sans_Mono_Nerd_Font_Complete.otf\ 14
   elseif has("gui_gtk2")

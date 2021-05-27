@@ -15,13 +15,17 @@ Fonte: `vimrc`
       * [FZF](#fzf)
       * [Cucumber](#cucumber)
       * [Servidores web](#servidores-web)
+      * [Sorround](#sorround)
+      * [Bookmarks](#bookmarks)
       * [Utilitários](#utilitários)
+      * [Clang complete](#clang-complete)
       * [Tradução](#tradução)
       * [Plugins genéricos para programação](#plugins-genéricos-para-programação)
       * [Comentários](#comentários)
       * [Markdown / Escrita](#markdown-/-escrita)
       * [Git Support](#git-support)
       * [Dart](#dart)
+      * [HTML](#html)
       * [C++](#c++)
       * [Erlang Support](#erlang-support)
       * [Elixir Support ](#elixir-support-)
@@ -35,6 +39,7 @@ Fonte: `vimrc`
   * [Metatrader](#metatrader)
   * [Auto completar](#auto-completar)
   * [Configuração geral](#configuração-geral)
+  * [Git](#git)
   * [Configuração do neomake](#configuração-do-neomake)
       * [Coffeescript](#coffeescript)
       * [Elixir](#elixir)
@@ -152,12 +157,57 @@ Plugin 'chr4/nginx.vim'
 ```
 
 
+### Sorround
+
+
+```vim
+Plugin 'tpope/vim-surround'           "FIXME: Tem um link para um tutorial no final do arquivo, converter para seção
+```
+
+
+### Bookmarks
+
+
+```vim
+" mm Add/remove bookmark at current line           :BookmarkToggle
+" mi Add/edit/remove annotation at current line    :BookmarkAnnotate <TEXT>
+" mn Jump to next bookmark in buffer               :BookmarkNext
+" mp Jump to previous bookmark in buffer           :BookmarkPrev
+" ma Show all bookmarks (toggle)                   :BookmarkShowAll
+" mc Clear bookmarks in current buffer only        :BookmarkClear
+" mx Clear bookmarks in all buffers                :BookmarkClearAll
+" mkk Move up bookmark at current line             :BookmarkMoveUp [<COUNT>]
+" mjj Move down bookmark at current line           :BookmarkMoveDown [<COUNT>]
+" mg Move bookmark at current line to another line :BookmarkMoveToLine <LINE>
+" Save all bookmarks to a file                     :BookmarkSave <FILE_PATH>
+" Load bookmarks from a file                       :BookmarkLoad <FILE_PATH>
+
+Plugin 'MattesGroeger/vim-bookmarks'
+highlight BookmarkSign ctermbg=NONE ctermfg=160
+highlight BookmarkLine ctermbg=194 ctermfg=NONE
+" let g:bookmark_sign = '♥'
+let g:bookmark_highlight_lines = 1
+let g:bookmark_auto_save = 1
+let g:bookmark_save_per_working_dir = 0
+
+" TIP: Incluir esta linha no .vimrc do projeto com um sufixo para separar os
+" bookmarks por projeto
+let g:bookmark_auto_save_file = $HOME . '/.vim/bookmarks'
+
+" Aprender sobre signs
+" :help signs
+" https://vi.stackexchange.com/questions/3755/syntax-highlight-for-whole-line
+" https://github.com/mhinz/vim-signify
+" Plugin 'chrisbra/DynamicSigns'
+```
+
+
 ### Utilitários
 
 
 ```vim
 Plugin 'powerline/powerline-fonts'
-"Plugin 'geraldolsribeiro/vim-conceal'
+Plugin 'geraldolsribeiro/vim-conceal' " Exibição de caracteres
 "Plugin 'Yggdroot/indentLine'
 Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
@@ -170,7 +220,6 @@ Plugin 'benmills/vimux'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'gilsondev/searchtasks.vim'
 "Plugin 'Shougo/neocomplete.vim'
-"Plugin 'xavierd/clang_complete'
 Plugin 'tpope/vim-dispatch'
 Plugin 'dhruvasagar/vim-table-mode.git'
 " Lança o ranger a partir do vim
@@ -180,6 +229,16 @@ Plugin 'francoiscabrol/ranger.vim' " <leader> f
 Plugin 'geraldolsribeiro/vim-auto-markdown'
 " vimwiki está interferindo no autocomplete
 " Plugin 'vimwiki/vimwiki'
+```
+
+
+### Clang complete
+
+
+```vim
+Plugin 'xavierd/clang_complete'
+" Onde a biblioteca está
+let g:clang_library_path='/usr/lib/llvm-8/lib/libclang.so.1'
 ```
 
 
@@ -303,6 +362,19 @@ Plugin 'thosakwe/vim-flutter'
 ```
 
 
+### HTML
+
+
+```vim
+Plugin 'othree/html5.vim'
+Plugin 'digitaltoad/vim-pug'
+Plugin 'dNitro/vim-pug-complete'
+
+" Esta linha deveria ser lida do vim-pug
+autocmd BufNewFile,BufReadPost *.pug set filetype=pug
+
+```
+
 ### C++
 
 
@@ -364,7 +436,6 @@ Plugin 'w0ng/vim-hybrid'
 Plugin 'AlessandroYorba/Sierra'
 Plugin 'daylerees/colour-schemes'
 Plugin 'effkay/argonaut.vim'
-Plugin 'ajh17/Spacegray.vim'
 Plugin 'atelierbram/Base2Tone-vim'
 Plugin 'colepeters/spacemacs-theme.vim'
 
@@ -554,6 +625,39 @@ let g:elite_mode=1
 ```
 
 
+## Git
+
+
+```vim
+Plugin 'airblade/vim-gitgutter'
+" Comandos:
+" [c          anterior
+" ]c          próximo
+" <leader>hp  preview
+" <leader>hs  stage
+" <leader>hu  undo
+
+" Emoji
+" if emoji#available()
+"  let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+"  let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+"  let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+"  let g:gitgutter_sign_modified_removed = emoji#for('collision')
+" endif
+
+"let g:gitgutter_sign_added = '+ '
+"let g:gitgutter_sign_modified = '~ '
+"let g:gitgutter_sign_removed = '- '
+"let g:gitgutter_sign_removed_first_line = '^^'
+"let g:gitgutter_sign_modified_removed = 'ww'
+
+" Ignorar espaços em branco
+"let g:gitgutter_diff_args = '-w'
+"FIXME: resumir a documentação do gitgutter aqui
+```
+
+
+
 ## Configuração do neomake
 
 
@@ -735,12 +839,14 @@ nmap <F8> :bp\|bd #<CR>
 
 ## Destaque para as seções deste arquivo
 
+As sintaxes podem ser extendidas usado a pasta `after/syntax`, p.e.
+`after/syntax/make.vim`
+
 ```vim
-highlight MyGroup ctermbg=green ctermfg=white
-match MyGroup /"   #.*/
+highlight intmain_docmd ctermbg=green ctermfg=white
+match intmain_docmd /"\(   \|{{{\|}}}\).*/
 ```
 
-    comando           função
   silent exe "!osascript -e 'tell app \"Firefox\" to activate\<cr>
           \tell app \"System events\"\<cr> keystroke \"r\" using command down\<cr>
           \end tell'"
