@@ -192,6 +192,12 @@ while( Databases.${1/.*/\u$0/}->nextRecord( ${1:type}Rec ) ) {
 Databases.${1/.*/\u$0/}->destroyCursor();
 endsnippet
 
+snippet setPageTitle
+setPageTitle( data, "${1:Título}" );
+content += beginCommonHtml( data );
+content += GR_NL0( GR_H1_( pageTitle( data ) ) );
+endsnippet
+
 snippet htmlList
 string content;
 Html${1:Type}Record hrec( Databases.$1, params( data ) );
