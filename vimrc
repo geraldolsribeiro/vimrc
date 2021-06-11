@@ -1408,7 +1408,7 @@ augroup END
 "   ### Atalhos de teclado
 "   
 "{{{
-map <C-n> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 map <C-m> :TagbarToggle<CR>
 
 " Alterna entre as tabs
