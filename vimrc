@@ -415,48 +415,6 @@ Plugin 'colepeters/spacemacs-theme.vim'
 
 "}}}
 "   
-"   ### Devicons
-"   
-"{{{
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'ryanoasis/vim-webdevicons'
-let g:DevIconsEnableFolderExtensionPatternMatching = 0
-let g:DevIconsEnableFoldersOpenClose = 0
-let g:DevIconsEnableFoldersOpenClose = 1
-let g:webdevicons_conceal_nerdtree_brackets = 1
-let g:webdevicons_enable = 1 " habilita o plugin
-let g:webdevicons_enable_airline_statusline = 1
-let g:webdevicons_enable_airline_tabline = 1
-let g:webdevicons_enable_ctrlp = 1
-let g:webdevicons_enable_nerdtree = 1
-let g:webdevicons_enable_vimfiler = 1
-let g:WebDevIconsUnicodeDecorateFileNodes = 1
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:WebDevIconsUnicodeDecorateFolderNodesExactMatches = 1
-
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['js'] = 'ƛ'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['java'] = '☕'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['coffee'] = '☕'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sh'] = '🐚'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cpp'] = '🗡️'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['hpp'] = '🗡️'
-
-let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol   = '📝' " quando não tem símbolo definido
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = '📁' " pasta fechada
-let g:DevIconsDefaultFolderOpenSymbol                    = '📂' " pasta aberta
-
-let g:WebDevIconsOS = 'Darwin'
-
-" https://github.com/ryanoasis/vim-devicons/blob/master/doc/webdevicons.txt
-
-
-" After a re-source fixes the bug with the [] around devicons
-if exists('g:loaded_webdevicons')
-  call webdevicons#refresh()
-endif
-"}}}
-"   
 "   ### Nerdtree
 "   
 "{{{
@@ -467,7 +425,7 @@ let g:NERDTreeSyntaxDisableDefaultExtensions = 1
 let g:NERDTreeSyntaxEnabledExtensions = ['c', 'h', 'cpp', 'hpp', 'py', 'md', 'txt', 'java', 'sh', 'vim', 'json']
 "}}}
 "FIXME: O dolar está quebrando a documentação
-let g:NERDTreeIgnore = ['\.o$', '\.pyc$', '\~$', '\.gif', '\.jpg', '\.png']
+let g:NERDTreeIgnore = ['\.o$', '\.pyc$', '\~$', '.git', 'node_modules', '\.gif', '\.jpg', '\.png']
 "{{{
 " Removes the little arrows that indicate whether a folder is open or not
 " These are not needed anymore because of the folder icons from devicons
@@ -561,6 +519,7 @@ Plugin 'shinglyu/vim-codespell'
 "   
 "{{{
 Plugin 'rupurt/vim-mql5'
+"Plugin 'https://github.com/rupurt/vim-mql5'
 "}}}
 "   
 "   ## Auto completar
@@ -821,6 +780,7 @@ let g:table_mode_corner='|'
 "}}}
 
 
+" Configuração do airline precisa estar antes do webdevicons
 " Vim-Airline Configuration
 ":h airline
 let g:airline#extensions#tabline#enabled = 1
@@ -843,6 +803,53 @@ let g:airline_solarized_bg='dark'
 
 let g:neomake_cpp_enable_markers=['clang']
 let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined", "-g"]
+
+"   
+"   ### Devicons
+"   
+"{{{
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'ryanoasis/vim-webdevicons'
+let g:DevIconsEnableFolderExtensionPatternMatching = 0
+let g:DevIconsEnableFoldersOpenClose = 0
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:webdevicons_enable = 1 " habilita o plugin
+let g:webdevicons_enable_airline_statusline = 1
+let g:webdevicons_enable_airline_tabline = 1
+let g:webdevicons_enable_ctrlp = 1
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_enable_vimfiler = 1
+let g:WebDevIconsUnicodeDecorateFileNodes = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:WebDevIconsUnicodeDecorateFolderNodesExactMatches = 1
+
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['js']     = 'ƛ'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['java']   = '☕'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['coffee'] = '☕'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sh']     = '🐚'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cpp']    = '🗡️'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['hpp']    = '🗡️'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue']    = '﵂'
+
+" let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol   = '📝' " quando não tem símbolo definido
+" let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = '📁' " pasta fechada
+" let g:DevIconsDefaultFolderOpenSymbol                    = '📂' " pasta aberta
+
+let g:WebDevIconsOS = 'Darwin'
+
+" help devicons
+
+
+" https://github.com/ryanoasis/vim-devicons/blob/master/doc/webdevicons.txt
+
+
+" After a re-source fixes the bug with the [] around devicons
+if exists('g:loaded_webdevicons')
+  call webdevicons#refresh()
+endif
+"}}}
 
 
 if has("gui_running")
@@ -877,10 +884,10 @@ let g:netrw_browse_split = 4 " Mantem a arvore aberta
 let g:netrw_altv         = 1
 let g:netrw_winsize      = 20 " percentua da janela usado para a listagem
 
-augroup ProjectDrawer
-  autocmd!
-  "autocmd VimEnter * :Vexplore
-augroup END
+"augroup ProjectDrawer
+"  autocmd!
+"  "autocmd VimEnter * :Vexplore
+"augroup END
 
 let g:markdown_fenced_languages = ['vim', 'html', 'python', 'bash=sh', 'ruby', 'eruby', 'javascript', 'elixir', 'sql', 'html']
 
