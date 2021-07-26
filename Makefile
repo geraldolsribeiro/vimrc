@@ -2,6 +2,8 @@
 ### Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
 ### ----------------------------------------------------------------------
 
+.PHONY: doc
+
 DOCMD_OPTIONS+=INTMAIN_DOCMD_DETAILS=false
 
 all: doc
