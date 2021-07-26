@@ -918,6 +918,8 @@ let g:netrw_winsize      = 20 " percentua da janela usado para a listagem
 
 let g:markdown_fenced_languages = ['vim', 'html', 'python', 'bash=sh', 'ruby', 'eruby', 'javascript', 'elixir', 'sql', 'html']
 
+au BufRead,BufNewFile {COMMIT_EDITMSG} set ft=gitcommit
+
 augroup markdown
   au!
   au BufNewFile,BufRead *.md,*.markdown setlocal filetype=ghmarkdown
