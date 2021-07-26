@@ -61,6 +61,8 @@ set showmatch                 " Mostra os pares de parênteses
 set autoindent                " Indenta com o ENTER
 set clipboard=unnamedplus     " y e p copiando e colando para a área de transferência do sistema
 set virtualedit=all           " permite mover o cursor para fora do texto e acrescenta espaços em caso de inserção
+set shell=/bin/bash           " define o interpretador de comandos
+set autowrite                 " salva ao executar comandos make e shell
 
 let mapleader="\<space>"      " leader usando barra de espaço
 let maplocalleader="\<space>"
@@ -524,21 +526,46 @@ Plugin 'rupurt/vim-mql5'
 "   
 "   ## Auto completar
 "   
+"   ### COC
+"   
 "{{{
 Plugin 'neoclide/coc.nvim'
 " coc.nvim works best on vim >= 8.1.1719 and neovim >= 0.4.0, consider upgrade your vim.
 let g:coc_disable_startup_warning = 1
-
-" YouCompleteMe
-" Instalar as dependências antes
-" apt install gcc g++ cmake make build-essential vim-nox python3-dev
-" Plugin 'ycm-core/YouCompleteMe'
-" cd .vim/plugged/YouCompleteMe/
-" python3 install.py --clangd-completer # Somente C/C++
-" python3 install.py --all # precisa do Go e NPM:
-" sudo apt install golang npm
 "}}}
 "   
+"   ### YouCompleteMe
+"
+"   apt install vim-youcompleteme
+"   vim-addon-manager install youcompleteme
+"   
+"   Instalar as dependências antes
+"   apt install gcc g++ cmake make build-essential vim-nox python3-dev
+"   cd .vim/plugged/YouCompleteMe/
+"   python3 install.py --clangd-completer # Somente C/C++
+"   python3 install.py --all # precisa do Go e NPM:
+"   sudo apt install golang npm
+"{{{
+" Plugin 'ycm-core/YouCompleteMe'
+"}}}
+"   
+"   ## Clangd
+"   
+"   https://clangd.llvm.org/installation
+"
+" YouCompleteMe can be installed with clangd support. This is not on by
+" default, you must install it with install.py --clangd-completer.
+" We recommend changing a couple of YCM’s default settings. In .vimrc add:
+"{{{
+" Let clangd fully control code completion
+let g:ycm_clangd_uses_ycmd_caching = 0
+" Use installed clangd, not YCM-bundled clangd which doesn't get updates.
+let g:ycm_clangd_binary_path = exepath("clangd-11")
+let g:ycm_clangd_args = ['-log=verbose', '-pretty']
+" let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_global_ycm_extra_conf = "/usr/lib/ycmd/ycm_extra_conf.py"
+
+"}}}
 "   ## Configuração geral
 "   
 "{{{
@@ -1454,6 +1481,8 @@ nmap <F8> :bp\|bd #<CR>
 " Seleção de bloco no terminal do xfce que já usa o ctrl+shift+V para colar
 :nnoremap <f4>  <c-v>
 
+" Mastering Vim Quickly #33
+" map <F2> :!git shortlog -s -n %<cr>
 
 " https://stackoverflow.com/questions/22407035/using-vim-as-a-c11-ide/22407453#22407453
 "nmap <leader>0 :exec '!clang-modernize -style=Google -format -loop-convert -pass-by-value -replace-auto_ptr -use-nullptr -use-auto -add-override -override-macros '.expand('%:p:h')<CR>
