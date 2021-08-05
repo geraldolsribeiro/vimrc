@@ -169,7 +169,6 @@ Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
 Plugin 'BufOnly.vim'
 Plugin 'wesQ3/vim-windowswap'
-Plugin 'SirVer/ultisnips'
 
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'benmills/vimux'
@@ -193,6 +192,28 @@ Plugin 'xavierd/clang_complete'
 let g:clang_library_path='/usr/lib/llvm-8/lib/libclang.so.1'
 "}}}
 "   
+"   ### Snippets
+"   
+"{{{
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+"Plugin 'garbas/vim-snipmate'
+
+let g:UltiSnipsUsePythonVersion = 3
+" let g:UltiSnipsExpandTrigger="<>"
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+"nmap <leader><tab> call UltiSnips#ExpandSnippet()
+
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+
+"}}}
+"   
 "   ### Tradução
 "   
 "{{{
@@ -203,7 +224,6 @@ Plugin 'voldikss/vim-translator'
 "   
 "{{{
 "Plugin 'jakedouglas/exuberant-ctags'
-Plugin 'honza/vim-snippets'
 Plugin 'Townk/vim-autoclose'
 Plugin 'tobyS/vmustache'
 Plugin 'janko-m/vim-test'
@@ -529,9 +549,9 @@ Plugin 'rupurt/vim-mql5'
 "   ### COC
 "   
 "{{{
-Plugin 'neoclide/coc.nvim'
+" Plugin 'neoclide/coc.nvim'
 " coc.nvim works best on vim >= 8.1.1719 and neovim >= 0.4.0, consider upgrade your vim.
-let g:coc_disable_startup_warning = 1
+" let g:coc_disable_startup_warning = 1
 "}}}
 "   
 "   ### YouCompleteMe
@@ -611,7 +631,7 @@ let g:colorizer_auto_filetype='css,html,scss'
 Plugin 'luochen1990/rainbow'
 let g:rainbow_active = 1
 
-Plugin 'mg979/vim-visual-multi'
+" Plugin 'mg979/vim-visual-multi'
 "
 " " Default mapping
 " let g:multi_cursor_start_word_key      = '<C-n>'
@@ -712,7 +732,6 @@ Plugin 'mattn/emmet-vim'
 
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'tomtom/tlib_vim'
-"Plugin 'garbas/vim-snipmate'
 
 "Bundle 'jasoncodes/ctrlp-modified.vim'
 
@@ -1031,12 +1050,33 @@ set hidden "Premite mudar de buffer sem salvar, mantendo-o na memória
 set smartcase
 
 set complete+=kspell
-set completeopt=longest,menuone
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+"inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+set completeopt-=menu
+set completeopt-=menuone
+set completeopt=menuone,longest
+" set completeopt=menuone,noinsert,noselect
+" let g:completion_enable_snippet = 'UltiSnips'
+" let g:completion_confirm_key = "\<C-y>"
+
+" Navigate the complete menu items like CTRL+n / CTRL+p would.
+" inoremap <expr> <Down> pumvisible() ? "<C-n>" :"<Down>"
+" inoremap <expr> <Up> pumvisible() ? "<C-p>" : "<Up>"
+
+" Select the complete menu item like CTRL+y would.
+" inoremap <expr> <Right> pumvisible() ? "<C-y>" : "<Right>"
+" inoremap <expr> <CR> pumvisible() ? "<C-y>" :"<CR>"
+
+" Cancel the complete menu item like CTRL+e would.
+" inoremap <expr> <Left> pumvisible() ? "<C-e>" : "<Left>"
+
 set formatoptions=tcqrn1
 set matchpairs+=<:> " Use % to jump between pairs
-set maxmempattern=5000 " default 1000
-set wildmenu
-set wildmode=full
+set maxmempattern=1000 " default 1000
+"set wildmenu
+"set wildmode=full
 set wrap
 
 " Remove algumas mensagens da barra status ao rolar na seleção do complete
@@ -1341,16 +1381,6 @@ let g:syntastic_javascript_checkers=['eslint']
 
 let g:syntastic_sh_checkers=['shellcheck']
 
-" ultisnip
-let g:UltiSnipsUsePythonVersion = 3
-"let g:UltiSnipsExpandTrigger="<>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-"nmap <leader><tab> call UltiSnips#ExpandSnippet()
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
 
 set path+=/opt/intmain/dev/*/usr/include/
 "set path+=.,~/git/Intmain/
