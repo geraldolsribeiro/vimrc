@@ -12,7 +12,7 @@
 "   git clone https://github.com/geraldolsribeiro/vimrc.git ~/.vim
 "   
 "    # Aponta o arquivo de configuração para a configuração personalizada
-"   ln -s ~/.vim/vimrc .vimrc
+"   ln -s ~/.vim/vimrc ~/.vimrc
 "   
 "    # Baixa todos os plugins relacionados na configuração
 "   mkdir -p ~/.vim/bundle
