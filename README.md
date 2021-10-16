@@ -30,7 +30,6 @@ Fonte: `vimrc`
       * [Erlang Support](#erlang-support)
       * [Elixir Support ](#elixir-support-)
       * [Theme / Interface / Color Scheme](#theme-/-interface-/-color-scheme)
-      * [Devicons](#devicons)
       * [Nerdtree](#nerdtree)
       * [TOML](#toml)
       * [Typescript](#typescript)
@@ -38,6 +37,9 @@ Fonte: `vimrc`
       * [Dark powered neo-completion](#dark-powered-neo-completion)
   * [Metatrader](#metatrader)
   * [Auto completar](#auto-completar)
+      * [COC](#coc)
+      * [YouCompleteMe](#youcompleteme)
+  * [Clangd](#clangd)
   * [Configuração geral](#configuração-geral)
   * [Git](#git)
   * [Configuração do neomake](#configuração-do-neomake)
@@ -47,6 +49,7 @@ Fonte: `vimrc`
       * [ruby ](#ruby-)
       * [SCSS](#scss)
       * [vim-table-mode](#vim-table-mode)
+      * [Devicons](#devicons)
   * [Melhorar a visibilidade da indentação](#melhorar-a-visibilidade-da-indentação)
   * [Configuração do clang-format](#configuração-do-clang-format)
       * [Tradução](#tradução)
@@ -54,6 +57,7 @@ Fonte: `vimrc`
       * [Atalhos de teclado](#atalhos-de-teclado)
   * [Destaque para as seções deste arquivo](#destaque-para-as-seções-deste-arquivo)
 
+[TOC]
 
 ## Instalação
 
@@ -225,8 +229,6 @@ Plugin 'dhruvasagar/vim-table-mode.git'
 " Lança o ranger a partir do vim
 Plugin 'francoiscabrol/ranger.vim' " <leader> f
 
-" Fork do plugin do Marcos Oliveira
-Plugin 'geraldolsribeiro/vim-auto-markdown'
 " vimwiki está interferindo no autocomplete
 " Plugin 'vimwiki/vimwiki'
 ```
@@ -270,6 +272,33 @@ Plugin 'neomake/neomake'
 
 ```vim
 Plugin 'tomtom/tcomment_vim'
+
+" gcc comenta/descomenta a linha atual
+" gc{motion} comenta/descomenta a seleção
+  <Leader>__       :: :TComment
+"     <Leader>__       :: :TComment
+  <Leader>_p       :: Comment the current inner paragraph
+"     <Leader>_p       :: Comment the current inner paragraph
+  <Leader>_<space> :: :TComment <QUERY COMMENT-BEGIN ?COMMENT-END>
+"     <Leader>_<space> :: :TComment <QUERY COMMENT-BEGIN ?COMMENT-END>
+  <Leader>_i       :: :TCommentInline
+"     <Leader>_i       :: :TCommentInline
+  <Leader>_r       :: :TCommentRight
+"     <Leader>_r       :: :TCommentRight
+  <Leader>_b       :: :TCommentBlock
+"     <Leader>_b       :: :TCommentBlock
+  <Leader>_a       :: :TCommentAs <QUERY COMMENT TYPE>
+"     <Leader>_a       :: :TCommentAs <QUERY COMMENT TYPE>
+  <Leader>_n       :: :TCommentAs &filetype <QUERY COUNT>
+"     <Leader>_n       :: :TCommentAs &filetype <QUERY COUNT>
+  <Leader>_s       :: :TCommentAs &filetype_<QUERY COMMENT SUBTYPE>
+"     <Leader>_s       :: :TCommentAs &filetype_<QUERY COMMENT SUBTYPE>
+"
+" ... and for select mode:
+"
+    " <Leader>__       :: :TComment
+    " <Leader>_i       :: :TCommentInline
+
 ```
 
 
@@ -284,7 +313,26 @@ Para definir o comentário para um novo tipo use:
 
 
 ```vim
+" Fork do plugin do Marcos Oliveira
+Plugin 'geraldolsribeiro/vim-auto-markdown'
+
+" npm -g install instant-markdown-d@next
 Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
+"let g:instant_markdown_slow = 1
+"let g:instant_markdown_autostart = 0
+"let g:instant_markdown_open_to_the_world = 1
+"let g:instant_markdown_allow_unsafe_content = 1
+"let g:instant_markdown_allow_external_content = 0
+"let g:instant_markdown_mathjax = 1
+"let g:instant_markdown_mermaid = 1
+"let g:instant_markdown_logfile = '/tmp/instant_markdown.log'
+"let g:instant_markdown_autoscroll = 0
+"let g:instant_markdown_port = 8888
+"let g:instant_markdown_python = 1
+let g:instant_markdown_browser = "firefox --new-window"
+" Abrir o preview ao carregar um arquivo markdown
+let g:instant_markdown_autostart = 1
+
 Plugin 'reedes/vim-pencil'
 Plugin 'tpope/vim-markdown'
 Plugin 'jtratner/vim-flavored-markdown'
@@ -442,50 +490,6 @@ Plugin 'colepeters/spacemacs-theme.vim'
 ```
 
 
-### Devicons
-
-
-```vim
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'ryanoasis/vim-webdevicons'
-let g:DevIconsEnableFolderExtensionPatternMatching = 0
-let g:DevIconsEnableFoldersOpenClose = 0
-let g:DevIconsEnableFoldersOpenClose = 1
-let g:webdevicons_conceal_nerdtree_brackets = 1
-let g:webdevicons_enable = 1 " habilita o plugin
-let g:webdevicons_enable_airline_statusline = 1
-let g:webdevicons_enable_airline_tabline = 1
-let g:webdevicons_enable_ctrlp = 1
-let g:webdevicons_enable_nerdtree = 1
-let g:webdevicons_enable_vimfiler = 1
-let g:WebDevIconsUnicodeDecorateFileNodes = 1
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:WebDevIconsUnicodeDecorateFolderNodesExactMatches = 1
-
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['js'] = 'ƛ'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['java'] = '☕'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['coffee'] = '☕'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sh'] = '🐚'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cpp'] = '🗡️'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['hpp'] = '🗡️'
-
-let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol   = '📝' " quando não tem símbolo definido
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = '📁' " pasta fechada
-let g:DevIconsDefaultFolderOpenSymbol                    = '📂' " pasta aberta
-
-let g:WebDevIconsOS = 'Darwin'
-
-" https://github.com/ryanoasis/vim-devicons/blob/master/doc/webdevicons.txt
-
-
-" After a re-source fixes the bug with the [] around devicons
-if exists('g:loaded_webdevicons')
-  call webdevicons#refresh()
-endif
-```
-
-
 ### Nerdtree
 
 
@@ -601,10 +605,13 @@ Plugin 'shinglyu/vim-codespell'
 
 ```vim
 Plugin 'rupurt/vim-mql5'
+"Plugin 'https://github.com/rupurt/vim-mql5'
 ```
 
 
 ## Auto completar
+
+### COC
 
 
 ```vim
@@ -613,6 +620,37 @@ Plugin 'neoclide/coc.nvim'
 let g:coc_disable_startup_warning = 1
 ```
 
+
+### YouCompleteMe
+apt install vim-youcompleteme
+vim-addon-manager install youcompleteme
+
+Instalar as dependências antes
+apt install gcc g++ cmake make build-essential vim-nox python3-dev
+cd .vim/plugged/YouCompleteMe/
+python3 install.py --clangd-completer # Somente C/C++
+python3 install.py --all # precisa do Go e NPM:
+sudo apt install golang npm
+
+```vim
+" Plugin 'ycm-core/YouCompleteMe'
+```
+
+
+## Clangd
+
+https://clangd.llvm.org/installation
+
+```vim
+" Let clangd fully control code completion
+let g:ycm_clangd_uses_ycmd_caching = 0
+" Use installed clangd, not YCM-bundled clangd which doesn't get updates.
+let g:ycm_clangd_binary_path = exepath("clangd-11")
+let g:ycm_clangd_args = ['-log=verbose', '-pretty']
+" let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_global_ycm_extra_conf = "/usr/lib/ycmd/ycm_extra_conf.py"
+
+```
 
 ## Configuração geral
 
@@ -657,6 +695,20 @@ Plugin 'airblade/vim-gitgutter'
 ```
 
 
+    \'syntax': {
+    \   'template': ['html', 'pug'],
+    \   'script': ['javascript', 'typescript', 'coffee'],
+    \   'style': ['scss', 'sass', 'less'],
+    \   'i18n': ['json', 'yaml'],
+    \   'route': 'json',
+    \   'docs': 'markdown',
+    \},
+    \'full_syntax': ['scss', 'html'],
+    \'initial_indent': ['script.javascript', 'style', 'yaml'],
+    \'attribute': 1,
+    \'keyword': 1,
+    \'foldexpr': 1,
+    \}
 
 ## Configuração do neomake
 
@@ -718,6 +770,54 @@ let g:neomake_scss_enabled_markers = ['scss-lint']
 ```vim
 " tabelas em formato markdown
 let g:table_mode_corner='|'
+```
+
+
+### Devicons
+
+
+```vim
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'ryanoasis/vim-webdevicons'
+let g:DevIconsEnableFolderExtensionPatternMatching = 0
+let g:DevIconsEnableFoldersOpenClose = 0
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:webdevicons_enable = 1 " habilita o plugin
+let g:webdevicons_enable_airline_statusline = 1
+let g:webdevicons_enable_airline_tabline = 1
+let g:webdevicons_enable_ctrlp = 1
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_enable_vimfiler = 1
+let g:WebDevIconsUnicodeDecorateFileNodes = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:WebDevIconsUnicodeDecorateFolderNodesExactMatches = 1
+
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['js']     = 'ƛ'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['java']   = '☕'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['coffee'] = '☕'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sh']     = '🐚'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cpp']    = '🗡️'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['hpp']    = '🗡️'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue']    = '﵂'
+
+" let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol   = '📝' " quando não tem símbolo definido
+" let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = '📁' " pasta fechada
+" let g:DevIconsDefaultFolderOpenSymbol                    = '📂' " pasta aberta
+
+let g:WebDevIconsOS = 'Darwin'
+
+" help devicons
+
+
+" https://github.com/ryanoasis/vim-devicons/blob/master/doc/webdevicons.txt
+
+
+" After a re-source fixes the bug with the [] around devicons
+if exists('g:loaded_webdevicons')
+  call webdevicons#refresh()
+endif
 ```
 
 
@@ -790,7 +890,7 @@ colorscheme gruvbox
 
 
 ```vim
-map <C-n> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 map <C-m> :TagbarToggle<CR>
 
 " Alterna entre as tabs
@@ -829,6 +929,8 @@ nmap <F8> :bp\|bd #<CR>
 " Seleção de bloco no terminal do xfce que já usa o ctrl+shift+V para colar
 :nnoremap <f4>  <c-v>
 
+" Mastering Vim Quickly #33
+" map <F2> :!git shortlog -s -n %<cr>
 
 " https://stackoverflow.com/questions/22407035/using-vim-as-a-c11-ide/22407453#22407453
 "nmap <leader>0 :exec '!clang-modernize -style=Google -format -loop-convert -pass-by-value -replace-auto_ptr -use-nullptr -use-auto -add-override -override-macros '.expand('%:p:h')<CR>

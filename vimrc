@@ -12,7 +12,7 @@
 "   git clone https://github.com/geraldolsribeiro/vimrc.git ~/.vim
 "   
 "    # Aponta o arquivo de configuração para a configuração personalizada
-"   ln -s ~/.vim/vimrc .vimrc
+"   ln -s ~/.vim/vimrc ~/.vimrc
 "   
 "    # Baixa todos os plugins relacionados na configuração
 "   mkdir -p ~/.vim/bundle
@@ -61,6 +61,8 @@ set showmatch                 " Mostra os pares de parênteses
 set autoindent                " Indenta com o ENTER
 set clipboard=unnamedplus     " y e p copiando e colando para a área de transferência do sistema
 set virtualedit=all           " permite mover o cursor para fora do texto e acrescenta espaços em caso de inserção
+set shell=/bin/bash           " define o interpretador de comandos
+set autowrite                 " salva ao executar comandos make e shell
 
 let mapleader="\<space>"      " leader usando barra de espaço
 let maplocalleader="\<space>"
@@ -167,7 +169,6 @@ Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
 Plugin 'BufOnly.vim'
 Plugin 'wesQ3/vim-windowswap'
-Plugin 'SirVer/ultisnips'
 
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'benmills/vimux'
@@ -191,6 +192,28 @@ Plugin 'xavierd/clang_complete'
 let g:clang_library_path='/usr/lib/llvm-8/lib/libclang.so.1'
 "}}}
 "   
+"   ### Snippets
+"   
+"{{{
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+"Plugin 'garbas/vim-snipmate'
+
+let g:UltiSnipsUsePythonVersion = 3
+" let g:UltiSnipsExpandTrigger="<>"
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+"nmap <leader><tab> call UltiSnips#ExpandSnippet()
+
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+
+"}}}
+"   
 "   ### Tradução
 "   
 "{{{
@@ -201,7 +224,6 @@ Plugin 'voldikss/vim-translator'
 "   
 "{{{
 "Plugin 'jakedouglas/exuberant-ctags'
-Plugin 'honza/vim-snippets'
 Plugin 'Townk/vim-autoclose'
 Plugin 'tobyS/vmustache'
 Plugin 'janko-m/vim-test'
@@ -415,48 +437,6 @@ Plugin 'colepeters/spacemacs-theme.vim'
 
 "}}}
 "   
-"   ### Devicons
-"   
-"{{{
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'ryanoasis/vim-webdevicons'
-let g:DevIconsEnableFolderExtensionPatternMatching = 0
-let g:DevIconsEnableFoldersOpenClose = 0
-let g:DevIconsEnableFoldersOpenClose = 1
-let g:webdevicons_conceal_nerdtree_brackets = 1
-let g:webdevicons_enable = 1 " habilita o plugin
-let g:webdevicons_enable_airline_statusline = 1
-let g:webdevicons_enable_airline_tabline = 1
-let g:webdevicons_enable_ctrlp = 1
-let g:webdevicons_enable_nerdtree = 1
-let g:webdevicons_enable_vimfiler = 1
-let g:WebDevIconsUnicodeDecorateFileNodes = 1
-let g:WebDevIconsUnicodeDecorateFolderNodes = 1
-let g:WebDevIconsUnicodeDecorateFolderNodesExactMatches = 1
-
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['js'] = 'ƛ'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['java'] = '☕'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['coffee'] = '☕'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sh'] = '🐚'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cpp'] = '🗡️'
-let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['hpp'] = '🗡️'
-
-let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol   = '📝' " quando não tem símbolo definido
-let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = '📁' " pasta fechada
-let g:DevIconsDefaultFolderOpenSymbol                    = '📂' " pasta aberta
-
-let g:WebDevIconsOS = 'Darwin'
-
-" https://github.com/ryanoasis/vim-devicons/blob/master/doc/webdevicons.txt
-
-
-" After a re-source fixes the bug with the [] around devicons
-if exists('g:loaded_webdevicons')
-  call webdevicons#refresh()
-endif
-"}}}
-"   
 "   ### Nerdtree
 "   
 "{{{
@@ -467,7 +447,7 @@ let g:NERDTreeSyntaxDisableDefaultExtensions = 1
 let g:NERDTreeSyntaxEnabledExtensions = ['c', 'h', 'cpp', 'hpp', 'py', 'md', 'txt', 'java', 'sh', 'vim', 'json']
 "}}}
 "FIXME: O dolar está quebrando a documentação
-let g:NERDTreeIgnore = ['\.o$', '\.pyc$', '\~$', '\.gif', '\.jpg', '\.png']
+let g:NERDTreeIgnore = ['\.o$', '\.pyc$', '\~$', '.git', 'node_modules', '\.gif', '\.jpg', '\.png']
 "{{{
 " Removes the little arrows that indicate whether a folder is open or not
 " These are not needed anymore because of the folder icons from devicons
@@ -561,25 +541,51 @@ Plugin 'shinglyu/vim-codespell'
 "   
 "{{{
 Plugin 'rupurt/vim-mql5'
+"Plugin 'https://github.com/rupurt/vim-mql5'
 "}}}
 "   
 "   ## Auto completar
 "   
+"   ### COC
+"   
 "{{{
-Plugin 'neoclide/coc.nvim'
+" Plugin 'neoclide/coc.nvim'
 " coc.nvim works best on vim >= 8.1.1719 and neovim >= 0.4.0, consider upgrade your vim.
-let g:coc_disable_startup_warning = 1
-
-" YouCompleteMe
-" Instalar as dependências antes
-" apt install gcc g++ cmake make build-essential vim-nox python3-dev
-" Plugin 'ycm-core/YouCompleteMe'
-" cd .vim/plugged/YouCompleteMe/
-" python3 install.py --clangd-completer # Somente C/C++
-" python3 install.py --all # precisa do Go e NPM:
-" sudo apt install golang npm
+" let g:coc_disable_startup_warning = 1
 "}}}
 "   
+"   ### YouCompleteMe
+"
+"   apt install vim-youcompleteme
+"   vim-addon-manager install youcompleteme
+"   
+"   Instalar as dependências antes
+"   apt install gcc g++ cmake make build-essential vim-nox python3-dev
+"   cd .vim/plugged/YouCompleteMe/
+"   python3 install.py --clangd-completer # Somente C/C++
+"   python3 install.py --all # precisa do Go e NPM:
+"   sudo apt install golang npm
+"{{{
+" Plugin 'ycm-core/YouCompleteMe'
+"}}}
+"   
+"   ## Clangd
+"   
+"   https://clangd.llvm.org/installation
+"
+" YouCompleteMe can be installed with clangd support. This is not on by
+" default, you must install it with install.py --clangd-completer.
+" We recommend changing a couple of YCM’s default settings. In .vimrc add:
+"{{{
+" Let clangd fully control code completion
+let g:ycm_clangd_uses_ycmd_caching = 0
+" Use installed clangd, not YCM-bundled clangd which doesn't get updates.
+let g:ycm_clangd_binary_path = exepath("clangd-11")
+let g:ycm_clangd_args = ['-log=verbose', '-pretty']
+" let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_global_ycm_extra_conf = "/usr/lib/ycmd/ycm_extra_conf.py"
+
+"}}}
 "   ## Configuração geral
 "   
 "{{{
@@ -625,7 +631,7 @@ let g:colorizer_auto_filetype='css,html,scss'
 Plugin 'luochen1990/rainbow'
 let g:rainbow_active = 1
 
-Plugin 'mg979/vim-visual-multi'
+" Plugin 'mg979/vim-visual-multi'
 "
 " " Default mapping
 " let g:multi_cursor_start_word_key      = '<C-n>'
@@ -726,7 +732,6 @@ Plugin 'mattn/emmet-vim'
 
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'tomtom/tlib_vim'
-"Plugin 'garbas/vim-snipmate'
 
 "Bundle 'jasoncodes/ctrlp-modified.vim'
 
@@ -821,6 +826,7 @@ let g:table_mode_corner='|'
 "}}}
 
 
+" Configuração do airline precisa estar antes do webdevicons
 " Vim-Airline Configuration
 ":h airline
 let g:airline#extensions#tabline#enabled = 1
@@ -843,6 +849,53 @@ let g:airline_solarized_bg='dark'
 
 let g:neomake_cpp_enable_markers=['clang']
 let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined", "-g"]
+
+"   
+"   ### Devicons
+"   
+"{{{
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'ryanoasis/vim-webdevicons'
+let g:DevIconsEnableFolderExtensionPatternMatching = 0
+let g:DevIconsEnableFoldersOpenClose = 0
+let g:DevIconsEnableFoldersOpenClose = 1
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:webdevicons_enable = 1 " habilita o plugin
+let g:webdevicons_enable_airline_statusline = 1
+let g:webdevicons_enable_airline_tabline = 1
+let g:webdevicons_enable_ctrlp = 1
+let g:webdevicons_enable_nerdtree = 1
+let g:webdevicons_enable_vimfiler = 1
+let g:WebDevIconsUnicodeDecorateFileNodes = 1
+let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+let g:WebDevIconsUnicodeDecorateFolderNodesExactMatches = 1
+
+let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols = {} " needed
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['js']     = 'ƛ'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['java']   = '☕'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['coffee'] = '☕'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['sh']     = '🐚'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['cpp']    = '🗡️'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['hpp']    = '🗡️'
+" let g:WebDevIconsUnicodeDecorateFileNodesExtensionSymbols['vue']    = '﵂'
+
+" let g:WebDevIconsUnicodeDecorateFileNodesDefaultSymbol   = '📝' " quando não tem símbolo definido
+" let g:WebDevIconsUnicodeDecorateFolderNodesDefaultSymbol = '📁' " pasta fechada
+" let g:DevIconsDefaultFolderOpenSymbol                    = '📂' " pasta aberta
+
+let g:WebDevIconsOS = 'Darwin'
+
+" help devicons
+
+
+" https://github.com/ryanoasis/vim-devicons/blob/master/doc/webdevicons.txt
+
+
+" After a re-source fixes the bug with the [] around devicons
+if exists('g:loaded_webdevicons')
+  call webdevicons#refresh()
+endif
+"}}}
 
 
 if has("gui_running")
@@ -877,12 +930,14 @@ let g:netrw_browse_split = 4 " Mantem a arvore aberta
 let g:netrw_altv         = 1
 let g:netrw_winsize      = 20 " percentua da janela usado para a listagem
 
-augroup ProjectDrawer
-  autocmd!
-  "autocmd VimEnter * :Vexplore
-augroup END
+"augroup ProjectDrawer
+"  autocmd!
+"  "autocmd VimEnter * :Vexplore
+"augroup END
 
 let g:markdown_fenced_languages = ['vim', 'html', 'python', 'bash=sh', 'ruby', 'eruby', 'javascript', 'elixir', 'sql', 'html']
+
+au BufRead,BufNewFile {COMMIT_EDITMSG} set ft=gitcommit
 
 augroup markdown
   au!
@@ -995,12 +1050,33 @@ set hidden "Premite mudar de buffer sem salvar, mantendo-o na memória
 set smartcase
 
 set complete+=kspell
-set completeopt=longest,menuone
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+"inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+set completeopt-=menu
+set completeopt-=menuone
+set completeopt=menuone,longest
+" set completeopt=menuone,noinsert,noselect
+" let g:completion_enable_snippet = 'UltiSnips'
+" let g:completion_confirm_key = "\<C-y>"
+
+" Navigate the complete menu items like CTRL+n / CTRL+p would.
+" inoremap <expr> <Down> pumvisible() ? "<C-n>" :"<Down>"
+" inoremap <expr> <Up> pumvisible() ? "<C-p>" : "<Up>"
+
+" Select the complete menu item like CTRL+y would.
+" inoremap <expr> <Right> pumvisible() ? "<C-y>" : "<Right>"
+" inoremap <expr> <CR> pumvisible() ? "<C-y>" :"<CR>"
+
+" Cancel the complete menu item like CTRL+e would.
+" inoremap <expr> <Left> pumvisible() ? "<C-e>" : "<Left>"
+
 set formatoptions=tcqrn1
 set matchpairs+=<:> " Use % to jump between pairs
-set maxmempattern=5000 " default 1000
-set wildmenu
-set wildmode=full
+set maxmempattern=1000 " default 1000
+"set wildmenu
+"set wildmode=full
 set wrap
 
 " Remove algumas mensagens da barra status ao rolar na seleção do complete
@@ -1305,16 +1381,6 @@ let g:syntastic_javascript_checkers=['eslint']
 
 let g:syntastic_sh_checkers=['shellcheck']
 
-" ultisnip
-let g:UltiSnipsUsePythonVersion = 3
-"let g:UltiSnipsExpandTrigger="<>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-"nmap <leader><tab> call UltiSnips#ExpandSnippet()
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
 
 set path+=/opt/intmain/dev/*/usr/include/
 "set path+=.,~/git/Intmain/
@@ -1410,7 +1476,7 @@ augroup END
 "   ### Atalhos de teclado
 "   
 "{{{
-map <C-n> :NERDTreeToggle<CR>
+map <leader>n :NERDTreeToggle<CR>
 map <C-m> :TagbarToggle<CR>
 
 " Alterna entre as tabs
@@ -1449,6 +1515,8 @@ nmap <F8> :bp\|bd #<CR>
 " Seleção de bloco no terminal do xfce que já usa o ctrl+shift+V para colar
 :nnoremap <f4>  <c-v>
 
+" Mastering Vim Quickly #33
+" map <F2> :!git shortlog -s -n %<cr>
 
 " https://stackoverflow.com/questions/22407035/using-vim-as-a-c11-ide/22407453#22407453
 "nmap <leader>0 :exec '!clang-modernize -style=Google -format -loop-convert -pass-by-value -replace-auto_ptr -use-nullptr -use-auto -add-override -override-macros '.expand('%:p:h')<CR>
