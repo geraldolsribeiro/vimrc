@@ -182,6 +182,7 @@ Plugin 'francoiscabrol/ranger.vim' " <leader> f
 
 " vimwiki está interferindo no autocomplete
 " Plugin 'vimwiki/vimwiki'
+" Plugin 'tools-life/taskwiki'
 "}}}
 "   
 "   ### Clang complete
@@ -189,7 +190,11 @@ Plugin 'francoiscabrol/ranger.vim' " <leader> f
 "{{{
 Plugin 'xavierd/clang_complete'
 " Onde a biblioteca está
-let g:clang_library_path='/usr/lib/llvm-8/lib/libclang.so.1'
+if filereadable('/usr/lib/llvm-11/lib/libclang.so.1')
+  let g:clang_library_path='/usr/lib/llvm-11/lib/libclang.so.1'
+else
+  let g:clang_library_path='/usr/lib/llvm-8/lib/libclang.so.1'
+endif
 "}}}
 "   
 "   ### Snippets
@@ -493,6 +498,16 @@ autocmd StdinReadPre * let s:std_in=1
 " let g:NERDAltDelims_java = 1
 " let g:NERDCommentEmptyLines = 0
 " let g:NERDTrimTrailingWhitespace = 1
+
+" Atalhos do NERDTree
+" o   Open in previous window
+" g o Preview
+" t   Open in new tab
+" T   Open in tab silently
+" i   Open split
+" g i Preview split
+" s   Open VSplit
+" g s Preview Split
 
 "}}}
 "   
@@ -932,7 +947,7 @@ let g:netrw_winsize      = 20 " percentua da janela usado para a listagem
 
 "augroup ProjectDrawer
 "  autocmd!
-"  "autocmd VimEnter * :Vexplore
+"  autocmd VimEnter * :Vexplore
 "augroup END
 
 let g:markdown_fenced_languages = ['vim', 'html', 'python', 'bash=sh', 'ruby', 'eruby', 'javascript', 'elixir', 'sql', 'html']
@@ -1331,7 +1346,7 @@ nmap <Leader>C :ClangFormatAutoToggle<CR>
 
 " syntastic
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " set statusline=%t      " final do nome do arquivo
@@ -1475,7 +1490,7 @@ augroup END
 "   
 "{{{
 map <leader>n :NERDTreeToggle<CR>
-map <C-m> :TagbarToggle<CR>
+"map <C-m> :TagbarToggle<CR>
 
 " Alterna entre as tabs
 nmap <leader>1 <Plug>AirlineSelectTab1
