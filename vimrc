@@ -12,7 +12,7 @@
 "   git clone https://github.com/geraldolsribeiro/vimrc.git ~/.vim
 "   
 "    # Aponta o arquivo de configuração para a configuração personalizada
-"   ln -s ~/.vim/vimrc .vimrc
+"   ln -s ~/.vim/vimrc ~/.vimrc
 "   
 "    # Baixa todos os plugins relacionados na configuração
 "   mkdir -p ~/.vim/bundle
@@ -1441,18 +1441,20 @@ let g:translator_source_lang='auto'
 "   
 "{{{
 set background=dark
-"set background=light
-"colorscheme eldar
-"colorscheme abbott
-"colorscheme wombat
-"colorscheme vimtom
-"colorscheme solarized
-"colorscheme dracula
-colorscheme molokai
+" set background=light
+" colorscheme eldar
+" colorscheme abbott
+" colorscheme wombat
+" colorscheme vimtom
+" colorscheme solarized
+" colorscheme dracula
+" colorscheme molokai
 colorscheme gruvbox
 
 " Força fundo transparente sobre o esquema de cores atual
+" Útil para deixar o vim sobreposto a outra tela no terminal
 " hi Normal guibg=NONE ctermbg=NONE
+hi Normal ctermbg=NONE
 "
 "let g:solarized_termcolors=16
 "let g:solarized_termtrans = 1
@@ -1581,13 +1583,17 @@ endfunction
 
 nmap <leader>h :e /opt/intmain/dev/linux/usr/share/Gr/scripts/Common/Makefile.include<CR>
 
+"   
 "   ## Destaque para as seções deste arquivo
 "   
 "   As sintaxes podem ser extendidas usado a pasta `after/syntax`, p.e.
 "   `after/syntax/make.vim`
+"   
+"   Para testar as cores use `:runtime syntax/colortest.vim`
+"   
 "{{{
-highlight intmain_docmd ctermbg=green ctermfg=white
-match intmain_docmd /"\(   \|{{{\|}}}\).*/
+" Coloração comum a todas as extenções
+highlight intmain_docmd ctermbg=lightgreen ctermfg=black
 "}}}
 
 command MeuComando echo "Olá mundo!"
