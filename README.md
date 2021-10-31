@@ -19,6 +19,7 @@ Fonte: `vimrc`
       * [Bookmarks](#bookmarks)
       * [Utilitários](#utilitários)
       * [Clang complete](#clang-complete)
+      * [Snippets](#snippets)
       * [Tradução](#tradução)
       * [Plugins genéricos para programação](#plugins-genéricos-para-programação)
       * [Comentários](#comentários)
@@ -68,7 +69,7 @@ git clone ssh://git@intmain.io:8322/geraldoim/dot_vim.git ~/.vim
 git clone https://github.com/geraldolsribeiro/vimrc.git ~/.vim
 
  # Aponta o arquivo de configuração para a configuração personalizada
-ln -s ~/.vim/vimrc .vimrc
+ln -s ~/.vim/vimrc ~/.vimrc
 
  # Baixa todos os plugins relacionados na configuração
 mkdir -p ~/.vim/bundle
@@ -217,7 +218,6 @@ Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
 Plugin 'BufOnly.vim'
 Plugin 'wesQ3/vim-windowswap'
-Plugin 'SirVer/ultisnips'
 
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'benmills/vimux'
@@ -244,6 +244,30 @@ let g:clang_library_path='/usr/lib/llvm-8/lib/libclang.so.1'
 ```
 
 
+### Snippets
+
+
+```vim
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+"Plugin 'garbas/vim-snipmate'
+
+let g:UltiSnipsUsePythonVersion = 3
+" let g:UltiSnipsExpandTrigger="<>"
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<c-b>"
+" let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+"nmap <leader><tab> call UltiSnips#ExpandSnippet()
+
+let g:UltiSnipsSnippetDirectories=["UltiSnips"]
+
+```
+
+
 ### Tradução
 
 
@@ -257,7 +281,6 @@ Plugin 'voldikss/vim-translator'
 
 ```vim
 "Plugin 'jakedouglas/exuberant-ctags'
-Plugin 'honza/vim-snippets'
 Plugin 'Townk/vim-autoclose'
 Plugin 'tobyS/vmustache'
 Plugin 'janko-m/vim-test'
@@ -615,9 +638,9 @@ Plugin 'rupurt/vim-mql5'
 
 
 ```vim
-Plugin 'neoclide/coc.nvim'
+" Plugin 'neoclide/coc.nvim'
 " coc.nvim works best on vim >= 8.1.1719 and neovim >= 0.4.0, consider upgrade your vim.
-let g:coc_disable_startup_warning = 1
+" let g:coc_disable_startup_warning = 1
 ```
 
 
@@ -867,18 +890,20 @@ let g:translator_source_lang='auto'
 
 ```vim
 set background=dark
-"set background=light
-"colorscheme eldar
-"colorscheme abbott
-"colorscheme wombat
-"colorscheme vimtom
-"colorscheme solarized
-"colorscheme dracula
-colorscheme molokai
+" set background=light
+" colorscheme eldar
+" colorscheme abbott
+" colorscheme wombat
+" colorscheme vimtom
+" colorscheme solarized
+" colorscheme dracula
+" colorscheme molokai
 colorscheme gruvbox
 
 " Força fundo transparente sobre o esquema de cores atual
+" Útil para deixar o vim sobreposto a outra tela no terminal
 " hi Normal guibg=NONE ctermbg=NONE
+hi Normal ctermbg=NONE
 "
 "let g:solarized_termcolors=16
 "let g:solarized_termtrans = 1
@@ -939,14 +964,18 @@ nmap <F8> :bp\|bd #<CR>
 " Ctrl+P configurado acima
 ```
 
+
 ## Destaque para as seções deste arquivo
 
 As sintaxes podem ser extendidas usado a pasta `after/syntax`, p.e.
 `after/syntax/make.vim`
 
+Para testar as cores use `:runtime syntax/colortest.vim`
+
+
 ```vim
-highlight intmain_docmd ctermbg=green ctermfg=white
-match intmain_docmd /"\(   \|{{{\|}}}\).*/
+" Coloração comum a todas as extenções
+highlight intmain_docmd ctermbg=lightgreen ctermfg=black
 ```
 
   silent exe "!osascript -e 'tell app \"Firefox\" to activate\<cr>
