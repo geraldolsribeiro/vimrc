@@ -822,28 +822,27 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-abolish'
 
-" Plugin 'leafoftree/vim-vue-plugin'
-" style: stylus
-" page-query: 'graphql'
-" let g:vim_vue_plugin_config = { 
-"       \'syntax': {
-"       \   'template': ['html', 'pug'],
-"       \   'script': ['javascript', 'typescript', 'coffee'],
-"       \   'style': ['scss', 'sass', 'less'],
-"       \   'i18n': ['json', 'yaml'],
-"       \   'route': 'json',
-"       \   'docs': 'markdown',
-"       \},
-"       \'full_syntax': ['scss', 'html'],
-"       \'initial_indent': ['script.javascript', 'style', 'yaml'],
-"       \'attribute': 1,
-"       \'keyword': 1,
-"       \'foldexpr': 1,
-"       \}
+Plugin 'leafOfTree/vim-vue-plugin'
 
-Plugin 'posva/vim-vue'
-"let g:vue_pre_processors = ['pug', 'scss']
-let g:vue_pre_processors = 'detect_on_enter'
+let g:vim_vue_plugin_config = {
+      \'syntax': {
+        \   'template': ['html'],
+        \   'script': ['javascript'],
+        \   'style': ['css'],
+        \},
+      \'full_syntax': [],
+      \'initial_indent': [],
+      \'attribute': 0,
+      \'keyword': 0,
+      \'foldexpr': 0,
+      \'debug': 0,
+      \}
+
+" Plugin 'posva/vim-vue'
+" let g:vue_pre_processors = ['pug', 'scss']
+" let g:vue_pre_processors = 'detect_on_enter'
+
+
 
 " A linha abaixo já está em patch do vim, mas ainda não entrou para o Debian
 au BufNewFile,BufRead *.vue setf vue
@@ -1345,7 +1344,8 @@ nmap <C-DOWN> :m+1<CR>
 
 nmap <F5> :s/(\(.*\)\.size()\s*>\s*0/( ! \1.isEmpty() /<CR>:wq<CR>
 
-" Abre o arquivo sobre o cursor usando o xdg-open
+" Abre o arquivo/url sobre o cursor usando o xdg-open
+" https://stackoverflow.com/questions/9458294/open-url-under-cursor-in-vim-with-browser
 nmap gx :!open <c-r><c-a>
 
 " muda a indentação de um bloco visual
@@ -1595,13 +1595,6 @@ let g:translator_source_lang='auto'
 "{{{
 set background=dark
 " set background=light
-" colorscheme eldar
-" colorscheme abbott
-" colorscheme wombat
-" colorscheme vimtom
-" colorscheme solarized
-" colorscheme dracula
-" colorscheme molokai
 colorscheme gruvbox
 
 " Força fundo transparente sobre o esquema de cores atual
@@ -1921,5 +1914,8 @@ set keywordprg=google
 " comporamento default
 set keywordprg=man\ -s
 
+
+" Exemplo do livro VimL
+let &runtimepath.=',~/vim/plugin/mpc'
 
 " vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br :
