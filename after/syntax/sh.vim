@@ -1,1 +1,1 @@
-match intmain_docmd /#\(   \|{{{\|}}}\).*/
+syn match intmain_docmd /#\(   \|{{{\|}}}\).*/

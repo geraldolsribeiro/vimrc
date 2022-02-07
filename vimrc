@@ -122,6 +122,7 @@ Plugin 'chr4/nginx.vim'
 "   
 "{{{
 Plugin 'tpope/vim-surround'           "FIXME: Tem um link para um tutorial no final do arquivo, converter para seção
+" let g:surround_{char2nr('o')} = "**\r**"
 "}}}
 "   
 "   ### Bookmarks
@@ -275,8 +276,9 @@ Plugin 'tomtom/tcomment_vim'
 " Fork do plugin do Marcos Oliveira
 Plugin 'geraldolsribeiro/vim-auto-markdown'
 
+
 " npm -g install instant-markdown-d@next
-Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
+Plugin 'instant-markdown/vim-instant-markdown'
 "let g:instant_markdown_slow = 1
 "let g:instant_markdown_autostart = 0
 "let g:instant_markdown_open_to_the_world = 1
@@ -288,6 +290,7 @@ Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
 "let g:instant_markdown_autoscroll = 0
 "let g:instant_markdown_port = 8888
 "let g:instant_markdown_python = 1
+
 let g:instant_markdown_browser = "firefox --new-window"
 " Abrir o preview ao carregar um arquivo markdown
 let g:instant_markdown_autostart = 1
@@ -1740,6 +1743,10 @@ nmap <leader>h :e /opt/intmain/dev/linux/usr/share/Gr/scripts/Common/Makefile.in
 "{{{
 " Coloração comum a todas as extenções
 highlight intmain_docmd ctermbg=lightgreen ctermfg=black
+highlight intmain_docmd_h1 ctermbg=blue ctermfg=black
+highlight intmain_docmd_h2 ctermbg=lightblue ctermfg=black
+highlight intmain_docmd_h3 ctermbg=cyan ctermfg=black
+highlight intmain_docmd_blank ctermbg=darkgray ctermfg=black
 "}}}
 
 command MeuComando echo "Olá mundo!"

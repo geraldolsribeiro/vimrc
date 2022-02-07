@@ -8,8 +8,8 @@ server.Get( R"(/number/(\d+))", [&]( const Request &req, Response & res ) {
 endsnippet
 
 snippet ifndef
-#ifndef __${1:FILE}_HPP__
-#define __$1_HPP__
+#ifndef ${1:FILE}_HPP
+#define $1_HPP
 
 #endif
 endsnippet
@@ -28,16 +28,16 @@ endsnippet
 
 snippet header
 // ----------------------------------------------------------------------
-// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 
 endsnippet
 
 snippet header_kashim
 // ----------------------------------------------------------------------
-// Copyright (C) 2020-2020 Geraldo Ribeiro <geraldo@intmain.io>
-// Copyright (C) 2020-2020 Ulisses Massafera <u.massafera@gmail.com>
-// Copyright (C) 2020-2020 Eduardo Stetner <edu.stetner@gmail.com>
+// Copyright (C) 2022-2022 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2022-2022 Ulisses Massafera <u.massafera@gmail.com>
+// Copyright (C) 2022-2022 Eduardo Stetner <edu.stetner@gmail.com>
 // ----------------------------------------------------------------------
 
 endsnippet
@@ -77,17 +77,17 @@ endsnippet
 
 snippet header_taoker
 // ----------------------------------------------------------------------
-// Copyright (C) 2017-2020 Anderson Sabara <anderson-sabara@taoker.com.br>
-// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>
+// Copyright (C) 2017-2022 Anderson Sabara <anderson-sabara@taoker.com.br>
+// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>
 // ----------------------------------------------------------------------
 
 endsnippet
 
 snippet gpsheader
 // ----------------------------------------------------------------------
-// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
-// Copyright (C) 2017-2020 Pedro Bruno <pedroguilhermebruno@yahoo.com.br>
-// Copyright (C) 2017-2020 Sergio Ribeiro <segori@gmail.com>
+// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2022 Pedro Bruno <pedroguilhermebruno@yahoo.com.br>
+// Copyright (C) 2017-2022 Sergio Ribeiro <segori@gmail.com>
 // ----------------------------------------------------------------------
 
 endsnippet
@@ -95,11 +95,11 @@ endsnippet
 
 snippet newhpp "Novo arquivo HPP"
 // ----------------------------------------------------------------------
-// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 
-#ifndef __${1:FILENAME}_HPP__
-#define __$1_HPP__
+#ifndef ${1:FILENAME}_HPP
+#define $1_HPP
 $0
 #endif
 endsnippet
@@ -129,7 +129,7 @@ protected:
 };
 
 // ----------------------------------------------------------------------
-// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 #include <View01Html$1Record.hpp>
 
@@ -310,14 +310,14 @@ SCENARIO( "${1:Título do teste}" )
 }
 endsnippet
 
-snippet testcase
+snippet catchTestcase
 TEST_CASE( "${1:Nome do teste}", "[tag1],[tag2]" )
 {
 
 }
 endsnippet
 
-snippet testString
+snippet catchTestString
 REQUIRE_THAT( str, EndsWith( "as a service" ) );
 REQUIRE_THAT( str, StartsWith( "as a service" ) );
 REQUIRE_THAT( str, Contains( "as a service" ) );
@@ -331,15 +331,20 @@ REQUIRE_THAT( str,
 );
 endsnippet
 
-snippet testVector
+snippet catchTestVector
 REQUIRE_THAT( vec, Contains( subvec ) );
 REQUIRE_THAT( vec, VectorContains( elem ) );
 REQUIRE_THAT( vec, Equals( otherVec ) );
 endsnippet
 
-snippet testFloat
+snippet catchTestFloat
 REQUIRE_THAT( number, WithinULP( 1.f, 1 ) ); // compara float
 REQUIRE_THAT( number, WithinULP( 1., 1 ) );  // compara double
+endsnippet
+
+snippet doctest_main
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include <doctest/doctest.h>
 endsnippet
 
 snippet pqxxtxn
@@ -402,12 +407,12 @@ endsnippet
 
 snippet nah "Nova action - cabeçalho" b
 `!p
-guard = '__' + re.sub('(?!^)([A-Z]+)', r'_\1',snip.basename).upper() + '_HPP__'
+guard = re.sub('(?!^)([A-Z]+)', r'_\1',snip.basename).upper() + '_HPP'
 nsOpen = '// clang-format off\nnamespace br { namespace com { namespace intmain { namespace GrComponents { namespace GrWebServer {\n// clang-format on'
 nsClose = '// clang-format off\n} } } } }\n// clang-format on'
 
 snip.rv = '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2017-2021 Geraldo Ribeiro <geraldo@intmain.io>'
+snip += '// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo@intmain.io>'
 snip += '// ----------------------------------------------------------------------'
 snip += ''
 snip += '#ifndef ' + guard
@@ -427,13 +432,13 @@ endsnippet
 snippet na "Nova action" b
 // ${1:`!p snip.rv = snip.basename`}
 `!p
-guard = '__' + re.sub('(?!^)([A-Z]+)', r'_\1',t[1]).upper() + '_HPP__'
+guard = re.sub('(?!^)([A-Z]+)', r'_\1',t[1]).upper() + '_HPP'
 nsOpen = '// clang-format off\nnamespace br { namespace com { namespace intmain { namespace GrComponents { namespace GrWebServer {\n// clang-format on'
 nsClose = '// clang-format off\n} } } } }\n// clang-format on'
 
 
 snip.rv = '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>'
+snip += '// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo@intmain.io>'
 snip += '// ----------------------------------------------------------------------'
 snip += ''
 snip += '#ifndef ' + guard
@@ -450,7 +455,7 @@ snip += ''
 snip += '#endif'
 snip += ''
 snip += '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>'
+snip += '// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo@intmain.io>'
 snip += '// ----------------------------------------------------------------------'
 snip += '#include "' + t[1] + '.hpp"'
 snip += ''
@@ -477,13 +482,13 @@ snippet tna "Nova action" b
 ${1:TestActionNameComplex}
 
 `!p
-guard = '__' + re.sub('(?!^)([A-Z]+)', r'_\1',t[1]).upper() + '_HPP__'
+guard = re.sub('(?!^)([A-Z]+)', r'_\1',t[1]).upper() + '_HPP'
 nsOpen = '// clang-format off\nnamespace br { namespace com { namespace intmain { namespace GrComponents { namespace GrWebServer {\n// clang-format on'
 nsClose = '// clang-format off\n} } } } }\n// clang-format on'
 
 snip.rv = '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2017-2020 Anderson Sabara <anderson-sabara@taoker.com.br>'
-snip += '// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
+snip += '// Copyright (C) 2017-2022 Anderson Sabara <anderson-sabara@taoker.com.br>'
+snip += '// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
 snip += '// ----------------------------------------------------------------------'
 snip += '#ifndef ' + guard
 snip += '#define ' + guard
@@ -499,8 +504,8 @@ snip += ''
 snip += '#endif'
 snip += ''
 snip += '// ----------------------------------------------------------------------'
-snip += '// Copyright (C) 2017-2020 Anderson Sabara <anderson-sabara@taoker.com.br>'
-snip += '// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
+snip += '// Copyright (C) 2017-2022 Anderson Sabara <anderson-sabara@taoker.com.br>'
+snip += '// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
 snip += '// ----------------------------------------------------------------------'
 snip += '#include "' + t[1] + '.hpp"'
 snip += ''
@@ -542,13 +547,13 @@ endsnippet
 
 snippet privrepo
 // ----------------------------------------------------------------------
-// Copyright (C) 2017-2020 Geraldo Ribeiro <geraldo@intmain.io>
+// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 
 // Nome: ${1:Post}
 
-#ifndef __PRIV_REPO_$1_RECORD_HPP__
-#define __PRIV_REPO_$1_RECORD_HPP__
+#ifndef PRIV_REPO_$1_RECORD_HPP
+#define PRIV_REPO_$1_RECORD_HPP
 
 #include "Add$1RecordFrm01.hpp"
 #include "Delete$1RecordFrm01.hpp"
