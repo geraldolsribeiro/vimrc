@@ -276,9 +276,10 @@ Plugin 'tomtom/tcomment_vim'
 " Fork do plugin do Marcos Oliveira
 Plugin 'geraldolsribeiro/vim-auto-markdown'
 
-
+" Para usar o instant-markdown é necessário instalar o pacote npm antes
 " npm -g install instant-markdown-d@next
 Plugin 'instant-markdown/vim-instant-markdown'
+
 "let g:instant_markdown_slow = 1
 "let g:instant_markdown_autostart = 0
 "let g:instant_markdown_open_to_the_world = 1
