@@ -582,6 +582,15 @@ Plugin 'rupurt/vim-mql5'
 "   
 "{{{
 Plugin 'neoclide/coc.nvim'
+
+" :CocInstall coc-tsserver coc-json coc-html coc-css coc-clangd
+" ou
+" vim -c 'CocInstall -sync coc-json coc-html coc-css coc-clangd
+" coc-clang-format-style-options coc-cmake coc-diagnostic coc-dot-complete
+" coc-htmlhint coc-markdownlint coc-ltex coc-nginx coc-sh coc-yaml|q'
+"
+" :CocList extensions
+"
 " coc.nvim works best on vim >= 8.1.1719 and neovim >= 0.4.0, consider upgrade your vim.
 " let g:coc_disable_startup_warning = 1
 "
@@ -753,6 +762,8 @@ let g:ycm_clangd_binary_path = exepath("clangd-11")
 let g:ycm_clangd_args = ['-log=verbose', '-pretty']
 " let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_global_ycm_extra_conf = "/usr/lib/ycmd/ycm_extra_conf.py"
+
+" https://clangd.llvm.org/installation
 
 "}}}
 "   ## Configuração geral
