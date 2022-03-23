@@ -106,6 +106,14 @@ Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
 "}}}
 "   
+"   ### Blockdiag
+"   
+"{{{
+Plugin 'mhaig/vim-blockdiag-series.git'
+" Veja orientação em https://github.com/mhaig/vim-blockdiag-series sobre
+" alteração no .vim/scripts.vim
+"}}}
+"   
 "   ### Cucumber
 "   
 "{{{
@@ -165,7 +173,7 @@ let g:bookmark_auto_save_file = $HOME . '/.vim/bookmarks'
 "{{{
 Plugin 'powerline/powerline-fonts'
 Plugin 'geraldolsribeiro/vim-conceal' " Exibição de caracteres
-"Plugin 'Yggdroot/indentLine'
+" Plugin 'Yggdroot/indentLine'
 Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
 Plugin 'BufOnly.vim'
@@ -175,11 +183,15 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'benmills/vimux'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'gilsondev/searchtasks.vim'
-"Plugin 'Shougo/neocomplete.vim'
+" Plugin 'Shougo/neocomplete.vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'dhruvasagar/vim-table-mode.git'
 " Lança o ranger a partir do vim
-Plugin 'francoiscabrol/ranger.vim' " <leader> f
+
+Plugin 'francoiscabrol/ranger.vim'
+" <leader> f abre o ranger
+
+Plugin 'wellle/targets.vim'
 
 " vimwiki está interferindo no autocomplete
 " Plugin 'vimwiki/vimwiki'
@@ -825,7 +837,7 @@ let g:rainbow_active = 1
 
 " Plantuml
 Plugin 'aklt/plantuml-syntax'
-Plugin 'scrooloose/vim-slumlord'
+" Plugin 'scrooloose/vim-slumlord'
 
 " FIXME: Separar os plugins abaixo
 "
@@ -1427,7 +1439,7 @@ command Checkmark  :execute "normal i<C-v>u2714 " |" ✔
 au BufRead /tmp/psql.edit.* set syntax=sql
 
 let spell_language_list="brasileiro,american"
-let spell_auto_type="md,tex,doc,mail"
+let spell_auto_type="md,tex,doc,mail,yaml,cpp"
 
 " Habilita verificação
 " setlocal spell spelllang=pt_br
@@ -1615,10 +1627,17 @@ colorscheme gruvbox
 " Força fundo transparente sobre o esquema de cores atual
 " Útil para deixar o vim sobreposto a outra tela no terminal
 " hi Normal guibg=NONE ctermbg=NONE
-hi Normal ctermbg=NONE
+highlight Normal ctermbg=NONE
 "
 "let g:solarized_termcolors=16
 "let g:solarized_termtrans = 1
+
+" Erros de ortografia
+highlight clear SpellBad
+highlight SpellBad ctermfg=red 
+"ctermbg=gray guifg=#ff0000 guibg=#ffff00
+" :help hl-SpellBad
+
 
 "}}}
 "
@@ -1936,5 +1955,9 @@ set keywordprg=man\ -s
 
 " Exemplo do livro VimL
 let &runtimepath.=',~/vim/plugin/mpc'
+
+
+":syntax sync minlines=10000
+":syntax sync fromstart
 
 " vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br :
