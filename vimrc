@@ -190,7 +190,11 @@ Plugin 'dhruvasagar/vim-table-mode.git'
 
 Plugin 'francoiscabrol/ranger.vim'
 " <leader> f abre o ranger
+let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
 
+" Seleções para edição
+" https://github.com/wellle/targets.vim
+" https://www.barbarianmeetscoding.com/blog/exploring-vim-plugins-improve-and-extend-your-text-objects-with-targets-vim
 Plugin 'wellle/targets.vim'
 
 " vimwiki está interferindo no autocomplete
@@ -1959,5 +1963,8 @@ let &runtimepath.=',~/vim/plugin/mpc'
 
 ":syntax sync minlines=10000
 ":syntax sync fromstart
+
+" Tem muita coisa boa neste artigo para incorporar
+" [VIM AFTER 15 YEARS](https://statico.github.io/vim3.html)
 
 " vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br :
