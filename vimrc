@@ -106,6 +106,14 @@ Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plugin 'junegunn/fzf.vim'
 "}}}
 "   
+"   ### Blockdiag
+"   
+"{{{
+Plugin 'mhaig/vim-blockdiag-series.git'
+" Veja orientação em https://github.com/mhaig/vim-blockdiag-series sobre
+" alteração no .vim/scripts.vim
+"}}}
+"   
 "   ### Cucumber
 "   
 "{{{
@@ -165,7 +173,7 @@ let g:bookmark_auto_save_file = $HOME . '/.vim/bookmarks'
 "{{{
 Plugin 'powerline/powerline-fonts'
 Plugin 'geraldolsribeiro/vim-conceal' " Exibição de caracteres
-"Plugin 'Yggdroot/indentLine'
+" Plugin 'Yggdroot/indentLine'
 Plugin 'majutsushi/tagbar'
 Plugin 'ervandew/supertab'
 Plugin 'BufOnly.vim'
@@ -175,11 +183,19 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'benmills/vimux'
 Plugin 'jeetsukumaran/vim-buffergator'
 Plugin 'gilsondev/searchtasks.vim'
-"Plugin 'Shougo/neocomplete.vim'
+" Plugin 'Shougo/neocomplete.vim'
 Plugin 'tpope/vim-dispatch'
 Plugin 'dhruvasagar/vim-table-mode.git'
 " Lança o ranger a partir do vim
-Plugin 'francoiscabrol/ranger.vim' " <leader> f
+
+Plugin 'francoiscabrol/ranger.vim'
+" <leader> f abre o ranger
+let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
+
+" Seleções para edição
+" https://github.com/wellle/targets.vim
+" https://www.barbarianmeetscoding.com/blog/exploring-vim-plugins-improve-and-extend-your-text-objects-with-targets-vim
+Plugin 'wellle/targets.vim'
 
 " vimwiki está interferindo no autocomplete
 " Plugin 'vimwiki/vimwiki'
@@ -276,9 +292,10 @@ Plugin 'tomtom/tcomment_vim'
 " Fork do plugin do Marcos Oliveira
 Plugin 'geraldolsribeiro/vim-auto-markdown'
 
-
+" Para usar o instant-markdown é necessário instalar o pacote npm antes
 " npm -g install instant-markdown-d@next
 Plugin 'instant-markdown/vim-instant-markdown'
+
 "let g:instant_markdown_slow = 1
 "let g:instant_markdown_autostart = 0
 "let g:instant_markdown_open_to_the_world = 1
@@ -581,6 +598,14 @@ Plugin 'rupurt/vim-mql5'
 "   
 "{{{
 " Plugin 'neoclide/coc.nvim'
+" :CocInstall coc-tsserver coc-json coc-html coc-css coc-clangd
+" ou
+" vim -c 'CocInstall -sync coc-json coc-html coc-css coc-clangd
+" coc-clang-format-style-options coc-cmake coc-diagnostic coc-dot-complete
+" coc-htmlhint coc-markdownlint coc-ltex coc-nginx coc-sh coc-yaml|q'
+"
+" :CocList extensions
+"
 " coc.nvim works best on vim >= 8.1.1719 and neovim >= 0.4.0, consider upgrade your vim.
 " let g:coc_disable_startup_warning = 1
 "
@@ -753,6 +778,8 @@ let g:ycm_clangd_args = ['-log=verbose', '-pretty']
 " let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_global_ycm_extra_conf = "/usr/lib/ycmd/ycm_extra_conf.py"
 
+" https://clangd.llvm.org/installation
+
 "}}}
 "   ## Configuração geral
 "   
@@ -813,7 +840,7 @@ let g:rainbow_active = 1
 
 " Plantuml
 Plugin 'aklt/plantuml-syntax'
-Plugin 'scrooloose/vim-slumlord'
+" Plugin 'scrooloose/vim-slumlord'
 
 " FIXME: Separar os plugins abaixo
 "
@@ -825,28 +852,27 @@ Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-bundler'
 Plugin 'tpope/vim-abolish'
 
-" Plugin 'leafoftree/vim-vue-plugin'
-" style: stylus
-" page-query: 'graphql'
-" let g:vim_vue_plugin_config = { 
-"       \'syntax': {
-"       \   'template': ['html', 'pug'],
-"       \   'script': ['javascript', 'typescript', 'coffee'],
-"       \   'style': ['scss', 'sass', 'less'],
-"       \   'i18n': ['json', 'yaml'],
-"       \   'route': 'json',
-"       \   'docs': 'markdown',
-"       \},
-"       \'full_syntax': ['scss', 'html'],
-"       \'initial_indent': ['script.javascript', 'style', 'yaml'],
-"       \'attribute': 1,
-"       \'keyword': 1,
-"       \'foldexpr': 1,
-"       \}
+Plugin 'leafOfTree/vim-vue-plugin'
 
-Plugin 'posva/vim-vue'
-"let g:vue_pre_processors = ['pug', 'scss']
-let g:vue_pre_processors = 'detect_on_enter'
+let g:vim_vue_plugin_config = {
+      \'syntax': {
+        \   'template': ['html'],
+        \   'script': ['javascript'],
+        \   'style': ['css'],
+        \},
+      \'full_syntax': [],
+      \'initial_indent': [],
+      \'attribute': 0,
+      \'keyword': 0,
+      \'foldexpr': 0,
+      \'debug': 0,
+      \}
+
+" Plugin 'posva/vim-vue'
+" let g:vue_pre_processors = ['pug', 'scss']
+" let g:vue_pre_processors = 'detect_on_enter'
+
+
 
 " A linha abaixo já está em patch do vim, mas ainda não entrou para o Debian
 au BufNewFile,BufRead *.vue setf vue
@@ -1348,7 +1374,8 @@ nmap <C-DOWN> :m+1<CR>
 
 nmap <F5> :s/(\(.*\)\.size()\s*>\s*0/( ! \1.isEmpty() /<CR>:wq<CR>
 
-" Abre o arquivo sobre o cursor usando o xdg-open
+" Abre o arquivo/url sobre o cursor usando o xdg-open
+" https://stackoverflow.com/questions/9458294/open-url-under-cursor-in-vim-with-browser
 nmap gx :!open <c-r><c-a>
 
 " muda a indentação de um bloco visual
@@ -1415,7 +1442,7 @@ command Checkmark  :execute "normal i<C-v>u2714 " |" ✔
 au BufRead /tmp/psql.edit.* set syntax=sql
 
 let spell_language_list="brasileiro,american"
-let spell_auto_type="md,tex,doc,mail"
+let spell_auto_type="md,tex,doc,mail,yaml,cpp"
 
 " Habilita verificação
 " setlocal spell spelllang=pt_br
@@ -1598,22 +1625,22 @@ let g:translator_source_lang='auto'
 "{{{
 set background=dark
 " set background=light
-" colorscheme eldar
-" colorscheme abbott
-" colorscheme wombat
-" colorscheme vimtom
-" colorscheme solarized
-" colorscheme dracula
-" colorscheme molokai
 colorscheme gruvbox
 
 " Força fundo transparente sobre o esquema de cores atual
 " Útil para deixar o vim sobreposto a outra tela no terminal
 " hi Normal guibg=NONE ctermbg=NONE
-hi Normal ctermbg=NONE
+highlight Normal ctermbg=NONE
 "
 "let g:solarized_termcolors=16
 "let g:solarized_termtrans = 1
+
+" Erros de ortografia
+highlight clear SpellBad
+highlight SpellBad ctermfg=red 
+"ctermbg=gray guifg=#ff0000 guibg=#ffff00
+" :help hl-SpellBad
+
 
 "}}}
 "
@@ -1928,5 +1955,15 @@ set keywordprg=google
 " comporamento default
 set keywordprg=man\ -s
 
+
+" Exemplo do livro VimL
+let &runtimepath.=',~/vim/plugin/mpc'
+
+
+":syntax sync minlines=10000
+":syntax sync fromstart
+
+" Tem muita coisa boa neste artigo para incorporar
+" [VIM AFTER 15 YEARS](https://statico.github.io/vim3.html)
 
 " vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br :

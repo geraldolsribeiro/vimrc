@@ -13,6 +13,7 @@ Fonte: `vimrc`
   * [Configuração específica para projetos](#configuração-específica-para-projetos)
   * [Plugins](#plugins)
       * [FZF](#fzf)
+      * [Blockdiag](#blockdiag)
       * [Cucumber](#cucumber)
       * [Servidores web](#servidores-web)
       * [Sorround](#sorround)
@@ -38,7 +39,7 @@ Fonte: `vimrc`
       * [Dark powered neo-completion](#dark-powered-neo-completion)
   * [Metatrader](#metatrader)
   * [Auto completar](#auto-completar)
-      * [COC](#coc)
+      * [COC - Conquer Of Completion](#coc---conquer-of-completion)
       * [YouCompleteMe](#youcompleteme)
   * [Clangd](#clangd)
   * [Configuração geral](#configuração-geral)
@@ -146,6 +147,16 @@ Plugin 'junegunn/fzf.vim'
 ```
 
 
+### Blockdiag
+
+
+```vim
+Plugin 'mhaig/vim-blockdiag-series.git'
+" Veja orientação em https://github.com/mhaig/vim-blockdiag-series sobre
+" alteração no .vim/scripts.vim
+```
+
+
 ### Cucumber
 
 
@@ -167,6 +178,7 @@ Plugin 'chr4/nginx.vim'
 
 ```vim
 Plugin 'tpope/vim-surround'           "FIXME: Tem um link para um tutorial no final do arquivo, converter para seção
+" let g:surround_{char2nr('o')} = "**\r**"
 ```
 
 
@@ -231,6 +243,7 @@ Plugin 'francoiscabrol/ranger.vim' " <leader> f
 
 " vimwiki está interferindo no autocomplete
 " Plugin 'vimwiki/vimwiki'
+" Plugin 'tools-life/taskwiki'
 ```
 
 
@@ -240,7 +253,11 @@ Plugin 'francoiscabrol/ranger.vim' " <leader> f
 ```vim
 Plugin 'xavierd/clang_complete'
 " Onde a biblioteca está
-let g:clang_library_path='/usr/lib/llvm-8/lib/libclang.so.1'
+if filereadable('/usr/lib/llvm-11/lib/libclang.so.1')
+  let g:clang_library_path='/usr/lib/llvm-11/lib/libclang.so.1'
+else
+  let g:clang_library_path='/usr/lib/llvm-8/lib/libclang.so.1'
+endif
 ```
 
 
@@ -339,8 +356,10 @@ Para definir o comentário para um novo tipo use:
 " Fork do plugin do Marcos Oliveira
 Plugin 'geraldolsribeiro/vim-auto-markdown'
 
+" Para usar o instant-markdown é necessário instalar o pacote npm antes
 " npm -g install instant-markdown-d@next
-Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
+Plugin 'instant-markdown/vim-instant-markdown'
+
 "let g:instant_markdown_slow = 1
 "let g:instant_markdown_autostart = 0
 "let g:instant_markdown_open_to_the_world = 1
@@ -352,6 +371,7 @@ Plugin 'suan/vim-instant-markdown', {'rtp': 'after'}
 "let g:instant_markdown_autoscroll = 0
 "let g:instant_markdown_port = 8888
 "let g:instant_markdown_python = 1
+
 let g:instant_markdown_browser = "firefox --new-window"
 " Abrir o preview ao carregar um arquivo markdown
 let g:instant_markdown_autostart = 1
@@ -571,6 +591,16 @@ autocmd StdinReadPre * let s:std_in=1
 " let g:NERDCommentEmptyLines = 0
 " let g:NERDTrimTrailingWhitespace = 1
 
+" Atalhos do NERDTree
+" o   Open in previous window
+" g o Preview
+" t   Open in new tab
+" T   Open in tab silently
+" i   Open split
+" g i Preview split
+" s   Open VSplit
+" g s Preview Split
+
 ```
 
 
@@ -634,13 +664,172 @@ Plugin 'rupurt/vim-mql5'
 
 ## Auto completar
 
-### COC
+### COC - Conquer Of Completion
+
+A [integração](https://github.com/neoclide/coc-tabnine) é feita através do
+comando:
+
+:CocInstall coc-tabnine
+
+
+:CocInstall coc-json
+:CocInstall coc-html
+:CocInstall coc-css
+:CocInstall coc-tsserver
+:CocConfig
+:CocCommand clangd.install
 
 
 ```vim
-" Plugin 'neoclide/coc.nvim'
+Plugin 'neoclide/coc.nvim'
+
+" :CocInstall coc-tsserver coc-json coc-html coc-css coc-clangd
+" ou
+" vim -c 'CocInstall -sync coc-json coc-html coc-css coc-clangd
+" coc-clang-format-style-options coc-cmake coc-diagnostic coc-dot-complete
+" coc-htmlhint coc-markdownlint coc-ltex coc-nginx coc-sh coc-yaml|q'
+"
+" :CocList extensions
+"
 " coc.nvim works best on vim >= 8.1.1719 and neovim >= 0.4.0, consider upgrade your vim.
 " let g:coc_disable_startup_warning = 1
+"
+" Make <CR> auto-select the first completion item and notify coc.nvim to
+" format on enter, <cr> could be remapped by other vim plugin
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("nvim-0.5.0") || has("patch-8.1.1564")
+  " Recently vim can merge signcolumn and number column into one
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+" a linha abaixo gera erro
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" GoTo code navigation.
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window.
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
+
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+
+" Formatting selected code.
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Setup formatexpr specified filetype(s).
+  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Applying codeAction to the selected region.
+" Example: `<leader>aap` for current paragraph
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
+" Map function and class text objects
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+" Remap <C-f> and <C-b> for scroll float windows/popups.
+if has('nvim-0.4.0') || has('patch-8.2.0750')
+  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+endif
+
+" Use CTRL-S for selections ranges.
+" Requires 'textDocument/selectionRange' support of language server.
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+" Add `:Format` command to format current buffer.
+command! -nargs=0 Format :call CocAction('format')
+
+" Add `:Fold` command to fold current buffer.
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+
+" Add `:OR` command for organize imports of the current buffer.
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add (Neo)Vim's native statusline support.
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline.
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" Mappings for CoCList
+" Show all diagnostics.
+nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" Manage extensions.
+nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" Show commands.
+nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" Find symbol of current document.
+nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols.
+nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list.
+nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 ```
 
 
@@ -672,6 +861,8 @@ let g:ycm_clangd_binary_path = exepath("clangd-11")
 let g:ycm_clangd_args = ['-log=verbose', '-pretty']
 " let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_global_ycm_extra_conf = "/usr/lib/ycmd/ycm_extra_conf.py"
+
+" https://clangd.llvm.org/installation
 
 ```
 
@@ -718,20 +909,6 @@ Plugin 'airblade/vim-gitgutter'
 ```
 
 
-    \'syntax': {
-    \   'template': ['html', 'pug'],
-    \   'script': ['javascript', 'typescript', 'coffee'],
-    \   'style': ['scss', 'sass', 'less'],
-    \   'i18n': ['json', 'yaml'],
-    \   'route': 'json',
-    \   'docs': 'markdown',
-    \},
-    \'full_syntax': ['scss', 'html'],
-    \'initial_indent': ['script.javascript', 'style', 'yaml'],
-    \'attribute': 1,
-    \'keyword': 1,
-    \'foldexpr': 1,
-    \}
 
 ## Configuração do neomake
 
@@ -891,13 +1068,6 @@ let g:translator_source_lang='auto'
 ```vim
 set background=dark
 " set background=light
-" colorscheme eldar
-" colorscheme abbott
-" colorscheme wombat
-" colorscheme vimtom
-" colorscheme solarized
-" colorscheme dracula
-" colorscheme molokai
 colorscheme gruvbox
 
 " Força fundo transparente sobre o esquema de cores atual
@@ -916,7 +1086,7 @@ hi Normal ctermbg=NONE
 
 ```vim
 map <leader>n :NERDTreeToggle<CR>
-map <C-m> :TagbarToggle<CR>
+"map <C-m> :TagbarToggle<CR>
 
 " Alterna entre as tabs
 nmap <leader>1 <Plug>AirlineSelectTab1
@@ -976,6 +1146,10 @@ Para testar as cores use `:runtime syntax/colortest.vim`
 ```vim
 " Coloração comum a todas as extenções
 highlight intmain_docmd ctermbg=lightgreen ctermfg=black
+highlight intmain_docmd_h1 ctermbg=blue ctermfg=black
+highlight intmain_docmd_h2 ctermbg=lightblue ctermfg=black
+highlight intmain_docmd_h3 ctermbg=cyan ctermfg=black
+highlight intmain_docmd_blank ctermbg=darkgray ctermfg=black
 ```
 
   silent exe "!osascript -e 'tell app \"Firefox\" to activate\<cr>
