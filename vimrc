@@ -14,10 +14,15 @@
 "    # Aponta o arquivo de configuração para a configuração personalizada
 "   ln -s ~/.vim/vimrc ~/.vimrc
 "   
-"    # Baixa todos os plugins relacionados na configuração
+"    # (antigo) Baixa todos os plugins relacionados na configuração usando Vundle
 "   mkdir -p ~/.vim/bundle
 "   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 "   vim +BundleInstall +qall
+"   
+"    # (atual) Baixa todos os plugins relacionados na configuração usando vim-plug
+"   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"   vim +PlugUpdate +qall
 "   ```
 "   
 "   ## Atualização
@@ -88,13 +93,18 @@ endfunction
 "   Configura o path de inclusão do `Vundle` e o inicia.
 "   
 "{{{
-set rtp+=~/.vim/bundle/Vundle.vim
+" set rtp+=~/.vim/bundle/Vundle.vim
 " call vundle#begin()
 
 "Plugin 'VundleVim/Vundle.vim'
 "}}}
-
+"   
+"   Inicia o vim-plug
+"   
+"{{{
 call plug#begin()
+"}}}
+"   
 
 " http://coderoncode.com/tools/2017/04/16/vim-the-perfect-ide.html
 
@@ -272,12 +282,11 @@ Plug 'tomtom/tcomment_vim'
 "     <Leader>_a       :: :TCommentAs <QUERY COMMENT TYPE>
 "     <Leader>_n       :: :TCommentAs &filetype <QUERY COUNT>
 "     <Leader>_s       :: :TCommentAs &filetype_<QUERY COMMENT SUBTYPE>
-"
-" ... and for select mode:
-"
-    " <Leader>__       :: :TComment
-    " <Leader>_i       :: :TCommentInline
-
+"   
+"    and for select mode:
+"   
+"     <Leader>__       :: :TComment
+"     <Leader>_i       :: :TCommentInline
 "}}}
 "   
 "   Para definir o comentário para um novo tipo use:
