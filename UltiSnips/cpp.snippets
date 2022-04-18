@@ -116,6 +116,10 @@ string View01Html$2Record::${1:field}VarTD( const ${2:Type}Record &rec ) const
 endsnippet
 
 snippet view01html "Personalização de tabela"
+// ----------------------------------------------------------------------
+// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo@intmain.io>
+// ----------------------------------------------------------------------
+
 class View01Html$1Record : public Html${1:Type}Record {
 public:
   View01Html$1Record( DatabasePtr db, map<string, string> &params ) : Html$1Record( db, params ){};
@@ -180,6 +184,12 @@ endsnippet
 
 snippet deleteRecord
 Databases.${1/.*/\u$0/}->deleteRecord( ${1:type}Rec );
+endsnippet
+
+snippet newRecord
+${1/.*/\u$0/}Record $1Rec;
+$1Rec.setKey( $1Rec.newKey() );
+Databases.${1/.*/\u$0/}->insertRecord( ${1:type}Rec );
 endsnippet
 
 snippet cursor "Percorre tabela"
@@ -699,7 +709,7 @@ content += GR_NL1( GR_DIVS( "col s12 m3", buttons.add( addXXXUrl, "Adicionar car
 content += GR_NL0( GRxDIV );
 endsnippet
 
-snippet button_next
+snippet htmlButtonNext
 GrHtmlButton buttons;
 
 buttons.setStyle( "col s12 m3" );

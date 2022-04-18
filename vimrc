@@ -89,10 +89,12 @@ endfunction
 "   
 "{{{
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" call vundle#begin()
 
-Plugin 'VundleVim/Vundle.vim'
+"Plugin 'VundleVim/Vundle.vim'
 "}}}
+
+call plug#begin()
 
 " http://coderoncode.com/tools/2017/04/16/vim-the-perfect-ide.html
 
@@ -102,14 +104,14 @@ Plugin 'VundleVim/Vundle.vim'
 "{{{
 " git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 " ~/.fzf/install
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 "}}}
 "   
 "   ### Blockdiag
 "   
 "{{{
-Plugin 'mhaig/vim-blockdiag-series.git'
+Plug 'mhaig/vim-blockdiag-series.git'
 " Veja orientação em https://github.com/mhaig/vim-blockdiag-series sobre
 " alteração no .vim/scripts.vim
 "}}}
@@ -117,19 +119,19 @@ Plugin 'mhaig/vim-blockdiag-series.git'
 "   ### Cucumber
 "   
 "{{{
-Plugin 'tpope/vim-cucumber.git'
+Plug 'tpope/vim-cucumber.git'
 "}}}
 "   
 "   ### Servidores web
 "   
 "{{{
-Plugin 'chr4/nginx.vim'
+Plug 'chr4/nginx.vim'
 "}}}
 "   
 "   ### Sorround
 "   
 "{{{
-Plugin 'tpope/vim-surround'           "FIXME: Tem um link para um tutorial no final do arquivo, converter para seção
+Plug 'tpope/vim-surround'           "FIXME: Tem um link para um tutorial no final do arquivo, converter para seção
 " let g:surround_{char2nr('o')} = "**\r**"
 "}}}
 "   
@@ -149,7 +151,7 @@ Plugin 'tpope/vim-surround'           "FIXME: Tem um link para um tutorial no fi
 " Save all bookmarks to a file                     :BookmarkSave <FILE_PATH>
 " Load bookmarks from a file                       :BookmarkLoad <FILE_PATH>
 
-Plugin 'MattesGroeger/vim-bookmarks'
+Plug 'MattesGroeger/vim-bookmarks'
 highlight BookmarkSign ctermbg=NONE ctermfg=160
 highlight BookmarkLine ctermbg=194 ctermfg=NONE
 " let g:bookmark_sign = '♥'
@@ -171,31 +173,31 @@ let g:bookmark_auto_save_file = $HOME . '/.vim/bookmarks'
 "   ### Utilitários
 "   
 "{{{
-Plugin 'powerline/powerline-fonts'
-Plugin 'geraldolsribeiro/vim-conceal' " Exibição de caracteres
+Plug 'powerline/powerline-fonts'
+Plug 'geraldolsribeiro/vim-conceal' " Exibição de caracteres
 " Plugin 'Yggdroot/indentLine'
-Plugin 'majutsushi/tagbar'
-Plugin 'ervandew/supertab'
-Plugin 'BufOnly.vim'
-Plugin 'wesQ3/vim-windowswap'
+Plug 'majutsushi/tagbar'
+Plug 'ervandew/supertab'
+" Plug 'BufOnly.vim'  " apresentou falha ao migrar do vundle para o vim-plug
+Plug 'wesQ3/vim-windowswap'
 
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'benmills/vimux'
-Plugin 'jeetsukumaran/vim-buffergator'
-Plugin 'gilsondev/searchtasks.vim'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'benmills/vimux'
+Plug 'jeetsukumaran/vim-buffergator'
+Plug 'gilsondev/searchtasks.vim'
 " Plugin 'Shougo/neocomplete.vim'
-Plugin 'tpope/vim-dispatch'
-Plugin 'dhruvasagar/vim-table-mode.git'
+Plug 'tpope/vim-dispatch'
+Plug 'dhruvasagar/vim-table-mode.git'
 " Lança o ranger a partir do vim
 
-Plugin 'francoiscabrol/ranger.vim'
+Plug 'francoiscabrol/ranger.vim'
 " <leader> f abre o ranger
 let g:ranger_command_override = 'ranger --cmd "set show_hidden=true"'
 
 " Seleções para edição
 " https://github.com/wellle/targets.vim
 " https://www.barbarianmeetscoding.com/blog/exploring-vim-plugins-improve-and-extend-your-text-objects-with-targets-vim
-Plugin 'wellle/targets.vim'
+Plug 'wellle/targets.vim'
 
 " vimwiki está interferindo no autocomplete
 " Plugin 'vimwiki/vimwiki'
@@ -205,7 +207,7 @@ Plugin 'wellle/targets.vim'
 "   ### Clang complete
 "   
 "{{{
-Plugin 'xavierd/clang_complete'
+Plug 'xavierd/clang_complete'
 " Onde a biblioteca está
 if filereadable('/usr/lib/llvm-11/lib/libclang.so.1')
   let g:clang_library_path='/usr/lib/llvm-11/lib/libclang.so.1'
@@ -217,8 +219,8 @@ endif
 "   ### Snippets
 "   
 "{{{
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 "Plugin 'garbas/vim-snipmate'
 
 let g:UltiSnipsUsePythonVersion = 3
@@ -239,25 +241,25 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips"]
 "   ### Tradução
 "   
 "{{{
-Plugin 'voldikss/vim-translator'
+Plug 'voldikss/vim-translator'
 "}}}
 "   
 "   ### Plugins genéricos para programação
 "   
 "{{{
 "Plugin 'jakedouglas/exuberant-ctags'
-Plugin 'Townk/vim-autoclose'
-Plugin 'tobyS/vmustache'
-Plugin 'janko-m/vim-test'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'neomake/neomake'
+Plug 'Townk/vim-autoclose'
+Plug 'tobyS/vmustache'
+Plug 'janko-m/vim-test'
+Plug 'maksimr/vim-jsbeautify'
+Plug 'vim-syntastic/syntastic'
+Plug 'neomake/neomake'
 "}}}
 "   
 "   ### Comentários
 "   
 "{{{
-Plugin 'tomtom/tcomment_vim'
+Plug 'tomtom/tcomment_vim'
 
 " gcc comenta/descomenta a linha atual
 " gc{motion} comenta/descomenta a seleção
@@ -290,11 +292,11 @@ Plugin 'tomtom/tcomment_vim'
 "   
 "{{{
 " Fork do plugin do Marcos Oliveira
-Plugin 'geraldolsribeiro/vim-auto-markdown'
+Plug 'geraldolsribeiro/vim-auto-markdown'
 
 " Para usar o instant-markdown é necessário instalar o pacote npm antes
 " npm -g install instant-markdown-d@next
-Plugin 'instant-markdown/vim-instant-markdown'
+Plug 'instant-markdown/vim-instant-markdown'
 
 "let g:instant_markdown_slow = 1
 "let g:instant_markdown_autostart = 0
@@ -312,21 +314,21 @@ let g:instant_markdown_browser = "firefox --new-window"
 " Abrir o preview ao carregar um arquivo markdown
 let g:instant_markdown_autostart = 1
 
-Plugin 'reedes/vim-pencil'
-Plugin 'tpope/vim-markdown'
-Plugin 'jtratner/vim-flavored-markdown'
-Plugin 'LanguageTool'
-Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'junegunn/vim-emoji'
+Plug 'reedes/vim-pencil'
+Plug 'tpope/vim-markdown'
+Plug 'jtratner/vim-flavored-markdown'
+" Plug 'LanguageTool'    " falha ao migrar do vundle para o vim-plug
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+Plug 'junegunn/vim-emoji'
 "Plugin 'kyuhi/vim-emoji-complete' " FIXME: nao funciona bem com o git
 
-Plugin 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 "Plugin 'plasticboy/vim-markdown'
 
 " Encontra erros de escrita
-Plugin 'reedes/vim-wordy'
-Plugin 'reedes/vim-lexical'
+Plug 'reedes/vim-wordy'
+Plug 'reedes/vim-lexical'
 " Desabilitado por padrão
 let g:pandoc#biblio#use_bibtool=1
 "}}}
@@ -334,18 +336,18 @@ let g:pandoc#biblio#use_bibtool=1
 "   ### Git Support
 "   
 "{{{
-Plugin 'kablamo/vim-git-log'
-Plugin 'gregsexton/gitv'
-Plugin 'tpope/vim-fugitive'
+Plug 'kablamo/vim-git-log'
+Plug 'gregsexton/gitv'
+Plug 'tpope/vim-fugitive'
 "Plugin 'jaxbot/github-issues.vim'   " lerda muito
 "}}}
 "   
 "   ### Dart
 "   
 "{{{
-Plugin 'dart-lang/dart-vim-plugin'
-Plugin 'natebosch/vim-lsc'
-Plugin 'natebosch/vim-lsc-dart'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'natebosch/vim-lsc'
+Plug 'natebosch/vim-lsc-dart'
 " Enable HTML syntax highlighting inside Dart strings with let dart_html_in_string=v:true (default false).
 " Disable highlighting of core library classes with let dart_corelib_highlight=v:false (default true).
 " Enable Dart style guide syntax (like 2-space indentation) with let dart_style_guide = 2
@@ -365,7 +367,7 @@ let g:lsc_auto_map = v:true
 " 'WorkspaceSymbol': gS,
 " 'SignatureHelp': gm,
 
-Plugin 'thosakwe/vim-flutter'
+Plug 'thosakwe/vim-flutter'
 " https://github.com/thosakwe/vim-flutter
 "
 " :FlutterRun <args> - calls flutter run <args>
@@ -387,9 +389,9 @@ Plugin 'thosakwe/vim-flutter'
 "   ### HTML
 "   
 "{{{
-Plugin 'othree/html5.vim'
-Plugin 'digitaltoad/vim-pug'
-Plugin 'dNitro/vim-pug-complete'
+Plug 'othree/html5.vim'
+Plug 'digitaltoad/vim-pug'
+Plug 'dNitro/vim-pug-complete'
 
 " Esta linha deveria ser lida do vim-pug
 autocmd BufNewFile,BufReadPost *.pug set filetype=pug
@@ -400,7 +402,7 @@ autocmd BufNewFile,BufReadPost *.pug set filetype=pug
 "   
 "{{{
 " This file contains additional syntax highlighting that I use for C++11/14/17
-Plugin 'octol/vim-cpp-enhanced-highlight'
+Plug 'octol/vim-cpp-enhanced-highlight'
 "}}}
 
 " " PHP Support
@@ -410,24 +412,24 @@ Plugin 'octol/vim-cpp-enhanced-highlight'
 "   ### Erlang Support
 "   
 "{{{
-Plugin 'vim-erlang/vim-erlang-tags'
-Plugin 'vim-erlang/vim-erlang-runtime'
+Plug 'vim-erlang/vim-erlang-tags'
+Plug 'vim-erlang/vim-erlang-runtime'
 "Plugin 'vim-erlang/vim-erlang-omnicomplete'
-Plugin 'vim-erlang/vim-erlang-compiler'
+Plug 'vim-erlang/vim-erlang-compiler'
 "}}}
 "   
 "   ### Elixir Support 
 "   
 "{{{
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'avdgaag/vim-phoenix'
-Plugin 'mmorearty/elixir-ctags'
-Plugin 'mattreduce/vim-mix'
-Plugin 'BjRo/vim-extest'
-Plugin 'frost/vim-eh-docs'
-Plugin 'slashmili/alchemist.vim'
-Plugin 'tpope/vim-endwise'
-Plugin 'jadercorrea/elixir_generator.vim'
+Plug 'elixir-lang/vim-elixir'
+Plug 'avdgaag/vim-phoenix'
+Plug 'mmorearty/elixir-ctags'
+Plug 'mattreduce/vim-mix'
+Plug 'BjRo/vim-extest'
+Plug 'frost/vim-eh-docs'
+Plug 'slashmili/alchemist.vim'
+Plug 'tpope/vim-endwise'
+Plug 'jadercorrea/elixir_generator.vim'
 "}}}
 
 " " Elm Support
@@ -436,36 +438,36 @@ Plugin 'jadercorrea/elixir_generator.vim'
 "   ### Theme / Interface / Color Scheme
 "   
 "{{{
-Plugin 'flazz/vim-colorschemes'
-Plugin 'agude/vim-eldar'
+Plug 'flazz/vim-colorschemes'
+Plug 'agude/vim-eldar'
 "Plugin 'altercation/vim-colors-solarized'
 "Plugin 'larsbs/vimtom' "Vim Vimtom Colorscheme - saporra só funciona no gui
-Plugin 'AnsiEsc.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'sjl/badwolf'
-Plugin 'tomasr/molokai'
-Plugin 'morhetz/gruvbox'
+" Plug 'AnsiEsc.vim'   " falha ao migrar do vundle para o vim-plug
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'sjl/badwolf'
+Plug 'tomasr/molokai'
+Plug 'morhetz/gruvbox'
 "Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
-Plugin 'dracula/vim', { 'name': 'dracula' }
-Plugin 'junegunn/limelight.vim'
-Plugin 'mkarmona/colorsbox'
-Plugin 'romainl/Apprentice'
-Plugin 'Lokaltog/vim-distinguished'
-Plugin 'chriskempson/base16-vim'
-Plugin 'w0ng/vim-hybrid'
-Plugin 'AlessandroYorba/Sierra'
-Plugin 'daylerees/colour-schemes'
-Plugin 'effkay/argonaut.vim'
-Plugin 'atelierbram/Base2Tone-vim'
-Plugin 'colepeters/spacemacs-theme.vim'
+Plug 'dracula/vim', { 'name': 'dracula' }
+Plug 'junegunn/limelight.vim'
+Plug 'mkarmona/colorsbox'
+Plug 'romainl/Apprentice'
+Plug 'Lokaltog/vim-distinguished'
+Plug 'chriskempson/base16-vim'
+Plug 'w0ng/vim-hybrid'
+Plug 'AlessandroYorba/Sierra'
+Plug 'daylerees/colour-schemes'
+Plug 'effkay/argonaut.vim'
+Plug 'atelierbram/Base2Tone-vim'
+Plug 'colepeters/spacemacs-theme.vim'
 
 "}}}
 "   
 "   ### Nerdtree
 "   
 "{{{
-Plugin 'preservim/nerdtree'
+Plug 'preservim/nerdtree'
 "let g:NERDTreeDirArrows=0 " Não mostrar símbolos na lateral dos nomes
 " Improves performance of the SyntaxHighlighting and removes the lag
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1
@@ -534,14 +536,14 @@ autocmd StdinReadPre * let s:std_in=1
 "   ### TOML
 "   
 "{{{
-Plugin 'cespare/vim-toml'
+Plug 'cespare/vim-toml'
 "}}}
 "   
 "   ### Typescript
 "   
 "{{{
-Plugin 'Quramy/tsuquyomi'
-Plugin 'leafgarland/typescript-vim.git'
+Plug 'Quramy/tsuquyomi'
+Plug 'leafgarland/typescript-vim.git'
 let g:typescript_compiler_binary = 'tsc'
 let g:typescript_compiler_options = ''
 let g:tsuquyomi_disable_quickfix = 1
@@ -553,7 +555,7 @@ autocmd BufNewFile,BufRead *.ts set syntax=typescript
 "   ### Typescript
 "   
 "{{{
-Plugin 'shinglyu/vim-codespell'
+Plug 'shinglyu/vim-codespell'
 :autocmd BufWritePre *.java :Codespell
 "}}}
 "   
@@ -575,7 +577,7 @@ Plugin 'shinglyu/vim-codespell'
 "   ## Metatrader
 "   
 "{{{
-Plugin 'rupurt/vim-mql5'
+Plug 'rupurt/vim-mql5'
 "Plugin 'https://github.com/rupurt/vim-mql5'
 "}}}
 "   
@@ -597,12 +599,12 @@ Plugin 'rupurt/vim-mql5'
 "   :CocCommand clangd.install
 "   
 "{{{
-" Plugin 'neoclide/coc.nvim'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " :CocInstall coc-tsserver coc-json coc-html coc-css coc-clangd
 " ou
 " vim -c 'CocInstall -sync coc-json coc-html coc-css coc-clangd
 " coc-clang-format-style-options coc-cmake coc-diagnostic coc-dot-complete
-" coc-htmlhint coc-markdownlint coc-ltex coc-nginx coc-sh coc-yaml|q'
+" coc-htmlhint coc-markdownlint coc-ltex coc-nginx coc-sh coc-yaml  |q'
 "
 " :CocList extensions
 "
@@ -615,136 +617,136 @@ Plugin 'rupurt/vim-mql5'
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
-
+" if has("nvim-0.5.0") || has("patch-8.1.1564")
+"   " Recently vim can merge signcolumn and number column into one
+"   set signcolumn=number
+" else
+"   set signcolumn=yes
+" endif
+"
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
 " a linha abaixo gera erro
 " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
+" function! s:check_back_space() abort
+"   let col = col('.') - 1
+"   return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" nmap <silent> [g <Plug>(coc-diagnostic-prev)
+" nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
+" nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
+" function! s:show_documentation()
+"   if (index(['vim','help'], &filetype) >= 0)
+"     execute 'h '.expand('<cword>')
+"   elseif (coc#rpc#ready())
+"     call CocActionAsync('doHover')
+"   else
+"     execute '!' . &keywordprg . " " . expand('<cword>')
+"   endif
+" endfunction
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
+" autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+" nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
 
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
+" augroup mygroup
+"   autocmd!
+"   " Setup formatexpr specified filetype(s).
+"   autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
+"   " Update signature help on jump placeholder.
+"   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+" augroup end
 
 " Applying codeAction to the selected region.
 " Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
+" xmap <leader>a  <Plug>(coc-codeaction-selected)
+" nmap <leader>a  <Plug>(coc-codeaction-selected)
 
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
+" " Remap keys for applying codeAction to the current buffer.
+" nmap <leader>ac  <Plug>(coc-codeaction)
+" " Apply AutoFix to problem on the current line.
+" nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Map function and class text objects
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
+" xmap if <Plug>(coc-funcobj-i)
+" omap if <Plug>(coc-funcobj-i)
+" xmap af <Plug>(coc-funcobj-a)
+" omap af <Plug>(coc-funcobj-a)
+" xmap ic <Plug>(coc-classobj-i)
+" omap ic <Plug>(coc-classobj-i)
+" xmap ac <Plug>(coc-classobj-a)
+" omap ac <Plug>(coc-classobj-a)
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
+" if has('nvim-0.4.0') || has('patch-8.2.0750')
+"   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+"   nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+"   inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+"   inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+"   vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+"   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+" endif
 
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of language server.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
+" nmap <silent> <C-s> <Plug>(coc-range-select)
+" xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
+" command! -nargs=0 Format :call CocAction('format')
 
 " Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+" command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+" command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
-" Mappings for CoCList
-" Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+" " Mappings for CoCList
+" " Show all diagnostics.
+" nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" " Manage extensions.
+" nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" " Show commands.
+" nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" " Find symbol of current document.
+" nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" " Search workspace symbols.
+" nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" " Do default action for next item.
+" nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" " Do default action for previous item.
+" nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" " Resume latest coc list.
+" nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 "}}}
 "   
 "   ### YouCompleteMe
@@ -793,7 +795,7 @@ let g:elite_mode=1
 "   ## Git
 "   
 "{{{
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 " Comandos:
 " [c          anterior
 " ]c          próximo
@@ -820,10 +822,10 @@ Plugin 'airblade/vim-gitgutter'
 "FIXME: resumir a documentação do gitgutter aqui
 "}}}
 "   
-Plugin 'chrisbra/Colorizer'  " Exibe cores #fff
+Plug 'chrisbra/Colorizer'  " Exibe cores #fff
 let g:colorizer_auto_filetype='css,html,scss'
 
-Plugin 'luochen1990/rainbow'
+Plug 'luochen1990/rainbow'
 let g:rainbow_active = 1
 
 " Plugin 'mg979/vim-visual-multi'
@@ -839,20 +841,20 @@ let g:rainbow_active = 1
 " let g:multi_cursor_quit_key            = '<Esc>'
 
 " Plantuml
-Plugin 'aklt/plantuml-syntax'
+Plug 'aklt/plantuml-syntax'
 " Plugin 'scrooloose/vim-slumlord'
 
 " FIXME: Separar os plugins abaixo
 "
 "Bundle 'aming/vim-mason'
-Plugin 'elzr/vim-json'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'pangloss/vim-javascript'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-abolish'
+Plug 'elzr/vim-json'
+Plug 'kchmck/vim-coffee-script'
+Plug 'pangloss/vim-javascript'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-bundler'
+Plug 'tpope/vim-abolish'
 
-Plugin 'leafOfTree/vim-vue-plugin'
+Plug 'leafOfTree/vim-vue-plugin'
 
 let g:vim_vue_plugin_config = {
       \'syntax': {
@@ -885,18 +887,18 @@ au BufNewFile,BufRead *.vue setf vue
 " +   runtime! syntax/css.vim
 " + endif
 
-Plugin 'rhysd/vim-gfm-syntax'
+Plug 'rhysd/vim-gfm-syntax'
 let g:markdown_fenced_languages = ['vim', 'cpp', 'ruby', 'json']
 let g:gfm_syntax_enable_always = 1
 let g:gfm_syntax_enable_filetypes = ['markdown.gfm']
 
 " Formatação de código
-Plugin 'rhysd/vim-clang-format'
+Plug 'rhysd/vim-clang-format'
 
 " Plugin 'justmao945/vim-clang'
 
 
-Plugin 'prettier/vim-prettier', {
+Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
   \ 'branch': 'release/1.x',
   \ 'for': [
@@ -918,7 +920,7 @@ Plugin 'prettier/vim-prettier', {
 
 
 " Ver documentação em: https://github.com/mattn/emmet-vim
-Plugin 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 
 " Conflita com newmake
 "Plugin 'w0rp/ale'
@@ -950,7 +952,10 @@ Plugin 'mattn/emmet-vim'
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 
 " All of your Plugins must be added before the following line
-call vundle#end()            " required
+" call vundle#end()            " required
+call plug#end()
+
+
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -1048,8 +1053,8 @@ let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=un
 "   ### Devicons
 "   
 "{{{
-Plugin 'ryanoasis/vim-devicons'
-Plugin 'ryanoasis/vim-webdevicons'
+Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-webdevicons'
 let g:DevIconsEnableFolderExtensionPatternMatching = 0
 let g:DevIconsEnableFoldersOpenClose = 0
 let g:DevIconsEnableFoldersOpenClose = 1
@@ -1625,6 +1630,24 @@ let g:translator_source_lang='auto'
 "{{{
 set background=dark
 " set background=light
+
+" Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+" If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+" (see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
+let g:gruvbox_italic=1
 colorscheme gruvbox
 
 " Força fundo transparente sobre o esquema de cores atual
