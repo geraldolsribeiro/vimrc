@@ -112,6 +112,12 @@ call plug#begin()
 
 " http://coderoncode.com/tools/2017/04/16/vim-the-perfect-ide.html
 
+"   
+"   ### Dicas e material de referência para desenvolvimento
+"   
+"{{{
+Plug 'geraldolsribeiro/GrTooltip.vim'
+"}}}
 
 "   
 "   ### Melhorar a visibilidade da indentação
