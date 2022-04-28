@@ -112,6 +112,28 @@ call plug#begin()
 
 " http://coderoncode.com/tools/2017/04/16/vim-the-perfect-ide.html
 
+
+"   
+"   ### Melhorar a visibilidade da indentação
+"   
+"{{{
+Plug 'Yggdroot/indentLine'
+let g:indentLine_enabled = 1
+" let g:indentLine_char = '▏'
+let g:indentLine_char = '┆'
+let g:indentLine_concealcursor = ''
+let g:indentLine_setColors = 1
+let g:indentLine_color_term = 239
+let g:indentLine_setConceal = 0
+let g:indentLine_faster = 1
+"}}}
+"   
+"   ### tmux
+"   
+"{{{
+" Completa com palavras dos painéis adjacentes
+Plug 'wellle/tmux-complete.vim'
+"}}}
 "   
 "   ### AsyncRun
 "   
@@ -1276,6 +1298,25 @@ let g:fzf_colors =
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
+" Configurações visuais
+syntax on
+syntax sync minlines=256
+set ruler
+set number
+set cursorline
+set cursorcolumn
+set colorcolumn=80,120
+set lazyredraw
+set synmaxcol=200 " limite para highligh
+
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+set t_Co=256
+
+set mousemodel=extend
+set mouse+=a
+
+
+
 " histórico de comandos executados
 set history=1000
 
@@ -1285,15 +1326,20 @@ set modelines=5
 " Para não ignorar ~/.vim/after/ftplugin/xxx.vim
 filetype plugin on
 
+" Busca
 set hlsearch
+set smartcase
+set ignorecase " Ignora maiúscula/minúscula na pesquisa
+set incsearch  " Realiza a pesquisa enquanto é digitada
+
 " Comentei para tratar plugin do java
 set tabstop=2 shiftwidth=2 expandtab
 set smarttab
 set softtabstop=0
 set nowrap
-set hidden "Premite mudar de buffer sem salvar, mantendo-o na memória
+set hidden "Permite mudar de buffer sem salvar, mantendo-o na memória
 
-set smartcase
+
 
 set complete+=kspell
 
@@ -1321,6 +1367,7 @@ set completeopt=menuone,longest
 set formatoptions=tcqrn1
 set matchpairs+=<:> " Use % to jump between pairs
 set maxmempattern=1000 " default 1000
+
 "set wildmenu
 "set wildmode=full
 set wrap
@@ -1356,11 +1403,6 @@ let g:slumlord_asciiart_utf = 1
 " Use ack instead of grep
 set grepprg=ack
 
-" Ignora maiúscula/minúscula na pesquisa
-set ignorecase
-" Realiza a pesquisa enquando é digitada
-set incsearch
-
 "set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 
 " sempre exibe a barra de status
@@ -1369,8 +1411,6 @@ set laststatus=2
 " Exibe o nome do arquivo que está sendo editado na janela
 set title
 "
-" Use 256 colours (Use this setting only if your terminal supports 256 colours)
-set t_Co=256
 
 " Removes trailing spaces
 " Refatorar para salvar a posição atual
@@ -1408,12 +1448,9 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_by_filename = 1
 
 
-
-" Usar Ctrl+X Ctrl+U
+" Usar Ctrl+X Ctrl+U para procurar emoji
 set completefunc=emoji#complete
 
-set mousemodel=extend
-set mouse+=a
 " selecione com o mouse e use "+y para compiar
 " :vmap <C-C> "+y
 
@@ -1434,14 +1471,6 @@ nmap gx :!open <c-r><c-a>
 vnoremap < <gv
 vnoremap > >gv
 
-"set colorcolumn=28,120
-set colorcolumn=80,120
-
-set cursorline
-set cursorcolumn
-set lazyredraw
-set synmaxcol=200 " limite para highligh
-syntax sync minlines=256
 
 " Liga/desliga o cursor
 nnoremap H :set cursorline! cursorcolumn!<CR>
@@ -1534,17 +1563,6 @@ au FocusGained,BufEnter * :checktime " ativa quando entra no buffer
 
 set number
 
-"   
-"   ## Melhorar a visibilidade da indentação
-"   
-"   Incluir `Plugin 'Yggdroot/indentLine'` no vundle.
-"   Desabilitado no momento!
-"{{{
-let g:indentLine_char = '▏'
-let g:indentLine_setColors = 1
-let g:indentLine_color_term = 239
-let g:indentLine_setConceal = 0
-"}}}
 
 augroup lexical
   autocmd!
@@ -1636,7 +1654,10 @@ set path+=/opt/intmain/dev/*/usr/include/
 "set path+=.,~/git/Intmain/
 
 
-set encoding=UTF-8
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+set ttyfast
 set helplang=pt
 
 ",**/
