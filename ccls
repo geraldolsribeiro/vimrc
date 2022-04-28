@@ -1,0 +1,11 @@
+-log-file=/tmp/ccls.log -v=1
+
+clang++
+-Wall
+-Wextra
+-stdlib=libstdc++
+%cpp -pedantic
+%h %hpp %cpp -std=c++17
+%h %hpp %cpp -I/opt/intmain/dev/linux/usr/include/
+%h %hpp %cpp -I./include/
+%h %hpp %cpp -I./include/str

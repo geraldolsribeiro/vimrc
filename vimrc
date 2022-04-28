@@ -69,6 +69,10 @@ set virtualedit=all           " permite mover o cursor para fora do texto e acre
 set shell=/bin/bash           " define o interpretador de comandos
 set autowrite                 " salva ao executar comandos make e shell
 
+set cmdheight=2               " Mais espaço para exibir mensagens"
+set updatetime=300            " You will have bad experience for diagnostic messages when it's default 4000.
+set signcolumn=yes            " always show signcolumns
+
 let mapleader="\<space>"      " leader usando barra de espaço
 let maplocalleader="\<space>"
 
@@ -109,6 +113,12 @@ call plug#begin()
 " http://coderoncode.com/tools/2017/04/16/vim-the-perfect-ide.html
 
 "   
+"   ### AsyncRun
+"   
+"{{{
+Plug 'skywind3000/asyncrun.vim'
+"}}}
+"   
 "   ### FZF
 "   
 "{{{
@@ -121,7 +131,7 @@ Plug 'junegunn/fzf.vim'
 "   ### Blockdiag
 "   
 "{{{
-Plug 'mhaig/vim-blockdiag-series.git'
+Plug 'mhaig/vim-blockdiag-series'
 " Veja orientação em https://github.com/mhaig/vim-blockdiag-series sobre
 " alteração no .vim/scripts.vim
 "}}}
@@ -129,7 +139,7 @@ Plug 'mhaig/vim-blockdiag-series.git'
 "   ### Cucumber
 "   
 "{{{
-Plug 'tpope/vim-cucumber.git'
+Plug 'tpope/vim-cucumber'
 "}}}
 "   
 "   ### Servidores web
@@ -140,9 +150,21 @@ Plug 'chr4/nginx.vim'
 "   
 "   ### Sorround
 "   
+"   <command><surround object>[count]<surround target>[replacement]
+"
+"   command: [d]elete, [c]hange, [v]isual, [y]add
+"   sorround object: [s] something sorrounding some text
+"   sorround target: bracket, parentesis, quote mark
+"   replacement: [c]hanging, [y]adding
+"   
+"   FIXME: É possível criar comandos para automatizar o sorround
+"   <http://www.futurile.net/2016/03/19/vim-surround-plugin-tutorial/>
+"   
 "{{{
 Plug 'tpope/vim-surround'           "FIXME: Tem um link para um tutorial no final do arquivo, converter para seção
 " let g:surround_{char2nr('o')} = "**\r**"
+" Envolve a palavra atual entre backtics, útil para marcar comandos em markdown
+map ` ysiw`
 "}}}
 "   
 "   ### Bookmarks
@@ -197,7 +219,7 @@ Plug 'jeetsukumaran/vim-buffergator'
 Plug 'gilsondev/searchtasks.vim'
 " Plugin 'Shougo/neocomplete.vim'
 Plug 'tpope/vim-dispatch'
-Plug 'dhruvasagar/vim-table-mode.git'
+Plug 'dhruvasagar/vim-table-mode'
 " Lança o ranger a partir do vim
 
 Plug 'francoiscabrol/ranger.vim'
@@ -477,6 +499,8 @@ Plug 'colepeters/spacemacs-theme.vim'
 "   
 "{{{
 Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
 "let g:NERDTreeDirArrows=0 " Não mostrar símbolos na lateral dos nomes
 " Improves performance of the SyntaxHighlighting and removes the lag
 let g:NERDTreeSyntaxDisableDefaultExtensions = 1
@@ -512,6 +536,8 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
 let NERDTreeNodeDelimiter="😀"
+
+
 
 " Abre automaticamente a tree se não for passado nenhum arquivo
 autocmd StdinReadPre * let s:std_in=1
@@ -552,7 +578,7 @@ Plug 'cespare/vim-toml'
 "   
 "{{{
 Plug 'Quramy/tsuquyomi'
-Plug 'leafgarland/typescript-vim.git'
+Plug 'leafgarland/typescript-vim'
 let g:typescript_compiler_binary = 'tsc'
 let g:typescript_compiler_options = ''
 let g:tsuquyomi_disable_quickfix = 1
@@ -590,6 +616,13 @@ Plug 'rupurt/vim-mql5'
 "Plugin 'https://github.com/rupurt/vim-mql5'
 "}}}
 "   
+"   ## Language server
+"   
+"{{{
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+"}}}
+"   
 "   ## Auto completar
 "   
 "   ### COC - Conquer Of Completion
@@ -608,7 +641,9 @@ Plug 'rupurt/vim-mql5'
 "   :CocCommand clangd.install
 "   
 "{{{
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+
 " :CocInstall coc-tsserver coc-json coc-html coc-css coc-clangd
 " ou
 " vim -c 'CocInstall -sync coc-json coc-html coc-css coc-clangd
@@ -756,6 +791,13 @@ Plug 'rupurt/vim-mql5'
 " nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " " Resume latest coc list.
 " nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gD <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" there's way more, see `:help coc-key-mappings@en'
 "}}}
 "   
 "   ### YouCompleteMe
@@ -782,13 +824,12 @@ Plug 'rupurt/vim-mql5'
 " We recommend changing a couple of YCM’s default settings. In .vimrc add:
 "{{{
 " Let clangd fully control code completion
-let g:ycm_clangd_uses_ycmd_caching = 0
+" let g:ycm_clangd_uses_ycmd_caching = 0
 " Use installed clangd, not YCM-bundled clangd which doesn't get updates.
-let g:ycm_clangd_binary_path = exepath("clangd-11")
-let g:ycm_clangd_args = ['-log=verbose', '-pretty']
+" let g:ycm_clangd_binary_path = exepath("clangd-11")
+" let g:ycm_clangd_args = ['-log=verbose', '-pretty']
 " let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
-let g:ycm_global_ycm_extra_conf = "/usr/lib/ycmd/ycm_extra_conf.py"
-
+" let g:ycm_global_ycm_extra_conf = "/usr/lib/ycmd/ycm_extra_conf.py"
 " https://clangd.llvm.org/installation
 
 "}}}
@@ -903,9 +944,6 @@ let g:gfm_syntax_enable_filetypes = ['markdown.gfm']
 
 " Formatação de código
 Plug 'rhysd/vim-clang-format'
-
-" Plugin 'justmao945/vim-clang'
-
 
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install',
@@ -1706,7 +1744,10 @@ augroup END
 "   ### Atalhos de teclado
 "   
 "{{{
-map <leader>n :NERDTreeToggle<CR>
+" Ilumina o arquivo atual na NERDTree
+map <leader>n :NERDTreeFind<CR>
+" Abre/Fecha a NERDTree
+map <leader>m :NERDTreeToggle<CR>
 "map <C-m> :TagbarToggle<CR>
 
 " Alterna entre as tabs
@@ -1968,9 +2009,6 @@ map <F12> :!ctags -R --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
 " 
 " :comclear
 
-" FIXME: É possível criar comandos para automatizar o sorround
-" http://www.futurile.net/2016/03/19/vim-surround-plugin-tutorial/
-"
 
 " FIXME: Criar uma seção sobre conceal
 "https://alok.github.io/2018/04/26/using-vim-s-conceal-to-make-languages-more-tolerable/#:~:text=Vim%20(and%20Emacs)%20have%20features,line%2C%20the%20conceal%20goes%20away.&text=It's%20really%20easy%20to%20abuse,but%20you%2C%20unlike%20code%20formatting.

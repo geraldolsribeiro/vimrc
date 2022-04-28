@@ -1,6 +1,6 @@
-
 " As linhas abaixo foram adicionadas conforme
 " https://github.com/mhaig/vim-blockdiag-series
+
 if did_filetype()
     finish
 endif
@@ -23,3 +23,5 @@ elseif s:line1 =~ '\<packetdiag\>\s*{'
 endif
 
 unlet s:line1
+
+" vim: ft=vim
