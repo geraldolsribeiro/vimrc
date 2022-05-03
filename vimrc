@@ -1732,13 +1732,6 @@ highlight Normal ctermbg=NONE
 "let g:solarized_termcolors=16
 "let g:solarized_termtrans = 1
 
-" Erros de ortografia
-highlight clear SpellBad
-highlight SpellBad ctermfg=red 
-"ctermbg=gray guifg=#ff0000 guibg=#ffff00
-" :help hl-SpellBad
-
-
 "}}}
 "
 
@@ -1869,18 +1862,31 @@ nmap <leader>h :e /opt/intmain/dev/linux/usr/share/Gr/scripts/Common/Makefile.in
 "   
 "   ## Destaque para as seções deste arquivo
 "   
-"   As sintaxes podem ser extendidas usado a pasta `after/syntax`, p.e.
+"   As sintaxes podem ser estendidas usado a pasta `after/syntax`, p.e.
 "   `after/syntax/make.vim`
 "   
 "   Para testar as cores use `:runtime syntax/colortest.vim`
 "   
 "{{{
-" Coloração comum a todas as extenções
-highlight intmain_docmd ctermbg=lightgreen ctermfg=black
-highlight intmain_docmd_h1 ctermbg=blue ctermfg=black
-highlight intmain_docmd_h2 ctermbg=lightblue ctermfg=black
-highlight intmain_docmd_h3 ctermbg=cyan ctermfg=black
-highlight intmain_docmd_blank ctermbg=darkgray ctermfg=black
+" Coloração comum a todas as extensões
+highlight intmain_docmd       cterm=reverse " ctermbg=lightgreen ctermfg=black
+highlight intmain_docmd_h1    cterm=reverse " ctermbg=blue       ctermfg=black
+highlight intmain_docmd_h2    cterm=reverse " ctermbg=lightblue  ctermfg=black
+highlight intmain_docmd_h3    cterm=reverse " ctermbg=cyan       ctermfg=black
+highlight intmain_docmd_blank cterm=reverse " ctermbg=darkgray   ctermfg=black
+
+" Erros de ortografia
+highlight clear SpellBad
+highlight clear SpellCap
+highlight clear SpellLocal
+highlight clear SpellRare
+highlight SpellBad cterm=underline
+highlight SpellCap cterm=underline
+highlight SpellLocal cterm=underline
+highlight SpellRare cterm=underline
+highlight SpellBad ctermfg=red cterm=underline
+highlight SpellBad gui=undercurl
+" :help hl-SpellBad
 "}}}
 
 command MeuComando echo "Olá mundo!"

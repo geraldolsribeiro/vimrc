@@ -12,7 +12,10 @@ doc:
 	$(DOCMD_OPTIONS) intmain_docmd vim vimrc README.md
 
 update:
-	vim +VundleUpdate +qall
+	echo vim +VundleUpdate +qall
+	vim +PlugUpdate +qall
 
 install:
-	vim +BundleInstall +qall
+	echo vim +BundleInstall +qall
+	vim +PlugInstall +qall
+
