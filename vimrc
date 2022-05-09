@@ -647,7 +647,9 @@ Plug 'rupurt/vim-mql5'
 "   ## Language server
 "   
 "{{{
+Plug 'prabirshrestha/async.vim'
 Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'mattn/vim-lsp-settings'
 "}}}
 "   
@@ -676,7 +678,7 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'
 " ou
 " vim -c 'CocInstall -sync coc-json coc-html coc-css coc-clangd
 " coc-clang-format-style-options coc-cmake coc-diagnostic coc-dot-complete
-" coc-htmlhint coc-markdownlint coc-ltex coc-nginx coc-sh coc-yaml  |q'
+" coc-htmlhint coc-markdownlint coc-nginx coc-sh coc-yaml  |q'
 "
 " :CocList extensions
 "
