@@ -1,4 +1,11 @@
 {
+  "diagnostic.errorSign": "✘",
+  "diagnostic.warningSign": "",
+  "diagnostic.infoSign": "",
+  "diagnostic.enableMessage": "jump",
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
+
   "coc.preferences.extensionUpdateCheck": "daily",
   "languageserver": {
     "ccls": {
