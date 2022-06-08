@@ -794,6 +794,21 @@ snippet json
 using json = nlohmann::json;
 endsnippet
 
+snippet JsonFastWriter "Atualiza método deprecado"
+Json::StreamWriterBuilder streamWriteBuilder;
+streamWriteBuilder["indentation"] = ""; // if you want whitespace-less output
+const std::string output = Json::writeString(streamWriteBuilder, jsonValue);
+endsnippet
+
+snippet JsonReader
+Json::CharReaderBuilder charReaderBuilder;
+charReaderBuilder["collectComments"] = false;
+Json::Value theReadValue;
+Json::String jsonErrors;
+istringstream sstream{ myString };
+bool ok = parseFromStream(charReaderBuilder, sstream, &theReadValue, &jsonErrors); 
+endsnippet
+
 snippet banner_dry
 // +-----------------------------------------------------------------------------------------------------+
 // | DRY - ARQUIVO COMUM A VÁRIAS APLICAÇÕES                                                             |
