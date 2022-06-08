@@ -768,6 +768,10 @@ snippet mu
 [[maybe_unused]] 
 endsnippet
 
+snippet debug_level "Set global log level to debug"
+spdlog::set_level(spdlog::level::debug);
+endsnippet
+
 snippet debug
 spdlog::debug( "${0:Mensagem de debug}" );
 endsnippet
