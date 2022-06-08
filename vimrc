@@ -60,7 +60,7 @@
 
 set nocompatible              " be iMproved, required
 filetype off                  " Necessário estar off antes do Vundle
-syntax on                     " Ativa o highlight de sixntaxe
+syntax on                     " Ativa o highlight de sintaxe
 set showcmd                   " Exibe comando na última linha
 set showmatch                 " Mostra os pares de parênteses
 set autoindent                " Indenta com o ENTER
@@ -138,7 +138,7 @@ let g:indentLine_faster = 1
 "   
 "{{{
 " Completa com palavras dos painéis adjacentes
-Plug 'wellle/tmux-complete.vim'
+" Plug 'wellle/tmux-complete.vim'
 "}}}
 "   
 "   ### AsyncRun
@@ -827,6 +827,10 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
 " there's way more, see `:help coc-key-mappings@en'
 "}}}
 "   
@@ -1001,7 +1005,7 @@ Plug 'mattn/emmet-vim'
 
 " Conflita com newmake
 "Plugin 'w0rp/ale'
-
+Plug 'dense-analysis/ale'
 
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'tomtom/tlib_vim'
@@ -1167,11 +1171,20 @@ let g:WebDevIconsOS = 'Darwin'
 " https://github.com/ryanoasis/vim-devicons/blob/master/doc/webdevicons.txt
 
 
+
 " After a re-source fixes the bug with the [] around devicons
 if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
 endif
 "}}}
+
+Plug 'textlint/textlint-plugin-html'
+Plug 'heavenshell/vim-textlint'
+
+" let g:textlint_configs = [
+"  \ '@azu/textlint-config-readme',
+"  \ '@example/textlint-config-example'
+"  \ ]
 
 
 if has("gui_running")
@@ -1534,7 +1547,7 @@ let spell_language_list="brasileiro,american"
 let spell_auto_type="md,tex,doc,mail,yaml,cpp"
 
 " Habilita verificação
-" setlocal spell spelllang=pt_br
+setlocal spell spelllang=pt_br,en
 
 "let g:pandoc#spell#default_langs=["brasileiro","american"]
 let g:pandoc#spell#default_langs=[]
@@ -2057,7 +2070,7 @@ highlight nonascii guibg=Red ctermbg=2
 " Executa o comando google passando a palavra sob o cursor quando for
 " pressionado K
 set keywordprg=google
-" comporamento default
+" comportamento default
 set keywordprg=man\ -s
 
 
@@ -2071,4 +2084,13 @@ let &runtimepath.=',~/vim/plugin/mpc'
 " Tem muita coisa boa neste artigo para incorporar
 " [VIM AFTER 15 YEARS](https://statico.github.io/vim3.html)
 
-" vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br :
+
+" Aprender a usar 
+" https://github.com/LukeSmithxyz/dwmblocks/blob/master/config.h
+"
+" Have dwmblocks automatically recompile and run when you edit this file in
+
+" autocmd BufWritePost ~/.local/src/dwmblocks/config.h !cd ~/.local/src/dwmblocks/; sudo make install && { killall -q dwmblocks;setsid dwmblocks & }
+
+
+" vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br,en :
