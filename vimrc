@@ -128,7 +128,7 @@ let g:indentLine_enabled = 1
 " let g:indentLine_char = '▏'
 let g:indentLine_char = '┆'
 let g:indentLine_concealcursor = ''
-let g:indentLine_setColors = 1
+let g:indentLine_setColors = 0
 let g:indentLine_color_term = 239
 let g:indentLine_setConceal = 0
 let g:indentLine_faster = 1
@@ -234,7 +234,8 @@ let g:bookmark_auto_save_file = $HOME . '/.vim/bookmarks'
 "   
 "{{{
 Plug 'powerline/powerline-fonts'
-Plug 'geraldolsribeiro/vim-conceal' " Exibição de caracteres
+Plug 'geraldolsribeiro/vim-conceal'
+
 " Plugin 'Yggdroot/indentLine'
 Plug 'majutsushi/tagbar'
 Plug 'ervandew/supertab'
@@ -1872,7 +1873,8 @@ endfunction
 
 "nnoremap <C-F12> :tabnew\|0r!grep -n  #<Left><Left>
 
-nmap <leader>h :e /opt/intmain/dev/linux/usr/share/Gr/scripts/Common/Makefile.include<CR>
+nmap <leader>c1 :e /opt/intmain/dev/linux/usr/share/Gr/scripts/Common/Makefile.include<CR>
+nmap <leader>c2 :e /opt/intmain/dev/linux/usr/share/Gr/scripts/Common/common.bash<CR>
 
 "   
 "   ## Destaque para as seções deste arquivo
@@ -2066,6 +2068,21 @@ map <F12> :!ctags -R --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
 " Destaca os caracteres não ASCII
 syntax match nonascii "[^\x00-\x7F]"
 highlight nonascii guibg=Red ctermbg=2
+
+
+augroup AdjustConceal
+    autocmd!
+    autocmd ColorScheme *.cpp highlight link Conceal Keyword
+augroup END
+
+" https://stackoverflow.com/questions/9464844/how-to-get-group-name-of-highlighting-under-cursor-in-vim
+" How to get group name of highlighting under cursor in vim?
+function! SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
 
 " Executa o comando google passando a palavra sob o cursor quando for
 " pressionado K
