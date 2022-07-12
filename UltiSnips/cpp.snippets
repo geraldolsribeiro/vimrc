@@ -447,15 +447,17 @@ nsOpen = '// clang-format off\nnamespace br { namespace com { namespace intmain 
 nsClose = '// clang-format off\n} } } } }\n// clang-format on'
 
 snip.rv = '// ----------------------------------------------------------------------'
-# snip += '// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo@intmain.io>'
-snip += '// Copyright (C) 2017-2022 Anderson Sabara <anderson-sabara@taoker.com.br>'
-snip += '// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
+snip += '// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo@intmain.io>'
+# snip += '// Copyright (C) 2017-2022 Anderson Sabara <anderson-sabara@taoker.com.br>'
+# snip += '// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
 snip += '// ----------------------------------------------------------------------'
 snip += ''
 snip += '#ifndef ' + guard
 snip += '#define ' + guard
 # snip += ''
 # snip += nsOpen
+snip += ''
+snip += '#include <single_compilation_unit_includes.hpp>'
 snip += ''
 snip += 'class ' + t[1] + ' : public PagePriv {'
 snip += '  virtual void drawPage( GrWebServerPageData &data ) const;'
@@ -466,14 +468,15 @@ snip += ''
 snip += '#endif'
 #snip += ''
 snip += '// ----------------------------------------------------------------------'
-#snip += '// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo@intmain.io>'
-snip += '// Copyright (C) 2017-2022 Anderson Sabara <anderson-sabara@taoker.com.br>'
-snip += '// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
+snip += '// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo@intmain.io>'
+# snip += '// Copyright (C) 2017-2022 Anderson Sabara <anderson-sabara@taoker.com.br>'
+# snip += '// Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo-ribeiro@taoker.com.br>'
 snip += '// ----------------------------------------------------------------------'
-snip += '#include "' + t[1] + '.hpp"'
-# snip += ''
-# snip += nsOpen
 snip += ''
+snip += '#include "' + t[1] + '.hpp"'
+snip += ''
+# snip += nsOpen
+# snip += ''
 snip += '// ----------------------------------------------------------------------'
 snip += '//'
 snip += '// ----------------------------------------------------------------------'
@@ -486,7 +489,7 @@ snip += '  content += GR_NL0( GR_H1_( pageTitle( data ) ) );'
 snip += '  content += endCommonHtml( data );'
 snip += '  setContent( data, content );'
 snip += '}'
-snip += ''
+# snip += ''
 # snip += nsClose
 `
 endsnippet
@@ -796,6 +799,24 @@ snippet json
 #include <nlohmann/json.hpp>
 
 using json = nlohmann::json;
+endsnippet
+
+snippet tinyxml2
+#include <tinyxml2.h>
+
+using namespace tinyxml2;
+endsnippet
+
+snippet GrDateTime
+#include <GrDateTime/GrDateTime.hpp>
+
+using namespace br::com::intmain::GrComponents::GrDateTime;
+endsnippet
+
+snippet GrUtils
+#include <GrUtils/GrUtils.hpp>
+
+using namespace br::com::intmain::GrComponents::GrUtils;
 endsnippet
 
 snippet JsonFastWriter "Atualiza método deprecado"

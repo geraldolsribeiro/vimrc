@@ -2,16 +2,24 @@
   "diagnostic.errorSign": "✘",
   "diagnostic.warningSign": "",
   "diagnostic.infoSign": "",
+  "diagnostic.hintSign": "💡",
   "diagnostic.enableMessage": "jump",
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextCurrentLineOnly": false,
+  "diagnostic.checkCurrentLine": true,
+
+    "coc.preferences.formatOnType": false,
+    "coc.preferences.formatOnSaveFiletypes": [],
+    "clangd.enabled": true,
+    "clangd.semanticHighlighting": true,
+    "clangd.arguments": ["--background-index=false", "--clang-tidy", "-j=3"],
 
   "coc.preferences.extensionUpdateCheck": "daily",
   "languageserver": {
     "ccls": {
       "command": "ccls",
       "filetypes": ["c", "cpp", "c++", "cuda", "objc", "objcpp"],
-      "rootPatterns": [".ccls", ".git/", ".hg/", ".ccls-root", "compile_commands.json"],
+      "rootPatterns": [".ccls", ".git/", ".hg/", ".ccls-root", ".ccls-cache", "compile_commands.json"],
       "initializationOptions": {
         "cache": {
           "directory": "/tmp/.ccls-cache"
@@ -24,5 +32,6 @@
         }
       }
     }
-  }
+  },
+  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/14.0.3/clangd_14.0.3/bin/clangd"
 }

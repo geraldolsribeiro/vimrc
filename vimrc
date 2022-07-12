@@ -1006,7 +1006,7 @@ Plug 'mattn/emmet-vim'
 
 " Conflita com newmake
 "Plugin 'w0rp/ale'
-Plug 'dense-analysis/ale'
+"Plug 'dense-analysis/ale'
 
 "Plugin 'MarcWeber/vim-addon-mw-utils'
 "Plugin 'tomtom/tlib_vim'
@@ -1548,7 +1548,8 @@ let spell_language_list="brasileiro,american"
 let spell_auto_type="md,tex,doc,mail,yaml,cpp"
 
 " Habilita verificação
-setlocal spell spelllang=pt_br,en
+setlocal spell spelllang=pt_br,en,pt
+set spell spelllang=pt_br,en,pt
 
 "let g:pandoc#spell#default_langs=["brasileiro","american"]
 let g:pandoc#spell#default_langs=[]
@@ -2069,6 +2070,8 @@ map <F12> :!ctags -R --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
 syntax match nonascii "[^\x00-\x7F]"
 highlight nonascii guibg=Red ctermbg=2
 
+" use sign list para exibir todos os sinais
+sign define LspCodeAction text=🤔 linehl=LspCodeActionLine texthl=LspCodeActionText
 
 augroup AdjustConceal
     autocmd!
