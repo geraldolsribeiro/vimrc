@@ -1182,6 +1182,9 @@ endif
 Plug 'textlint/textlint-plugin-html'
 Plug 'heavenshell/vim-textlint'
 
+" Plug 'mv/mv-vim-monit'
+Plug 'tmatilai/vim-monit/'
+
 " let g:textlint_configs = [
 "  \ '@azu/textlint-config-readme',
 "  \ '@example/textlint-config-example'
@@ -1192,10 +1195,8 @@ if has("gui_running")
   if IsOnSomeParticularMachine('cff39b5fb46d')
     set guifont=Monospace\ Regular\ 14
   elseif has("gui_gtk3" )
-    set guifont=Fira\ Code\ 14
-    "set guifont=Droid_Sans_Mono_Nerd_Font_Complete.otf\ 14
+    set guifont=FiraCode\ Nerd\ Font\ 13
   elseif has("gui_gtk2")
-    "set guifont=Inconsolata\ 14
     set guifont=Noto\ Mono\ 14
   elseif has("gui_macvim")
     set guifont=Menlo\ Regular:h14
