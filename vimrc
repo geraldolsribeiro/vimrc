@@ -1558,11 +1558,18 @@ let g:pandoc#spell#default_langs=[]
 
 " atalhos do spell
 " ]s ............. vai para a próxima palavra
-" zg ............. adiciona palavra
+" zg ............. adiciona palavra ao dicionário local
 " zw ............. retira palavra
 " z= ............. sugestões
 " zug ............ contrario de zg
 " zuw ............ contrario de zw
+
+" Spell check Markdown files and Git Commit Messages
+autocmd FileType markdown setlocal spell
+autocmd FileType gitcommit setlocal spell
+" Enable dictionary autocompletion in Markdown files and Git Commit Messages
+autocmd FileType markdown setlocal complete+=kspell
+autocmd FileType gitcommit setlocal complete+=kspell
 
 set wildignore+=*/git/opa/rel/*
 set wildignore+=*/git/*/node_modules
