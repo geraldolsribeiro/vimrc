@@ -228,6 +228,7 @@ let g:bookmark_auto_save_file = $HOME . '/.vim/bookmarks'
 " https://vi.stackexchange.com/questions/3755/syntax-highlight-for-whole-line
 " https://github.com/mhinz/vim-signify
 " Plugin 'chrisbra/DynamicSigns'
+" ✖ ♥
 "}}}
 "   
 "   ### Utilitários
