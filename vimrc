@@ -310,7 +310,6 @@ Plug 'voldikss/vim-translator'
 "   
 "{{{
 "Plugin 'jakedouglas/exuberant-ctags'
-Plug 'Townk/vim-autoclose'
 Plug 'tobyS/vmustache'
 Plug 'janko-m/vim-test'
 Plug 'maksimr/vim-jsbeautify'
