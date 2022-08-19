@@ -1601,6 +1601,9 @@ autocmd FileType gitcommit setlocal spell
 autocmd FileType markdown setlocal complete+=kspell
 autocmd FileType gitcommit setlocal complete+=kspell
 
+" Desabilita o autocompletion do coc para markdown, que estava muito lento
+autocmd FileType markdown let b:coc_suggest_disable = 1
+
 set wildignore+=*/git/opa/rel/*
 set wildignore+=*/git/*/node_modules
 set wildignore+=**/tmp/**
@@ -1626,7 +1629,6 @@ au CursorHold,CursorHoldI * checktime " ativa quando o cursor para de mover
 au FocusGained,BufEnter * :checktime " ativa quando entra no buffer
 
 set number
-
 
 augroup lexical
   autocmd!
