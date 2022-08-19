@@ -228,6 +228,7 @@ let g:bookmark_auto_save_file = $HOME . '/.vim/bookmarks'
 " https://vi.stackexchange.com/questions/3755/syntax-highlight-for-whole-line
 " https://github.com/mhinz/vim-signify
 " Plugin 'chrisbra/DynamicSigns'
+" ✖ ♥
 "}}}
 "   
 "   ### Utilitários
@@ -309,7 +310,6 @@ Plug 'voldikss/vim-translator'
 "   
 "{{{
 "Plugin 'jakedouglas/exuberant-ctags'
-Plug 'Townk/vim-autoclose'
 Plug 'tobyS/vmustache'
 Plug 'janko-m/vim-test'
 Plug 'maksimr/vim-jsbeautify'
@@ -507,7 +507,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sjl/badwolf'
 Plug 'tomasr/molokai'
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 "Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 Plug 'dracula/vim', { 'name': 'dracula' }
 Plug 'junegunn/limelight.vim'
@@ -672,7 +673,11 @@ Plug 'mattn/vim-lsp-settings'
 "   :CocCommand clangd.install
 "   
 "{{{
+
+" Para ignorar no ubuntu 18.04
+if v:version > 8.1.1719
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 " :CocInstall coc-tsserver coc-json coc-html coc-css coc-clangd
@@ -686,9 +691,18 @@ Plug 'jackguo380/vim-lsp-cxx-highlight'
 " coc.nvim works best on vim >= 8.1.1719 and neovim >= 0.4.0, consider upgrade your vim.
 " let g:coc_disable_startup_warning = 1
 "
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+if has('patch8.1.1068')
+  " Use `complete_info` if your (Neo)Vim version supports it.
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -1363,16 +1377,20 @@ set nowrap
 set hidden "Permite mudar de buffer sem salvar, mantendo-o na memória
 
 
-
 set complete+=kspell
+
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 "inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-set completeopt-=menu
-set completeopt-=menuone
-set completeopt=menuone,longest
+" set completeopt-=menu
+" set completeopt-=menuone
+" set completeopt=menuone,longest
 " set completeopt=menuone,noinsert,noselect
+" set completeopt=menuone,menu,longest,preview
+
+set completeopt=menu,menuone,noinsert
+
 " let g:completion_enable_snippet = 'UltiSnips'
 " let g:completion_confirm_key = "\<C-y>"
 
@@ -1394,6 +1412,12 @@ set maxmempattern=1000 " default 1000
 "set wildmenu
 "set wildmode=full
 set wrap
+
+" Sessions
+let g:session_dir = '~/.vim/sessions'
+" ^D list; BS remove *.vim
+exec 'nnoremap <Leader>ss :mksession! ' . g:session_dir . '/*.vim<C-D><BS><BS><BS><BS><BS>'
+exec 'nnoremap <Leader>sr :source '     . g:session_dir . '/*.vim<C-D><BS><BS><BS><BS><BS>'
 
 " Remove algumas mensagens da barra status ao rolar na seleção do complete
 set shortmess+=c
@@ -1441,8 +1465,11 @@ function!TrimWhiteSpace()
   %s/\s*$//
 endfunction
 
-"set list listchars=tab:»·,trail:·
+
+if v:version > 8.1.1719
+" set list listchars=tab:»·,trail:·
 set list listchars=tab:▸\ ,trail:·,nbsp:_
+endif
 "set list listchars=tab:▸\ ,trail:·,eol:↴,nbsp:_
 "autocmd FileWritePre * call TrimWhiteSpace()
 "autocmd FileAppendPre * call TrimWhiteSpace()
@@ -1549,8 +1576,10 @@ let spell_language_list="brasileiro,american"
 let spell_auto_type="md,tex,doc,mail,yaml,cpp"
 
 " Habilita verificação
+if v:version > 8.1.1719
 setlocal spell spelllang=pt_br,en,pt
 set spell spelllang=pt_br,en,pt
+endif
 
 "let g:pandoc#spell#default_langs=["brasileiro","american"]
 let g:pandoc#spell#default_langs=[]
@@ -1579,7 +1608,9 @@ set wildignore+=**/tmp/**
 
 set ttyfast
 
-set tags=tags
+"set tags=tags
+set tags+=/usr/include/**/tags
+set tags+=build/ns3/tags
 
 " Diga do livro ProGit p. 30
 " I have never had an issue with corrupting files that made me wish I had Vim
@@ -1644,6 +1675,8 @@ set statusline+=%*
 " set statusline+=%c     " coluna do cursor
 " set statusline+=%l/%L  " linha do cursor/total de linhas
 " set statusline+=\ %P   " percentual do arquivo
+
+set signcolumn=yes
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 2 " sugerido pela documentação: 1
@@ -2122,5 +2155,8 @@ let &runtimepath.=',~/vim/plugin/mpc'
 
 " autocmd BufWritePost ~/.local/src/dwmblocks/config.h !cd ~/.local/src/dwmblocks/; sudo make install && { killall -q dwmblocks;setsid dwmblocks & }
 
+" https://www.youtube.com/watch?v=7-dfpQ5sexk
+" VIM C++ Setup With Coc nvim
 
 " vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br,en :
+
