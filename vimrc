@@ -1575,13 +1575,11 @@ command Checkmark  :execute "normal i<C-v>u2714 " |" ✔
 au BufRead /tmp/psql.edit.* set syntax=sql
 
 let spell_language_list="brasileiro,american"
-let spell_auto_type="md,tex,doc,mail,yaml,cpp"
+let spell_auto_type="md,tex,doc,mail,yaml,cpp,make"
 
 " Habilita verificação
-if v:version > 8.1.1719
 setlocal spell spelllang=pt_br,en,pt
 set spell spelllang=pt_br,en,pt
-endif
 
 "let g:pandoc#spell#default_langs=["brasileiro","american"]
 let g:pandoc#spell#default_langs=[]
@@ -1600,6 +1598,7 @@ autocmd FileType gitcommit setlocal spell
 " Enable dictionary autocompletion in Markdown files and Git Commit Messages
 autocmd FileType markdown setlocal complete+=kspell
 autocmd FileType gitcommit setlocal complete+=kspell
+autocmd FileType make setlocal complete+=kspell
 
 " Desabilita o autocompletion do coc para markdown, que estava muito lento
 autocmd FileType markdown let b:coc_suggest_disable = 1
