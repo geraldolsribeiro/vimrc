@@ -607,14 +607,16 @@ Plug 'cespare/vim-toml'
 "   ### Typescript
 "   
 "{{{
-Plug 'Quramy/tsuquyomi'
+" Plug 'Quramy/tsuquyomi'
 Plug 'leafgarland/typescript-vim'
-let g:typescript_compiler_binary = 'tsc'
-let g:typescript_compiler_options = ''
-let g:tsuquyomi_disable_quickfix = 1
-let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
+" let g:typescript_compiler_binary = 'tsc'
+" let g:typescript_compiler_options = ''
+" let g:tsuquyomi_disable_quickfix = 1
+" let g:syntastic_typescript_checkers = ['tsuquyomi'] " You shouldn't use 'tsc' checker.
 
 autocmd BufNewFile,BufRead *.ts set syntax=typescript
+autocmd FileType typescript :set makeprg=tsc
+
 "}}}
 "   
 "   ### Typescript
@@ -685,10 +687,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " coc-htmlhint coc-markdownlint coc-nginx coc-sh coc-yaml  |q'
 "
 " :CocList extensions
-"
+" :CocInstall coc-tsserver
+
 " coc.nvim works best on vim >= 8.1.1719 and neovim >= 0.4.0, consider upgrade your vim.
 " let g:coc_disable_startup_warning = 1
 "
+
+let g:coc_global_extensions = ['coc-tsserver']
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -833,13 +838,19 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
 " " Resume latest coc list.
 " nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
+
+" Remap keys for applying codeAction to the current line.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
+
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gD <Plug>(coc-implementation)
-"nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gr <Plug>(coc-references)
 
@@ -1577,6 +1588,8 @@ au BufRead /tmp/psql.edit.* set syntax=sql
 let spell_language_list="brasileiro,american"
 let spell_auto_type="md,tex,doc,mail,yaml,cpp,make"
 
+set spellfile=$HOME/.vim/spell/en.utf-8.add
+
 " Habilita verificação
 setlocal spell spelllang=pt_br,en,pt
 set spell spelllang=pt_br,en,pt
@@ -1715,6 +1728,7 @@ let g:syntastic_filetype_map = { 'mkd': 'markdown' }
 let g:syntastic_javascript_checkers=['eslint']
 
 let g:syntastic_sh_checkers=['shellcheck']
+let g:syntastic_sh_shellcheck_args = "-x"
 
 
 set path+=/opt/intmain/dev/*/usr/include/
