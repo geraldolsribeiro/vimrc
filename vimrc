@@ -1945,11 +1945,11 @@ nmap <leader>c2 :e /opt/intmain/dev/linux/usr/share/Gr/scripts/Common/common.bas
 "   
 "{{{
 " Coloração comum a todas as extensões
-highlight intmain_docmd       cterm=reverse " ctermbg=lightgreen ctermfg=black
-highlight intmain_docmd_h1    cterm=reverse " ctermbg=blue       ctermfg=black
-highlight intmain_docmd_h2    cterm=reverse " ctermbg=lightblue  ctermfg=black
-highlight intmain_docmd_h3    cterm=reverse " ctermbg=cyan       ctermfg=black
-highlight intmain_docmd_blank cterm=reverse " ctermbg=darkgray   ctermfg=black
+highlight intmain_docmd       cterm=reverse ctermbg=lightgreen ctermfg=black
+highlight intmain_docmd_h1    cterm=reverse ctermbg=blue       ctermfg=black
+highlight intmain_docmd_h2    cterm=reverse ctermbg=lightblue  ctermfg=black
+highlight intmain_docmd_h3    cterm=reverse ctermbg=cyan       ctermfg=black
+highlight intmain_docmd_blank cterm=reverse ctermbg=darkgray   ctermfg=black
 
 " Erros de ortografia
 highlight clear SpellBad
