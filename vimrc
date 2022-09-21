@@ -42,9 +42,10 @@
 "   
 "   ## Variáveis do vim e seus prefixos
 "   
-"   As variáveis a seguir são somente para facilitar a leitura do restante da
-"   configuração. Em [devhints](https://devhints.io/vimscript) existem um bom
-"   resumo das variáveis e opções.
+"   As variáveis a seguir são somente para
+"   facilitar a leitura do restante da configuração. Em
+"   [devhints](https://devhints.io/vimscript) existem um bom resumo das
+"   variáveis e opções.
 "   
 "   ```vim
 "   let var = "hello"
@@ -1945,11 +1946,13 @@ nmap <leader>c2 :e /opt/intmain/dev/linux/usr/share/Gr/scripts/Common/common.bas
 "   
 "{{{
 " Coloração comum a todas as extensões
-highlight intmain_docmd       cterm=reverse ctermbg=lightgreen ctermfg=black
-highlight intmain_docmd_h1    cterm=reverse ctermbg=blue       ctermfg=black
-highlight intmain_docmd_h2    cterm=reverse ctermbg=lightblue  ctermfg=black
-highlight intmain_docmd_h3    cterm=reverse ctermbg=cyan       ctermfg=black
-highlight intmain_docmd_blank cterm=reverse ctermbg=darkgray   ctermfg=black
+highlight intmain_docmd       cterm=italic ctermbg=lightgreen ctermfg=black
+highlight intmain_docmd_h1    cterm=italic ctermbg=blue       ctermfg=black
+highlight intmain_docmd_h2    cterm=italic ctermbg=lightblue  ctermfg=black
+highlight intmain_docmd_h3    cterm=italic ctermbg=cyan       ctermfg=black
+highlight intmain_docmd_blank cterm=italic ctermbg=black      ctermfg=darkgray
+
+"highlight intmain_docmd_h1    cterm=reverse ctermbg=blue       ctermfg=black
 
 " Erros de ortografia
 highlight clear SpellBad
