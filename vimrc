@@ -114,10 +114,13 @@ call plug#begin()
 " http://coderoncode.com/tools/2017/04/16/vim-the-perfect-ide.html
 
 "   
-"   ### Dicas e material de referência para desenvolvimento
+"   ### Dicas, utilitários e material de referência para desenvolvimento
 "   
 "{{{
-Plug 'geraldolsribeiro/GrTooltip.vim'
+Plug 'geraldolsribeiro/vim-GrTooltip'
+Plug 'geraldolsribeiro/vim-docmd'
+Plug 'geraldolsribeiro/vim-auto-markdown'
+Plug 'geraldolsribeiro/vim-conceal'
 "}}}
 
 "   
@@ -236,7 +239,6 @@ let g:bookmark_auto_save_file = $HOME . '/.vim/bookmarks'
 "   
 "{{{
 Plug 'powerline/powerline-fonts'
-Plug 'geraldolsribeiro/vim-conceal'
 
 " Plugin 'Yggdroot/indentLine'
 Plug 'majutsushi/tagbar'
@@ -352,9 +354,6 @@ Plug 'tomtom/tcomment_vim'
 "   ### Markdown / Escrita
 "   
 "{{{
-" Fork do plugin do Marcos Oliveira
-Plug 'geraldolsribeiro/vim-auto-markdown'
-
 " Para usar o instant-markdown é necessário instalar o pacote npm antes
 " npm -g install instant-markdown-d@next
 Plug 'instant-markdown/vim-instant-markdown'
@@ -1946,13 +1945,11 @@ nmap <leader>c2 :e /opt/intmain/dev/linux/usr/share/Gr/scripts/Common/common.bas
 "   
 "{{{
 " Coloração comum a todas as extensões
-highlight intmain_docmd       cterm=italic ctermbg=lightgreen ctermfg=black
-highlight intmain_docmd_h1    cterm=italic ctermbg=blue       ctermfg=black
+highlight intmain_docmd       cterm=italic ctermbg=lightgray  ctermfg=black
+highlight intmain_docmd_h1    cterm=italic ctermbg=darkblue   ctermfg=black
 highlight intmain_docmd_h2    cterm=italic ctermbg=lightblue  ctermfg=black
-highlight intmain_docmd_h3    cterm=italic ctermbg=cyan       ctermfg=black
+highlight intmain_docmd_h3    cterm=italic ctermbg=lightgreen ctermfg=black
 highlight intmain_docmd_blank cterm=italic ctermbg=black      ctermfg=darkgray
-
-"highlight intmain_docmd_h1    cterm=reverse ctermbg=blue       ctermfg=black
 
 " Erros de ortografia
 highlight clear SpellBad
