@@ -1029,6 +1029,7 @@ Plug 'prettier/vim-prettier', {
     \ 'html',
     \ 'swift' ] }
 
+" :Prettier or <leader>p
 
 " Ver documentação em: https://github.com/mattn/emmet-vim
 Plug 'mattn/emmet-vim'
