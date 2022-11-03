@@ -121,6 +121,8 @@ Plug 'geraldolsribeiro/vim-GrTooltip'
 Plug 'geraldolsribeiro/vim-docmd'
 Plug 'geraldolsribeiro/vim-auto-markdown'
 Plug 'geraldolsribeiro/vim-conceal'
+Plug 'gyim/vim-boxdraw'
+Plug 'KabbAmine/vCoolor.vim'
 "}}}
 
 "   
