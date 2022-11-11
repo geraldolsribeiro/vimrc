@@ -72,7 +72,7 @@ set autowrite                 " salva ao executar comandos make e shell
 
 set cmdheight=2               " Mais espaço para exibir mensagens"
 set updatetime=300            " You will have bad experience for diagnostic messages when it's default 4000.
-set signcolumn=yes            " always show signcolumns
+set signcolumn=yes            " Always show signcolumns
 
 let mapleader="\<space>"      " leader usando barra de espaço
 let maplocalleader="\<space>"
@@ -374,12 +374,13 @@ Plug 'instant-markdown/vim-instant-markdown'
 
 let g:instant_markdown_browser = "firefox --new-window"
 " Abrir o preview ao carregar um arquivo markdown
-let g:instant_markdown_autostart = 1
+let g:instant_markdown_autostart = 0
 
 Plug 'reedes/vim-pencil'
 Plug 'tpope/vim-markdown'
 Plug 'jtratner/vim-flavored-markdown'
 " Plug 'LanguageTool'    " falha ao migrar do vundle para o vim-plug
+Plug 'dpelle/vim-LanguageTool'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'junegunn/vim-emoji'
@@ -1601,12 +1602,13 @@ set spell spelllang=pt_br,en,pt
 let g:pandoc#spell#default_langs=[]
 
 " atalhos do spell
-" ]s ............. vai para a próxima palavra
-" zg ............. adiciona palavra ao dicionário local
-" zw ............. retira palavra
-" z= ............. sugestões
-" zug ............ contrario de zg
-" zuw ............ contrario de zw
+" [s ............. Vai para o erro anterior ao cursor
+" ]s ............. Vai para o próximo erro
+" zg ............. Adiciona palavra ao dicionário local
+" zw ............. Retira palavra
+" z= ............. Sugestões
+" zug ............ Contrário de zg
+" zuw ............ Contrário de zw
 
 " Spell check Markdown files and Git Commit Messages
 autocmd FileType markdown setlocal spell
@@ -2191,5 +2193,5 @@ let &runtimepath.=',~/vim/plugin/mpc'
 " https://www.youtube.com/watch?v=7-dfpQ5sexk
 " VIM C++ Setup With Coc nvim
 
-" vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br,en :
+" vim: foldmethod=marker foldmarker={{{,}}} spell spelllang=pt_br,en_us :
 

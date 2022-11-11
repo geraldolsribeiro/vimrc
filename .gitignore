@@ -1,4 +1,4 @@
 doc/tags
-bundle/
-plugged/
+bundle
+plugged
 *.swp
