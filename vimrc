@@ -121,6 +121,9 @@ Plug 'geraldolsribeiro/vim-GrTooltip'
 Plug 'geraldolsribeiro/vim-docmd'
 Plug 'geraldolsribeiro/vim-auto-markdown'
 Plug 'geraldolsribeiro/vim-conceal'
+Plug 'geraldolsribeiro/vim-LanguageTool'
+" extrair https://internal1.languagetool.org/snapshots/LanguageTool-latest-snapshot.zip para ~/languagetool/
+" https://languagetool.org/download/LanguageTool-stable.zip
 Plug 'gyim/vim-boxdraw'
 Plug 'KabbAmine/vCoolor.vim'
 "}}}
@@ -379,8 +382,6 @@ let g:instant_markdown_autostart = 0
 Plug 'reedes/vim-pencil'
 Plug 'tpope/vim-markdown'
 Plug 'jtratner/vim-flavored-markdown'
-" Plug 'LanguageTool'    " falha ao migrar do vundle para o vim-plug
-Plug 'dpelle/vim-LanguageTool'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'junegunn/vim-emoji'
