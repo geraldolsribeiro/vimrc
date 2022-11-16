@@ -1519,7 +1519,7 @@ let g:ctrlp_by_filename = 1
 " Usar Ctrl+X Ctrl+U para procurar emoji
 set completefunc=emoji#complete
 
-" selecione com o mouse e use "+y para compiar
+" selecione com o mouse e use "+y para copiar
 " :vmap <C-C> "+y
 
 nnoremap <F3> :CtrlPTag<CR>
@@ -1529,7 +1529,8 @@ nmap <C-UP> :m-2<CR>
 " Move linha para baixo
 nmap <C-DOWN> :m+1<CR>
 
-nmap <F5> :s/(\(.*\)\.size()\s*>\s*0/( ! \1.isEmpty() /<CR>:wq<CR>
+" nmap <F5> :s/(\(.*\)\.size()\s*>\s*0/( ! \1.isEmpty() /<CR>:wq<CR>
+nmap <F5> :setlocal spell!<CR>
 
 " Abre o arquivo/url sobre o cursor usando o xdg-open
 " https://stackoverflow.com/questions/9458294/open-url-under-cursor-in-vim-with-browser
@@ -1591,7 +1592,7 @@ command Checkmark  :execute "normal i<C-v>u2714 " |" ✔
 au BufRead /tmp/psql.edit.* set syntax=sql
 
 let spell_language_list="brasileiro,american"
-let spell_auto_type="md,tex,doc,mail,yaml,cpp,make"
+let spell_auto_type="md,tex,doc,mail,yaml"
 
 set spellfile=$HOME/.vim/spell/en.utf-8.add
 
@@ -1696,8 +1697,6 @@ set statusline+=%*
 " set statusline+=%l/%L  " linha do cursor/total de linhas
 " set statusline+=\ %P   " percentual do arquivo
 
-set signcolumn=yes
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 2 " sugerido pela documentação: 1
 let g:syntastic_check_on_open = 1
@@ -1709,9 +1708,9 @@ let g:syntastic_style_error_symbol = '⁉️'
 let g:syntastic_warning_symbol = '⚠️'
 let g:syntastic_style_warning_symbol = '💩'
 
-highlight link SyntasticErrorSign SignColumn
-highlight link SyntasticWarningSign SignColumn
-highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticErrorSign        SignColumn
+highlight link SyntasticWarningSign      SignColumn
+highlight link SyntasticStyleErrorSign   SignColumn
 highlight link SyntasticStyleWarningSign SignColumn
 
 let g:syntastic_cpp_check_header = 1
@@ -1962,12 +1961,10 @@ highlight clear SpellBad
 highlight clear SpellCap
 highlight clear SpellLocal
 highlight clear SpellRare
-highlight SpellBad cterm=underline
-highlight SpellCap cterm=underline
-highlight SpellLocal cterm=underline
-highlight SpellRare cterm=underline
-highlight SpellBad ctermfg=red cterm=underline
-highlight SpellBad gui=undercurl
+highlight SpellCap   cterm=underline gui=undercurl ctermbg=green  ctermfg=black 
+highlight SpellLocal cterm=underline gui=undercurl ctermbg=gray   ctermfg=black 
+highlight SpellRare  cterm=underline gui=undercurl ctermbg=white  ctermfg=black 
+highlight SpellBad   cterm=underline gui=undercurl ctermbg=yellow ctermfg=black
 " :help hl-SpellBad
 "}}}
 
@@ -2136,6 +2133,9 @@ highlight nonascii guibg=Red ctermbg=2
 
 " use sign list para exibir todos os sinais
 sign define LspCodeAction text=🤔 linehl=LspCodeActionLine texthl=LspCodeActionText
+
+" Documentação sobre sign
+" https://neovim.io/doc/user/sign.html
 
 augroup AdjustConceal
     autocmd!
