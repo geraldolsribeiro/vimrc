@@ -125,7 +125,9 @@ Plug 'geraldolsribeiro/vim-LanguageTool'
 " extrair https://internal1.languagetool.org/snapshots/LanguageTool-latest-snapshot.zip para ~/languagetool/
 " https://languagetool.org/download/LanguageTool-stable.zip
 Plug 'gyim/vim-boxdraw'
-Plug 'KabbAmine/vCoolor.vim'
+let g:vcoolor_disable_mappings = 1
+let g:vcoolor_map = '<leader>color'
+Plug 'KabbAmine/vCoolor.vim' " FIXME: a+til abre picker
 "}}}
 
 "   
@@ -656,9 +658,9 @@ Plug 'rupurt/vim-mql5'
 "   
 "{{{
 Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'mattn/vim-lsp-settings'
+" Plug 'mattn/vim-lsp-settings'
 "}}}
 "   
 "   ## Auto completar
@@ -1594,11 +1596,14 @@ au BufRead /tmp/psql.edit.* set syntax=sql
 let spell_language_list="brasileiro,american"
 let spell_auto_type="md,tex,doc,mail,yaml"
 
+" Desabilita verificação
 set spellfile=$HOME/.vim/spell/en.utf-8.add
 
-" Habilita verificação
-setlocal spell spelllang=pt_br,en,pt
-set spell spelllang=pt_br,en,pt
+setlocal spelllang=pt_br,en,pt
+set spelllang=pt_br,en,pt
+
+setlocal nospell
+set nospell
 
 "let g:pandoc#spell#default_langs=["brasileiro","american"]
 let g:pandoc#spell#default_langs=[]
@@ -1611,6 +1616,8 @@ let g:pandoc#spell#default_langs=[]
 " z= ............. Sugestões
 " zug ............ Contrário de zg
 " zuw ............ Contrário de zw
+"
+" verificar se o zug deixa comentado a palavra removida
 
 " Spell check Markdown files and Git Commit Messages
 autocmd FileType markdown setlocal spell
@@ -2176,6 +2183,15 @@ set keywordprg=man\ -s
 " Exemplo do livro VimL
 let &runtimepath.=',~/vim/plugin/mpc'
 
+" FIXME: Quickfix
+" https://stackoverflow.com/questions/1747091/how-do-you-use-vims-quickfix-feature
+" :copen  Open the quickfix window
+" :ccl    Close it
+" :cw     Open it if there are 'errors', close it otherwise (some people prefer this)
+" :cn     Go to the next error in the window
+" :cp     Go to the previous error in the window
+" :cnf    Go to the first error in the next file
+" :.cc    Go to error under cursor (if cursor is in quickfix window)
 
 ":syntax sync minlines=10000
 ":syntax sync fromstart
