@@ -10,7 +10,7 @@
 
   "coc.preferences.formatOnType": false,
   "coc.preferences.formatOnSaveFiletypes": [],
-  "clangd.enabled": true,
+  "clangd.enabled": false,
   "clangd.semanticHighlighting": true,
   "clangd.arguments": ["--background-index=false", "--clang-tidy", "-j=3"],
 
@@ -19,6 +19,7 @@
 
   "coc.preferences.extensionUpdateCheck": "daily",
   "languageserver": {
+    "disableDiagnostics": true,
     "ccls": {
       "command": "ccls",
       "filetypes": ["c", "cpp", "c++", "cuda", "objc", "objcpp"],

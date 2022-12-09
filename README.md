@@ -163,6 +163,13 @@ Plug 'geraldolsribeiro/vim-GrTooltip'
 Plug 'geraldolsribeiro/vim-docmd'
 Plug 'geraldolsribeiro/vim-auto-markdown'
 Plug 'geraldolsribeiro/vim-conceal'
+Plug 'geraldolsribeiro/vim-LanguageTool'
+" extrair https://internal1.languagetool.org/snapshots/LanguageTool-latest-snapshot.zip para ~/languagetool/
+" https://languagetool.org/download/LanguageTool-stable.zip
+Plug 'gyim/vim-boxdraw'
+let g:vcoolor_disable_mappings = 1
+let g:vcoolor_map = '<leader>color'
+Plug 'KabbAmine/vCoolor.vim' " FIXME: a+til abre picker
 ```
 
 
@@ -457,12 +464,11 @@ Plug 'instant-markdown/vim-instant-markdown'
 
 let g:instant_markdown_browser = "firefox --new-window"
 " Abrir o preview ao carregar um arquivo markdown
-let g:instant_markdown_autostart = 1
+let g:instant_markdown_autostart = 0
 
 Plug 'reedes/vim-pencil'
 Plug 'tpope/vim-markdown'
 Plug 'jtratner/vim-flavored-markdown'
-" Plug 'LanguageTool'    " falha ao migrar do vundle para o vim-plug
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'junegunn/vim-emoji'
@@ -757,9 +763,9 @@ Plug 'rupurt/vim-mql5'
 
 ```vim
 Plug 'prabirshrestha/async.vim'
-Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/vim-lsp'
 Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'mattn/vim-lsp-settings'
+" Plug 'mattn/vim-lsp-settings'
 ```
 
 
@@ -1327,12 +1333,10 @@ highlight clear SpellBad
 highlight clear SpellCap
 highlight clear SpellLocal
 highlight clear SpellRare
-highlight SpellBad cterm=underline
-highlight SpellCap cterm=underline
-highlight SpellLocal cterm=underline
-highlight SpellRare cterm=underline
-highlight SpellBad ctermfg=red cterm=underline
-highlight SpellBad gui=undercurl
+highlight SpellCap   cterm=underline gui=undercurl ctermbg=green  ctermfg=black 
+highlight SpellLocal cterm=underline gui=undercurl ctermbg=gray   ctermfg=black 
+highlight SpellRare  cterm=underline gui=undercurl ctermbg=white  ctermfg=black 
+highlight SpellBad   cterm=underline gui=undercurl ctermbg=yellow ctermfg=black
 " :help hl-SpellBad
 ```
 
