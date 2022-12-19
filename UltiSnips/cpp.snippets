@@ -1,5 +1,22 @@
 # Separadores
 
+snippet til
+//-- ---
+//-- title: C++ `!p snip.rv = snip.basename`
+//-- date: 0000-00-00
+//-- draft: false
+//-- tags:
+//--   - C++
+//--   - `!p snip.rv = snip.basename`
+//-- ---
+//--
+//-- ::: toc
+//--
+//-- ## Possible output
+//--
+//-- [IMDOC_INCLUDE_FILE txt output/`!p snip.rv = snip.basename`.txt]
+endsnippet
+
 snippet httpGet
 server.Get( R"(/number/(\d+))", [&]( const Request &req, Response & res ) {
   auto numbers = req.matches[1];
