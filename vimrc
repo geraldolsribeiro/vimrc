@@ -2149,6 +2149,10 @@ map <F12> :!ctags -R --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
 " https://github.com/pangloss/vim-javascript
 "
 
+"omap toc :vim /\/\/-- #/ % \\| cw <CR>
+"map toc :vim /-- #/ . shellescape(expand('%')))<CR>
+map toc :vim /-- #/ % \| cw <CR>
+
 " Destaca os caracteres não ASCII
 syntax match nonascii "[^\x00-\x7F]"
 highlight nonascii guibg=Red ctermbg=2
