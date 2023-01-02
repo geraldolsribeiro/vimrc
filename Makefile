@@ -1,5 +1,5 @@
 ### ----------------------------------------------------------------------
-### Copyright (C) 2017-2022 Geraldo Ribeiro <geraldo@intmain.io>
+### Copyright (C) 2017-2023 Geraldo Ribeiro <geraldo@intmain.io>
 ### ----------------------------------------------------------------------
 
 .PHONY: doc

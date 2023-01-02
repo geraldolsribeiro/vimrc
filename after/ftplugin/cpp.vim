@@ -24,7 +24,7 @@
 
 function! UpdateHeaderCopyright()
   let last_cursor_position = getcurpos()
-  silent! :1,3s/-20[012][0-9]/-2022/
+  silent! :1,3s/-20[012][0-9]/-2023/
   call setpos('.', last_cursor_position)
 endfunction
 
