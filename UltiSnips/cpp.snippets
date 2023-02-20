@@ -1,3 +1,27 @@
+snippet sleep1s
+#include <chrono>
+#include <thread>
+std::this_thread::sleep_for(std::chrono::seconds(1));
+endsnippet
+
+snippet  markers
+🔵🔴🟠🟡🟢🟣🟤🟦🟥🟧🟨🟩🟪🟫🛑🔶🔷🔸🔹🔺🔻
+endsnippet
+
+snippet brcode
+//-- \`\`\`
+//--
+//-- $0
+//--
+//-- \`\`\`
+endsnippet
+
+snippet cpp
+\`\`\`c++
+$0
+\`\`\` 
+endsnippet
+
 snippet :(
 😞
 endsnippet
@@ -18,7 +42,7 @@ snippet --
 ⸺
 endsnippet
 
-snippet ---
+snippet ----
 ⸻
 endsnippet
 
@@ -35,6 +59,7 @@ snippet til
 //-- ::: toc
 //--
 //--
+$0
 //--
 //-- ## Possible output
 //--

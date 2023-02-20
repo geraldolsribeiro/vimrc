@@ -1,3 +1,14 @@
+snippet :::pikchr
+::: pikchr src="/til/pikchr_sample.svg" title="Pikchr sample 01"
+topmargin += 1mm
+margin = 5mm
+arrow right 200% "Markdown" "Source"
+box rad 10px "Markdown" "Formatter" "(markdown.c)" fit
+arrow right 200% "HTML+SVG" "Output"
+arrow <-> down 70% from last box.s
+box same "Pikchr" "Formatter" "(pikchr.c)" fit
+endsnippet
+
 snippet :::include
 ::: include bash src/static_src/til/$1
 endsnippet
@@ -61,9 +72,27 @@ mudança fora dela, o fim está próximo.
 
 endsnippet
 
-snippet bash
+snippet hl
 \`\`\`${1:bash}
 $2
+\`\`\`
+endsnippet
+
+snippet bash
+\`\`\`bash
+$0
+\`\`\`
+endsnippet
+
+snippet shell
+\`\`\`shell
+$0
+\`\`\`
+endsnippet
+
+snippet powershell
+\`\`\`powershell
+$0
 \`\`\`
 endsnippet
 
