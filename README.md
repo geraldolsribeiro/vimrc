@@ -45,6 +45,7 @@ Fonte: `vimrc`
   * [Language server](#language-server)
   * [Auto completar](#auto-completar)
       * [COC - Conquer Of Completion](#coc---conquer-of-completion)
+      * [Edit xournalpp file](#edit-xournalpp-file)
       * [YouCompleteMe](#youcompleteme)
   * [Clangd](#clangd)
   * [Configuração geral](#configuração-geral)
@@ -319,6 +320,33 @@ Plug 'jeetsukumaran/vim-buffergator'
 Plug 'gilsondev/searchtasks.vim'
 " Plugin 'Shougo/neocomplete.vim'
 Plug 'tpope/vim-dispatch'
+
+Plug 'tpope/vim-eunuch'
+Vim sugar for the UNIX shell commands that need it the most. Features include:
+"   Vim sugar for the UNIX shell commands that need it the most. Features include:
+:Remove: Delete a file on disk without E211: File no longer available.
+"   :Remove: Delete a file on disk without E211: File no longer available.
+:Delete: Delete a file on disk and the buffer too.
+"   :Delete: Delete a file on disk and the buffer too.
+:Move: Rename a buffer and the file on disk simultaneously. See also :Rename, :Copy, and :Duplicate.
+"   :Move: Rename a buffer and the file on disk simultaneously. See also :Rename, :Copy, and :Duplicate.
+:Chmod: Change the permissions of the current file.
+"   :Chmod: Change the permissions of the current file.
+:Mkdir: Create a directory, defaulting to the parent of the current file.
+"   :Mkdir: Create a directory, defaulting to the parent of the current file.
+:Cfind: Run find and load the results into the quickfix list.
+"   :Cfind: Run find and load the results into the quickfix list.
+:Clocate: Run locate and load the results into the quickfix list.
+"   :Clocate: Run locate and load the results into the quickfix list.
+:Lfind/:Llocate: Like above, but use the location list.
+"   :Lfind/:Llocate: Like above, but use the location list.
+:Wall: Write every open window. Handy for kicking off tools like guard.
+"   :Wall: Write every open window. Handy for kicking off tools like guard.
+:SudoWrite: Write a privileged file with sudo.
+"   :SudoWrite: Write a privileged file with sudo.
+:SudoEdit: Edit a privileged file with sudo.
+"   :SudoEdit: Edit a privileged file with sudo.
+
 Plug 'dhruvasagar/vim-table-mode'
 " Lança o ranger a partir do vim
 
@@ -999,6 +1027,17 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
 " there's way more, see `:help coc-key-mappings@en'
 endif
+```
+
+### Edit xournalpp file
+ 
+Adapted from [How to force Vim to open given file as another filetype?
+(e.g. .txt.gz?)](https://vi.stackexchange.com/questions/9892/how-to-force-vim-to-open-given-file-as-another-filetype-e-g-txt-gz)
+
+```vim
+autocmd! BufReadPre *.xopp setlocal binary
+autocmd! BufRead *.xopp call gzip#read("gzip -S.xopp -dn")
+autocmd! BufWritePost,FileWritePost	*.xopp call gzip#write("gzip -S.xopp")
 ```
 
 

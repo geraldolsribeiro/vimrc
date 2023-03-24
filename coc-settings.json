@@ -19,14 +19,13 @@
 
   "coc.preferences.extensionUpdateCheck": "daily",
   "languageserver": {
-    "disableDiagnostics": true,
     "ccls": {
       "command": "ccls",
       "filetypes": ["c", "cpp", "c++", "cuda", "objc", "objcpp"],
-      "rootPatterns": [".ccls", ".git/", ".hg/", ".ccls-root", ".ccls-cache", "compile_commands.json"],
+      "rootPatterns": [".ccls", "compile_commands.json", ".git/", ".hg/", ".ccls-root", ".ccls-cache"],
       "initializationOptions": {
         "cache": {
-          "directory": "/tmp/.ccls-cache"
+          "directory": "/tmp/ccls"
         },
         "highlight": {
           "lsRanges": true
@@ -36,6 +35,5 @@
         }
       }
     }
-  },
-  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/14.0.3/clangd_14.0.3/bin/clangd"
+  }
 }
