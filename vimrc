@@ -1,7 +1,7 @@
 "   # vimrc de Geraldo Ribeiro
 "   
 "   [TOC]
-"   
+"
 "   ## Instalação
 "   
 " NOTA: os comentários dentro do bloco estão deslocados para não entrar como cabeçalhos
@@ -91,6 +91,38 @@ set exrc
 function! IsOnSomeParticularMachine(hostname)
   return match($HOSTNAME, a:hostname) >= 0
 endfunction
+
+"   
+"   ## Destaque para as seções deste arquivo
+"   
+"   As sintaxes podem ser estendidas usado a pasta `after/syntax`, p.e.
+"   `after/syntax/make.vim`
+"   
+"   Para testar as cores use `:runtime syntax/colortest.vim`
+"   
+"{{{
+" Coloração comum a todas as extensões
+highlight intmain_docmd       cterm=italic ctermbg=lightgray  ctermfg=black
+highlight intmain_docmd_h1    cterm=italic ctermbg=darkblue   ctermfg=black
+highlight intmain_docmd_h2    cterm=italic ctermbg=lightblue  ctermfg=black
+highlight intmain_docmd_h3    cterm=italic ctermbg=lightgreen ctermfg=black
+highlight intmain_docmd_blank cterm=italic ctermbg=black      ctermfg=darkgray
+
+" Erros de ortografia
+highlight clear SpellBad
+highlight clear SpellCap
+highlight clear SpellLocal
+highlight clear SpellRare
+highlight SpellCap   cterm=underline gui=undercurl ctermbg=green  ctermfg=black 
+highlight SpellLocal cterm=underline gui=undercurl ctermbg=gray   ctermfg=black 
+highlight SpellRare  cterm=underline gui=undercurl ctermbg=white  ctermfg=black 
+highlight SpellBad   cterm=underline gui=undercurl ctermbg=yellow ctermfg=black
+
+" Destaca os caracteres não ASCII
+syntax match nonascii "[^\x00-\x7F]"
+highlight nonascii guibg=Red ctermbg=2
+" :help hl-SpellBad
+"}}}
 
 "   
 "   ## Plugins
@@ -1975,34 +2007,6 @@ endfunction
 nmap <leader>c1 :e /opt/intmain/dev/linux/usr/share/Gr/scripts/Common/Makefile.include<CR>
 nmap <leader>c2 :e /opt/intmain/dev/linux/usr/share/Gr/scripts/Common/common.bash<CR>
 
-"   
-"   ## Destaque para as seções deste arquivo
-"   
-"   As sintaxes podem ser estendidas usado a pasta `after/syntax`, p.e.
-"   `after/syntax/make.vim`
-"   
-"   Para testar as cores use `:runtime syntax/colortest.vim`
-"   
-"{{{
-" Coloração comum a todas as extensões
-highlight intmain_docmd       cterm=italic ctermbg=lightgray  ctermfg=black
-highlight intmain_docmd_h1    cterm=italic ctermbg=darkblue   ctermfg=black
-highlight intmain_docmd_h2    cterm=italic ctermbg=lightblue  ctermfg=black
-highlight intmain_docmd_h3    cterm=italic ctermbg=lightgreen ctermfg=black
-highlight intmain_docmd_blank cterm=italic ctermbg=black      ctermfg=darkgray
-
-" Erros de ortografia
-highlight clear SpellBad
-highlight clear SpellCap
-highlight clear SpellLocal
-highlight clear SpellRare
-highlight SpellCap   cterm=underline gui=undercurl ctermbg=green  ctermfg=black 
-highlight SpellLocal cterm=underline gui=undercurl ctermbg=gray   ctermfg=black 
-highlight SpellRare  cterm=underline gui=undercurl ctermbg=white  ctermfg=black 
-highlight SpellBad   cterm=underline gui=undercurl ctermbg=yellow ctermfg=black
-" :help hl-SpellBad
-"}}}
-
 command MeuComando echo "Olá mundo!"
 
 function MinhaFuncao()
@@ -2166,9 +2170,6 @@ map <F12> :!ctags -R --c++-kinds=+pl --fields=+iaS --extra=+q .<CR>
 "map toc :vim /-- #/ . shellescape(expand('%')))<CR>
 map toc :vim /-- #/ % \| cw <CR>
 
-" Destaca os caracteres não ASCII
-syntax match nonascii "[^\x00-\x7F]"
-highlight nonascii guibg=Red ctermbg=2
 
 " use sign list para exibir todos os sinais
 sign define LspCodeAction text=🤔 linehl=LspCodeActionLine texthl=LspCodeActionText
