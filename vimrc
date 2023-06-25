@@ -914,6 +914,17 @@ nmap <silent> ]c <Plug>(coc-diagnostic-next)
 " there's way more, see `:help coc-key-mappings@en'
 endif
 "}}}
+"
+"   ### Edit xournalpp file
+"    
+"   Adapted from [How to force Vim to open given file as another filetype?
+"   (e.g. .txt.gz?)](https://vi.stackexchange.com/questions/9892/how-to-force-vim-to-open-given-file-as-another-filetype-e-g-txt-gz)
+"
+"{{{
+autocmd! BufReadPre *.xopp setlocal binary
+autocmd! BufRead *.xopp call gzip#read("gzip -S.xopp -dn")
+autocmd! BufWritePost,FileWritePost	*.xopp call gzip#write("gzip -S.xopp")
+"}}}
 "   
 "   ### YouCompleteMe
 "
@@ -2038,7 +2049,6 @@ function! InsertCopyright()
 endfunction
 
 iabbrev <expr> copy# InsertCopyright()
-
 
 
 
