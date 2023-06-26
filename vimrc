@@ -1867,7 +1867,7 @@ if (empty($TMUX))
 endif
 
 let g:gruvbox_italic=1
-colorscheme gruvbox
+silent! colorscheme gruvbox
 
 " Força fundo transparente sobre o esquema de cores atual
 " Útil para deixar o vim sobreposto a outra tela no terminal
