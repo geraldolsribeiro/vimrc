@@ -911,6 +911,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
+nmap <leader>aw :CocCommand cSpell.addWordToDictionary<CR>
 " there's way more, see `:help coc-key-mappings@en'
 endif
 "}}}
@@ -1221,7 +1222,7 @@ let g:airline_solarized_bg='dark'
 
 
 let g:neomake_cpp_enable_markers=['clang']
-let g:neomake_cpp_clang_args = ["-std=c++14", "-Wextra", "-Wall", "-fsanitize=undefined", "-g"]
+let g:neomake_cpp_clang_args = ["-std=c++17", "-Wextra", "-Wall", "-fsanitize=undefined", "-g"]
 
 "   
 "   ### Devicons
@@ -1762,32 +1763,44 @@ set statusline+=%*
 " set statusline+=%l/%L  " linha do cursor/total de linhas
 " set statusline+=\ %P   " percentual do arquivo
 
+highlight link SyntasticErrorSign        SignColumn
+highlight link SyntasticWarningSign      SignColumn
+highlight link SyntasticStyleErrorSign   SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
+
+" 4. Recommended settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 2 " sugerido pela documentação: 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+" To see the command line syntastic passes to the checker, set g:syntastic_debug to 1, run the checker, then run :mes.
 let g:syntastic_debug = 0
+" let g:syntastic_debug = 3
 
 let g:syntastic_error_symbol = '❌'
 let g:syntastic_style_error_symbol = '⁉️'
 let g:syntastic_warning_symbol = '⚠️'
 let g:syntastic_style_warning_symbol = '💩'
 
-highlight link SyntasticErrorSign        SignColumn
-highlight link SyntasticWarningSign      SignColumn
-highlight link SyntasticStyleErrorSign   SignColumn
-highlight link SyntasticStyleWarningSign SignColumn
-
+" https://itecnote.com/tecnote/c-including-header-files-recursively-for-syntastic/
 let g:syntastic_cpp_check_header = 1
-let g:syntastic_cpp_compiler = 'clang++'
+"let g:syntastic_cpp_compiler = 'clang++'
 "let g:syntastic_cpp_compiler = 'gcc'
 " FIXME: Verificar se os path abaixo estão atualizados e contemplam o clang
-let g:syntastic_cpp_include_dirs = ['/opt/intmain/dev/linux/usr/include/','../include/','/usr/include/c++/6','/usr/include/x86_64-linux-gnu/c++/6/']
-let g:syntastic_cpp_compiler_options = ' -include ../src/precompile.hpp -std=c++17 -stdlib=libc++ '
-let g:syntastic_cpp_checkers=['gcc', 'cppcheck', 'flawfinder', 'clang_tidy']
+"let g:syntastic_cpp_include_dirs = ['/opt/intmain/dev/linux/usr/include/','../include/','/usr/include/c++/6','/usr/include/x86_64-linux-gnu/c++/6/']
+"let g:syntastic_cpp_compiler_options = ' -std=c++17 -stdlib=libc++ -Wall -Wextra -Wpedantic -include ../include/single_compilation_unit_includes.hpp'
+let g:syntastic_cpp_checkers=['clang', 'gcc', 'cppcheck', 'flawfinder', 'clang_tidy']
 let g:syntastic_cpp_clang_tidy_post_args = " -I../include"
+"
+let g:syntastic_cpp_no_default_include_dirs = 1
+let g:syntastic_cpp_config_file = ".syntastic_cpp_config"
 
 let g:syntastic_filetype_map = { 'mkd': 'markdown' }
+"
 
 " https://vimawesome.com/plugin/vim-clang
 " let g:clang_c_options = '-std=gnu14'
@@ -1802,8 +1815,8 @@ let g:syntastic_sh_shellcheck_args = "-x"
 
 
 set path+=/opt/intmain/dev/*/usr/include/
+set path+=,../include
 "set path+=.,~/git/Intmain/
-
 
 set encoding=utf-8
 set fileencoding=utf-8

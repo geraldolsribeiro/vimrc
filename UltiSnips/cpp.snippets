@@ -1,11 +1,15 @@
-snippet sleep1s
+snippet ii "single_compilation_unit_includes.hpp"
+#include "single_compilation_unit_includes.hpp"
+endsnippet
+
+snippet sleep1s "sleep_for 1s"
 #include <chrono>
 #include <thread>
 std::this_thread::sleep_for(std::chrono::seconds(1));
 endsnippet
 
 # https://graphemica.com/unicode/characters/page/506
-snippet  markers
+snippet  markers "🔵🔴🟠🟡🟢🟣🟤"
 🔵🔴🟠🟡🟢🟣🟤
 🟦🟥🟧🟨🟩🟪🟫
 🛑🔶🔷🔸🔹🔺🔻
@@ -593,7 +597,7 @@ snip += '#define ' + guard
 # snip += ''
 # snip += nsOpen
 snip += ''
-snip += '#include <single_compilation_unit_includes.hpp>'
+snip += '#include "single_compilation_unit_includes.hpp"'
 snip += ''
 snip += 'class ' + t[1] + ' : public PagePriv {'
 snip += '  virtual void drawPage( GrWebServerPageData &data ) const;'

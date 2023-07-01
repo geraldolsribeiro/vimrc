@@ -13,3 +13,4 @@ setsid
 killall
 autocmd
 Vundle
+youtube

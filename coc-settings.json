@@ -7,6 +7,7 @@
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextCurrentLineOnly": false,
   "diagnostic.checkCurrentLine": true,
+  "diagnostic.enabled": false,
 
   "coc.preferences.formatOnType": false,
   "coc.preferences.formatOnSaveFiletypes": [],
@@ -14,8 +15,8 @@
   "clangd.semanticHighlighting": true,
   "clangd.arguments": ["--background-index=false", "--clang-tidy", "-j=3"],
 
-  "cSpellExt.enableDictionaries": ["portuguese-brazilian"],
-  "cSpell.language": "pt,pt-BR",
+  "cSpellExt.enableDictionaries": ["portuguese-brazilian","english"],
+  "cSpell.language": "pt,pt-BR,en",
 
   "coc.preferences.extensionUpdateCheck": "daily",
   "languageserver": {
