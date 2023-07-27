@@ -77,6 +77,13 @@ set signcolumn=yes            " Always show signcolumns
 let mapleader="\<space>"      " leader usando barra de espaço
 let maplocalleader="\<space>"
 
+
+highlight intmain_docmd       cterm=italic ctermbg=lightgray  ctermfg=black
+highlight intmain_docmd_h1    cterm=italic ctermbg=darkblue   ctermfg=black
+highlight intmain_docmd_h2    cterm=italic ctermbg=lightblue  ctermfg=black
+highlight intmain_docmd_h3    cterm=italic ctermbg=lightgreen ctermfg=black
+highlight intmain_docmd_blank cterm=italic ctermbg=black      ctermfg=darkgray
+
 "   
 "   ## Configuração específica para projetos
 "   
@@ -175,6 +182,12 @@ let g:indentLine_setColors = 0
 let g:indentLine_color_term = 239
 let g:indentLine_setConceal = 0
 let g:indentLine_faster = 1
+"}}}
+"   
+"   ### recutils
+"   
+"{{{
+Plug 'zaid/vim-rec' 
 "}}}
 "   
 "   ### tmux
@@ -328,11 +341,18 @@ Plug 'wellle/targets.vim'
 "{{{
 Plug 'xavierd/clang_complete'
 " Onde a biblioteca está
-if filereadable('/usr/lib/llvm-11/lib/libclang.so.1')
-  let g:clang_library_path='/usr/lib/llvm-11/lib/libclang.so.1'
-else
-  let g:clang_library_path='/usr/lib/llvm-8/lib/libclang.so.1'
-endif
+for clang_version in [ 17, 16, 15, 14, 13, 12, 11, 10 ]
+  let fn = '/usr/lib/llvm-' . clang_version . '/lib/libclang.so.1'
+  if filereadable(fn)
+    let g:clang_library_path = fn
+    break
+  endif
+endfor
+" if filereadable('/usr/lib/llvm-11/lib/libclang.so.1')
+"   let g:clang_library_path='/usr/lib/llvm-15/lib/libclang.so.1'
+" else
+"   let g:clang_library_path='/usr/lib/llvm-8/lib/libclang.so.1'
+" endif
 "}}}
 "   
 "   ### Snippets
@@ -1283,26 +1303,26 @@ Plug 'tmatilai/vim-monit/'
 "  \ ]
 
 
-if has("gui_running")
-  if IsOnSomeParticularMachine('cff39b5fb46d')
-    set guifont=Monospace\ Regular\ 14
-  elseif has("gui_gtk3" )
-    set guifont=FiraCode\ Nerd\ Font\ 13
-  elseif has("gui_gtk2")
-    set guifont=Noto\ Mono\ 14
-  elseif has("gui_macvim")
-    set guifont=Menlo\ Regular:h14
-  elseif has("gui_win32")
-    set guifont=Consolas:h11:cANSI
-  endif
-  hi Search guibg=peru guifg=wheat
-  hi IncSearch guibg=white guifg=red
-else
-  hi Search cterm=NONE ctermfg=grey ctermbg=blue
-  hi IncSearch cterm=NONE ctermbg=white ctermfg=red
-endif
+" if has("gui_running")
+"   if IsOnSomeParticularMachine('cff39b5fb46d')
+"     set guifont=Monospace\ Regular\ 14
+"   elseif has("gui_gtk3" )
+"     set guifont=FiraCode\ Nerd\ Font\ 13
+"   elseif has("gui_gtk2")
+"     set guifont=Noto\ Mono\ 14
+"   elseif has("gui_macvim")
+"     set guifont=Menlo\ Regular:h14
+"   elseif has("gui_win32")
+"     set guifont=Consolas:h11:cANSI
+"   endif
+"   hi Search guibg=peru guifg=wheat
+"   hi IncSearch guibg=white guifg=red
+" else
+"   hi Search cterm=NONE ctermfg=grey ctermbg=blue
+"   hi IncSearch cterm=NONE ctermbg=white ctermfg=red
+" endif
 
-
+set guifont=DejaVu\ Sans\ Mono\ 14
 
 " -------------------------------------------------------------------
 " Configuração semelhante ao nerdtree
@@ -2017,6 +2037,34 @@ endfunction
 
 nmap <leader>c1 :e /opt/intmain/dev/linux/usr/share/Gr/scripts/Common/Makefile.include<CR>
 nmap <leader>c2 :e /opt/intmain/dev/linux/usr/share/Gr/scripts/Common/common.bash<CR>
+
+"   
+"   ## Destaque para as seções deste arquivo
+"   
+"   As sintaxes podem ser estendidas usado a pasta `after/syntax`, p.e.
+"   `after/syntax/make.vim`
+"   
+"   Para testar as cores use `:runtime syntax/colortest.vim`
+"   
+"{{{
+" Coloração comum a todas as extensões
+highlight intmain_docmd       cterm=italic ctermbg=lightgray  ctermfg=black
+highlight intmain_docmd_h1    cterm=italic ctermbg=darkblue   ctermfg=black
+highlight intmain_docmd_h2    cterm=italic ctermbg=lightblue  ctermfg=black
+highlight intmain_docmd_h3    cterm=italic ctermbg=lightgreen ctermfg=black
+highlight intmain_docmd_blank cterm=italic ctermbg=black      ctermfg=darkgray
+
+" Erros de ortografia
+highlight clear SpellBad
+highlight clear SpellCap
+highlight clear SpellLocal
+highlight clear SpellRare
+highlight SpellCap   cterm=underline gui=undercurl ctermbg=green  ctermfg=black 
+highlight SpellLocal cterm=underline gui=undercurl ctermbg=gray   ctermfg=black 
+highlight SpellRare  cterm=underline gui=undercurl ctermbg=white  ctermfg=black 
+highlight SpellBad   cterm=underline gui=undercurl ctermbg=yellow ctermfg=black
+" :help hl-SpellBad
+"}}}
 
 command MeuComando echo "Olá mundo!"
 
