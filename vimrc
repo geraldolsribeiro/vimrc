@@ -14,15 +14,10 @@
 "    # Aponta o arquivo de configuração para a configuração personalizada
 "   ln -s ~/.vim/vimrc ~/.vimrc
 "   
-"    # (antigo) Baixa todos os plugins relacionados na configuração usando Vundle
-"   mkdir -p ~/.vim/bundle
-"   git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-"   vim +BundleInstall +qall
-"   
 "    # (atual) Baixa todos os plugins relacionados na configuração usando vim-plug
 "   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"   vim +PlugUpdate +qall
+"   vim +PlugInstall +PlugUpdate +qall
 "   ```
 "   
 "   ## Atualização
@@ -30,7 +25,7 @@
 "   Para atualizar os plugins utilize o comando abaixo
 "   
 "   ```bash
-"   vim +VundleUpdate +qall
+"   vim +PlugUpdate +qall
 "   ```
 "   
 "   ## Outras dependências
