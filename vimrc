@@ -1329,10 +1329,10 @@ let g:netrw_browse_split = 4 " Mantem a arvore aberta
 let g:netrw_altv         = 1
 let g:netrw_winsize      = 20 " percentua da janela usado para a listagem
 
-"augroup ProjectDrawer
-"  autocmd!
-"  autocmd VimEnter * :Vexplore
-"augroup END
+augroup ProjectDrawer
+ autocmd!
+ autocmd VimEnter * :Vexplore
+augroup END
 
 let g:markdown_fenced_languages = ['vim', 'html', 'python', 'bash=sh', 'ruby', 'eruby', 'javascript', 'elixir', 'sql', 'html']
 
