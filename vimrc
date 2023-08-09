@@ -370,7 +370,7 @@ Plug 'voldikss/vim-translator'
 Plug 'tobyS/vmustache'
 Plug 'janko-m/vim-test'
 Plug 'maksimr/vim-jsbeautify'
-Plug 'vim-syntastic/syntastic'
+"xxx Plug 'vim-syntastic/syntastic'
 Plug 'neomake/neomake'
 "}}}
 "   
@@ -730,7 +730,7 @@ Plug 'prabirshrestha/asyncomplete.vim'
 "{{{
 
 if executable('node')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"xxx Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 " :CocInstall coc-tsserver coc-json coc-html coc-css coc-clangd
@@ -746,22 +746,22 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " let g:coc_disable_startup_warning = 1
 "
 
-let g:coc_global_extensions = ['coc-tsserver']
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1):
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice.
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
+"xxxlet g:coc_global_extensions = ['coc-tsserver']
+"xxx
+"xxx" Use tab for trigger completion with characters ahead and navigate.
+"xxx" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+"xxx" other plugin before putting this into your config.
+"xxxinoremap <silent><expr> <TAB>
+"xxx      \ coc#pum#visible() ? coc#pum#next(1):
+"xxx      \ CheckBackspace() ? "\<Tab>" :
+"xxx      \ coc#refresh()
+"xxxinoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+"xxx
+"xxx" Make <CR> to accept selected completion item or notify coc.nvim to format
+"xxx" <C-g>u breaks current undo, please make your own choice.
+"xxxinoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+"xxx                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+"xxx
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -1774,7 +1774,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 2 " sugerido pela documentação: 1
+let g:syntastic_auto_loc_list = 1 " sugerido pela documentação: 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 " To see the command line syntastic passes to the checker, set g:syntastic_debug to 1, run the checker, then run :mes.

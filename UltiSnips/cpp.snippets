@@ -147,8 +147,9 @@ server.Get( R"(/number/(\d+))", [&]( const Request &req, Response & res ) {
 });
 endsnippet
 
+
 snippet ifndef
-#ifndef ${1:FILE}_HPP
+#ifndef ${1:`!p snip.rv = re.sub('(?!^)([A-Z]+)', r'_\1',snip.basename).upper()`}_HPP
 #define $1_HPP
 
 #endif
@@ -238,14 +239,14 @@ snippet newhpp "Novo arquivo HPP"
 // Copyright (C) 2017-2023 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
 
-#ifndef ${1:FILENAME}_HPP
+#ifndef ${1:`!p snip.rv = snip.basename`}_HPP
 #define $1_HPP
 $0
 #endif
 endsnippet
 
 snippet vartdhpp
-  virtual string ${1:field}VarTD( const ${2:Type}Record &rec ) const;
+  virtual string ${1:field}VarTD( const ${2:Type}Record &rec ) const override;
 endsnippet
 
 snippet vartdcpp
@@ -265,7 +266,7 @@ public:
   View01Html$1Record( DatabasePtr db, map<string, string> &params ) : Html$1Record( db, params ){};
   virtual ~View01Html$1Record(){};
   virtual void set${2:ParentId}Filter( const string &id );
-  virtual string nameVarTD( const $1Record &rec ) const;
+  virtual string nameVarTD( const $1Record &rec ) const override;
 
 protected:
   virtual bool select( const $1Record &rec ) const;
@@ -275,7 +276,16 @@ protected:
 // ----------------------------------------------------------------------
 // Copyright (C) 2017-2023 Geraldo Ribeiro <geraldo@intmain.io>
 // ----------------------------------------------------------------------
-#include <View01Html$1Record.hpp>
+#include "View01Html$1Record.hpp"
+
+
+// ----------------------------------------------------------------------
+//
+// ----------------------------------------------------------------------
+string View01Html$1Record::nameVarTD( const $1Record &rec ) const
+{
+  return GR_TD("name", rec.name());
+}
 
 // ----------------------------------------------------------------------
 //
