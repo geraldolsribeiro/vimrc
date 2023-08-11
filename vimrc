@@ -1334,6 +1334,17 @@ augroup ProjectDrawer
  autocmd VimEnter * :Vexplore
 augroup END
 
+" https://www.freecodecamp.org/news/vimrc-configuration-guide-customize-your-vim-editor/
+" Enable auto completion menu after pressing TAB.
+set wildmenu
+
+" Make wildmenu behave like similar to Bash completion.
+set wildmode=list:longest
+
+" There are certain files that we would never want to edit with Vim.
+" Wildmenu will ignore files with these extensions.
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+
 let g:markdown_fenced_languages = ['vim', 'html', 'python', 'bash=sh', 'ruby', 'eruby', 'javascript', 'elixir', 'sql', 'html']
 
 au BufRead,BufNewFile {COMMIT_EDITMSG} set ft=gitcommit
