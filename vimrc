@@ -1327,7 +1327,7 @@ let g:netrw_banner       = 0
 let g:netrw_liststyle    = 3 " tree
 let g:netrw_browse_split = 4 " Mantem a arvore aberta
 let g:netrw_altv         = 1
-let g:netrw_winsize      = 20 " percentua da janela usado para a listagem
+let g:netrw_winsize      = 20 " percentual da janela usado para a listagem
 
 augroup ProjectDrawer
  autocmd!
@@ -1910,7 +1910,7 @@ silent! colorscheme gruvbox
 
 " Força fundo transparente sobre o esquema de cores atual
 " Útil para deixar o vim sobreposto a outra tela no terminal
-" hi Normal guibg=NONE ctermbg=NONE
+" highlight Normal guibg=NONE ctermbg=NONE
 highlight Normal ctermbg=NONE
 "
 "let g:solarized_termcolors=16
