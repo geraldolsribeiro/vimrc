@@ -525,7 +525,21 @@ Plug 'dNitro/vim-pug-complete'
 autocmd BufNewFile,BufReadPost *.pug set filetype=pug
 
 "}}}
-   
+"   
+"   ### Language V
+"   
+"{{{
+Plug 'ollykel/v-vim'
+Plug 'cheap-glitch/vim-v'
+Plug 'zakuro9715/vim-vtools'
+
+let g:v_warnings = 1
+" enable auto format when write. (defaut)
+let g:vfmt = 1
+" use vls to format (require vim-lsp and vls)
+let g:vtools_use_vls = 1
+"}}}
+"   
 "   ### C++
 "   
 "{{{
