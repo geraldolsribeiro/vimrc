@@ -526,18 +526,24 @@ autocmd BufNewFile,BufReadPost *.pug set filetype=pug
 
 "}}}
 "   
-"   ### Language V
+"   ### Language V (vlang)
 "   
 "{{{
 Plug 'ollykel/v-vim'
 Plug 'cheap-glitch/vim-v'
 Plug 'zakuro9715/vim-vtools'
+Plug 'noorwachid/vim-vlanguage' 
 
 let g:v_warnings = 1
-" enable auto format when write. (defaut)
+
+" enable auto format when write. (default)
 let g:vfmt = 1
+
 " use vls to format (require vim-lsp and vls)
 let g:vtools_use_vls = 1
+
+" Enable automatically formatting file via "v fmt -" before writing buffer.
+let g:v_autofmt_bufwritepre = 1
 "}}}
 "   
 "   ### C++
