@@ -1349,6 +1349,28 @@ let g:netrw_browse_split = 4 " Mantem a arvore aberta
 let g:netrw_altv         = 1
 let g:netrw_winsize      = 20 " percentual da janela usado para a listagem
 
+
+"   ### Terminal
+"   
+"   Ctrl+W Ctrl+W 
+"   Ctrl+W Shifft+H
+"   Ctrl+W Shifft+J
+"   Ctrl+W Shifft+K
+"   Ctrl+W Shifft+L
+"   Ctrl+W : some vim command
+"   Ctrl+W : resize +2
+"   Ctrl+W : resize 8
+"   Ctrl+W _ maximize
+"   Ctrl+W = same size
+"   Ctrl+W 10- reduz 10 linha
+"   Ctrl+W Shift+N  modo normal
+"   
+"   Open terminal below
+"   
+"{{{
+set splitbelow
+"}}}
+
 augroup ProjectDrawer
  autocmd!
  autocmd VimEnter * :Vexplore
@@ -1988,6 +2010,9 @@ map <leader>m :NERDTreeToggle<CR>
 "map <C-m> :TagbarToggle<CR>
 
 " Alterna entre as tabs
+" :tab ball (buffer all)
+" Ctrl+PgUp Ctrl+PgDn navega entre abas
+
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
