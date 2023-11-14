@@ -466,6 +466,7 @@ let g:pandoc#biblio#use_bibtool=1
 "{{{
 Plug 'kablamo/vim-git-log'
 Plug 'gregsexton/gitv'
+Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-fugitive'
 "Plugin 'jaxbot/github-issues.vim'   " lerda muito
 "}}}
