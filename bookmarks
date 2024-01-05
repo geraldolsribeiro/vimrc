@@ -1,3 +1,0 @@
-let l:bm_file_version = 1
-let l:bm_sessions = {'default': {'/home/geraldo/.vim/vimrc': [{'sign_idx': 9505, 'line_nr': 183, 'content': '"   ### Utilitários', 'annotation': 'Utilitários'},{'sign_idx': 9504, 'line_nr': 148, 'content': '"   ### Bookmarks', 'annotation': 'Bookmarks'},],}}
-let l:bm_current_session = 'default'

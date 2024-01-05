@@ -268,7 +268,7 @@ highlight BookmarkLine ctermbg=194 ctermfg=NONE
 " let g:bookmark_sign = '♥'
 let g:bookmark_highlight_lines = 1
 let g:bookmark_auto_save = 1
-let g:bookmark_save_per_working_dir = 0
+let g:bookmark_save_per_working_dir = 1
 
 " TIP: Incluir esta linha no .vimrc do projeto com um sufixo para separar os
 " bookmarks por projeto
