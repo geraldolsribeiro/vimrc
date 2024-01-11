@@ -163,20 +163,32 @@ let g:vcoolor_disable_mappings = 1
 let g:vcoolor_map = '<leader>color'
 Plug 'KabbAmine/vCoolor.vim' " FIXME: a+til abre picker
 "}}}
+"   
+"   ### vim-table-mode
+"   
+"{{{
+" Warning: Moved up due to some interference of other plugin
+Plug 'dhruvasagar/vim-table-mode'
+" tabelas em formato markdown
+" let g:table_mode_corner='|'
+"}}}
+
 
 "   
 "   ### Melhorar a visibilidade da indentação
 "   
 "{{{
 Plug 'Yggdroot/indentLine'
-let g:indentLine_enabled = 1
-" let g:indentLine_char = '▏'
-let g:indentLine_char = '┆'
-let g:indentLine_concealcursor = ''
-let g:indentLine_setColors = 0
-let g:indentLine_color_term = 239
-let g:indentLine_setConceal = 0
-let g:indentLine_faster = 1
+" let g:indentLine_enabled = 1
+" " let g:indentLine_char = '▏'
+" let g:indentLine_char = '┆'
+" let g:indentLine_concealcursor = ''
+" let g:indentLine_setColors = 0
+" let g:indentLine_color_term = 239
+" let g:indentLine_setConceal = 0
+" let g:indentLine_faster = 1
+" let g:indentLine_color_dark = 1
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 "}}}
 "   
 "   ### recutils
@@ -287,7 +299,6 @@ let g:bookmark_auto_save_file = $HOME . '/.vim/bookmarks'
 "{{{
 Plug 'powerline/powerline-fonts'
 
-" Plugin 'Yggdroot/indentLine'
 Plug 'majutsushi/tagbar'
 Plug 'ervandew/supertab'
 " Plug 'BufOnly.vim'  " apresentou falha ao migrar do vundle para o vim-plug
@@ -314,7 +325,6 @@ Plug 'tpope/vim-eunuch'
 "   :SudoWrite: Write a privileged file with sudo.
 "   :SudoEdit: Edit a privileged file with sudo.
 
-Plug 'dhruvasagar/vim-table-mode'
 " Lança o ranger a partir do vim
 
 Plug 'francoiscabrol/ranger.vim'
@@ -1227,14 +1237,6 @@ let g:neomake_elixir_enabled_makers = ['mix', 'credo', 'dogma']
 "{{{
 let g:neomake_scss_enabled_markers = ['scss-lint']
 "}}}
-"   
-"   ### vim-table-mode
-"   
-"{{{
-" tabelas em formato markdown
-let g:table_mode_corner='|'
-"}}}
-
 
 " Configuração do airline precisa estar antes do webdevicons
 " Vim-Airline Configuration
@@ -1897,7 +1899,8 @@ set helplang=pt
 
 " https://coderwall.com/p/pupilw/pretty-format-xml-in-vim
 " Formata com =
-au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+autocmd FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+autocmd FileType c,cpp setlocal equalprg=clang-format
 
 " Não funcionou o comando abaixo, pesquisar como passar o arquivo como
 " parâmetro
