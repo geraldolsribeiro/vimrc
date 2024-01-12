@@ -179,15 +179,13 @@ Plug 'dhruvasagar/vim-table-mode'
 "   
 "{{{
 Plug 'Yggdroot/indentLine'
-" let g:indentLine_enabled = 1
-" " let g:indentLine_char = '▏'
-" let g:indentLine_char = '┆'
-" let g:indentLine_concealcursor = ''
+let g:indentLine_enabled = 1
+let g:indentLine_concealcursor = '' " disable conceal for current line
 " let g:indentLine_setColors = 0
 " let g:indentLine_color_term = 239
 " let g:indentLine_setConceal = 0
 " let g:indentLine_faster = 1
-" let g:indentLine_color_dark = 1
+let g:indentLine_color_dark = 1
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 "}}}
 "   
