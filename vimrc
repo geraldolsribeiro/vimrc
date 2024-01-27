@@ -452,15 +452,19 @@ let g:instant_markdown_browser = "firefox --new-window"
 let g:instant_markdown_autostart = 0
 
 Plug 'reedes/vim-pencil'
-Plug 'tpope/vim-markdown'
 Plug 'jtratner/vim-flavored-markdown'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'junegunn/vim-emoji'
 "Plugin 'kyuhi/vim-emoji-complete' " FIXME: nao funciona bem com o git
 
+Plug 'preservim/vim-markdown'
+" Veja github para criacao de toc
+" https://codeinthehole.com/tips/writing-markdown-in-vim/
+" Necessario remove plugged/vim-markdown
+"Plug 'tpope/vim-markdown'
+
 Plug 'godlygeek/tabular'
-"Plugin 'plasticboy/vim-markdown'
 
 " Encontra erros de escrita
 Plug 'reedes/vim-wordy'
