@@ -140,6 +140,33 @@ $0
 //--
 endsnippet
 
+snippet pikchr
+//-- @startpikchr images/`!p snip.rv = snip.basename`.pikchr /til/cpp_`!p snip.rv = snip.basename`.svg Image caption.
+//-- boxht *= 0.5;
+//-- VT: box "vtable pointer" width 8cm fill yellow;
+//-- text "0" at 3mm above VT.nw;
+//-- text "8" at 3mm above VT.ne;
+//-- @endpikchr
+endsnippet
+
+snippet tip
+//-- ::: tip
+//-- text
+//--
+//-- ::: warning
+//-- text
+//--
+//-- ::: info
+//-- text
+//--
+//-- ::: fixme
+//-- text
+//--
+//-- ::: note
+//-- text
+//--
+endsnippet
+
 snippet httpGet
 server.Get( R"(/number/(\d+))", [&]( const Request &req, Response & res ) {
   auto numbers = req.matches[1];
