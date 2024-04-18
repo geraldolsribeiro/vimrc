@@ -1376,10 +1376,11 @@ let g:netrw_winsize      = 20 " percentual da janela usado para a listagem
 set splitbelow
 "}}}
 
-augroup ProjectDrawer
- autocmd!
- autocmd VimEnter * :Vexplore
-augroup END
+" Abre a árvore lateral
+" augroup ProjectDrawer
+"  autocmd!
+"  autocmd VimEnter * :Vexplore
+" augroup END
 
 " https://www.freecodecamp.org/news/vimrc-configuration-guide-customize-your-vim-editor/
 " Enable auto completion menu after pressing TAB.
