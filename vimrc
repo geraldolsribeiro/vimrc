@@ -2341,6 +2341,29 @@ set keywordprg=google
 " comportamento default
 set keywordprg=man\ -s
 
+"   
+"   ## Reference management
+"   
+"   Describe here how to use the scripts.
+"   
+"{{{
+function! OpenThunarByHash()
+  let l:currentWord = expand('<cword>')
+  :execute printf('!/home/geraldo/bin/thunar_open_by_hash %s', l:currentWord)
+endfunction
+
+function! OpenXournalByHash()
+  let l:currentWord = expand('<cword>')
+  :execute printf('!/home/geraldo/bin/xournal_open_by_hash %s', l:currentWord)
+endfunction
+
+command OpenThunarByHash :call OpenThunarByHash()<CR>
+nnoremap <C-F3> :call OpenThunarByHash()<CR>
+
+command OpenXournalByHash :call OpenXournalByHash()<CR>
+nnoremap <C-F4> :call OpenXournalByHash()<CR>
+"}}}
+
 
 " Exemplo do livro VimL
 let &runtimepath.=',~/vim/plugin/mpc'
