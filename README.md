@@ -11,9 +11,12 @@ Fonte: `vimrc`
   * [Outras dependências](#outras-dependências)
   * [Variáveis do vim e seus prefixos](#variáveis-do-vim-e-seus-prefixos)
   * [Configuração específica para projetos](#configuração-específica-para-projetos)
+  * [Destaque para as seções deste arquivo](#destaque-para-as-seções-deste-arquivo)
   * [Plugins](#plugins)
       * [Dicas, utilitários e material de referência para desenvolvimento](#dicas,-utilitários-e-material-de-referência-para-desenvolvimento)
+      * [vim-table-mode](#vim-table-mode)
       * [Melhorar a visibilidade da indentação](#melhorar-a-visibilidade-da-indentação)
+      * [recutils](#recutils)
       * [tmux](#tmux)
       * [AsyncRun](#asyncrun)
       * [FZF](#fzf)
@@ -32,6 +35,7 @@ Fonte: `vimrc`
       * [Git Support](#git-support)
       * [Dart](#dart)
       * [HTML](#html)
+      * [Language V (vlang)](#language-v-vlang)
       * [C++](#c++)
       * [Erlang Support](#erlang-support)
       * [Elixir Support ](#elixir-support-)
@@ -56,16 +60,16 @@ Fonte: `vimrc`
       * [Java](#java)
       * [ruby ](#ruby-)
       * [SCSS](#scss)
-      * [vim-table-mode](#vim-table-mode)
       * [Devicons](#devicons)
+      * [Terminal](#terminal)
   * [Configuração do clang-format](#configuração-do-clang-format)
       * [Tradução](#tradução)
       * [Color scheme](#color-scheme)
       * [Atalhos de teclado](#atalhos-de-teclado)
   * [Destaque para as seções deste arquivo](#destaque-para-as-seções-deste-arquivo)
+  * [Reference management](#reference-management)
 
 [TOC]
-
 ## Instalação
 
 ```bash
@@ -77,15 +81,10 @@ git clone https://github.com/geraldolsribeiro/vimrc.git ~/.vim
  # Aponta o arquivo de configuração para a configuração personalizada
 ln -s ~/.vim/vimrc ~/.vimrc
 
- # (antigo) Baixa todos os plugins relacionados na configuração usando Vundle
-mkdir -p ~/.vim/bundle
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +BundleInstall +qall
-
  # (atual) Baixa todos os plugins relacionados na configuração usando vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-vim +PlugUpdate +qall
+vim +PlugInstall +PlugUpdate +qall
 ```
 
 ## Atualização
@@ -93,7 +92,7 @@ vim +PlugUpdate +qall
 Para atualizar os plugins utilize o comando abaixo
 
 ```bash
-vim +VundleUpdate +qall
+vim +PlugUpdate +qall
 ```
 
 ## Outras dependências
@@ -131,6 +130,39 @@ o arquivo de configuração no raiz do projeto e habilitar o `exrc`.
 
 ```vim
 set exrc
+```
+
+
+## Destaque para as seções deste arquivo
+
+As sintaxes podem ser estendidas usado a pasta `after/syntax`, p.e.
+`after/syntax/make.vim`
+
+Para testar as cores use `:runtime syntax/colortest.vim`
+
+
+```vim
+" Coloração comum a todas as extensões
+highlight intmain_docmd       cterm=italic ctermbg=lightgray  ctermfg=black
+highlight intmain_docmd_h1    cterm=italic ctermbg=darkblue   ctermfg=black
+highlight intmain_docmd_h2    cterm=italic ctermbg=lightblue  ctermfg=black
+highlight intmain_docmd_h3    cterm=italic ctermbg=lightgreen ctermfg=black
+highlight intmain_docmd_blank cterm=italic ctermbg=black      ctermfg=darkgray
+
+" Erros de ortografia
+highlight clear SpellBad
+highlight clear SpellCap
+highlight clear SpellLocal
+highlight clear SpellRare
+highlight SpellCap   cterm=underline gui=undercurl ctermbg=green  ctermfg=black 
+highlight SpellLocal cterm=underline gui=undercurl ctermbg=gray   ctermfg=black 
+highlight SpellRare  cterm=underline gui=undercurl ctermbg=white  ctermfg=black 
+highlight SpellBad   cterm=underline gui=undercurl ctermbg=yellow ctermfg=black
+
+" Destaca os caracteres não ASCII
+syntax match nonascii "[^\x00-\x7F]"
+highlight nonascii guibg=Red ctermbg=2
+" :help hl-SpellBad
 ```
 
 
@@ -174,19 +206,38 @@ Plug 'KabbAmine/vCoolor.vim' " FIXME: a+til abre picker
 ```
 
 
+### vim-table-mode
+
+
+```vim
+" Warning: Moved up due to some interference of other plugin
+Plug 'dhruvasagar/vim-table-mode'
+" tabelas em formato markdown
+" let g:table_mode_corner='|'
+```
+
+
 ### Melhorar a visibilidade da indentação
 
 
 ```vim
 Plug 'Yggdroot/indentLine'
 let g:indentLine_enabled = 1
-" let g:indentLine_char = '▏'
-let g:indentLine_char = '┆'
-let g:indentLine_concealcursor = ''
-let g:indentLine_setColors = 0
-let g:indentLine_color_term = 239
-let g:indentLine_setConceal = 0
-let g:indentLine_faster = 1
+let g:indentLine_concealcursor = '' " disable conceal for current line
+" let g:indentLine_setColors = 0
+" let g:indentLine_color_term = 239
+" let g:indentLine_setConceal = 0
+" let g:indentLine_faster = 1
+let g:indentLine_color_dark = 1
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+```
+
+
+### recutils
+
+
+```vim
+Plug 'zaid/vim-rec' 
 ```
 
 
@@ -287,7 +338,7 @@ highlight BookmarkLine ctermbg=194 ctermfg=NONE
 " let g:bookmark_sign = '♥'
 let g:bookmark_highlight_lines = 1
 let g:bookmark_auto_save = 1
-let g:bookmark_save_per_working_dir = 0
+let g:bookmark_save_per_working_dir = 1
 
 " TIP: Incluir esta linha no .vimrc do projeto com um sufixo para separar os
 " bookmarks por projeto
@@ -308,7 +359,6 @@ let g:bookmark_auto_save_file = $HOME . '/.vim/bookmarks'
 ```vim
 Plug 'powerline/powerline-fonts'
 
-" Plugin 'Yggdroot/indentLine'
 Plug 'majutsushi/tagbar'
 Plug 'ervandew/supertab'
 " Plug 'BufOnly.vim'  " apresentou falha ao migrar do vundle para o vim-plug
@@ -347,7 +397,6 @@ Vim sugar for the UNIX shell commands that need it the most. Features include:
 :SudoEdit: Edit a privileged file with sudo.
 "   :SudoEdit: Edit a privileged file with sudo.
 
-Plug 'dhruvasagar/vim-table-mode'
 " Lança o ranger a partir do vim
 
 Plug 'francoiscabrol/ranger.vim'
@@ -371,11 +420,20 @@ Plug 'wellle/targets.vim'
 ```vim
 Plug 'xavierd/clang_complete'
 " Onde a biblioteca está
-if filereadable('/usr/lib/llvm-11/lib/libclang.so.1')
-  let g:clang_library_path='/usr/lib/llvm-11/lib/libclang.so.1'
-else
-  let g:clang_library_path='/usr/lib/llvm-8/lib/libclang.so.1'
-endif
+for clang_version in [ 17, 16, 15, 14, 13, 12, 11, 10 ]
+  let fn = '/usr/lib/llvm-' . clang_version . '/lib/libclang.so.1'
+  if filereadable(fn)
+    let g:clang_library_path = fn
+    break
+  endif
+endfor
+" if filereadable('/usr/lib/llvm-11/lib/libclang.so.1')
+let g:clang_library_path='/usr/lib/llvm-15/lib/libclang.so.1'
+"   let g:clang_library_path='/usr/lib/llvm-15/lib/libclang.so.1'
+" else
+let g:clang_library_path='/usr/lib/llvm-8/lib/libclang.so.1'
+"   let g:clang_library_path='/usr/lib/llvm-8/lib/libclang.so.1'
+" endif
 ```
 
 
@@ -419,7 +477,7 @@ Plug 'voldikss/vim-translator'
 Plug 'tobyS/vmustache'
 Plug 'janko-m/vim-test'
 Plug 'maksimr/vim-jsbeautify'
-Plug 'vim-syntastic/syntastic'
+"xxx Plug 'vim-syntastic/syntastic'
 Plug 'neomake/neomake'
 ```
 
@@ -495,15 +553,19 @@ let g:instant_markdown_browser = "firefox --new-window"
 let g:instant_markdown_autostart = 0
 
 Plug 'reedes/vim-pencil'
-Plug 'tpope/vim-markdown'
 Plug 'jtratner/vim-flavored-markdown'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'junegunn/vim-emoji'
 "Plugin 'kyuhi/vim-emoji-complete' " FIXME: nao funciona bem com o git
 
+Plug 'preservim/vim-markdown'
+" Veja github para criacao de toc
+" https://codeinthehole.com/tips/writing-markdown-in-vim/
+" Necessario remove plugged/vim-markdown
+"Plug 'tpope/vim-markdown'
+
 Plug 'godlygeek/tabular'
-"Plugin 'plasticboy/vim-markdown'
 
 " Encontra erros de escrita
 Plug 'reedes/vim-wordy'
@@ -519,6 +581,7 @@ let g:pandoc#biblio#use_bibtool=1
 ```vim
 Plug 'kablamo/vim-git-log'
 Plug 'gregsexton/gitv'
+Plug 'junegunn/gv.vim'
 Plug 'tpope/vim-fugitive'
 "Plugin 'jaxbot/github-issues.vim'   " lerda muito
 ```
@@ -582,6 +645,29 @@ Plug 'dNitro/vim-pug-complete'
 autocmd BufNewFile,BufReadPost *.pug set filetype=pug
 
 ```
+
+
+### Language V (vlang)
+
+
+```vim
+Plug 'ollykel/v-vim'
+Plug 'cheap-glitch/vim-v'
+Plug 'zakuro9715/vim-vtools'
+Plug 'noorwachid/vim-vlanguage' 
+
+let g:v_warnings = 1
+
+" enable auto format when write. (default)
+let g:vfmt = 1
+
+" use vls to format (require vim-lsp and vls)
+let g:vtools_use_vls = 1
+
+" Enable automatically formatting file via "v fmt -" before writing buffer.
+let g:v_autofmt_bufwritepre = 1
+```
+
 
 ### C++
 
@@ -818,7 +904,7 @@ comando:
 ```vim
 
 if executable('node')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"xxx Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'jackguo380/vim-lsp-cxx-highlight'
 
 " :CocInstall coc-tsserver coc-json coc-html coc-css coc-clangd
@@ -834,22 +920,22 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " let g:coc_disable_startup_warning = 1
 "
 
-let g:coc_global_extensions = ['coc-tsserver']
-
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1):
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice.
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
+"xxxlet g:coc_global_extensions = ['coc-tsserver']
+"xxx
+"xxx" Use tab for trigger completion with characters ahead and navigate.
+"xxx" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+"xxx" other plugin before putting this into your config.
+"xxxinoremap <silent><expr> <TAB>
+"xxx      \ coc#pum#visible() ? coc#pum#next(1):
+"xxx      \ CheckBackspace() ? "\<Tab>" :
+"xxx      \ coc#refresh()
+"xxxinoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+"xxx
+"xxx" Make <CR> to accept selected completion item or notify coc.nvim to format
+"xxx" <C-g>u breaks current undo, please make your own choice.
+"xxxinoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+"xxx                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+"xxx
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -1025,6 +1111,7 @@ nmap <silent> gr <Plug>(coc-references)
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 
+nmap <leader>aw :CocCommand cSpell.addWordToDictionary<CR>
 " there's way more, see `:help coc-key-mappings@en'
 endif
 ```
@@ -1171,15 +1258,6 @@ let g:neomake_scss_enabled_markers = ['scss-lint']
 ```
 
 
-### vim-table-mode
-
-
-```vim
-" tabelas em formato markdown
-let g:table_mode_corner='|'
-```
-
-
 ### Devicons
 
 
@@ -1226,6 +1304,43 @@ let g:WebDevIconsOS = 'Darwin'
 if exists('g:loaded_webdevicons')
   call webdevicons#refresh()
 endif
+```
+
+if IsOnSomeParticularMachine('cff39b5fb46d')
+  set guifont=Monospace\ Regular\ 14
+elseif has("gui_gtk3" )
+  set guifont=FiraCode\ Nerd\ Font\ 13
+elseif has("gui_gtk2")
+  set guifont=Noto\ Mono\ 14
+elseif has("gui_macvim")
+  set guifont=Menlo\ Regular:h14
+elseif has("gui_win32")
+  set guifont=Consolas:h11:cANSI
+endif
+hi Search guibg=peru guifg=wheat
+hi IncSearch guibg=white guifg=red
+hi Search cterm=NONE ctermfg=grey ctermbg=blue
+hi IncSearch cterm=NONE ctermbg=white ctermfg=red
+### Terminal
+
+Ctrl+W Ctrl+W 
+Ctrl+W Shifft+H
+Ctrl+W Shifft+J
+Ctrl+W Shifft+K
+Ctrl+W Shifft+L
+Ctrl+W : some vim command
+Ctrl+W : resize +2
+Ctrl+W : resize 8
+Ctrl+W _ maximize
+Ctrl+W = same size
+Ctrl+W 10- reduz 10 linha
+Ctrl+W Shift+N  modo normal
+
+Open terminal below
+
+
+```vim
+set splitbelow
 ```
 
 
@@ -1281,15 +1396,28 @@ if (empty($TMUX))
 endif
 
 let g:gruvbox_italic=1
-colorscheme gruvbox
+silent! colorscheme gruvbox
 
 " Força fundo transparente sobre o esquema de cores atual
 " Útil para deixar o vim sobreposto a outra tela no terminal
-" hi Normal guibg=NONE ctermbg=NONE
+" highlight Normal guibg=NONE ctermbg=NONE
 highlight Normal ctermbg=NONE
 "
 "let g:solarized_termcolors=16
 "let g:solarized_termtrans = 1
+
+" Highlight cursor
+" https://stackoverflow.com/questions/6230490/how-i-can-change-cursor-color-in-vims-color-scheme
+if &term =~ "xterm\\|rxvt"
+  " use an orange cursor in insert mode
+  let &t_SI = "\<Esc>]12;orange\x7"
+  " use a red cursor otherwise
+  let &t_EI = "\<Esc>]12;red\x7"
+  silent !echo -ne "\033]12;red\007"
+  " reset cursor when vim exits
+  autocmd VimLeave * silent !echo -ne "\033]112\007"
+  " use \003]12;gray\007 for gnome-terminal
+endif
 
 ```
 
@@ -1305,6 +1433,9 @@ map <leader>m :NERDTreeToggle<CR>
 "map <C-m> :TagbarToggle<CR>
 
 " Alterna entre as tabs
+" :tab ball (buffer all)
+" Ctrl+PgUp Ctrl+PgDn navega entre abas
+
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
 nmap <leader>3 <Plug>AirlineSelectTab3
@@ -1394,3 +1525,27 @@ highlight SpellBad   cterm=underline gui=undercurl ctermbg=yellow ctermfg=black
       augroup END
   endif
   let s:auto_reload = !s:auto_reload
+
+## Reference management
+
+Describe here how to use the scripts.
+
+
+```vim
+function! OpenThunarByHash()
+  let l:currentWord = expand('<cword>')
+  :execute printf('!/home/geraldo/bin/thunar_open_by_hash %s', l:currentWord)
+endfunction
+
+function! OpenXournalByHash()
+  let l:currentWord = expand('<cword>')
+  :execute printf('!/home/geraldo/bin/xournal_open_by_hash %s', l:currentWord)
+endfunction
+
+command OpenThunarByHash :call OpenThunarByHash()<CR>
+nnoremap <C-F3> :call OpenThunarByHash()<CR>
+
+command OpenXournalByHash :call OpenXournalByHash()<CR>
+nnoremap <C-F4> :call OpenXournalByHash()<CR>
+```
+
