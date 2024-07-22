@@ -1822,6 +1822,8 @@ let g:lexical#spellfile = ['~/.vim/spell/en.utf-8.add',]
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp,cxx,objc,java nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,cxx,objc,java vnoremap <buffer><Leader>cf :ClangFormat<CR>
+autocmd FileType rust nnoremap <buffer><Leader>cf :<C-u>:RustFmt<CR>
+
 " if you install vim-operator-user
 autocmd FileType c,cpp,cxx,objc,java map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
