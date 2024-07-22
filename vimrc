@@ -559,6 +559,12 @@ let g:vtools_use_vls = 1
 let g:v_autofmt_bufwritepre = 1
 "}}}
 "   
+"   ### Rust
+"   
+"{{{
+Plug 'rust-lang/rust.vim'
+"}}}
+"   
 "   ### C++
 "   
 "{{{
