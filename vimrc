@@ -542,7 +542,7 @@ autocmd BufNewFile,BufReadPost *.pug set filetype=pug
 "   ### Language V (vlang)
 "   
 "{{{
-Plug 'ollykel/v-vim'
+Plug 'geraldolsribeiro/v-vim'
 Plug 'cheap-glitch/vim-v'
 Plug 'zakuro9715/vim-vtools'
 Plug 'noorwachid/vim-vlanguage' 
