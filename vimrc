@@ -154,7 +154,7 @@ call plug#begin()
 Plug 'geraldolsribeiro/vim-GrTooltip'
 Plug 'geraldolsribeiro/vim-docmd'
 Plug 'geraldolsribeiro/vim-auto-markdown'
-Plug 'geraldolsribeiro/vim-conceal'
+"Plug 'geraldolsribeiro/vim-conceal'
 Plug 'geraldolsribeiro/vim-LanguageTool'
 " extrair https://internal1.languagetool.org/snapshots/LanguageTool-latest-snapshot.zip para ~/languagetool/
 " https://languagetool.org/download/LanguageTool-stable.zip
@@ -297,7 +297,7 @@ let g:bookmark_auto_save_file = $HOME . '/.vim/bookmarks'
 "{{{
 Plug 'powerline/powerline-fonts'
 
-Plug 'majutsushi/tagbar'
+Plug 'preservim/tagbar'
 Plug 'ervandew/supertab'
 " Plug 'BufOnly.vim'  " apresentou falha ao migrar do vundle para o vim-plug
 Plug 'wesQ3/vim-windowswap'
@@ -393,7 +393,7 @@ Plug 'voldikss/vim-translator'
 Plug 'tobyS/vmustache'
 Plug 'janko-m/vim-test'
 Plug 'maksimr/vim-jsbeautify'
-"xxx Plug 'vim-syntastic/syntastic'
+Plug 'vim-syntastic/syntastic'
 Plug 'neomake/neomake'
 "}}}
 "   
@@ -782,7 +782,7 @@ Plug 'prabirshrestha/asyncomplete.vim'
 "   :CocCommand clangd.install
 "   
 "{{{
-
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 if executable('node')
 "xxx Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'jackguo380/vim-lsp-cxx-highlight'
@@ -1814,6 +1814,20 @@ let g:lexical#dictionary = ['/usr/share/dict/words',]
 let g:lexical#thesaurus = ['~/.vim/thesaurus/mthesaur.txt',]
 let g:lexical#spellfile = ['~/.vim/spell/en.utf-8.add',]
 
+"   ## Configuration for C++
+"   
+"{{{
+"}}}
+
+"   ## Configuration for Rust
+"   
+"{{{
+" CocInstall coc-rust-analyzer
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
+autocmd FileType rust nnoremap <buffer><Leader>cf :<C-u>:RustFmt<CR>
+"}}}
 "   
 "   ## Configuração do clang-format
 "   
@@ -1826,7 +1840,6 @@ let g:lexical#spellfile = ['~/.vim/spell/en.utf-8.add',]
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp,cxx,objc,java nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
 autocmd FileType c,cpp,cxx,objc,java vnoremap <buffer><Leader>cf :ClangFormat<CR>
-autocmd FileType rust nnoremap <buffer><Leader>cf :<C-u>:RustFmt<CR>
 
 " if you install vim-operator-user
 autocmd FileType c,cpp,cxx,objc,java map <buffer><Leader>x <Plug>(operator-clang-format)
@@ -2027,6 +2040,7 @@ map <leader>n :NERDTreeFind<CR>
 " Abre/Fecha a NERDTree
 map <leader>m :NERDTreeToggle<CR>
 "map <C-m> :TagbarToggle<CR>
+ nmap <F4> :TagbarToggle<CR>
 
 " Alterna entre as tabs
 " :tab ball (buffer all)
